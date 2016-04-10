@@ -69,7 +69,7 @@ requirejs(['static/js/config.js'], function(common) {
       system.xll = (p == "X11") || (p.indexOf("Linux") === 0);
 
       // var temp = navigator.platform;
-      document.write(p.indexOf("iP"));
+      // document.write(p.indexOf("iP"));
     });
   });
 });
