@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- 通知 IE 采用其所支持的最新的模式 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- 指定用户是否可以缩放Web页面 -->
+    <title>首页</title>
+    <meta name="Description" content=""/>
+    <meta name="Keywords" content=""/>
+    <meta content="http://addaad.com/z/img/favicon-48.png" itemprop="image">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="http://addaad.com/z/img/favicon-24.ico"/>
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap-3.3.5/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="static/css/common.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <!--[if lt IE 9]>
+    <script src="js/lib/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="js/lib/respondjs/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-gps navbar-fixed-top">
+    <div class="container">
+        <!-- 折叠内容 -->
+        <div class="navbar-header">
+            <!--移动端触发按钮-->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gps-navbar-collapse" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">学海导航</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="gps-navbar-collapse">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-gpsnav" placeholder="请输入关键词">
+                    <span class="input-group-btn">
+                        <button class="btn btn-gpsnav" type="button">
+                          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+            <div class="sign navbar-right">
+              <ul class="nav navbar-nav">
+                  <li class="active"><a href="#" class="nav-link">首页</a></li>
+                  <li><a href="#" class="nav-link">课程</a></li>
+                  <li><a href="#" class="nav-link">社区</a></li>
+              </ul>
+              <div class="navbar-left">
+                <button type="button" class="btn btn-gpsnav navbar-btn">注册</button>
+                <span class="v-line">|</span>
+                <button type="button" class="btn btn-gpsnav navbar-btn">登录</button>
+              </div>
+            </div>
+            <div class="signed navbar-right hidden">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#" class="nav-link">首页</a></li>
+                    <li><a href="#" class="nav-link">课程</a></li>
+                    <li><a href="#" class="nav-link">社区</a></li>
+                    <li><a href="#" class="nav-link">个人中心</a></li>
+                </ul>
+                <div class="navbar-left">
+                  <button type="button" class="btn btn-gpsnav signout navbar-btn">退出</button>
+                </div>
+            </div>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+</nav>
+<header>
+  <div class="header-img"></div>
+</header>
+<main>
+  <section id="know">
+    <div class="container">
+      <div class="tit">
+        <h2>了解</h2>
+        <p>我们希望通过视频的方式让学习更有效</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 know-panel">
+          <!--图像自适应添加 .img-responsive -->
+          <img src="static/img/index/know-1.png" alt="视频教学" class="know-img">
+          <h3 class="know-panel-tit">视频教学</h3>
+          <p>网站以视频的形式来向学生传授知识，因此你可以任何时间，在任何地点访问我们的网站，只要你可以接入互联网。</p>
+          <p>相对传统线下辅导班、培训学校，我们将时间的选择权交给学生，让学生合理规划自己的时间，更加高效的学习知识，提高成绩。</p>
+        </div>
+        <div class="col-sm-4 know-panel know-subject">
+          <img src="static/img/index/know-2.png" alt="语数外理化" class="know-img">
+          <h3 class="know-panel-tit">语数外理化</h3>
+          <p>视频内容主要涉及小学、初中、高中的语文、数学、英语、物理、化学五个科目。内容立足课本，归纳重点难点，介绍一些好的学习思路。</p>
+          <p>同时提供基础版和提高版，供不同需要的学生选择合适自己的视频。基础版注重基础概念、基本计算等一般性内容；提高版主要在课本内容之上，进行拔高训练，内容为综合、课外增加内容为主。</p>
+        </div>
+        <div class="col-sm-4 know-panel">
+          <img src="static/img/index/know-3.png" alt="观看灵活" class="know-img">
+          <h3 class="know-panel-tit">观看灵活</h3>
+          <p>我们深知很多网站是通过套餐形式进行捆绑售卖的，这样导致学生想要了解单一知识点却需要付出整套课程的费用。</p>
+          <p>我们将购买方式调整成既可单一购买，同时也可批量购买。满足不同需要的学生。让学生用最少的钱获得自己需要的知识。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="advantage">
+    <div class="container">
+      <div class="tit">
+        <h2>优势</h2>
+        <p>主讲教师均为在职一线优秀老师</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 advantage-panel">
+          <div class="panel-1">
+            <h3 class="advantage-panel-tit">简单直观</h3>
+            <p>讲解风格简单直观，易于理解。讲解内容紧抓要点难点。</p>
+          </div>
+        </div>
+        <div class="col-sm-4 advantage-panel">
+          <div class="panel-2">
+            <h3 class="advantage-panel-tit">连贯性</h3>
+            <p>知识点前后具有连贯性，改变现在中小学教学内容不连贯的弊端。</p>
+          </div>
+        </div>
+        <div class="col-sm-4 advantage-panel">
+          <div class="panel-3">
+            <h3 class="advantage-panel-tit">侧重技巧</h3>
+            <p>拒绝题海战术，通过改变学生的思维方式轻松取得好成绩。</p>
+          </div>
+        </div>
+        <div class="col-sm-1">..</div>
+        <div class="col-sm-10 advantage-video">
+          <!-- 16:9 aspect ratio -->
+          <div class="embed-responsive embed-responsive-16by9 hidden-xs">
+            <iframe class="embed-responsive-item"  src="http://player.youku.com/embed/XOTQwMjM5Njg0" allowfullscreen></iframe>
+          </div>
+          <!-- 4:3 aspect ratio -->
+          <div class="embed-responsive embed-responsive-4by3 visible-xs-block">
+            <iframe class="embed-responsive-item" src="http://player.youku.com/embed/XOTQwMjM5Njg0" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-sm-1">..</div>
+      </div>
+    </div>
+  </section>
+  <section id="remark">
+    <div class="container">
+      <div class="tit">
+        <h2>评语</h2>
+        <p>听听他们怎么说？</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 remark-panel">
+          <img src="static/img/index/remark-1.jpg" alt="李云云" class="remark-img">
+          <h3 class="remark-panel-tit">李云云</h3>
+          <h4 class="remark-panel-subtit">高 · 三</h4>
+          <p>在学海导航我找到了很好的学习方法它帮助我轻松应对考试，不再像之前不停的做题。(*^__^*) 嘻嘻</p>
+        </div>
+        <div class="col-sm-4 remark-panel">
+          <img src="static/img/index/remark-2.jpg" alt="郑倩" class="remark-img">
+          <h3 class="remark-panel-tit">郑倩</h3>
+          <h4 class="remark-panel-subtit">小 · 四</h4>
+          <p>老师讲课很有意思，我非常喜欢高老师教的数学课，啦啦啦！</p>
+        </div>
+        <div class="col-sm-4 remark-panel">
+          <img src="static/img/index/remark-3.jpg" alt="王芸" class="remark-img">
+          <h3 class="remark-panel-tit">王芸</h3>
+          <h4 class="remark-panel-subtit">家 长</h4>
+          <p>课程购买方式很灵活，随学随买很方便，不会造成浪费。孩子很喜欢，对于家长来说也省了一笔不小的费用。</p>
+        </div>
+        <div class="col-sm-12 remark-bt">
+          <button type="button" class="btn btn-gpsskip">前去观看</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <p class="copywrite">
+          <span>Copyright © 2016, baoqingshangmao Co., Ltd.</span>
+          <span>All Rights Reserved.</span>
+          <span>陕西省铜川市宝青商贸有限责任公司</span>
+        </p>
+        <p class="power">Power by Robin 知更鸟</p>
+      </div>
+      <div class="col-sm-4">
+        <div class="footer-link">
+          <a href="">关于我们</a>
+          <span class="v-line">|</span>
+          <a href="">联系我们</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+<script data-main="static/js/index" src="lib/require.js"></script>
+</html>

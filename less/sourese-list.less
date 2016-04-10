@@ -1,0 +1,349 @@
+// *****************
+// 引入mixins 变量
+// *****************
+ @import "./variables.less";
+ @import "./bootstrap/mixins.less";
+//主体内容
+#sourese-list{
+  // 课程列表悬浮按钮
+  .menu-toggle{
+    position: fixed;
+    z-index: 99;
+    right: 10px;
+    bottom: 10px;
+    .square(40px);
+    .var-border-radius(20px);
+    outline: 0;
+    .glyphicon{
+      margin-top:5px;
+      font-size:15px;
+      color: #fff;
+    }
+    &.menu-toggle-filter{
+      background-color: @btn-gpsnav-bg;
+    }
+    &.menu-toggle-cancel{
+      background-color: #990000;
+    }
+    &.menu-toggle-affirm{
+      background-color: #009900;
+    }
+  }
+  main{
+    margin-top:@navbar-height-xs;
+  }
+  .menu{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    background-color: #fff;
+    .var-border-radius(8px);
+    overflow: hidden;
+    ul{
+      list-style:none;
+      padding: 0;
+    }
+  }
+  #menu-tabs{
+    overflow: hidden;
+    ul{
+      float: left;
+      margin-bottom:0;
+      width: 100%;
+      background-color: #cac3af;
+    }
+  }
+  .menu-tabs-item{
+    float: left;
+    width: 50%;
+  }
+  .menu-tab{
+    font-size: 16px;
+    display: block;
+    color: #fff;
+    overflow: hidden;
+    .size(100%,30px);
+    .var-border-radius-1(8px);
+    .var-border-radius-2(8px);
+    span{
+      .center-block();
+      .size(32px,18px);
+      .var-vertical-align(30px,18px);
+    }
+  }
+  #menu-tabs li.active a, #menu-tabs li.active a:hover, #menu-tabs li.active a:focus{
+    color: #333;
+    background-color: #fff;
+    cursor: default;
+  }
+
+  // TAG切换内容
+  .tab-content{
+    width: 100%;
+    // height: 235px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  // 筛选条件名称
+  .menu-filter{
+    // float: left;
+    //
+    overflow: hidden;
+    // margin: 10px 0;
+    background: url("../img/sourese/h-line.gif") no-repeat left bottom;
+  }
+
+  .menu-filter-des{
+    float: left;
+    // box-sizing: content-box;
+    text-align: center;
+    .size(32px,auto);
+    min-height: @sourese-list-menu-item-height-xs;
+    padding: 4px 6px;
+  }
+  .menu-filter-des-item{
+    color: #aaa;
+  }
+  // 删选条件
+  .menu-filter-cont{
+    float: left;
+    // box-sizing:content-box;
+    .size(90%,auto);
+    min-height: @sourese-list-menu-item-height-xs;
+    // padding-left:5px;
+    padding:5px;
+    background: url("../img/sourese/h-line-2.gif") repeat-x left bottom;
+  }
+  .menu-filter-bt{
+    display: inline-block;
+    padding: 2px 6px;
+    .var-border-radius(4px);
+    margin-right: 2px;
+    margin-top: 6px;
+    &:hover{
+      background-color: #e2e2e2;
+    }
+    // 隐藏文字中间的 “·”
+    @media (max-width: @screen-xs-max) {
+      i{
+        .text-hide();
+      }
+    }
+  }
+  // 年级
+  .grade-p{
+    float: left;
+    margin-right: 5px;
+    // margin-top: 6px;
+    .grade-bt{
+      color: #876c17;
+    }
+    .active{
+      color: #fff;
+      background-color: #876c17;
+      &:hover{
+        color: #fff;
+        background-color: #876c17;
+      }
+    }
+  }
+  .grade-jh{
+    float: left;
+    margin-right: 5px;
+    .grade-bt{
+      color: #689f38;
+    }
+  }
+  .grade-sh{
+    float: left;
+      .grade-bt{
+        color: #09587b;
+      }
+  }
+  // 学科、版本、知识的active样式
+  .discipline,.version,.knowledge{
+    .active{
+      color: #fff;
+      background-color: #333;
+      &:hover{
+        color: #fff;
+        background-color: #333;
+      }
+    }
+  }
+}
+
+// >=平板屏幕（768px）
+@media (min-width: @screen-sm-min) {
+  #sourese-list{
+    main{
+      margin-top:@navbar-height;
+    }
+    .menu{
+      margin-top: 30px;
+    }
+  }
+}
+
+// >=中等屏幕（992px）
+@media (min-width: @screen-md-min) {
+  .menu-toggle {
+    display: none;
+  }
+  .menu-collapse{
+    display: block !important;
+    // height: auto !important;
+    // overflow: visible !important;
+  }
+  #sourese-list{
+    .menu{
+      position: static;
+      margin-top:60px;
+      height: @sourese-list-menu-height;
+    }
+    // TAB切换按钮
+    #menu-tabs{
+      ul{
+        // float:left;
+        // margin-bottom:0;
+        // width: 100%;
+        .var-border-radius-1(8px);
+        .var-border-radius-4(8px);
+        // background-color: #cac3af;
+      }
+    }
+    .menu-tabs-item{
+      // float: left;
+      width: 100%;
+    }
+    .menu-tab{
+      font-size: 20px;
+      // display:block;
+      // color: #fff;
+      // overflow: hidden;
+      // .var-border-radius-1(8px);
+      .size(100%,(@sourese-list-menu-height / 2));
+      .var-border-radius-2(0);
+      .var-border-radius-4(8px);
+      span{
+      // .center-block();
+        .size(20px,56px);
+        .var-vertical-align((@sourese-list-menu-height / 2),56px);
+      }
+    }
+    #menu-tabs li.active a, #menu-tabs li.active a:hover, #menu-tabs li.active a:focus{
+      // color: #333;
+      // background-color: #fff;
+      // cursor: default;
+    }
+
+    // TAG切换内容
+    .tab-content{
+      float: left;
+      // width:100%;
+      // overflow:hidden;
+    }
+    // 筛选条件名称
+    .menu-filter{
+      // height: @sourese-list-menu-item-height;
+      margin:0;
+    }
+    .menu-filter-des{
+      // display: block;
+      // color: #aaa;
+      line-height: @sourese-list-menu-item-height;
+      .size(6%,@sourese-list-menu-item-height);
+      margin:0;
+      padding: 0;
+    }
+    .menu-filter-des-item{
+
+    }
+    // 筛选条件 tab-pane-last-item
+    .menu-filter-cont{
+      overflow: hidden;
+      box-sizing:border-box;
+      .size(94%,@sourese-list-menu-item-height);
+      padding: 0 0 0 10px;
+      margin: 0;
+      // background: none;
+    }
+    .menu-filter-bt{
+      display:inline-block;
+      padding: 0px 9px;
+      // .var-border-radius(4px);
+      margin-right:2px;
+      .var-vertical-align(@sourese-list-menu-item-height,30px);
+      line-height: 30px;
+      color: #333;
+      &:hover{
+        background-color: #e2e2e2;
+      }
+    }
+    // 年级
+    .grade-p{
+      // float: left;
+      // margin-right: 5px;
+      margin-top: 0;
+      .grade-bt{
+        // color: #876c17;
+      }
+      .active{
+        // color: #fff;
+        // background-color: #876c17
+      }
+    }
+    .grade-jh{
+      // float: left;
+      // margin-right: 5px;
+      margin-top: 0;
+      .grade-bt{
+        // color: #689f38;
+      }
+    }
+    .grade-sh{
+      margin-top: 0;
+      .grade-bt{
+        // color: #09587b;
+      }
+    }
+    // 学科、版本、知识的active样式
+    .discipline,.version,.knowledge{
+      .active{
+        // color: #fff;
+        // background-color: #333;
+      }
+    }
+
+    .menu-filter .disabled{
+      pointer-events: none;//禁止鼠标事件
+      cursor: not-allowed;
+      color: #ccc;
+      &:hover{
+        background-color: transparent;
+      }
+    }
+    .tab-pane-last-item{
+      background-image: none;
+    }
+
+  }//#sourese-list
+}
+// >=大屏幕（1200px）
+@media (min-width: @screen-lg-min) {
+  #sourese-list{
+    .menu-filter-bt{
+      margin-right: 10px;
+    }
+
+    // 年级
+    .grade-p{
+      margin-right: 15px;
+    }
+    .grade-jh{
+      margin-right: 15px;
+    }
+  }
+}

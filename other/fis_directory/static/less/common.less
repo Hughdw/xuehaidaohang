@@ -1,0 +1,29 @@
+// *****************
+// 声明变量与混合
+// *****************
+@bg: #fafafa;
+
+
+// *****************
+// 重定义
+// *****************
+// html5标签定义成block 可以使ie6-8正常显示他们
+  article,aside,dialog,footer,header,section,footer,nav,figure,menu{display:block}
+  // 引入在线字体
+  @font-face {font-family: 'webfont-fine';
+    src: url("http://at.alicdn.com/t/ockji0xhuyn1att9.eot");
+    src: url("http://at.alicdn.com/t/ockji0xhuyn1att9.eot?#iefix") format("embedded-opentype"),
+    url("http://at.alicdn.com/t/ockji0xhuyn1att9.woff") format("woff"),
+    url("http://at.alicdn.com/t/ockji0xhuyn1att9.ttf") format("truetype"),
+    url("http://at.alicdn.com/t/ockji0xhuyn1att9.svg#思源黑体-细") format("svg");
+  }
+
+
+// *****************
+// 页面相关的样式
+// *****************
+  body{
+    height: 1000px;
+    background: @bg;
+    font-family:"Microsoft Yahei";
+  }

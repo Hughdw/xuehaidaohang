@@ -1,0 +1,49 @@
+{
+    "res": {
+        "components/header/header.html": {
+            "uri": "/components/header/header.html",
+            "type": "html"
+        },
+        "fis-conf.js": {
+            "uri": "/fis-conf_3f6dff4.js",
+            "type": "js"
+        },
+        "lib/bootstrap/3.3.5/css/bootstrap.min.css": {
+            "uri": "/lib/bootstrap/3.3.5/css/bootstrap.min_fe80d1b.css",
+            "type": "css"
+        },
+        "lib/jquery/1.11.3/jquery.min.js": {
+            "uri": "/lib/jquery/1.11.3/jquery.min_f03e5a3.js",
+            "type": "js"
+        },
+        "static/html/head.html": {
+            "uri": "/static/html/head.html",
+            "type": "html"
+        },
+        "pages/index/index.less": {
+            "uri": "/assets/index_d43ac78.css",
+            "type": "css"
+        },
+        "pages/index/index.js": {
+            "uri": "/assets/index_14878cd.js",
+            "type": "js"
+        },
+        "pages/index/index.html": {
+            "uri": "/pages/index/index.html",
+            "type": "html",
+            "deps": [
+                "pages/index/index.js",
+                "pages/index/index.less"
+            ]
+        },
+        "static/js/common.js": {
+            "uri": "/assets/common/js/common_da73e2b.js",
+            "type": "js"
+        },
+        "static/less/common.less": {
+            "uri": "/assets/common/css/common_ee4bc75.css",
+            "type": "css"
+        }
+    },
+    "pkg": {}
+}
