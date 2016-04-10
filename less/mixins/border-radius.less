@@ -1,0 +1,39 @@
+// 设置圆角，默认为10px
+.var-border-radius(@radius){
+  -webkit-border-radius:@radius;
+  -moz-border-radius:@radius;
+  border-radius:@radius;
+}
+// 单独设置四个角为圆角
+.var-border-radius-1(@radius){
+  -webkit-border-top-left-radius:@radius;
+  -moz-border-top-left-radius:@radius;
+  border-top-left-radius:@radius;
+}
+.var-border-radius-2(@radius){
+  -webkit-border-top-right-radius:@radius;
+  -moz-border-top-right-radius:@radius;
+  border-top-right-radius:@radius;
+}
+.var-border-radius-3(@radius){
+  -webkit-border-bottom-right-radius:@radius;
+  -moz-border-bottom-right-radius:@radius;
+  border-bottom-right-radius:@radius;
+}
+.var-border-radius-4(@radius){
+  -webkit-border-bottom-left-radius:@radius;
+  -moz-border-bottom-left-radius:@radius;
+  border-bottom-left-radius:@radius;
+}
+// 设置上面两个为圆角
+.var-border-radius-two(t,@radius){
+  -webkit-border-radius:@radius @radius 0 0;
+  -moz-border-radius:@radius @radius 0 0;
+  border-radius:@radius @radius 0 0;
+}
+// 设置下面两个为圆角
+.var-border-radius-two(b,@radius){
+  -webkit-border-radius: 0 0 @radius @radius;
+  -moz-border-radius: 0 0 @radius @radius;
+  border-radius: 0 0 @radius @radius;
+}

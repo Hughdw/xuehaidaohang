@@ -1,0 +1,204 @@
+// *****************
+// 引入mixins 变量
+// *****************
+ @import "./variables.less";
+ @import "./bootstrap/mixins.less";
+
+ // 主体内容
+
+// 首屏
+header{
+  margin-top:@navbar-height-xs;
+}
+.header-img{
+  height: @home-mod-height-xs;
+  background: url(../img/index/m/focus-1.jpg) no-repeat top center;
+}
+// 屏幕>=平板时
+@media (min-width: @screen-sm-min) {
+  header{
+    margin-top:@navbar-height;
+  }
+  .header-img{
+    height: @home-mod-height;
+    background: url(../img/index/focus.jpg) no-repeat top center;
+  }
+}
+
+// 内容模块公共部分
+section{
+  .tit{
+    height: @home-mod-tit-height-xs;
+    text-align: center;
+    .text-overflow();
+  }
+  h2{
+    margin-top: 20px;
+    font-size: 30px;
+  }
+}
+@media (min-width: @screen-sm-min) {
+  section{
+    .tit{
+      height: @home-mod-tit-height;
+    }
+    h2{
+      margin-top:50px;
+    }
+  }
+}
+
+// 了解模块
+#know{
+  background-color: @know-bg;
+  // 了解模块 标题
+  .tit{
+    color: @home-mod-tit-color-w;
+    p{
+      color:fadeout(@home-mod-tit-color-w, 10%);
+    }
+  }
+}
+//了解模块 主体内容
+.know-panel{
+  overflow:hidden;
+  background: #a4815f;
+  p{
+    margin: 10px auto 15px auto;
+    width: 80%;
+    text-indent: 28px;
+    color: fadeout(@know-txt-color, 10%);
+  }
+}
+.know-subject{
+  margin-top: 0;
+  background: #7d6349;
+}
+.know-panel-tit{
+  text-align: center;
+  color: @know-txt-color;
+}
+.know-img{
+  margin-top:15px;
+  .center-block();
+  .img-responsive();
+}
+@media (min-width:@screen-sm-min) {
+  .know-panel{
+    margin-top:19px;
+    height: @home-mod-cont-height - 19;
+  }
+  .know-panel-tit{
+    margin-top:40px;
+    margin-bottom: 20px;
+  }
+  .know-img{
+    margin-top: 45px;
+  }
+  .know-subject{
+    margin-top: 0;
+    height: @home-mod-cont-height;
+  }
+}
+
+//优势模块
+#advantage{
+  background-color: @advantage-bg;
+  .tit{
+    color:@home-mod-tit-color-b;
+    p{
+      color:fadeout(@home-mod-tit-color-b, 10%);
+    }
+  }
+}
+.advantage-panel > div{
+  background-color: #fff;
+  .size(90%,120px);
+  margin-top:32px;
+  .var-border-radius(4px);
+  .center-block();
+  overflow: hidden;
+}
+.advantage-panel {
+  .panel-1{
+    color: #09587b;
+  }
+  .panel-2{
+    color: #876c17;
+  }
+  .panel-3{
+    color: #009900;
+  }
+  p{
+    text-indent: 28px;
+    width: 85%;
+    margin:0 auto;
+  }
+}
+.advantage-panel-tit{
+  text-align: center;
+}
+@media (min-width:@screen-sm-min) {
+  .advantage-video{
+    margin-top:75px;
+  }
+}
+
+// 评论
+#remark{
+  background:@remark-bg url(../img/index/remark-bg.jpg) repeat-x bottom center;
+  .tit{
+    color: @home-mod-tit-color-w;
+    p{
+      color: fadeout(@home-mod-tit-color-w, 10%);
+    }
+  }
+}
+.remark-panel{
+  height: 399px;
+  overflow:hidden;
+  p{
+    margin:30px auto 0 auto;
+    width: 70%;
+    color: fadeout(@remark-txt-color, 10%);
+  }
+}
+.remark-panel-tit{
+  font-size: 18px;
+  text-align:center;
+  color:@remark-txt-color;
+}
+.remark-panel-subtit{
+  font-size: 14px;
+  text-align:center;
+  color: fadeout(@remark-txt-color, 10%);
+}
+.remark-img{
+  margin-top:30px;
+  .center-block();
+  .img-responsive();
+}
+.remark-bt{
+  height: 200px;
+  .btn-gpsskip{
+    font-size:30px;
+    .center-block();
+    .size(250px,80px);
+    .var-border-radius(8px);
+    .box-shadow(0px 1px 2px rgba(12, 186, 142, .92) inset);
+    background-color: #098c6b;
+    margin-top: 100px;
+    color: @remark-txt-color;
+  }
+}
+@media (min-width:@screen-sm-min) {
+  .remark-panel{
+    height: @home-mod-cont-height - 315;
+  }
+  .remark-bt{
+    height: 315px;
+    .btn-gpsskip{
+      margin-top:140px;
+    }
+  }
+}
