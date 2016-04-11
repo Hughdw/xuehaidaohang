@@ -1,3 +1,4 @@
 # My configurations:
 .ftpconfig
-static/css/*
+static/css/
+.idea/
