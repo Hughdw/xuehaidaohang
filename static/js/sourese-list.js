@@ -70,7 +70,6 @@ requirejs(['static/js/config.js'], function(common) {
 
       // var temp = navigator.platform;
       // document.write(p.indexOf("iP"));
-      //
     });
   });
 });
