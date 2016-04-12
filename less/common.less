@@ -2,161 +2,167 @@
 // *****************
 // 引入mixins 变量
 // *****************
-  @import "./variables.less";
-  @import "./bootstrap/mixins.less";
-
+@import "./variables.less";
+@import "./bootstrap/mixins.less";
 // *****************
 // 重定义
 // *****************
 // html5标签定义成block 可以使ie6-8正常显示他们
-article,aside,dialog,footer,header,section,footer,nav,figure,menu{display:block}
+article,
+aside,
+dialog,
+figure,
+footer,
+footer,
+header,
+menu,
+nav,
+section {
+  display: block;
+}
 // 引入在线字体
-@font-face {font-family: 'webfont-fine';
+@font-face {
+  font-family: 'webfont-fine';
   src: url("http://at.alicdn.com/t/ockji0xhuyn1att9.eot");
-  src: url("http://at.alicdn.com/t/ockji0xhuyn1att9.eot?#iefix") format("embedded-opentype"),
-  url("http://at.alicdn.com/t/ockji0xhuyn1att9.woff") format("woff"),
-  url("http://at.alicdn.com/t/ockji0xhuyn1att9.ttf") format("truetype"),
-  url("http://at.alicdn.com/t/ockji0xhuyn1att9.svg#思源黑体-细") format("svg");
+  src: url("http://at.alicdn.com/t/ockji0xhuyn1att9.eot?#iefix") format("embedded-opentype"), url("http://at.alicdn.com/t/ockji0xhuyn1att9.woff") format("woff"), url("http://at.alicdn.com/t/ockji0xhuyn1att9.ttf") format("truetype"), url("http://at.alicdn.com/t/ockji0xhuyn1att9.svg#思源黑体-细") format("svg");
 }
-body{
-  font-family:"Helvetica Neue", Helvetica, "Microsoft Yahei", Arial, sans-serif;
-  background-color:@bg;
+body {
+  font-family: "Helvetica Neue", Helvetica, "Microsoft Yahei", Arial, sans-serif;
+  background-color: @bg;
 }
-.active(){
+.active() {
   text-decoration: none;
   // .opacity(.9);
-  outline:0;
+  outline: 0;
 }
-a{
-  &:hover,&:focus{
+a {
+  &:focus,
+  &:hover {
     .active();
   }
 }
-
-
-
 // *****************
 // 页面相关的样式
 // *****************
 // 导航相关
 // 导航按钮阴影
-.btn-gpsnav{
+.btn-gpsnav {
   .box-shadow(0px 0px 2px rgba(1, 28, 41, 0.4));
 }
 // 导航搜索框样式
-.form-control-gpsnav{
+.form-control-gpsnav {
   color: rgb(255, 255, 255);
   background-color: rgb(1, 75, 125);
   border-color: rgb(1, 72, 120);
-  .box-shadow(0px 0px 2px rgba(1, 28, 41, 0.4))
+  .box-shadow(0px 0px 2px rgba(1, 28, 41, 0.4));
 }
 // 导航连接
 .navbar-nav {
-  margin-top:@navbar-nav-margin-top;
+  margin-top: @navbar-nav-margin-top;
   margin-right: 20px;
-  .nav-link{
+  .nav-link {
     height: @navbar-gps-link-height;
     padding-top: 8px;
     padding-bottom: 8px;
-    border-radius:4px;
+    border-radius: 4px;
     margin-left: 4px;
-    &:hover{
+    &:hover {
       background-color: #025c99;
     }
   }
 }
 // 登录块
-.sign .v-line,.sign .btn-gpsnav{
+.sign .btn-gpsnav,
+.sign .v-line {
   margin-left: 8px;
 }
 .sign .v-line {
   color: #fff;
 }
-.navbar-brand {// 导航LOGO
+.navbar-brand {
+  // 导航LOGO
   .size(@logo-width,@logo-height);
   margin: (@navbar-height - @logo-height)/2 15px;
-  background:url(../img/logo.png) no-repeat top center;
+  background: url("../img/logo.png") no-repeat top center;
   padding: 0;
   .text-hide();
 }
 // 手机端 导航样式覆盖
 @media (max-width: @screen-xs-max) {
-  .navbar-gps{
+  .navbar-gps {
     min-height: @navbar-height-xs;
   }
-  .navbar-collapse{
-    border-bottom:1px darken(@navbar-gps-bg, 10%) solid;
+  .navbar-collapse {
+    border-bottom: 1px darken(@navbar-gps-bg, 10%) solid;
   }
-  .navbar-brand {// 导航LOGO
+  .navbar-brand {
+    // 导航LOGO
     .size(@logo-width-xs,@logo-height-xs);
     margin: (@navbar-height-xs - @logo-height-xs)/2 15px;
-    .img-retina("../img/logo-m.png","../img/logo-m-retina.png",@logo-width-xs,@logo-height-xs);
+    .img-retina( "../img/logo-m.png","../img/logo-m-retina.png",@logo-width-xs,@logo-height-xs);
     // background:url("../img/logo-m.png") no-repeat top center;
     background-position: top center;
     background-repeat: no-repeat;
   }
-  .navbar-toggle{
-    margin-top:(@navbar-height-xs - 34px)/2;
-    margin-bottom:(@navbar-height-xs - 34px)/2;
+  .navbar-toggle {
+    margin-top: (@navbar-height-xs - 34px)/2;
+    margin-bottom: (@navbar-height-xs - 34px)/2;
   }
-  .navbar-form{
-    margin:0;
+  .navbar-form {
+    margin: 0;
   }
-  .sign{
-    overflow:hidden;
-    .navbar-nav{
-      margin:0;
+  .sign {
+    overflow: hidden;
+    .navbar-nav {
+      margin: 0;
     }
-    .navbar-btn{
-      margin-top:6px;
-      margin-bottom:18px;
+    .navbar-btn {
+      margin-top: 6px;
+      margin-bottom: 18px;
     }
   }
 }
-
 // 底部相关
-
-.copywrite{
+.copywrite {
   margin-top: 10px;
   font-size: 12px;
   color: #777;
-  span{
+  span {
     display: block;
     word-wrap: normal;
   }
 }
-.power{
+.power {
   font-size: 10px;
   color: #aaa;
 }
-.footer-link{
-  margin:15px 0;
-  a{
+.footer-link {
+  margin: 15px 0;
+  a {
     margin: 0 4px;
   }
-  .v-line{
+  .v-line {
     color: #ccc;
   }
 }
 //>=平板样式覆盖
 @media (min-width:@screen-sm-min) {
-  footer{
+  footer {
     height: 100px;
   }
-  .copywrite{
+  .copywrite {
     margin-top: 32px;
-    span{
+    span {
       display: inline;
     }
   }
-  .power{
+  .power {
     margin-top: 10px;
   }
-  .footer-link{
+  .footer-link {
     margin-top: 32px;
   }
 }
-
 // 定位(position,top,z-index)
 // 盒模型(float,width,display)
 // 排版(font,color,text-align,line-height)
