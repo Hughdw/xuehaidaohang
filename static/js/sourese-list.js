@@ -34,6 +34,8 @@ requirejs(['static/js/config.js'], function(common) {
         this.aTabCont.style.height = "auto";
       }
     };
+
+    // 页面载入
     $(function() {
       // 获取筛选列表 内容盒子对象
       var oTabContent = document.getElementById("tab-content");
@@ -57,17 +59,7 @@ requirejs(['static/js/config.js'], function(common) {
         m.render();
       });
 
-      // var system ={
-      //     win : false,
-      //     mac : false,
-      //     xll : false
-      // };
-      //检测平台
-      // var p = navigator.platform;
-      // system.win = p.indexOf("Win") === 0;
-      // system.mac = p.indexOf("iP") === 0;
-      // system.xll = (p == "X11") || (p.indexOf("Linux") === 0);
-      //
+      
     });
   });
 });
