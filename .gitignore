@@ -2,3 +2,5 @@
 .ftpconfig
 static/css/
 .idea/
+other/
+*.psd

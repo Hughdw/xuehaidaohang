@@ -57,19 +57,17 @@ requirejs(['static/js/config.js'], function(common) {
         m.render();
       });
 
-      var system ={
-          win : false,
-          mac : false,
-          xll : false
-      };
+      // var system ={
+      //     win : false,
+      //     mac : false,
+      //     xll : false
+      // };
       //检测平台
-      var p = navigator.platform;
-      system.win = p.indexOf("Win") === 0;
-      system.mac = p.indexOf("iP") === 0;
-      system.xll = (p == "X11") || (p.indexOf("Linux") === 0);
-
-      // var temp = navigator.platform;
-      // document.write(p.indexOf("iP"));
+      // var p = navigator.platform;
+      // system.win = p.indexOf("Win") === 0;
+      // system.mac = p.indexOf("iP") === 0;
+      // system.xll = (p == "X11") || (p.indexOf("Linux") === 0);
+      //
     });
   });
 });
