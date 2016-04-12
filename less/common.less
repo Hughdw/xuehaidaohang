@@ -1,12 +1,13 @@
 // out: ../static/css/common.css, sourcemap: true, compress: false
-// *****************
+// ********************
 // 引入mixins 变量
-// *****************
+// ********************
 @import "./variables.less";
 @import "./bootstrap/mixins.less";
-// *****************
+
+// ********************
 // 重定义
-// *****************
+// ********************
 // html5标签定义成block 可以使ie6-8正常显示他们
 article,
 aside,
@@ -21,14 +22,14 @@ section {
   display: block;
 }
 // 引入在线字体
-@font-face {
-  font-family: 'webfont-fine';
-  src: url("http://at.alicdn.com/t/ockji0xhuyn1att9.eot");
-  src: url("http://at.alicdn.com/t/ockji0xhuyn1att9.eot?#iefix") format("embedded-opentype"), url("http://at.alicdn.com/t/ockji0xhuyn1att9.woff") format("woff"), url("http://at.alicdn.com/t/ockji0xhuyn1att9.ttf") format("truetype"), url("http://at.alicdn.com/t/ockji0xhuyn1att9.svg#思源黑体-细") format("svg");
-}
+// @font-face {
+//   font-family: 'webfont-fine';
+//   src: url("http://at.alicdn.com/t/ockji0xhuyn1att9.eot");
+//   src: url("http://at.alicdn.com/t/ockji0xhuyn1att9.eot?#iefix") format("embedded-opentype"), url("http://at.alicdn.com/t/ockji0xhuyn1att9.woff") format("woff"), url("http://at.alicdn.com/t/ockji0xhuyn1att9.ttf") format("truetype"), url("http://at.alicdn.com/t/ockji0xhuyn1att9.svg#思源黑体-细") format("svg");
+// }
 body {
   font-family: "Helvetica Neue", Helvetica, "Microsoft Yahei", Arial, sans-serif;
-  background-color: @bg;
+  background-color: @page-bg;
 }
 .active() {
   text-decoration: none;
@@ -41,20 +42,20 @@ a {
     .active();
   }
 }
-// *****************
-// 页面相关的样式
-// *****************
-// 导航相关
-// 导航按钮阴影
+// ********************
+// bootstarp style 扩展
+// ********************
+// ----------导航部分
+// 按钮阴影
 .btn-gpsnav {
-  .box-shadow(0px 0px 2px rgba(1, 28, 41, 0.4));
+  .box-shadow(0px 0px 2px @btn-gpsnav-box-shadow-color);
 }
 // 导航搜索框样式
 .form-control-gpsnav {
-  color: rgb(255, 255, 255);
-  background-color: rgb(1, 75, 125);
-  border-color: rgb(1, 72, 120);
-  .box-shadow(0px 0px 2px rgba(1, 28, 41, 0.4));
+  color: @navbar-gps-color;
+  background-color: @form-control-gpsnav-bg;
+  border-color: @form-control-gpsnav-border-color;
+  .box-shadow(0px 0px 2px @btn-gpsnav-box-shadow-color);
 }
 // 导航连接
 .navbar-nav {
@@ -66,21 +67,18 @@ a {
     padding-bottom: 8px;
     border-radius: 4px;
     margin-left: 4px;
-    &:hover {
-      background-color: #025c99;
-    }
   }
 }
-// 登录块
+// 导航登录按钮
 .sign .btn-gpsnav,
 .sign .v-line {
   margin-left: 8px;
 }
 .sign .v-line {
-  color: #fff;
+  color: @btn-gpsnav-color;
 }
+// 导航LOGO
 .navbar-brand {
-  // 导航LOGO
   .size(@logo-width,@logo-height);
   margin: (@navbar-height - @logo-height)/2 15px;
   background: url("../img/logo.png") no-repeat top center;
@@ -95,11 +93,11 @@ a {
   .navbar-collapse {
     border-bottom: 1px darken(@navbar-gps-bg, 10%) solid;
   }
+  // 导航LOGO
   .navbar-brand {
-    // 导航LOGO
     .size(@logo-width-xs,@logo-height-xs);
     margin: (@navbar-height-xs - @logo-height-xs)/2 15px;
-    .img-retina( "../img/logo-m.png","../img/logo-m-retina.png",@logo-width-xs,@logo-height-xs);
+    .img-retina(  "../img/logo-m.png","../img/logo-m-retina.png",@logo-width-xs,@logo-height-xs);
     // background:url("../img/logo-m.png") no-repeat top center;
     background-position: top center;
     background-repeat: no-repeat;
@@ -122,11 +120,14 @@ a {
     }
   }
 }
-// 底部相关
+// ********************
+// 公共组件
+// ********************
+// ----------底部相关
 .copywrite {
   margin-top: 10px;
   font-size: 12px;
-  color: #777;
+  color: @footer-color;
   span {
     display: block;
     word-wrap: normal;
@@ -134,7 +135,7 @@ a {
 }
 .power {
   font-size: 10px;
-  color: #aaa;
+  color: @footer-color-light;
 }
 .footer-link {
   margin: 15px 0;
@@ -142,13 +143,13 @@ a {
     margin: 0 4px;
   }
   .v-line {
-    color: #ccc;
+    color: @gray-light;
   }
 }
 //>=平板样式覆盖
 @media (min-width:@screen-sm-min) {
   footer {
-    height: 100px;
+    height: @footer-height-sm;
   }
   .copywrite {
     margin-top: 32px;
@@ -163,6 +164,36 @@ a {
     margin-top: 32px;
   }
 }
+// *----------购物车
+.shopping-car {
+  .btn-group {
+    float: right;
+  }
+  #sc-btn {
+    text-decoration: none;
+  }
+  .sc-menu {
+    width: 200px;
+    padding: 10px 0;
+    .sc-menu-item{
+      height: 20px;
+      overflow: hidden;
+      margin: 3px auto;
+    }
+    .btn-del{
+      float: left;
+      padding: 0;
+      margin: 0 10px;
+      color: @gray-light;
+      // .text-emphasis-variant(@gray-light);
+      &:hover{
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+
 // 定位(position,top,z-index)
 // 盒模型(float,width,display)
 // 排版(font,color,text-align,line-height)
