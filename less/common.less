@@ -1,4 +1,4 @@
-// out: ../static/css/common.css, sourcemap: true, compress: true
+// out: ../static/css/common.css, sourcemap: true, compress: false
 // *****************
 // 引入mixins 变量
 // *****************
@@ -90,7 +90,10 @@ a{
   .navbar-brand {// 导航LOGO
     .size(@logo-width-xs,@logo-height-xs);
     margin: (@navbar-height-xs - @logo-height-xs)/2 15px;
-    background:url(../img/logo-m.png) no-repeat top center;
+    .img-retina("../img/logo-m.png","../img/logo-m-retina.png",@logo-width-xs,@logo-height-xs);
+    // background:url("../img/logo-m.png") no-repeat top center;
+    background-position: top center;
+    background-repeat: no-repeat;
   }
   .navbar-toggle{
     margin-top:(@navbar-height-xs - 34px)/2;
