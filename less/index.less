@@ -12,7 +12,7 @@ header{
   margin-top:@navbar-height-xs;
 }
 .header-img{
-  height: @home-mod-height-xs;
+  height: @home-common-height-xs;
   background: url(../img/index/m/focus-1.jpg) no-repeat top center;
 }
 // 屏幕>=平板时
@@ -21,7 +21,7 @@ header{
     margin-top:@navbar-height;
   }
   .header-img{
-    height: @home-mod-height;
+    height: @home-common-height;
     background: url(../img/index/focus.jpg) no-repeat top center;
   }
 }
@@ -29,7 +29,7 @@ header{
 // 内容模块公共部分
 section{
   .tit{
-    height: @home-mod-tit-height-xs;
+    height: @home-common-tit-height-xs;
     text-align: center;
     .text-overflow();
   }
@@ -41,7 +41,7 @@ section{
 @media (min-width: @screen-sm-min) {
   section{
     .tit{
-      height: @home-mod-tit-height;
+      height: @home-common-tit-height;
     }
     h2{
       margin-top:50px;
@@ -51,33 +51,33 @@ section{
 
 // 了解模块
 #know{
-  background-color: @know-bg;
+  background-color: @home-know-bg;
   // 了解模块 标题
   .tit{
-    color: @home-mod-tit-color-white;
+    color: @home-common-tit-color-white;
     p{
-      color:fadeout(@home-mod-tit-color-white, 10%);
+      color:fadeout(@home-common-tit-color-white, 10%);
     }
   }
 }
 //了解模块 主体内容
 .know-panel{
   overflow:hidden;
-  background: @know-panel-bg;
+  background: @home-know-panel-bg;
   p{
     margin: 10px auto 15px auto;
     width: 80%;
     text-indent: 28px;
-    color: fadeout(@know-txt-color, 10%);
+    color: fadeout(@home-know-txt-color, 10%);
   }
 }
 .know-subject{
   margin-top: 0;
-  background: @know-panel-focus-bg;
+  background: @home-know-panel-focus-bg;
 }
 .know-panel-tit{
   text-align: center;
-  color: @know-txt-color;
+  color: @home-know-txt-color;
 }
 .know-img{
   margin-top:15px;
@@ -87,7 +87,7 @@ section{
 @media (min-width:@screen-sm-min) {
   .know-panel{
     margin-top:19px;
-    height: @home-mod-cont-height - 19;
+    height: @home-common-cont-height - 19;
   }
   .know-panel-tit{
     margin-top:40px;
@@ -98,23 +98,23 @@ section{
   }
   .know-subject{
     margin-top: 0;
-    height: @home-mod-cont-height;
+    height: @home-common-cont-height;
   }
 }
 
 //优势模块
 #advantage{
-  background-color: @advantage-bg;
+  background-color: @home-advantage-bg;
   .tit{
-    color:@home-mod-tit-color-b;
+    color:@home-common-tit-color-b;
     p{
-      color:fadeout(@home-mod-tit-color-b, 10%);
+      color:fadeout(@home-common-tit-color-b, 10%);
     }
   }
 }
 .advantage-panel > div{
   background-color: #fff;
-  .size(90%,@advantage-panel-height);
+  .size(90%,@home-advantage-panel-height);
   margin-top:32px;
   .var-border-radius(@border-radius-sm);
   .center-block();
@@ -122,13 +122,13 @@ section{
 }
 .advantage-panel {
   .panel-1{
-    color: @advantage-panel-color-blue;
+    color: @home-advantage-panel-color-blue;
   }
   .panel-2{
-    color: @advantage-panel-color-yellow;
+    color: @home-advantage-panel-color-yellow;
   }
   .panel-3{
-    color: @advantage-panel-color-green;
+    color: @home-advantage-panel-color-green;
   }
   p{
     text-indent: 28px;
@@ -147,32 +147,32 @@ section{
 
 // 评论
 #remark{
-  background:@remark-bg url(../img/index/remark-bg.jpg) repeat-x bottom center;
+  background:@home-remark-bg url(../img/index/remark-bg.jpg) repeat-x bottom center;
   .tit{
-    color: @remark-txt-color;
+    color: @home-remark-txt-color;
     p{
-      color: fadeout(@remark-txt-color, 10%);
+      color: fadeout(@home-remark-txt-color, 10%);
     }
   }
 }
 .remark-panel{
-  height: @remark-panel-height;
+  height: @home-remark-panel-height;
   overflow:hidden;
   p{
     margin:30px auto 0 auto;
     width: 70%;
-    color: fadeout(@remark-txt-color, 10%);
+    color: fadeout(@home-remark-txt-color, 10%);
   }
 }
 .remark-panel-tit{
   font-size: 18px;
   text-align:center;
-  color:@remark-txt-color;
+  color:@home-remark-txt-color;
 }
 .remark-panel-subtit{
   font-size: 14px;
   text-align:center;
-  color: fadeout(@remark-txt-color, 10%);
+  color: fadeout(@home-remark-txt-color, 10%);
 }
 .remark-img{
   margin-top:30px;
@@ -180,24 +180,24 @@ section{
   .img-responsive();
 }
 .remark-btnbox{
-  height: @remark-btnbox-height;
+  height: @home-remark-btnbox-height;
   .btn-gpsskip{
     font-size:30px;
     .center-block();
-    .size(@remark-gpsskip-btn-width,@remark-gpsskip-btn-height);
+    .size(@home-remark-gpsskip-btn-width,@home-remark-gpsskip-btn-height);
     .var-border-radius(@border-radius-lg);
-    .box-shadow(0px 1px 2px @remark-gpsskip-boxshadow inset);
-    background-color: @remark-gpsskip-btn-bg;
+    .box-shadow(0px 1px 2px @home-remark-gpsskip-boxshadow inset);
+    background-color: @home-remark-gpsskip-btn-bg;
     margin-top: 100px;
-    color: @remark-txt-color;
+    color: @home-remark-txt-color;
   }
 }
 @media (min-width:@screen-sm-min) {
   .remark-panel{
-    height: @home-mod-cont-height - @remark-btnbox-height-sm;
+    height: @home-common-cont-height - @home-remark-btnbox-height-sm;
   }
   .remark-btnbox{
-    height: @remark-btnbox-height-sm;
+    height: @home-remark-btnbox-height-sm;
     .btn-gpsskip{
       margin-top:140px;
     }
