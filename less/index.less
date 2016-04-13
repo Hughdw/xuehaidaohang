@@ -54,16 +54,16 @@ section{
   background-color: @know-bg;
   // 了解模块 标题
   .tit{
-    color: @home-mod-tit-color-w;
+    color: @home-mod-tit-color-white;
     p{
-      color:fadeout(@home-mod-tit-color-w, 10%);
+      color:fadeout(@home-mod-tit-color-white, 10%);
     }
   }
 }
 //了解模块 主体内容
 .know-panel{
   overflow:hidden;
-  background: #a4815f;
+  background: @know-panel-bg;
   p{
     margin: 10px auto 15px auto;
     width: 80%;
@@ -73,7 +73,7 @@ section{
 }
 .know-subject{
   margin-top: 0;
-  background: #7d6349;
+  background: @know-panel-focus-bg;
 }
 .know-panel-tit{
   text-align: center;
@@ -114,21 +114,21 @@ section{
 }
 .advantage-panel > div{
   background-color: #fff;
-  .size(90%,120px);
+  .size(90%,@advantage-panel-height);
   margin-top:32px;
-  .var-border-radius(4px);
+  .var-border-radius(@border-radius-sm);
   .center-block();
   overflow: hidden;
 }
 .advantage-panel {
   .panel-1{
-    color: #09587b;
+    color: @advantage-panel-color-blue;
   }
   .panel-2{
-    color: #876c17;
+    color: @advantage-panel-color-yellow;
   }
   .panel-3{
-    color: #009900;
+    color: @advantage-panel-color-green;
   }
   p{
     text-indent: 28px;
@@ -149,14 +149,14 @@ section{
 #remark{
   background:@remark-bg url(../img/index/remark-bg.jpg) repeat-x bottom center;
   .tit{
-    color: @home-mod-tit-color-w;
+    color: @remark-txt-color;
     p{
-      color: fadeout(@home-mod-tit-color-w, 10%);
+      color: fadeout(@remark-txt-color, 10%);
     }
   }
 }
 .remark-panel{
-  height: 399px;
+  height: @remark-panel-height;
   overflow:hidden;
   p{
     margin:30px auto 0 auto;
@@ -179,25 +179,25 @@ section{
   .center-block();
   .img-responsive();
 }
-.remark-bt{
-  height: 200px;
+.remark-btnbox{
+  height: @remark-btnbox-height;
   .btn-gpsskip{
     font-size:30px;
     .center-block();
-    .size(250px,80px);
-    .var-border-radius(8px);
-    .box-shadow(0px 1px 2px rgba(12, 186, 142, .92) inset);
-    background-color: #098c6b;
+    .size(@remark-gpsskip-btn-width,@remark-gpsskip-btn-height);
+    .var-border-radius(@border-radius-lg);
+    .box-shadow(0px 1px 2px @remark-gpsskip-boxshadow inset);
+    background-color: @remark-gpsskip-btn-bg;
     margin-top: 100px;
     color: @remark-txt-color;
   }
 }
 @media (min-width:@screen-sm-min) {
   .remark-panel{
-    height: @home-mod-cont-height - 315;
+    height: @home-mod-cont-height - @remark-btnbox-height-sm;
   }
-  .remark-bt{
-    height: 315px;
+  .remark-btnbox{
+    height: @remark-btnbox-height-sm;
     .btn-gpsskip{
       margin-top:140px;
     }
