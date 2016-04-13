@@ -1,9 +1,10 @@
 # My configurations:
 .ftpconfig
-static/css/
 .idea/
 other/
 *.psd
 *.png
 *.jpg
 *.gif
+*.css
+*.map
