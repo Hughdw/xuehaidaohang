@@ -37,29 +37,44 @@ requirejs(['static/js/config.js'], function(common) {
 
     // 页面载入
     $(function() {
-      // 获取筛选列表 内容盒子对象
-      var oTabContent = document.getElementById("tab-content");
       // 实例化 操作的构造函数
-      var m = new MenuContHeight(oTabContent);
-      // 页面载入完毕
-      m.render();
-      // 窗口重置时
+      var oMenuContHeight = new MenuContHeight(document.getElementById("tab-content"));
+      var oShopingBtn = $("#sc-btn");
+      // 默认 触发设置 筛选列表 内容盒子对象的高度
+      oMenuContHeight.render();
+      // 窗口重置
       $(window).resize(function() {
-        m.render();
+        // 触发设置 筛选列表 内容盒子对象的高度
+        oMenuContHeight.render();
       });
-      // 筛选列表 选项按钮触发click时，重新设置筛选列表内容盒子的高度
+      // 筛选列表 选项按钮绑定 click
       $("#tab-content").on("click", ".menu-filter-bt", function() {
-        m.render();
+        // 触发设置 筛选列表 内容盒子对象的高度
+        oMenuContHeight.render();
         // $(this).toggleClass("click");
       });
-      // 绑定 TAG切换事件。同时，每次触发重新设置筛选列表 内容盒子对象 的高度
+      // 绑定 TAG切换事件。
       $("#menu-tabs").on("click", ".menu-tab", function(e) {
         e.preventDefault();
-        $(this).tab('show');
-        m.render();
+        $(this).tab("show");
+        // 触发设置 筛选列表 内容盒子对象的高度
+        oMenuContHeight.render();
       });
-
-      
+      // 空白处隐藏指定元素
+      $(document).on("click",function(event) {
+        var target = $(event.target);
+        // 隐藏购物车
+        if (target.parents(".shopping-car").length == "0") {
+          oShopingBtn.addClass('btn-link');
+          $(".btn-group").removeClass('open');
+        }
+      });
+      // 购物车
+      oShopingBtn.on("click",function (event) {
+        $(".btn-group").toggleClass("open");
+        $(this).toggleClass("btn-link");
+        event.stopPropagation();
+      });
     });
   });
 });
