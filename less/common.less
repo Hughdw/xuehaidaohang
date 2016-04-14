@@ -65,7 +65,7 @@ a {
     height: @navbar-gps-link-height;
     padding-top: 8px;
     padding-bottom: 8px;
-    border-radius: 4px;
+    .var-border-radius(@border-radius-sm);
     margin-left: 4px;
   }
 }
@@ -172,27 +172,55 @@ a {
   #sc-btn {
     text-decoration: none;
   }
-  .sc-menu {
-    width: 200px;
-    padding: 10px 0;
-    .sc-menu-item{
-      height: 20px;
-      overflow: hidden;
-      margin: 3px auto;
-    }
-    .btn-del{
-      float: left;
-      padding: 0;
-      margin: 0 10px;
-      color: @gray-light;
-      // .text-emphasis-variant(@gray-light);
-      &:hover{
-        background-color: transparent;
-      }
+  .open{
+    .dropdown-toggle{
+      background-color: @dropdown-bg;
+      border: 1px solid @dropdown-fallback-border; // IE8 fallback
+      border: 1px solid @dropdown-border;
+      border-bottom-width: 0;
+      .var-border-radius-1(@border-radius-lg);
+      .var-border-radius-2(@border-radius-lg);
+      .var-border-radius-3(0);
+      .var-border-radius-4(0);
+      z-index: 1001;
+      .box-shadow(0 -3px 7px rgba(0,0,0,.08));
     }
   }
+  .sc-panel {
+    width: @shopping-car-panel-height;
+    padding: 10px 0;
+    top: 90%;
+    .var-border-radius-1(@border-radius-lg);
+    .var-border-radius-2(0);
+    .var-border-radius-3(@border-radius-lg);
+    .var-border-radius-4(@border-radius-lg);
+  }
+  .sc-panel-item{
+    height: @shopping-car-panelitem-height;
+    line-height: @shopping-car-panelitem-height;
+    overflow: hidden;
+    margin: 3px auto;
+    span{
+      // padding-top: 5px;
+      // vertical-align:bottom;
+    }
+  }
+  .btn-del{
+    float: left;
+    padding: 0;
+    margin: 0 10px;
+    color: @gray-light;
+    // .text-emphasis-variant(@gray-light);
+    &:hover{
+      background-color: transparent;
+    }
+  }
+  .goto{
+    text-align: right;
+    color: #098c6b;
+    font-size: 14px;
+  }
 }
-
 
 // 定位(position,top,z-index)
 // 盒模型(float,width,display)
