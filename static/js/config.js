@@ -6,14 +6,15 @@
 requirejs.config({
     baseUrl: 'lib',
     paths: {
+        'less': 'less/1.7.0/less',
         'jquery': 'jquery/1.11.3/jquery.min',
         'bootstrap': 'bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
         'app': '../static/js/app'
     },
     shim: {
-        'bootstrap':{
-            deps:['jquery'],
-            exports:'Bootstrap'
+        'bootstrap': {
+            deps: ['jquery'],
+            exports: 'Bootstrap'
         }
     }
 });

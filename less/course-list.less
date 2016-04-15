@@ -231,12 +231,16 @@
     width: 100%;
     .var-border-radius(@border-radius-lg);
     margin: 0 auto;
+    .box-shadow(0 0 6px rgba(73,58,12,.15));
+    &:hover{
+      .box-shadow(0 0 12px rgba(73,58,12,.3));
+    }
     .rp-detail{
       display: block;
       overflow: hidden;
+      padding-bottom: 10px;
       .var-border-radius(@border-radius-lg);
       &:hover{
-        background-color: #876c17;
         .rp-tit{
           color: #fff;
         }
@@ -288,8 +292,28 @@
       // margin-right: 22px;
     }
   }
+
+  // 默认板块默认背景色
+  // 小学
   .results-primary .rp-detail{
-      background-color: #eceae1;
+    background-color: #eceae1;
+    &:hover{
+      background-color: #876c17;
+    }
+  }
+  // 初中
+  .results-middle .rp-detail{
+    background-color: #e9efe4;
+    &:hover{
+      background-color: #689f38
+    }
+  }
+  // 高中
+  .results-high .rp-detail{
+    background-color: #e0e8eb;
+    &:hover{
+      background-color: #09587b;
+    }
   }
 
 }
@@ -439,7 +463,6 @@
         // background-color: #333;
       }
     }
-
     .menu-filter .disabled{
       pointer-events: none;//禁止鼠标事件
       cursor: not-allowed;
