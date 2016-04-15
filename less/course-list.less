@@ -1,4 +1,4 @@
-// out: ../static/css/sourese-list.css, sourcemap: true, compress: true
+// out: ../static/css/course-list.css, sourcemap: true, compress: true
 // ********************
 // 引入mixins 变量
 // ********************
@@ -7,29 +7,29 @@
  // ********************
  // 默认样式
  // ********************
-#sourese-list{
+#course-list{
   // ----------课程列表悬浮按钮
   .menu-toggle{
     position: fixed;
     z-index: 99;
     right: 10px;
     bottom: 10px;
-    .square(@soureselist-menu-toggle-width-height);
-    .var-border-radius((@soureselist-menu-toggle-width-height/2));
+    .square(@courselist-menu-toggle-width-height);
+    .var-border-radius((@courselist-menu-toggle-width-height/2));
     outline: 0;
     .glyphicon{
       margin-top:5px;
       font-size:15px;
-      color: @soureselist-menu-toggle-color;
+      color: @courselist-menu-toggle-color;
     }
     &.menu-toggle-filter{
-      background-color: @soureselist-menu-toggle-color-normal;
+      background-color: @courselist-menu-toggle-color-normal;
     }
     &.menu-toggle-cancel{
-      background-color: @soureselist-menu-toggle-color-canel;
+      background-color: @courselist-menu-toggle-color-canel;
     }
     &.menu-toggle-affirm{
-      background-color: @soureselist-menu-toggle-color-affirm;
+      background-color: @courselist-menu-toggle-color-affirm;
     }
   }
   main{
@@ -41,7 +41,7 @@
     left: 0;
     z-index: 5;
     width: 100%;
-    background-color: @soureselist-menu-bg;
+    background-color: @courselist-menu-bg;
     .var-border-radius(@border-radius-lg);
     overflow: hidden;
     ul{
@@ -65,20 +65,20 @@
   .menu-tab{
     font-size: 16px;
     display: block;
-    color: @soureselist-menu-tab-color;
+    color: @courselist-menu-tab-color;
     overflow: hidden;
-    .size(100%,@soureselist-menu-tab-height);
+    .size(100%,@courselist-menu-tab-height);
     .var-border-radius-1(@border-radius-lg);
     .var-border-radius-2(@border-radius-lg);
     span{
       .center-block();
-      .size(@soureselist-menu-tabtxt-width,@soureselist-menu-tabtxt-height);
-      .var-vertical-align(@soureselist-menu-tab-height,@soureselist-menu-tabtxt-height);
+      .size(@courselist-menu-tabtxt-width,@courselist-menu-tabtxt-height);
+      .var-vertical-align(@courselist-menu-tab-height,@courselist-menu-tabtxt-height);
     }
   }
   #menu-tabs li.active a, #menu-tabs li.active a:hover, #menu-tabs li.active a:focus{
-    color: @soureselist-menu-tab-color-hover;
-    background-color: @soureselist-menu-tab-bg-hover;
+    color: @courselist-menu-tab-color-hover;
+    background-color: @courselist-menu-tab-bg-hover;
     cursor: default;
   }
 
@@ -94,7 +94,7 @@
     // float: left;
     overflow: hidden;
     // margin: 10px 0;
-    background: url("../img/sourese/h-line.gif") no-repeat left bottom;
+    background: url("../img/course/h-line.gif") no-repeat left bottom;
   }
   .menu-filter-last,.menu-filter-last .knowledge{
     background-image: none;
@@ -104,22 +104,22 @@
     float: left;
     // box-sizing: content-box;
     text-align: center;
-    .size(@soureselist-menu-filterdes-width,auto);
-    min-height: @soureselist-menu-item-height;
+    .size(@courselist-menu-filterdes-width,auto);
+    min-height: @courselist-menu-item-height;
     padding: 4px 6px;
   }
   .menu-filter-des-item{
-    color: @soureselist-menu-filterdesitem-color;
+    color: @courselist-menu-filterdesitem-color;
   }
   // 删选条件
   .menu-filter-cont{
     float: left;
     // box-sizing:content-box;
     .size(90%,auto);
-    min-height: @soureselist-menu-item-height;
+    min-height: @courselist-menu-item-height;
     // padding-left:5px;
     padding:5px;
-    background: url("../img/sourese/h-line-2.gif") repeat-x left bottom;
+    background: url("../img/course/h-line-2.gif") repeat-x left bottom;
   }
   .menu-filter-bt{
     display: inline-block;
@@ -128,7 +128,7 @@
     margin-right: 2px;
     margin-top: 6px;
     &:hover{
-      background-color: @soureselist-menu-filterbtn-bg;
+      background-color: @courselist-menu-filterbtn-bg;
     }
     // 隐藏文字中间的 “·”
     @media (max-width: @screen-xs-max) {
@@ -143,14 +143,14 @@
     margin-right: 5px;
     // margin-top: 6px;
     .grade-bt{
-      color: @soureselist-menu-gradebtn-p-color;
+      color: @courselist-menu-gradebtn-p-color;
     }
     .active{
-      color: @soureselist-menu-gradebtn-color-active;
-      background-color: @soureselist-menu-gradebtn-p-bg-active;
+      color: @courselist-menu-gradebtn-color-active;
+      background-color: @courselist-menu-gradebtn-p-bg-active;
       &:hover{
-        color: @soureselist-menu-gradebtn-color-active;
-        background-color: @soureselist-menu-gradebtn-p-bg-active;
+        color: @courselist-menu-gradebtn-color-active;
+        background-color: @courselist-menu-gradebtn-p-bg-active;
       }
     }
   }
@@ -158,39 +158,39 @@
     float: left;
     margin-right: 5px;
     .grade-bt{
-      color: @soureselist-menu-gradebtn-jh-color;
+      color: @courselist-menu-gradebtn-jh-color;
     }
     .active{
-      color:@soureselist-menu-gradebtn-color-active;
-      background-color:@soureselist-menu-gradebtn-jh-bg-active;
+      color:@courselist-menu-gradebtn-color-active;
+      background-color:@courselist-menu-gradebtn-jh-bg-active;
       &:hover{
-        color:@soureselist-menu-gradebtn-color-active;
-        background-color:@soureselist-menu-gradebtn-jh-bg-active;
+        color:@courselist-menu-gradebtn-color-active;
+        background-color:@courselist-menu-gradebtn-jh-bg-active;
       }
     }
   }
   .grade-sh{
     float: left;
     .grade-bt{
-      color: @soureselist-menu-gradebtn-sh-color;
+      color: @courselist-menu-gradebtn-sh-color;
     }
     .active{
-      color: @soureselist-menu-gradebtn-color-active;
-      background-color:@soureselist-menu-gradebtn-sh-bg-active;
+      color: @courselist-menu-gradebtn-color-active;
+      background-color:@courselist-menu-gradebtn-sh-bg-active;
       &:hover{
-        color: @soureselist-menu-gradebtn-color-active;
-        background-color:@soureselist-menu-gradebtn-sh-bg-active;
+        color: @courselist-menu-gradebtn-color-active;
+        background-color:@courselist-menu-gradebtn-sh-bg-active;
       }
     }
   }
   // 学科、版本、知识的active样式
   .discipline,.version,.knowledge{
     .active{
-      color: @soureselist-menu-btn-color-active;
-      background-color: @soureselist-menu-btn-bg-active;
+      color: @courselist-menu-btn-color-active;
+      background-color: @courselist-menu-btn-bg-active;
       &:hover{
-        color: @soureselist-menu-btn-color-active;
-        background-color: @soureselist-menu-btn-bg-active;
+        color: @courselist-menu-btn-color-active;
+        background-color: @courselist-menu-btn-bg-active;
       }
     }
   }
@@ -243,7 +243,7 @@
 // >=平板屏幕（768px）
 // ********************
 @media (min-width: @screen-sm-min) {
-  #sourese-list{
+  #course-list{
     main{
       margin-top:@navbar-height;
     }
@@ -257,7 +257,7 @@
 // >=中等屏幕（992px）
 // ********************
 @media (min-width: @screen-md-min) {
-  #sourese-list{
+  #course-list{
     .menu-toggle {
       display: none;
     }
@@ -269,7 +269,7 @@
     .menu{
       position: static;
       margin-top:60px;
-      height: @soureselist-menu-height-md;
+      height: @courselist-menu-height-md;
     }
     // TAB切换按钮
     #menu-tabs{
@@ -292,13 +292,13 @@
       // color: #fff;
       // overflow: hidden;
       // .var-border-radius-1(8px);
-      .size(100%,(@soureselist-menu-height-md / 2));
+      .size(100%,(@courselist-menu-height-md / 2));
       .var-border-radius-2(0);
       .var-border-radius-4(@border-radius-lg);
       span{
       // .center-block();
-        .size(@soureselist-menu-tabtxt-width-md,@soureselist-menu-tabtxt-height-md);
-        .var-vertical-align((@soureselist-menu-height-md / 2),@soureselist-menu-tabtxt-height-md);
+        .size(@courselist-menu-tabtxt-width-md,@courselist-menu-tabtxt-height-md);
+        .var-vertical-align((@courselist-menu-height-md / 2),@courselist-menu-tabtxt-height-md);
       }
     }
     #menu-tabs li.active a, #menu-tabs li.active a:hover, #menu-tabs li.active a:focus{
@@ -315,14 +315,14 @@
     }
     // 筛选条件名称
     .menu-filter{
-      // height: @soureselist-menu-item-height-md;
+      // height: @courselist-menu-item-height-md;
       margin:0;
     }
     .menu-filter-des{
       // display: block;
       // color: #aaa;
-      line-height: @soureselist-menu-item-height-md;
-      .size(6%,@soureselist-menu-item-height-md);
+      line-height: @courselist-menu-item-height-md;
+      .size(6%,@courselist-menu-item-height-md);
       margin:0;
       padding: 0;
     }
@@ -333,7 +333,7 @@
     .menu-filter-cont{
       overflow: hidden;
       box-sizing:border-box;
-      .size(94%,@soureselist-menu-item-height-md);
+      .size(94%,@courselist-menu-item-height-md);
       padding: 0 0 0 10px;
       margin: 0;
       // background: none;
@@ -343,11 +343,11 @@
       padding: 0px 9px;
       // .var-border-radius(4px);
       margin-right:2px;
-      .var-vertical-align(@soureselist-menu-item-height-md,@soureselist-menu-filterbtn-lineheight-md);
-      line-height: @soureselist-menu-filterbtn-lineheight-md;
-      color: @soureselist-menu-filterbtn-color-md;
+      .var-vertical-align(@courselist-menu-item-height-md,@courselist-menu-filterbtn-lineheight-md);
+      line-height: @courselist-menu-filterbtn-lineheight-md;
+      color: @courselist-menu-filterbtn-color-md;
       &:hover{
-        background-color: @soureselist-menu-filterbtn-color-hover-md;
+        background-color: @courselist-menu-filterbtn-color-hover-md;
       }
     }
     // 年级
@@ -388,7 +388,7 @@
     .menu-filter .disabled{
       pointer-events: none;//禁止鼠标事件
       cursor: not-allowed;
-      color: @soureselist-menu-filterbtn-disabled-color;
+      color: @courselist-menu-filterbtn-disabled-color;
       &:hover{
         background-color: transparent;
       }
@@ -421,14 +421,14 @@
         float: left;
       }
     }
-  }//#sourese-list
+  }//#course-list
 }
 
 // ********************
 // >=大屏幕（1200px）
 // ********************
 @media (min-width: @screen-lg-min) {
-  #sourese-list{
+  #course-list{
     .menu-filter-bt{
       margin-right: 10px;
     }
