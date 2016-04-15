@@ -1,12 +1,14 @@
 // out: ../static/css/sourese-list.css, sourcemap: true, compress: true
-// *****************
+// ********************
 // 引入mixins 变量
-// *****************
+// ********************
  @import "./variables.less";
  @import "./bootstrap/mixins.less";
-//主体内容
+ // ********************
+ // 默认样式
+ // ********************
 #sourese-list{
-  // 课程列表悬浮按钮
+  // ----------课程列表悬浮按钮
   .menu-toggle{
     position: fixed;
     z-index: 99;
@@ -93,6 +95,9 @@
     overflow: hidden;
     // margin: 10px 0;
     background: url("../img/sourese/h-line.gif") no-repeat left bottom;
+  }
+  .menu-filter-last,.menu-filter-last .knowledge{
+    background-image: none;
   }
 
   .menu-filter-des{
@@ -189,9 +194,54 @@
       }
     }
   }
+
+  // 面包屑（筛选条件）
+  .toolbar{
+    height: 34px;
+    margin-top: 26px;
+  }
+  .crumbs{
+    height: 34px;
+    line-height: 34px;
+  }
+  .crumbs-item{
+    padding: 4px 4px;
+    color: #777777;
+    &.active{
+      font-weight: bold;
+    }
+  }
+  .crumbs-v-line{
+    color: #777777;
+  }
+
+
+  // 筛选结果
+  .results{
+    padding: 20px 0;
+    background-color: #fff;
+    .var-border-radius(@border-radius-lg);
+  }
+  .results-panel{
+    display: block;
+    overflow: hidden;
+    background-color: #000;
+    // .size(100%,160px);
+    width: 100%;
+    margin: 0 auto;
+    .rp-detail{
+      display: block;
+    }
+  }
+  .results-p .results-panel{
+      background-color: #eceae1;
+  }
+
 }
 
+// ********************
 // >=平板屏幕（768px）
+// ********************
 @media (min-width: @screen-sm-min) {
   #sourese-list{
     main{
@@ -203,17 +253,19 @@
   }
 }
 
+// ********************
 // >=中等屏幕（992px）
+// ********************
 @media (min-width: @screen-md-min) {
-  .menu-toggle {
-    display: none;
-  }
-  .menu-collapse{
-    display: block !important;
-    // height: auto !important;
-    // overflow: visible !important;
-  }
   #sourese-list{
+    .menu-toggle {
+      display: none;
+    }
+    .menu-collapse{
+      display: block !important;
+      // height: auto !important;
+      // overflow: visible !important;
+    }
     .menu{
       position: static;
       margin-top:60px;
@@ -345,9 +397,36 @@
       background-image: none;
     }
 
+
+    // 面包屑
+    .toolbar{
+      // height: 34px;
+      // margin-top: 26px;
+    }
+
+    //筛选结果
+    .results{
+
+    }
+    .results-panel{
+      width: 94%;
+      .var-border-radius(@border-radius-lg);
+      .rp-detail{
+        .size(100%,160px)
+      }
+      &.rp-left{
+        float: right;
+      }
+      &.rp-right{
+        float: left;
+      }
+    }
   }//#sourese-list
 }
+
+// ********************
 // >=大屏幕（1200px）
+// ********************
 @media (min-width: @screen-lg-min) {
   #sourese-list{
     .menu-filter-bt{
@@ -360,5 +439,6 @@
     .grade-jh{
       margin-right: 15px;
     }
+
   }
 }
