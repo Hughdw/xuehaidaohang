@@ -218,22 +218,77 @@
 
   // 筛选结果
   .results{
-    padding: 20px 0;
-    background-color: #fff;
     .var-border-radius(@border-radius-lg);
+  }
+  .results-item{
+    margin-bottom: 30px;
   }
   .results-panel{
     display: block;
     overflow: hidden;
-    background-color: #000;
+    background-color: #f8f8f8;
     // .size(100%,160px);
     width: 100%;
+    .var-border-radius(@border-radius-lg);
     margin: 0 auto;
     .rp-detail{
       display: block;
+      overflow: hidden;
+      .var-border-radius(@border-radius-lg);
+      &:hover{
+        background-color: #876c17;
+        .rp-tit{
+          color: #fff;
+        }
+        .rp-subtit{
+          color: #fff;
+        }
+        .rp-duration{
+          color: #fff;
+        }
+      }
+    }
+    .rp-corner{
+      display: block;
+      text-align: right;
+      overflow: hidden;
+      height: 22px;
+      margin: 7px 9px 0 0;
+      // .label{
+      //   font-weight: normal;
+      //   padding-top:.3em;
+      // }
+    }
+    .rp-tit{
+      text-align: center;
+      font-size: 30px;
+      color: #333;
+      margin: 11px 0 0 0;
+    }
+    .rp-subtit{
+      text-align: center;
+      font-size: 18px;
+      color: #777;
+      margin: 30px 0 0 0;
+    }
+    .rp-duration{
+      text-align: right;
+      margin-top: 5px;
+      margin-right: 18px;
+      color: #aaa;
+    }
+    .rp-operation{
+      height: 50px;
+      line-height: 50px;
+      padding: 0 22px 0 10px;
+    }
+    .rp-price{
+      float: right;
+      color: #098c6b;
+      // margin-right: 22px;
     }
   }
-  .results-p .results-panel{
+  .results-primary .rp-detail{
       background-color: #eceae1;
   }
 
@@ -406,18 +461,18 @@
 
     //筛选结果
     .results{
-
+      background-color: #fff;
+      padding: 20px 0;
     }
     .results-panel{
       width: 94%;
-      .var-border-radius(@border-radius-lg);
       .rp-detail{
         .size(100%,160px)
       }
-      &.rp-left{
+      &.results-panel-left{
         float: right;
       }
-      &.rp-right{
+      &.results-panel-right{
         float: left;
       }
     }
