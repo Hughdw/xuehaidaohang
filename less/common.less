@@ -166,9 +166,6 @@ a {
 }
 // *----------购物车
 .shopping-car {
-  .btn-group {
-    float: right;
-  }
   #sc-btn {
     text-decoration: none;
   }
@@ -221,7 +218,13 @@ a {
     font-size: 14px;
   }
 }
-
+@media (min-width:@screen-sm-min) {
+  .shopping-car{
+    .btn-group {
+      float: right;
+    }
+  }
+}
 // 定位(position,top,z-index)
 // 盒模型(float,width,display)
 // 排版(font,color,text-align,line-height)
