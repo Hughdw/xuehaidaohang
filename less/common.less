@@ -152,8 +152,11 @@ main{
     color: @gray-light;
   }
 }
-//>=平板样式覆盖
+//>=平板屏幕（768px）
 @media (min-width:@screen-sm-min) {
+  main{
+    margin-top:@navbar-height;
+  }
   footer {
     height: @footer-height-sm;
   }
