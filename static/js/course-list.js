@@ -4,7 +4,7 @@
  * 配置文件加在完毕后，指定页面需要引用的第三方库 和 项目模块
  */
 requirejs(['static/js/config.js'], function(common) {
-  requirejs(['less','jquery', 'bootstrap', 'app/button'], function(l,$, bs, b) {
+  requirejs(['jquery', 'bootstrap', 'app/button'], function($, bs, b) {
     // 构造一个根据屏幕变化时 对 筛选列表 的高度进行控制
     function MenuContHeight(tabContent) {
       this.aTabCont = tabContent;
