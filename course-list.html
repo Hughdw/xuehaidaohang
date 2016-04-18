@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +12,13 @@
   <meta content="http://addaad.com/z/img/favicon-48.png" itemprop="image">
   <link rel="icon" type="image/vnd.microsoft.icon" href="http://addaad.com/z/img/favicon-24.ico" />
   <link rel="stylesheet" href="lib/bootstrap/bootstrap-3.3.5/dist/css/bootstrap.css">
+  <!-- 开发模式下使用less.js 浏览器端编译 -->
+  <!-- <link rel="stylesheet/less" type="text/css" href="less/common.less" />
+  <link rel="stylesheet/less" type="text/css" href="less/course-list.less" /> -->
+  <!-- 生产环境样式 -->
   <link rel="stylesheet" href="static/css/common.css">
   <link rel="stylesheet" href="static/css/course-list.css">
+  <link rel="stylesheet" href="static/css/course-list-sm-lg.css" media="screen and (min-width:768px)" title="no title" charset="utf-8">
   <!--[if lt IE 9]>
     <script src="lib/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="lib/respondjs/1.4.2/respond.min.js"></script>
@@ -41,8 +45,8 @@
           <div class="input-group">
             <input type="text" class="form-control form-control-gpsnav" placeholder="请输入关键词">
             <span class="input-group-btn">
-                        <button class="btn btn-gpsnav" type="button">
-                          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              <button class="btn btn-gpsnav" type="button">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
             </span>
           </div>
@@ -78,7 +82,7 @@
   <main>
     <div class="container">
       <!-- menu menu-collapse collapse in -->
-      <div class="menu collapse menu-collapse in" id="gps-menu-collapse">
+      <div class="menu collapse menu-collapse" id="gps-menu-collapse">
         <div class="row">
           <!-- TAG切换按钮 -->
           <div class="col-md-1" id="menu-tabs">
@@ -260,7 +264,7 @@
             </div>
             <div class="shopping-car col-sm-6 col-xs-4">
               <!-- Single button -->
-              <div class="btn-group ">
+              <div class="btn-group">
                 <button type="button" id="sc-btn" class="btn btn-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                   购物车<span class="badge">4</span>
                 </button>
@@ -275,58 +279,165 @@
             </div>
           </div>
         </div>
-        <div class="results results-p">
+        <div class="results results-primary">
           <div class="row">
-            <div class="col-md-4 col-sm-6">
-              <div class="results-panel rp-left">
+            <div class="results-item col-md-4 col-sm-6">
+              <div class="results-panel results-panel-left">
                 <a href="javascript:;" class="rp-detail">
-                  <h3>第一课</h3>
+                  <span class="rp-corner">
+                  </span>
+                  <h3 class="rp-tit">第一课</h3>
+                  <p class="rp-subtit">数列的概念与简单表示法</p>
+                  <div class="rp-duration">时长 - <em>15:30</em></div>
                 </a>
-                <div class="rp-operation">操作</div>
+                <div class="rp-operation">
+                  <button type="button" class="btn btn-success btn-sm" disabled="disabled">可试看</button>
+                  <div class="rp-price"><em>5</em>金钥</div>
+                </div>
               </div>
             </div>
-            <div class="col-md-4 col-sm-6">
+            <div class="results-item col-md-4 col-sm-6">
               <div class="results-panel">
                 <a href="javascript:;" class="rp-detail">
-                  <h3>第一课</h3>
+                  <span class="rp-corner">
+                    <span class="label label-danger">正在播放</span>
+                  </span>
+                  <h3 class="rp-tit">第二课</h3>
+                  <p class="rp-subtit">数列的概念与简单表示法</p>
+                  <div class="rp-duration">时长 - <em>15:30</em></div>
                 </a>
-                <div class="rp-operation">操作</div>
+                <div class="rp-operation">
+                  <button type="button" class="btn btn-default" disabled="disabled">已购买</button>
+                  <div class="rp-price"><em>5</em>金钥</div>
+                </div>
               </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-              <div class="results-panel rp-right">
+            <div class="results-item col-md-4 col-sm-6">
+              <div class="results-panel results-panel-right">
                 <a href="javascript:;" class="rp-detail">
-                  <h3>第一课</h3>
+                  <span class="rp-corner">
+                  </span>
+                  <h3 class="rp-tit">第三课</h3>
+                  <p class="rp-subtit">数列的概念与简单表示法</p>
+                  <div class="rp-duration">时长 - <em>15:30</em></div>
                 </a>
-                <div class="rp-operation">操作</div>
+                <div class="rp-operation">
+                  <button type="button" class="btn btn-primary">加入购物车</button>
+                  <div class="rp-price"><em>5</em>金钥</div>
+                </div>
               </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-              <div class="results-panel rp-left">
+            <div class="results-item col-md-4 col-sm-6">
+              <div class="results-panel results-panel-left">
                 <a href="javascript:;" class="rp-detail">
-                  <h3>第一课</h3>
+                  <span class="rp-corner">
+                    <span class="label label-danger">正在播放</span>
+                  </span>
+                  <h3 class="rp-tit">第四课</h3>
+                  <p class="rp-subtit">数列的概念与简单表示法</p>
+                  <div class="rp-duration">时长 - <em>15:30</em></div>
                 </a>
-                <div class="rp-operation">操作</div>
+                <div class="rp-operation">
+                  <button type="button" class="btn btn-primary">加入购物车</button>
+                  <div class="rp-price"><em>5</em>金钥</div>
+                </div>
               </div>
             </div>
-            <div class="col-md-4 col-sm-6">
+            <div class="results-item col-md-4 col-sm-6">
               <div class="results-panel">
                 <a href="javascript:;" class="rp-detail">
-                  <h3>第一课</h3>
+                  <span class="rp-corner">
+                  </span>
+                  <h3 class="rp-tit">第五课</h3>
+                  <p class="rp-subtit">数列的概念与简单表示法</p>
+                  <div class="rp-duration">时长 - <em>15:30</em></div>
                 </a>
-                <div class="rp-operation">操作</div>
+                <div class="rp-operation">
+                  <button type="button" class="btn btn-primary">加入购物车</button>
+                  <div class="rp-price"><em>5</em>金钥</div>
+                </div>
               </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-              <div class="results-panel rp-right">
+            <div class="results-item col-md-4 col-sm-6">
+              <div class="results-panel results-panel-right">
                 <a href="javascript:;" class="rp-detail">
-                  <h3>第一课</h3>
+                  <span class="rp-corner">
+                  </span>
+                  <h3 class="rp-tit">第六课</h3>
+                  <p class="rp-subtit">数列的概念与简单表示法</p>
+                  <div class="rp-duration">时长 - <em>15:30</em></div>
                 </a>
-                <div class="rp-operation">操作</div>
+                <div class="rp-operation">
+                  <button type="button" class="btn btn-primary">加入购物车</button>
+                  <div class="rp-price"><em>5</em>金钥</div>
+                </div>
+              </div>
+            </div>
+            <div class="results-item col-md-4 col-sm-6">
+              <div class="results-panel results-panel-left">
+                <a href="javascript:;" class="rp-detail">
+                  <span class="rp-corner">
+                  </span>
+                  <h3 class="rp-tit">第七课</h3>
+                  <p class="rp-subtit">数列的概念与简单表示法</p>
+                  <div class="rp-duration">时长 - <em>15:30</em></div>
+                </a>
+                <div class="rp-operation">
+                  <button type="button" class="btn btn-primary">加入购物车</button>
+                  <div class="rp-price"><em>5</em>金钥</div>
+                </div>
+              </div>
+            </div>
+            <div class="results-item col-md-4 col-sm-6">
+              <div class="results-panel">
+                <a href="javascript:;" class="rp-detail">
+                  <span class="rp-corner">
+                  </span>
+                  <h3 class="rp-tit">第八课</h3>
+                  <p class="rp-subtit">数列的概念与简单表示法</p>
+                  <div class="rp-duration">时长 - <em>15:30</em></div>
+                </a>
+                <div class="rp-operation">
+                  <button type="button" class="btn btn-primary">加入购物车</button>
+                  <div class="rp-price"><em>5</em>金钥</div>
+                </div>
+              </div>
+            </div>
+            <div class="results-item col-md-4 col-sm-6">
+              <div class="results-panel results-panel-right">
+                <a href="javascript:;" class="rp-detail">
+                  <span class="rp-corner">
+                    <span class="label label-danger">正在播放</span>
+                  </span>
+                  <h3 class="rp-tit">第九课</h3>
+                  <p class="rp-subtit">数列的概念与简单表示法</p>
+                  <div class="rp-duration">时长 - <em>15:30</em></div>
+                </a>
+                <div class="rp-operation">
+                  <button type="button" class="btn btn-primary">加入购物车</button>
+                  <div class="rp-price"><em>5</em>金钥</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <ul class="pagination pagination-lg">
+          <li>
+            <a href="javascript:;" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li><a href="javascript:;">1</a></li>
+          <li><a href="javascript:;">2</a></li>
+          <li><a href="javascript:;">3</a></li>
+          <li><a href="javascript:;">4</a></li>
+          <li><a href="javascript:;">5</a></li>
+          <li>
+            <a href="javascript:;" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </main>

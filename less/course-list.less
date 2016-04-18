@@ -35,12 +35,15 @@
   main{
     margin-top:@navbar-height-xs;
   }
+
+  // ----------筛选条件
   .menu{
     position: fixed;
     bottom: 0;
     left: 0;
     z-index: 5;
     width: 100%;
+    .box-shadow(@mod-box-shadow);
     background-color: @courselist-menu-bg;
     .var-border-radius(@border-radius-lg);
     overflow: hidden;
@@ -81,7 +84,6 @@
     background-color: @courselist-menu-tab-bg-hover;
     cursor: default;
   }
-
   // TAG切换内容
   .tab-content{
     width: 100%;
@@ -215,230 +217,115 @@
     color: #777777;
   }
 
-
   // 筛选结果
   .results{
-    padding: 20px 0;
-    background-color: #fff;
     .var-border-radius(@border-radius-lg);
   }
+  .results-item{
+    margin:10px 0;
+  }
   .results-panel{
-    display: block;
     overflow: hidden;
-    background-color: #000;
+    background-color: #f8f8f8;
     // .size(100%,160px);
     width: 100%;
+    .var-border-radius(@border-radius-lg);
     margin: 0 auto;
+    .box-shadow(0 0 6px rgba(73,58,12,.1));
+    &:hover{
+      .box-shadow(0 0 12px rgba(73,58,12,.3));
+    }
     .rp-detail{
-      display: block;
-    }
-  }
-  .results-p .results-panel{
-      background-color: #eceae1;
-  }
-
-}
-
-// ********************
-// >=平板屏幕（768px）
-// ********************
-@media (min-width: @screen-sm-min) {
-  #course-list{
-    main{
-      margin-top:@navbar-height;
-    }
-    .menu{
-      margin-top: 30px;
-    }
-  }
-}
-
-// ********************
-// >=中等屏幕（992px）
-// ********************
-@media (min-width: @screen-md-min) {
-  #course-list{
-    .menu-toggle {
-      display: none;
-    }
-    .menu-collapse{
-      display: block !important;
-      // height: auto !important;
-      // overflow: visible !important;
-    }
-    .menu{
-      position: static;
-      margin-top:60px;
-      height: @courselist-menu-height-md;
-    }
-    // TAB切换按钮
-    #menu-tabs{
-      ul{
-        // float:left;
-        // margin-bottom:0;
-        // width: 100%;
-        .var-border-radius-1(@border-radius-lg);
-        .var-border-radius-4(@border-radius-lg);
-        // background-color: #cac3af;
-      }
-    }
-    .menu-tabs-item{
-      // float: left;
-      width: 100%;
-    }
-    .menu-tab{
-      font-size: 20px;
-      // display:block;
-      // color: #fff;
-      // overflow: hidden;
-      // .var-border-radius-1(8px);
-      .size(100%,(@courselist-menu-height-md / 2));
-      .var-border-radius-2(0);
-      .var-border-radius-4(@border-radius-lg);
-      span{
-      // .center-block();
-        .size(@courselist-menu-tabtxt-width-md,@courselist-menu-tabtxt-height-md);
-        .var-vertical-align((@courselist-menu-height-md / 2),@courselist-menu-tabtxt-height-md);
-      }
-    }
-    #menu-tabs li.active a, #menu-tabs li.active a:hover, #menu-tabs li.active a:focus{
-      // color: #333;
-      // background-color: #fff;
-      // cursor: default;
-    }
-
-    // TAG切换内容
-    .tab-content{
       float: left;
-      // width:100%;
-      // overflow:hidden;
-    }
-    // 筛选条件名称
-    .menu-filter{
-      // height: @courselist-menu-item-height-md;
-      margin:0;
-    }
-    .menu-filter-des{
-      // display: block;
-      // color: #aaa;
-      line-height: @courselist-menu-item-height-md;
-      .size(6%,@courselist-menu-item-height-md);
-      margin:0;
-      padding: 0;
-    }
-    .menu-filter-des-item{
-
-    }
-    // 筛选条件 tab-pane-last-item
-    .menu-filter-cont{
+      width: 70%;
       overflow: hidden;
-      box-sizing:border-box;
-      .size(94%,@courselist-menu-item-height-md);
-      padding: 0 0 0 10px;
-      margin: 0;
-      // background: none;
-    }
-    .menu-filter-bt{
-      display:inline-block;
-      padding: 0px 9px;
-      // .var-border-radius(4px);
-      margin-right:2px;
-      .var-vertical-align(@courselist-menu-item-height-md,@courselist-menu-filterbtn-lineheight-md);
-      line-height: @courselist-menu-filterbtn-lineheight-md;
-      color: @courselist-menu-filterbtn-color-md;
-      &:hover{
-        background-color: @courselist-menu-filterbtn-color-hover-md;
-      }
-    }
-    // 年级
-    .grade-p{
-      // float: left;
-      // margin-right: 5px;
-      margin-top: 0;
-      .grade-bt{
-        // color: #876c17;
-      }
-      .active{
-        // color: #fff;
-        // background-color: #876c17
-      }
-    }
-    .grade-jh{
-      // float: left;
-      // margin-right: 5px;
-      margin-top: 0;
-      .grade-bt{
-        // color: #689f38;
-      }
-    }
-    .grade-sh{
-      margin-top: 0;
-      .grade-bt{
-        // color: #09587b;
-      }
-    }
-    // 学科、版本、知识的active样式
-    .discipline,.version,.knowledge{
-      .active{
-        // color: #fff;
-        // background-color: #333;
-      }
-    }
-
-    .menu-filter .disabled{
-      pointer-events: none;//禁止鼠标事件
-      cursor: not-allowed;
-      color: @courselist-menu-filterbtn-disabled-color;
-      &:hover{
-        background-color: transparent;
-      }
-    }
-    .tab-pane-last-item{
-      background-image: none;
-    }
-
-
-    // 面包屑
-    .toolbar{
-      // height: 34px;
-      // margin-top: 26px;
-    }
-
-    //筛选结果
-    .results{
-
-    }
-    .results-panel{
-      width: 94%;
+      padding-bottom: 10px;
+      padding-left:5px;
       .var-border-radius(@border-radius-lg);
-      .rp-detail{
-        .size(100%,160px)
-      }
-      &.rp-left{
-        float: right;
-      }
-      &.rp-right{
-        float: left;
+      &:hover{
+        .rp-tit{
+          color: #fff;
+        }
+        .rp-subtit{
+          color: #fff;
+        }
+        .rp-duration{
+          color: #fff;
+        }
       }
     }
-  }//#course-list
-}
+    .rp-corner{
+      float: right;
+      text-align: right;
+      overflow: hidden;
+      height: 22px;
+      margin: 7px 9px 0 0;
+      .label{
+        padding: .1em .3em;
+      }
+    }
+    .rp-tit{
+      float: left;
+      text-align: center;
+      font-size: 16px;
+      color: #333;
+      margin: 11px 0 0 0;
+    }
+    .rp-subtit{
+      font-size: 12px;
+      color: #777;
+      margin: 35px 0 0 0;
+    }
+    .rp-duration{
+      font-size: 10px;
+      margin-top: 5px;
+      margin-right: 18px;
+      color: #aaa;
+    }
+    .rp-operation{
+      float: right;
+      text-align: center;
+      width: 30%;
+      height: 50px;
+      line-height: 50px;
+      .btn{
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+      }
+    }
+    .rp-price{
+      line-height: 30px;
+      color: #098c6b;
+      // margin-right: 22px;
+    }
+  }
+  // 默认板块默认背景色
+  // 小学
+  .results-primary .rp-detail{
+    background-color: #eceae1;
+    &:hover{
+      background-color: #876c17;
+    }
+  }
+  // 初中
+  .results-middle .rp-detail{
+    background-color: #e9efe4;
+    &:hover{
+      background-color: #689f38
+    }
+  }
+  // 高中
+  .results-high .rp-detail{
+    background-color: #e0e8eb;
+    &:hover{
+      background-color: #09587b;
+    }
+  }
 
-// ********************
-// >=大屏幕（1200px）
-// ********************
-@media (min-width: @screen-lg-min) {
-  #course-list{
-    .menu-filter-bt{
-      margin-right: 10px;
-    }
-    // 年级
-    .grade-p{
-      margin-right: 15px;
-    }
-    .grade-jh{
-      margin-right: 15px;
-    }
-
+  // 分页
+  .pagination{
+    margin-top: 0;
   }
 }
