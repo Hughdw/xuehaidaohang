@@ -3,8 +3,8 @@
  * 首先加载配置文件
  * 配置文件加在完毕后，指定页面需要引用的第三方库 和 项目模块
  */
-requirejs(['static/js/config.js'], function(common) {
-  requirejs(['jquery', 'bootstrap', 'app/button'], function($, bs, b) {
+requirejs(['static/js/config.js'], function(config) {
+  requirejs(['jquery', 'bootstrap', 'app/common'], function($, bs, common) {
     // 构造一个根据屏幕变化时 对 筛选列表 的高度进行控制
     function MenuContHeight(tabContent) {
       this.aTabCont = tabContent;
@@ -54,8 +54,8 @@ requirejs(['static/js/config.js'], function(common) {
         // $(this).toggleClass("click");
       });
       // 绑定 TAG切换事件。
-      $("#menu-tabs").on("click", ".menu-tab", function(e) {
-        e.preventDefault();
+      $("#menu-tabs").on("click", ".menu-tab", function(event) {
+        event.preventDefault();//阻止默认事件行为的触发
         $(this).tab("show");
         // 触发设置 筛选列表 内容盒子对象的高度
         oMenuContHeight.render();
