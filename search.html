@@ -15,6 +15,7 @@
   <!-- 生产环境样式 -->
   <link rel="stylesheet" href="static/css/common.css">
   <link rel="stylesheet" href="static/css/search.css">
+  <link rel="stylesheet" href="static/css/search-sm-lg.css" media="screen and (min-width:768px)" title="no title" charset="utf-8">
   <!--[if lt IE 9]>
     <script src="lib/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="lib/respondjs/1.4.2/respond.min.js"></script>
@@ -76,12 +77,38 @@
   </nav>
   <main>
     <div class="container">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">搜索结果</h3>
+      <div class="search-result">
+        <div class="sr-paneltit">
+          <h3 class="sr-panelinner">搜索结果</h3>
         </div>
-        <div class="panel-body">
-          Panel content
+        <ul class="sr-list">
+          <li class="sr-list-item">
+            <div class="sr-explain">
+              <small class="sr-explain-1"> - 提高 - </small>
+              <small class="sr-explain-2"><span class="sr-explain-grade label label-primary">高一</span><span class="sr-explain-discipline label label-default">数学</span></small>
+            </div>
+            <div class="sr-cont">
+              <h4 class="sr-tit"><b>第一课</b><em>集合</em>的含义t与表示 - 1</h4>
+              <div class="sr-des">在1742年给欧拉的信中哥德巴赫提出了以下猜想：任一大于2的偶数都可写成两个质数之和。阿萨德阿萨德阿萨德</div>
+            </div>
+            <div class="sr-duration"><span>时长</span><i> - </i><em>13:20</em></div>
+            <a href="javascript:;" class="sr-anchor"></a>
+          </li>
+          <li class="sr-list-item sr-list-striped">
+            <div class="sr-explain">
+              <small class="sr-explain-1"> - 提高 - </small>
+              <small class="sr-explain-2"><span class="sr-explain-grade label label-primary">高一</span><span class="sr-explain-discipline label label-default">数学</span></small>
+            </div>
+            <div class="sr-cont">
+              <h4 class="sr-tit"><b>第一课</b><em>集合</em>的含义t与表示 - 1</h4>
+              <div class="sr-des">在1742年给欧拉的信中哥德巴赫提出了以下猜想：任一大于2的偶数都可写成两个质数之和。</div>
+            </div>
+            <div class="sr-duration"><span>时长</span><i> - </i><em>13:20</em></div>
+            <a href="javascript:;" class="sr-anchor"></a>
+          </li>
+        </ul>
+        <div class="load-box">
+          <button type="button" id="loadBtn" data-loading-text="正在加载" class="btn btn-lg btn-gpsload" autocomplete="off">加载更多</button>
         </div>
       </div>
     </div>
