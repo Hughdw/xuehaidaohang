@@ -127,7 +127,10 @@ a {
 // 公共组件
 // ************************************************************
 main{
-  margin-top:@navbar-height-xs+15;
+  margin-top:@navbar-height-xs;
+  .container{
+    padding-top: 15px;
+  }
 }
 // ----------底部相关
 footer{
@@ -158,7 +161,10 @@ footer{
 //>=平板屏幕（768px）
 @media (min-width:@screen-sm-min) {
   main{
-    margin-top:@navbar-height+30;
+    margin-top:@navbar-height;
+    .container{
+      padding-top: 30px;
+    }
   }
   footer {
     height: @footer-height-sm;
@@ -178,11 +184,14 @@ footer{
 }
 @media (min-width:@screen-md-min) {
   main{
-    margin-top: @navbar-height + 60;
+    .container{
+      padding-top: 60px;
+    }
   }
 }
 // ----------购物车
 .shopping-car {
+  float: right;
   .btn-group{
     float: right;
   }

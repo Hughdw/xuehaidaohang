@@ -68,16 +68,19 @@
   .size(100%,@courselist-menu-tab-height);
   .var-border-radius-1(@border-radius-lg);
   .var-border-radius-2(@border-radius-lg);
+  &:hover{
+    color:@courselist-menu-tab-color-hover;
+  }
   span {
     .center-block();
     .size(@courselist-menu-tabtxt-width,@courselist-menu-tabtxt-height);
     .var-vertical-align(@courselist-menu-tab-height,@courselist-menu-tabtxt-height);
   }
 }
-#menu-tabs li.active a,
-#menu-tabs li.active a:focus,
-#menu-tabs li.active a:hover {
-  color: @courselist-menu-tab-color-hover;
+#menu-tabs .active .menu-tab,
+#menu-tabs .active .menu-tab:focus,
+#menu-tabs .active .menu-tab:hover {
+  color: @courselist-menu-tab-color-hover;;
   background-color: @courselist-menu-tab-bg-hover;
   cursor: default;
 }
@@ -201,6 +204,7 @@
   margin-top: 0;
 }
 .crumbs {
+  float: left;
   height: 34px;
   line-height: 34px;
 }
