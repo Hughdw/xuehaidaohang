@@ -4,10 +4,10 @@
  * 2.code课程列表 的程序逻辑
  */
 define(function (require) {
-  var com = require('mod/common');
-  var $ = require('jquery'),
-      ResetMenu = require('mod/reset-menu'),
-      shoppingBtn = require('mod/shopping-car');
+  var com = require("mod/common");
+  var $ = require("jquery"),
+      ResetMenu = require("mod/reset-menu"),
+      bindDropdown = require("mod/dropdown");
   // 页面载入
   $(function() {
     // 实例化 操作的构造函数
@@ -34,6 +34,6 @@ define(function (require) {
     });
 
     // 购物车下拉事件
-    shoppingBtn($("#sc-btn"));
+    bindDropdown.init("#sc-btn",".shopping-car",true);
   });
 });

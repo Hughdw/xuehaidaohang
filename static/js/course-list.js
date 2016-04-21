@@ -5,6 +5,6 @@
  ***bootstrap中有对页面的操作程序
  ***jquery必须在bootstrap之前引入
  */
-requirejs(['static/js/config.js'], function(config) {
-  requirejs(['jquery','bootstrap','app/course-list-main']);
+requirejs(["static/js/config.js"], function(config) {
+  requirejs(["jquery","bootstrap","app/course-list-main"]);
 });
