@@ -3,7 +3,7 @@
  * sourses-list.html页面的悬浮按钮
  */
  //
-define(['jquery'],function ($) {
+define(["jquery"],function ($) {
   var btStyle = function (bt,ck) {
     var button = $(bt);
   };
