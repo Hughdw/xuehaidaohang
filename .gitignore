@@ -1,7 +1,9 @@
 # My configurations:
 .ftpconfig
-.idea/
-other/
+.idea/*
+other/*
+lib/*
+!lib/bootstrap-3.3.5/
 *.psd
 *.png
 *.jpg
