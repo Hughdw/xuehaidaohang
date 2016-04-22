@@ -1,10 +1,9 @@
-# 屏蔽文件
 # My configurations:
 .ftpconfig
 .idea/*
 other/*
-/lib/*
-!/lib/bootstrap-3.3.5/
+lib/*
+!/lib/bootstrap/bootstrap-3.3.5/
 *.psd
 *.png
 *.jpg
