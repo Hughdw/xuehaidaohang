@@ -6,10 +6,62 @@
 // ************************************************************
 // 默认样式
 // ************************************************************
-// ----------
-.toolbar{
+.detail{
 
 }
+// ----------标题下拉框
+
 .tit-master{
-  float: left;
+  width: 290px;
+  .btn-group{
+    width: 100%;
+  }
+  #tm-btn{
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    em{
+      display: inline-block;
+      width: 93%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .glyphicon{
+      top:-3px;
+      right: -6px;
+    }
+  }
+  .open{
+    .dropdown-toggle{
+      background-color: @dropdown-bg;
+      border: 1px solid @dropdown-fallback-border; // IE8 fallback
+      border: 1px solid @dropdown-border;
+      border-bottom-width: 0;
+      .var-border-radius-1(@border-radius-lg);
+      .var-border-radius-2(@border-radius-lg);
+      .var-border-radius-3(0);
+      .var-border-radius-4(0);
+      z-index: 1001;
+      .box-shadow(0 -4px 7px rgba(0,0,0,.08));
+    }
+  }
 }
+.tm-panel {
+  width:100%;
+  padding: 10px 0;
+  top: 90%;
+  .var-border-radius-1(0);
+  .var-border-radius-2(0);
+  .var-border-radius-3(@border-radius-lg);
+  .var-border-radius-4(@border-radius-lg);
+}
+.tm-panel-item a{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// ----------标题下拉框
