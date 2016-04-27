@@ -4,13 +4,13 @@
 	"mappings": [
 		 {
 		 	"src": "/",
-		 	"dest": "../static/css"
+		 	"dest": "../../static/css"
 		 }
 	],
 
 	// Add the ignore rules that Koala will not search them.
 	// e.g. ["*.json", "*.txt", "test", "path/libs"]
-	"ignores": ["mixins","bootstrap","variables.less"],
+	"ignores": ["variables.less"],
 
 	// Compile options of LESS.
 	"options": {
