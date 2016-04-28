@@ -3,6 +3,7 @@
 .idea/*
 other/*
 lib/*
+node_modules/*
 #指定跟踪未生效
 !/lib/bootstrap/bootstrap-3.3.5/less/*
 *.psd

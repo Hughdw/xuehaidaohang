@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="lib/bootstrap/bootstrap-3.3.5/dist/css/bootstrap.css">
   <!-- 生产环境样式 -->
   <link rel="stylesheet" href="static/css/common.css">
-  <link rel="stylesheet" href="static/css/personal-account.css">
-  <link rel="stylesheet" href="static/css/personal-account-sm-lg.css" media="screen and (min-width:768px)" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="static/css/personal-center.css">
+  <link rel="stylesheet" href="static/css/personal-center-sm-lg.css" media="screen and (min-width:768px)" title="no title" charset="utf-8">
   <!--[if lt IE 9]>
     <script src="lib/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="lib/respondjs/1.4.2/respond.min.js"></script>
@@ -84,18 +84,18 @@
               <h3 class="wp-tit-inner">账户资料</h3>
             </div>
             <div class="account-list">
-              <div class="al-avatar">
+              <div class="al-avatar al-item">
                 <h3>网站头像</h3>
                 <div class="des"><img src="static/img/personal/personal-avatar-1.gif"/></div>
                 <div class="operation">
-                  <a href="javascript:;" class="edit">修改</a>
-                  <a href="javascript:;" class="setting">设置</a>
-                  <a href="javascript:;" class="cancel">取消</a>
-                  <a href="javascript:;" class="change">更换</a>
-                  <!-- <a href="javascript:;" class="reset">重置</a> -->
+                  <a href="#collapse-avatar" class="edit">修改</a>
+                  <a href="#collapse-avatar" class="setting">设置</a>
+                  <a href="#collapse-avatar" class="cancel">取消</a>
+                  <a href="#collapse-avatar" class="change">更换</a>
+                  <!-- <a href="#collapse-avatar" class="reset">重置</a> -->
                 </div>
               </div>
-              <div class="al-collapse">
+              <div class="al-collapse" id="collapse-avatar">
                 <a href="javascript:;"><img src="static/img/personal/personal-avatar-1.gif"/></a>
                 <a href="javascript:;"><img src="static/img/personal/personal-avatar-2.gif"/></a>
                 <a href="javascript:;"><img src="static/img/personal/personal-avatar-3.gif"/></a>
@@ -103,8 +103,8 @@
                 <a href="javascript:;"><img src="static/img/personal/personal-avatar-5.gif"/></a>
                 <a href="javascript:;"><img src="static/img/personal/personal-avatar-6.gif"/></a>
               </div>
-              <div class="row al-nickname">
-                <div class="col-xs-3"></div>
+              <div class="al-nickname al-item">
+                <h3>用户昵称</h3>
               </div>
             </div>
           </div>
