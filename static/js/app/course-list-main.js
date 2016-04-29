@@ -14,11 +14,28 @@ define(function (require) {
     var oResetMenu = new ResetMenu(document.getElementById("tab-content"));
     // 默认 触发设置 筛选列表 内容盒子对象的高度
     oResetMenu.render();
-    
+
     // 窗口重置
+    var currentTime = 0,countDownTime = 0,doTime = 0;
+    // var int =
+    function countDown(ct) {
+      countDownTime = ct+100;
+      if (countDownTime > doTime) {
+        // 触发设置 筛选列表 内容盒子对象的高度
+        oResetMenu.render();
+      }
+    }
+
     $(window).resize(function() {
-      // 触发设置 筛选列表 内容盒子对象的高度
-      oResetMenu.render();
+      // 第一次获取当前时间，后续储存上次
+      currentTime =  new Date().getTime();
+      doTime = currentTime + 1000;
+      self.setInterval("countDown(currentTime)",100);
+
+      // 调整窗口时，第一次触发进行一个倒计时。
+      // 倒计时间隔以 200毫秒计算。
+      // 调整窗口时，第二次触发在前一个触发倒计时还没结束时触发，则重新进行倒计时。
+
     });
 
     // 筛选列表 选项按钮绑定 click
