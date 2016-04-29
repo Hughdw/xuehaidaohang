@@ -83,19 +83,19 @@
             <div class="wp-tit">
               <h3 class="wp-tit-inner">账户资料</h3>
             </div>
-            <div class="account-list">
+            <div class="account-list" id="accordion">
               <div class="al-avatar al-item">
                 <h3>网站头像</h3>
                 <div class="des"><img src="static/img/personal/personal-avatar-1.gif"/></div>
                 <div class="operation">
-                  <a href="#collapse-avatar" class="edit">修改</a>
-                  <a href="#collapse-avatar" class="setting">设置</a>
-                  <a href="#collapse-avatar" class="cancel">取消</a>
-                  <a href="#collapse-avatar" class="change">更换</a>
+                  <a class="edit" data-target="#collapse-avatar" data-parent="#accordion">修改</a>
+                  <a class="setting" data-target="#collapse-avatar" data-parent="#accordion">设置</a>
+                  <!-- <a href="#collapse-avatar" class="cancel">取消</a>
+                  <a href="#collapse-avatar" class="change">更换</a> -->
                   <!-- <a href="#collapse-avatar" class="reset">重置</a> -->
                 </div>
               </div>
-              <div class="al-collapse" id="collapse-avatar">
+              <div class="al-collapse collapse" id="collapse-avatar">
                 <a href="javascript:;"><img src="static/img/personal/personal-avatar-1.gif"/></a>
                 <a href="javascript:;"><img src="static/img/personal/personal-avatar-2.gif"/></a>
                 <a href="javascript:;"><img src="static/img/personal/personal-avatar-3.gif"/></a>
@@ -105,6 +105,9 @@
               </div>
               <div class="al-nickname al-item">
                 <h3>用户昵称</h3>
+                <div class="des">
+                  <p>用于在网站中交流的昵称</p>
+                </div>
               </div>
             </div>
           </div>
@@ -137,6 +140,6 @@
     </div>
   </footer>
 </body>
-<script data-main="static/js/course-display" src="lib/require.js"></script>
+<script data-main="static/js/personal-account.js" src="lib/require.js"></script>
 
 </html>
