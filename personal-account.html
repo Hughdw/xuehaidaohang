@@ -83,37 +83,38 @@
             <div class="wp-tit">
               <h3 class="wp-tit-inner">账户资料</h3>
             </div>
-            <div class="account-list" id="accordion">
-              <div class="al-panel al-avatar">
+            <div class="panel-group account-list" id="accordion">
+              <div class="panel al-panel al-avatar">
                 <div class="al-tit">
                   <h3>网站头像</h3>
                   <div class="des"><img src="static/img/personal/personal-avatar-1.gif"/></div>
                   <div class="operation">
-                    <a id="edit" class="collapse-btn" data-target="#collapse-avatar" data-parent="#accordion">修改</a>
-                    <a id="setting" class="collapse-btn" data-target="#collapse-avatar" data-parent="#accordion">设置</a>
+                    <a id="avatar-edit" class="avatar-btn" data-target="#collapse-avatar" >修改</a>
+                    <a id="avatar-setting" class="avatar-btn" data-target="#collapse-avatar" >设置</a>
                     <!-- <a href="#collapse-avatar" class="cancel">取消</a>
                     <a href="#collapse-avatar" class="change">更换</a> -->
                     <!-- <a href="#collapse-avatar" class="reset">重置</a> -->
                   </div>
                 </div>
                 <div class="al-collapse collapse" id="collapse-avatar">
-                  <div class="al-collapse-inner">
-                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-1.gif"/></a>
-                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-2.gif"/></a>
-                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-3.gif"/></a>
-                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-4.gif"/></a>
-                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-5.gif"/></a>
-                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-6.gif"/></a>
+                  <div class="al-collapse-inner row">
+                    <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-1.gif"/></a>
+                    <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-2.gif"/></a>
+                    <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-3.gif"/></a>
+                    <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-4.gif"/></a>
+                    <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-5.gif"/></a>
+                    <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-6.gif"/></a>
+
                   </div>
                 </div>
               </div>
-              <div class="al-panel al-nickname">
+              <div class="panel al-panel al-nickname">
                 <div class="al-tit">
                   <h3>用户昵称</h3>
                   <div class="des">用于在网站中交流的昵称</div>
                   <div class="operation">
-                    <a id="edit" class="collapse-btn" data-target="#collapse-nickname" data-parent="#accordion" data-toggle="collapse">修改</a>
-                    <a id="setting" class="collapse-btn" data-target="#collapse-nickname" data-parent="#accordion" data-toggle="collapse">设置</a>
+                    <a id="nickname-edit" class="nickname-btn" data-target="#collapse-nickname" >修改</a>
+                    <a id="nickname-setting" class="nickname-btn" data-target="#collapse-nickname" >设置</a>
                   </div>
               </div>
               <div class="al-collapse collapse" id="collapse-nickname">
@@ -121,13 +122,14 @@
                   <p>贼你妹子</p>
                 </div>
               </div>
-
             </div>
+
           </div>
         </div>
-        <div class="col-md-3 sidebar">
+      </div>
+      <div class="col-md-3 sidebar">
 
-        </div>
+      </div>
       </div>
     </div>
   </main>
