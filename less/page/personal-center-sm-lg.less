@@ -8,11 +8,32 @@
 // >=平板屏幕（768px）
 // ************************************************************
 @media (min-width: @screen-sm-min) {
-  .al-item {
-    .des{
-      float: left;
+  // ----------用户资料
+  // 网站头像特殊样式
+  .al-panel .al-tit {
+    height: 100px;
+    line-height: 100px;
+    h3{
+      font-size: 16px;
+      width: 110px;
+      margin-right: 35px;
+    }
+    .operation{
+      .collapse-btn{
+        float: none;
+      }
     }
   }
+
+  // 网站头像特殊样式
+  .al-avatar {
+    .avatar-link{
+      .square(80px);
+    }
+  }
+
+
+
 }
 
 // ************************************************************

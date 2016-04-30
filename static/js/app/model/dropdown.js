@@ -16,6 +16,7 @@ define(function (require) {
         $(toggleBtn).on("click",function (event) {
           $(this).parents(".btn-group").toggleClass("open");
           $(this).toggleClass("btn-link");
+
           event.stopPropagation();
           // 隐藏其他显示的下拉框
           // 以下代码注释后，多个下拉框可同时显示
