@@ -6,7 +6,6 @@ define(function (require) {
 
     // 绑定 TAG切换事件。
     $("#sidebar-tabs").on("click", ".sidebar-tab", function(event) {
-      event.preventDefault();//阻止默认事件行为的触发
       $(this).tab("show");
     });
 

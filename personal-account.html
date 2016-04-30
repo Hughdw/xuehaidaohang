@@ -84,31 +84,44 @@
               <h3 class="wp-tit-inner">账户资料</h3>
             </div>
             <div class="account-list" id="accordion">
-              <div class="al-avatar al-item">
-                <h3>网站头像</h3>
-                <div class="des"><img src="static/img/personal/personal-avatar-1.gif"/></div>
-                <div class="operation">
-                  <a class="edit" data-target="#collapse-avatar" data-parent="#accordion">修改</a>
-                  <a class="setting" data-target="#collapse-avatar" data-parent="#accordion">设置</a>
-                  <!-- <a href="#collapse-avatar" class="cancel">取消</a>
-                  <a href="#collapse-avatar" class="change">更换</a> -->
-                  <!-- <a href="#collapse-avatar" class="reset">重置</a> -->
+              <div class="al-panel al-avatar">
+                <div class="al-tit">
+                  <h3>网站头像</h3>
+                  <div class="des"><img src="static/img/personal/personal-avatar-1.gif"/></div>
+                  <div class="operation">
+                    <a id="edit" class="collapse-btn" data-target="#collapse-avatar" data-parent="#accordion">修改</a>
+                    <a id="setting" class="collapse-btn" data-target="#collapse-avatar" data-parent="#accordion">设置</a>
+                    <!-- <a href="#collapse-avatar" class="cancel">取消</a>
+                    <a href="#collapse-avatar" class="change">更换</a> -->
+                    <!-- <a href="#collapse-avatar" class="reset">重置</a> -->
+                  </div>
+                </div>
+                <div class="al-collapse collapse" id="collapse-avatar">
+                  <div class="al-collapse-inner">
+                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-1.gif"/></a>
+                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-2.gif"/></a>
+                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-3.gif"/></a>
+                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-4.gif"/></a>
+                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-5.gif"/></a>
+                    <a class="avatar-link" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-6.gif"/></a>
+                  </div>
                 </div>
               </div>
-              <div class="al-collapse collapse" id="collapse-avatar">
-                <a href="javascript:;"><img src="static/img/personal/personal-avatar-1.gif"/></a>
-                <a href="javascript:;"><img src="static/img/personal/personal-avatar-2.gif"/></a>
-                <a href="javascript:;"><img src="static/img/personal/personal-avatar-3.gif"/></a>
-                <a href="javascript:;"><img src="static/img/personal/personal-avatar-4.gif"/></a>
-                <a href="javascript:;"><img src="static/img/personal/personal-avatar-5.gif"/></a>
-                <a href="javascript:;"><img src="static/img/personal/personal-avatar-6.gif"/></a>
+              <div class="al-panel al-nickname">
+                <div class="al-tit">
+                  <h3>用户昵称</h3>
+                  <div class="des">用于在网站中交流的昵称</div>
+                  <div class="operation">
+                    <a id="edit" class="collapse-btn" data-target="#collapse-nickname" data-parent="#accordion" data-toggle="collapse">修改</a>
+                    <a id="setting" class="collapse-btn" data-target="#collapse-nickname" data-parent="#accordion" data-toggle="collapse">设置</a>
+                  </div>
               </div>
-              <div class="al-nickname al-item">
-                <h3>用户昵称</h3>
-                <div class="des">
-                  <p>用于在网站中交流的昵称</p>
+              <div class="al-collapse collapse" id="collapse-nickname">
+                <div class="alcollapse-inner">
+                  <p>贼你妹子</p>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
