@@ -8,19 +8,31 @@
 // ************************************************************
 
 // ----------用户资料
-// 网站头像
+// 列表通用样式
 .al-tit{
   height: 70px;
   line-height: 70px;
   h3{
     float: left;
+    margin:0 10px 0 0;
     width: 90px;
-    margin-right: 10px;
-    font-size: 14px;
+    line-height: inherit;
+    font-size: 16px;
     text-align: center;
+    color: #333;
   }
   .des{
     float: left;
+    max-width: 110px;
+    display: table;
+    height:inherit;
+    line-height: 16px;
+    color: #777;
+    font-size: 12px;
+  }
+  .des-txt{
+    display: table-cell;
+    vertical-align: middle;
   }
   .operation {
     float: right;
@@ -28,20 +40,27 @@
       float: right;
       padding: 0 5px;
     }
-    padding-right: 10px;
+    padding-right: 15px;
   }
 }
 .al-collapse{
-  // height: 150px;
-  // padding: 20px;
   overflow: hidden;
-  .var-border-radius(@border-radius-sm);
 }
 .al-collapse-inner{
-  margin: 20px;
-  padding:10px 0;
+  margin: 5px;
+  padding:15px 15px 0 15px;
+  .var-border-radius(@border-radius-sm);
   background: #f5f5f5;
   overflow: hidden;
+  .btn-primary{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+.form-horizontal{
+  label {
+    color: #333;
+  }
 }
 
 // 网站头像特殊样式
@@ -49,19 +68,19 @@
   .al-tit {
     margin-top: 15px;
     margin-bottom: 15px;
-    h3{
-      margin:0;
-      line-height: inherit;
-    }
-  }
-  .al-collapse{
-
   }
   .avatar-link{
-    margin-top:5px;
-    margin-bottom:5px;
+    margin-bottom: 15px;
   }
   .avatar-img{
     .img-responsive();
   }
+  .al-collapse-inner{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .al-btn-box{
+    margin-bottom: 15px;
+  }
 }
+// 用户昵称特殊样式

@@ -3,6 +3,17 @@
  * 公共组件
  */
 define(function (require) {
+  var device = require("device");
+  // 移动端批量替换IMG标签中的路径
+  // 用来给移动端设备加载更小的图片
+  if (device.mobile()) {
+    for (var i = 0; i < document.images.length; i++) {
+      // document.images[i].src =
+      var result = /.gif$|.jpg$|.png$/i.exec(document.images[i].src);
+      var txt = "-m"+result[0];
+      document.images[i].src = result.input.replace(/.gif$|.jpg$|.png$/i,txt);
+    }
+  }
   $(function($){
     // 设置页面内容区域的最小高度
     var oHeight = {};
@@ -12,16 +23,6 @@ define(function (require) {
     document.getElementsByTagName("main")[0].style.minHeight = oHeight.mainMinHeight + "px";
 
 
-    // 移动端批量替换IMG标签中的路径
-    // 用来给移动端设备加载更小的图片
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      for (var i = 0; i < document.images.length; i++) {
-        // document.images[i].src =
-        var result = /.gif$|.jpg$|.png$/i.exec(document.images[i].src);
-        var txt = "-m"+result[0];
-        document.images[i].src = result.input.replace(/.gif$|.jpg$|.png$/i,txt);
-      }
-    }
 
   });
 
