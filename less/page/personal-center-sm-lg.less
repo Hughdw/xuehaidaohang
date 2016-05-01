@@ -9,14 +9,15 @@
 // ************************************************************
 @media (min-width: @screen-sm-min) {
   // ----------用户资料
-  // 网站头像特殊样式
-  .al-panel .al-tit {
-    height: 100px;
-    line-height: 100px;
+  // 列表通用样式
+  .al-tit {
     h3{
       font-size: 16px;
       width: 110px;
       margin-right: 35px;
+    }
+    .des {
+      max-width: 300px;
     }
     .operation{
       .collapse-btn{
@@ -24,13 +25,25 @@
       }
     }
   }
+  .al-collapse-inner {
+    margin: 15px;
+    padding-left: 0;
+    padding-right: 0;
+
+  }
+  .form-horizontal {
+    width: 370px;
+  }
 
   // 网站头像特殊样式
   .al-avatar {
-    .avatar-link{
-      // .square(80px);
+    .al-tit{
+      height: 100px;
+      line-height: 100px;
     }
   }
+
+  // 用户昵称特殊样式
 
 
 
