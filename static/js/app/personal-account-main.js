@@ -5,9 +5,9 @@ define(function (require) {
   $(function() {
     // 是否已经设置
     var oSetDone = {
-      'avatar':false,
-      'nickname':true,
-      'password':false,
+      'avatar':null,
+      'nickname':null,
+      'password':null,
       'mobile':true,
       'email':true
     };
