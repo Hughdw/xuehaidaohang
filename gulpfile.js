@@ -10,8 +10,8 @@ var gulp = require('gulp'), //本地安装gulp所用到的地方
 gulp.task('browser-sync',function() {
   var files = [
     './*.html',
-    './static/css/*.css',
-    './static/**/*.js'
+    './static/css/*.css'
+    // './static/**/*.js'
   ];
   browserSync.init(files,{
         server: {

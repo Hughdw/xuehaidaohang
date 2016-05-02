@@ -1,7 +1,7 @@
 define(function (require) {
-  var com = require('mod/common');
+  var mCom = require('mod/common');
   var $ = require('jquery'),
-      bindDropdown = require('mod/dropdown');
+      mBindDropdown = require('mod/dropdown');
   $(function() {
 
     // 绑定 TAG切换事件。
@@ -10,8 +10,8 @@ define(function (require) {
     });
 
     // 标题下拉
-    bindDropdown.init('#tm-btn','.tit-master');
+    mBindDropdown.init('#tm-btn','.tit-master');
     // 购物车下拉事件
-    bindDropdown.init('#sc-btn','.shopping-car',true);
+    mBindDropdown.init('#sc-btn','.shopping-car',true);
   });
 });
