@@ -5,6 +5,7 @@ define(function (require) {
     var btnTxt = ["取消","设置","绑定","修改","重置"];
     var isEm = [false,true,false,true,true];
     var $avatar = $("#collapse-avatar");
+    var $nickname = $("#collapse-nickname");
 
     // 网站头像相关事件
     $(".operation").on("click",".avatar-link",function (event) {
@@ -13,9 +14,11 @@ define(function (require) {
         parent:"#accordion"
       });
       $avatar.collapse("toggle");
+
     });
     $avatar.on("shown.bs.collapse",function() {
       // body...
+      $(this).prev().addClass("")
       $("#avatar-edit").text(btnTxt[0]);
     });
     $avatar.on("hidden.bs.collapse",function() {
@@ -25,10 +28,10 @@ define(function (require) {
 
     // 用户昵称相关事件
     $(".operation").on("click",".nickname-link",function(event) {
-      $("#collapse-nickname").collapse({
+      $nickname.collapse({
         parent:"#accordion"
       });
-      $("#collapse-nickname").collapse("toggle");
+      $nickname.collapse("toggle");
     });
 
     // 登录密码相关事件
