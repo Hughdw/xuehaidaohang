@@ -4,26 +4,26 @@
  * 2.code课程列表 的程序逻辑
  */
 define(function (require) {
-  var com = require('mod/common');
+  var mCom = require('mod/common');
   var $ = require('jquery'),
+      mDevice = require('device'),
       ResetMenu = require('mod/reset-menu'),
-      bindDropdown = require('mod/dropdown');
+      mBindDropdown = require('mod/dropdown');
   // 页面载入
   $(function() {
     // 实例化 操作的构造函数
-    var oResetMenu = new ResetMenu(document.getElementById('tab-content'));
+    var oResetMenu = new ResetMenu('tab-content');
     // 默认 触发设置 筛选列表 内容盒子对象的高度
     oResetMenu.render();
 
     // 窗口重置
-    var resizeTimeout = 0;
-
+    var iResizeTimeout = 0;
     $(window).resize(function() {
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      if (!mDevice.desktop()) {
         oResetMenu.render();
       }else {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
+        clearTimeout(iResizeTimeout);
+        iResizeTimeout = setTimeout(function() {
           oResetMenu.render();
         },500);
       }
@@ -44,6 +44,6 @@ define(function (require) {
     });
 
     // 购物车下拉事件
-    bindDropdown.init('#sc-btn','.shopping-car',true);
+    mBindDropdown.init('#sc-btn','.shopping-car',true);
   });
 });

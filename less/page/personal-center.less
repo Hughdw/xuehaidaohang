@@ -10,14 +10,17 @@
 // ----------用户资料
 // 列表通用样式
 #accordion .al-panel {
-  margin-top: 1px;
+  margin-top: 0;
+  border-bottom-color: #eee;
+  border-top:none;
 }
 .al-tit{
+  box-sizing: content-box;
   height: 70px;
   line-height: 70px;
   h3{
     float: left;
-    margin:0 10px 0 0;
+    margin:0 6px 0 0;
     width: 90px;
     line-height: inherit;
     font-size: 16px;
@@ -46,6 +49,9 @@
     padding-right: 15px;
   }
 }
+.al-tit-active {
+  background-color: #f8f8f8;
+}
 .al-collapse{
   overflow: hidden;
 }
@@ -69,8 +75,8 @@
 // 网站头像特殊样式
 .al-avatar {
   .al-tit {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
   .avatar-link{
     margin-bottom: 15px;
