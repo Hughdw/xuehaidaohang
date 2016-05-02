@@ -27,9 +27,9 @@ define(function (require) {
     var iNavHeight = 50; //导航高度
     var setHeight = (sh - iMenuHeight - iNavHeight);
     if (setHeight <= th) {
-      this.aTabCont.style.height = setHeight - 5 + "px";
+      this.aTabCont.style.height = setHeight - 5 + 'px';
     } else {
-      this.aTabCont.style.height = "auto";
+      this.aTabCont.style.height = 'auto';
     }
   };
   return ResetMenuSize;
