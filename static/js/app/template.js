@@ -1,6 +1,6 @@
 define(function (require) {
-  var com = require("mod/common");
-  var $ = require("jquery");
+  var com = require('mod/common');
+  var $ = require('jquery');
   $(function() {
     
   });

@@ -4,14 +4,14 @@
  * 2.code课程列表 的程序逻辑
  */
 define(function (require) {
-  var com = require("mod/common");
-  var $ = require("jquery"),
-      ResetMenu = require("mod/reset-menu"),
-      bindDropdown = require("mod/dropdown");
+  var com = require('mod/common');
+  var $ = require('jquery'),
+      ResetMenu = require('mod/reset-menu'),
+      bindDropdown = require('mod/dropdown');
   // 页面载入
   $(function() {
     // 实例化 操作的构造函数
-    var oResetMenu = new ResetMenu(document.getElementById("tab-content"));
+    var oResetMenu = new ResetMenu(document.getElementById('tab-content'));
     // 默认 触发设置 筛选列表 内容盒子对象的高度
     oResetMenu.render();
 
@@ -30,20 +30,20 @@ define(function (require) {
     });
 
     // 筛选列表 选项按钮绑定 click
-    $("#tab-content").on("click", ".menu-filter-bt", function() {
+    $('#tab-content').on('click', '.menu-filter-bt', function() {
       // 触发设置 筛选列表 内容盒子对象的高度
       oResetMenu.render();
-      // $(this).toggleClass("click");
+      // $(this).toggleClass('click');
     });
 
     // 绑定 TAG切换事件。
-    $("#menu-tabs").on("click", ".menu-tab", function(event) {
-      $(this).tab("show");
+    $('#menu-tabs').on('click', '.menu-tab', function(event) {
+      $(this).tab('show');
       // 触发设置 筛选列表 内容盒子对象的高度
       oResetMenu.render();
     });
 
     // 购物车下拉事件
-    bindDropdown.init("#sc-btn",".shopping-car",true);
+    bindDropdown.init('#sc-btn','.shopping-car',true);
   });
 });
