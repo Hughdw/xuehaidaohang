@@ -1,6 +1,6 @@
 define(function (require) {
   var mCom = require('mod/common');
-  var $ = require('jquery');
+  var $ = require('jquery'),
       mButton = require('mod/button');
   $(function() {
     // 是否已经设置
@@ -9,7 +9,7 @@ define(function (require) {
       'nickname':null,
       'password':null,
       'mobile':true,
-      'email':true
+      'email':false
     };
     // 网站头像相关事件
     mButton('#collapse-link-avatar','#collapse-avatar',oSetDone.avatar);
