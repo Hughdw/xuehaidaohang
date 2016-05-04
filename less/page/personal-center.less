@@ -6,9 +6,75 @@
 // ************************************************************
 // 默认样式
 // ************************************************************
+// ----------侧栏sidebar
+.sidebar{
+  margin-top: 20px;
+  .media{
+    margin: 15px 0 15px 15px;
+  }
+  .media-left{
+    .size(110px,100px);
+    padding-right: 20px;
+  }
+  .media-heading{
+    margin-top: 5px
+  }
+  .media-cont {
+    margin-bottom: 0;
+    dt{
+      font-weight: normal;
+      color: #aaa;
+      font-size:12px;
+    }
+    dd{
+      float: left;
+      em{
+        color: #ff8e46;
+      }
+    }
+    .ico{
+      display: inline-block;
+      margin-left: 4px;
+      .size(16px,15px);
+      vertical-align:middle;
+      background: url("../../static/img/key.png") no-repeat top left;
+    }
+    .recharge{
+      margin-left: 10px;
+      font-size: 10px;
+      color: #fff;
+      padding: 2px 4px;
+      background: #337ab7;
+      .var-border-radius(@border-radius-sm);
+    }
+  }
+  .menu-list{
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  .menu-list-link{
+    display: block;
+    .size(100%,65px);
+    line-height: 65px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    border-top: 1px #eee solid;
+    &:hover{
+      background: #eee;
+    }
+    &.active{
+      background: #f8f8f8;
+    }
+  }
+}//.sidebar
 
 // ----------用户资料
 // 列表通用样式
+.panel-group{
+  margin-bottom: 0;
+}
 #accordion .al-panel {
   margin-top: 0;
   border-bottom-color: #eee;
@@ -93,4 +159,54 @@
     margin-bottom: 15px;
   }
 }
-// 用户昵称特殊样式
+
+
+// ----------学习进度
+.pl-table{
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+.pl-table thead tr{
+  background-color: #f8f8f8;
+}
+.pl-table th{
+  text-align: center;
+  height: 40px;
+  border-left:1px #eee solid;
+  border-right:1px #eee solid;
+}
+.pl-table th:first-child{
+  border-left: none;
+}
+.pl-table th:last-child{
+  border-left: none;
+}
+
+.pl-table tbody tr:nth-child(even){
+  background-color: #fcfcfc;
+}
+.pl-table tbody tr:hover{
+    background: #eee;
+}
+.pl-table td{
+  height: 70px;
+  border:1px #eee solid;
+}
+.pl-table td:first-child{
+  border-left: none;
+}
+.pl-table td:last-child{
+  border-right: none;
+}
+
+.view-time{
+  font-size: 12px;
+}
+
+.gps-progress{
+  .size(100px,25px);
+  background: #f8f8f8;
+  .var-border-radius(@border-radius-sm);
+  .box-shadow(0 1px 3px rgba(190,190,190,.3) inset);
+}

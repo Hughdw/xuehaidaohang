@@ -4,13 +4,14 @@
  */
 define(function (require) {
   var mDevice = require('device');
-  // 移动端批量替换IMG标签中的路径
-  // 用来给移动端设备加载更小的图片
-  if (mDevice.mobile()) {
+  // 非移动端设备（PC、平板）批量替换IMG标签中的路径
+  // 替换更大的图片
+  // 测试时，会将ipad归到desktop()，因此使用mobile()
+  if (!mDevice.mobile()) {
     for (var i = 0; i < document.images.length; i++) {
       // document.images[i].src =
       var aResult = /.gif$|.jpg$|.png$/i.exec(document.images[i].src);
-      var sReplaceStr = '-m'+aResult[0];
+      var sReplaceStr = '-pc'+aResult[0];
       document.images[i].src = aResult.input.replace(/.gif$|.jpg$|.png$/i,sReplaceStr);
     }
   }
