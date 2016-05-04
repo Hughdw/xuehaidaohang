@@ -17,13 +17,13 @@ define(function (require) {
     oResetMenu.render();
 
     // 窗口重置
-    var iResizeTimeout = 0;
+    var iTimer = 0;
     $(window).resize(function() {
       if (!mDevice.desktop()) {
         oResetMenu.render();
       }else {
-        clearTimeout(iResizeTimeout);
-        iResizeTimeout = setTimeout(function() {
+        clearTimeout(iTimer);
+        iTimer = setTimeout(function() {
           oResetMenu.render();
         },500);
       }

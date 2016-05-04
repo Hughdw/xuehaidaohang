@@ -3,7 +3,7 @@ define(function (require) {
   var $ = require('jquery'),
       mButton = require('mod/button');
   $(function() {
-    // 是否已经设置
+    // 用户是否已经设置了对应资料
     var oSetDone = {
       'avatar':null,
       'nickname':null,
@@ -11,12 +11,13 @@ define(function (require) {
       'mobile':true,
       'email':false
     };
+
     // 网站头像相关事件
-    mButton('#collapse-link-avatar','#collapse-avatar',oSetDone.avatar);
-    mButton('#collapse-link-nickname','#collapse-nickname',oSetDone.nickname);
-    mButton('#collapse-link-password','#collapse-password',oSetDone.password);
-    mButton('#collapse-link-mobile','#collapse-mobile',oSetDone.mobile);
-    mButton('#collapse-link-email','#collapse-email',oSetDone.email);
+    mButton.bindEvent('#collapse-link-avatar','#collapse-avatar',oSetDone.avatar);
+    mButton.bindEvent('#collapse-link-nickname','#collapse-nickname',oSetDone.nickname);
+    mButton.bindEvent('#collapse-link-password','#collapse-password',oSetDone.password);
+    mButton.bindEvent('#collapse-link-mobile','#collapse-mobile',oSetDone.mobile);
+    mButton.bindEvent('#collapse-link-email','#collapse-email',oSetDone.email);
 
 
   });
