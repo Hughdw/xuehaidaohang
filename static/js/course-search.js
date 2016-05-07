@@ -1,3 +1,3 @@
 requirejs(['static/js/config.js'], function(config) {
-  requirejs(['jquery', 'bootstrap', 'app/course-search-main']);
+  requirejs(['jquery', 'bootstrap', 'mod/common', 'app/course-search-main']);
 });

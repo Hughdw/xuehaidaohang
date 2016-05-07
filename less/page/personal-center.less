@@ -4,17 +4,19 @@
 @import "./variables.less";
 @import "../bootstrap/mixins.less";
 // ************************************************************
-// 默认样式
+// 共用样式
 // ************************************************************
 // ----------侧栏sidebar
-.sidebar{
+#sidebar{
   margin-top: 20px;
   .media{
     margin: 15px 0 15px 15px;
   }
   .media-left{
-    .size(110px,100px);
-    padding-right: 20px;
+    float: left;
+    .size(70px,70px);
+    margin-right: 10px;
+    padding: 0;
   }
   .media-heading{
     margin-top: 5px
@@ -69,6 +71,50 @@
     }
   }
 }//.sidebar
+
+// ----------表格1 样式
+.table-wrap{
+  overflow-x:auto;
+}
+.table-one{
+  width: 100%;
+  min-width: 600px;
+  text-align: center;
+  vertical-align: middle;
+}
+.table-one thead tr{
+  background-color: #f8f8f8;
+}
+.table-one th{
+  text-align: center;
+  height: 40px;
+  border-left:1px #eee solid;
+  border-right:1px #eee solid;
+}
+.table-one th:first-child{
+  border-left: none;
+}
+.table-one th:last-child{
+  border-left: none;
+}
+
+.table-one tbody tr:nth-child(even){
+  background-color: #fcfcfc;
+}
+.table-one tbody tr:hover{
+    background: #eee;
+}
+.table-one td{
+  height: 70px;
+  border:1px #eee solid;
+}
+.table-one td:first-child{
+  border-left: none;
+}
+.table-one td:last-child{
+  border-right: none;
+}
+
 
 // ----------用户资料
 // 列表通用样式
@@ -162,51 +208,21 @@
 
 
 // ----------学习进度
-.pl-table{
-  width: 100%;
-  text-align: center;
-  vertical-align: middle;
-}
-.pl-table thead tr{
-  background-color: #f8f8f8;
-}
-.pl-table th{
-  text-align: center;
-  height: 40px;
-  border-left:1px #eee solid;
-  border-right:1px #eee solid;
-}
-.pl-table th:first-child{
-  border-left: none;
-}
-.pl-table th:last-child{
-  border-left: none;
-}
 
-.pl-table tbody tr:nth-child(even){
-  background-color: #fcfcfc;
-}
-.pl-table tbody tr:hover{
-    background: #eee;
-}
-.pl-table td{
-  height: 70px;
-  border:1px #eee solid;
-}
-.pl-table td:first-child{
-  border-left: none;
-}
-.pl-table td:last-child{
-  border-right: none;
-}
-
-.view-time{
+.viewing-time{
   font-size: 12px;
 }
 
 .gps-progress{
-  .size(100px,25px);
+  margin: 0 auto;
+  .size(200px,25px);
   background: #f8f8f8;
   .var-border-radius(@border-radius-sm);
   .box-shadow(0 1px 3px rgba(190,190,190,.3) inset);
+}
+.gps-progress-bar{
+
+}
+.status{
+  font-size: 12px;
 }

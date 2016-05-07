@@ -4,7 +4,8 @@
 
 //导入工具包 require('node_modules里对应模块')
 var gulp = require('gulp'), //本地安装gulp所用到的地方
-    browserSync = require('browser-sync').create();
+    browserSync = require('browser-sync').create(),
+    tmodjs = require('gulp-tmod');
 
 // 静态服务器
 gulp.task('browser-sync',function() {
@@ -18,6 +19,17 @@ gulp.task('browser-sync',function() {
             baseDir: './'
         }
   });
+});
+
+gulp.task('tmod',function() {
+  //将src获取到的流 导入到tmodjs
+  var stream = gulp.src('./template/**/*.html')
+          .pipe(tmodjs({
+            templateBase:'template',
+            syntax:'native'
+          }))//设置模板文件的文件名
+          .pipe(gulp.dest('./static'));//输出路径
+  return stream;
 });
 
 // 代理
@@ -42,11 +54,11 @@ gulp.task('browser-sync',function() {
 //       .pipe(gulp.dest('./')); //以CSS生成目录为根目录
 // });
 //
-// // less编译监听
-// gulp.task('lessWatch',function() {
-//   gulp.watch('./less/**/*.less',['less2css']);// 当less下以及子文件夹下的所有less文件发生变化时，调用less2css任务。
-// });
+// 监听文件改动，执行对应的任务
+gulp.task('tmodWatch',function() {
+  gulp.watch('./template/**/*.html',['tmod']);
+});
 
 
 
-gulp.task('default',['browser-sync']); //定义默认任务
+gulp.task('default',['browser-sync','tmodWatch']); //定义默认任务
