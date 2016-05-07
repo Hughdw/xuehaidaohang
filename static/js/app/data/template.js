@@ -1,5 +1,6 @@
 define(function (require) {
-  return {
+  var title = ['账户资料','学习进度','充值记录','购买记录','优惠信息'];
+  var data = {
     sidebar : {
       userName:'小丸子',
       avatarUrl:'static/img/personal/personal-avatar-1.gif',
@@ -27,6 +28,55 @@ define(function (require) {
           url:'#'
         }
       ]
+    },
+    recharge:{
+      list:[
+        {
+          order:'E1456465485643651',
+          creationDate:'2016-01-06',
+          creationTime:'14:20',
+          price:'100.00',
+          paymentType:0,
+          paymentName:'网银',
+          typeInfo:'中国银行',
+          status:0,
+          url:'#'
+        },
+        {
+          order:'E1456465485643651',
+          creationDate:'2016-01-06',
+          creationTime:'13:20',
+          price:'100.00',
+          paymentType:1,
+          paymentName:'支付宝',
+          typeInfo:null,
+          status:1,
+          url:'#'
+        },
+        {
+          order:'E1456465485643651',
+          creationDate:'2016-01-06',
+          creationTime:'13:20',
+          price:'100.00',
+          paymentType:2,
+          paymentName:'微信',
+          typeInfo:null,
+          status:2,
+          url:'#'
+        },
+        {
+          order:'E1456465485643651',
+          creationDate:'2016-01-06',
+          creationTime:'13:20',
+          price:'100.00',
+          paymentType:1,
+          paymentName:'支付宝',
+          typeInfo:null,
+          status:3,
+          url:'#'
+        }
+      ]
     }
   };
+  return data;
 });

@@ -1,8 +1,12 @@
 define(function (require) {
   var $ = require('jquery'),
+      tpldata = require('tpldata'),
       replaceImgPath = require('mod/replace-img-path'),
       mButton = require('mod/button');
   $(function() {
+    tpldata.sidebar.activeMenu = 0;//设置激活导航
+    // 插入绑定好数据的模版
+    document.getElementById('sidebar').innerHTML = template('personal/sidebar',tpldata.sidebar);
     replaceImgPath();
     // 用户是否已经设置或绑定了对应资料
     var oSetDone = {
