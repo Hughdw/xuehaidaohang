@@ -19,7 +19,9 @@
   <!--[if lt IE 9]>
     <script src="lib/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="lib/respondjs/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <![endif]-->
+  <script src="static/template.js"></script>
+  <script data-main="static/js/personal-account.js" src="lib/require.js"></script>
 </head>
 
 <body id="personal-account">
@@ -329,27 +331,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 sidebar">
+        <div class="col-md-3">
           <div class="wrap-panel">
-            <div class="wp-body">
-              <div class="media">
-                <div class="media-left"><img src="static/img/personal/personal-avatar-1.gif" alt="小丸子" class="media-object"></div>
-                <div class="media-body">
-                  <h4 class="media-heading">小丸子</h4>
-                  <dl class="media-cont">
-                    <dt>余额：</dt>
-                    <dd><em>500</em><span class="ico"></span></dd>
-                    <dd><a href="" class="recharge">充值</a></dd>
-                  </dl>
-                </div>
-              </div>
-              <ul class="menu-list">
-                <li><a href="#" class="menu-list-link active">账户资料</a></li>
-                <li><a href="#" class="menu-list-link">学习进度</a></li>
-                <li><a href="#" class="menu-list-link">充值记录</a></li>
-                <li><a href="#" class="menu-list-link">购买记录</a></li>
-                <li><a href="#" class="menu-list-link">优惠信息</a></li>
-              </ul>
+            <div class="wp-body" id="sidebar">
             </div>
           </div>
         </div>
@@ -378,6 +362,4 @@
     </div>
   </footer>
 </body>
-<script data-main="static/js/personal-account.js" src="lib/require.js"></script>
-
 </html>

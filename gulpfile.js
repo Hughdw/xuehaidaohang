@@ -26,7 +26,8 @@ gulp.task('tmod',function() {
   var stream = gulp.src('./template/**/*.html')
           .pipe(tmodjs({
             templateBase:'template',
-            syntax:'native'
+            syntax:'native',
+            debuge:true
           }))//设置模板文件的文件名
           .pipe(gulp.dest('./static'));//输出路径
   return stream;
