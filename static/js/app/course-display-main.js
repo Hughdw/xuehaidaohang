@@ -1,5 +1,4 @@
 define(function (require) {
-  var mCom = require('mod/common');
   var $ = require('jquery'),
       mBindDropdown = require('mod/dropdown');
   $(function() {

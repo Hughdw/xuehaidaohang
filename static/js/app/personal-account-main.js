@@ -1,9 +1,10 @@
 define(function (require) {
-  var mCom = require('mod/common');
   var $ = require('jquery'),
+      replaceImgPath = require('mod/replace-img-path'),
       mButton = require('mod/button');
   $(function() {
-    // 用户是否已经设置了对应资料
+    replaceImgPath();
+    // 用户是否已经设置或绑定了对应资料
     var oSetDone = {
       'avatar':null,
       'nickname':null,

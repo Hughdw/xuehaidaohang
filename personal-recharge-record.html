@@ -6,7 +6,7 @@
   <!-- 通知 IE 采用其所支持的最新的模式 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- 指定用户是否可以缩放Web页面 -->
-  <title>搜索结果</title>
+  <title>用户中心 - 账户资料</title>
   <meta name="Description" content="" />
   <meta name="Keywords" content="" />
   <meta content="http://addaad.com/z/img/favicon-48.png" itemprop="image">
@@ -14,15 +14,18 @@
   <link rel="stylesheet" href="lib/bootstrap/bootstrap-3.3.5/dist/css/bootstrap.css">
   <!-- 生产环境样式 -->
   <link rel="stylesheet" href="static/css/common.css">
-  <link rel="stylesheet" href="static/css/course-search.css">
-  <link rel="stylesheet" href="static/css/course-search-sm-lg.css" media="screen and (min-width:768px)" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="static/css/personal-center.css">
+  <link rel="stylesheet" href="static/css/personal-center-sm-lg.css" media="screen and (min-width:768px)" title="no title" charset="utf-8">
   <!--[if lt IE 9]>
     <script src="lib/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="lib/respondjs/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <![endif]-->
+  <script src="static/template.js"></script>
+  <script data-main="static/js/personal-recharge.js" src="lib/require.js"></script>
+  <!-- <script src="./lib/handlebars/4.0.5/handlebars.min.js" charset="utf-8"></script> -->
 </head>
 
-<body id="course-search">
+<body id="personal-recharge">
   <nav class="navbar navbar-gps navbar-fixed-top">
     <div class="container">
       <!-- 折叠内容 -->
@@ -77,40 +80,57 @@
   </nav>
   <main>
     <div class="container">
-      <div class="search-result wrap-panel">
-        <div class="wp-tit">
-          <h3 class="wp-tit-inner">搜索结果</h3>
-        </div>
-        <div class="wp-body">
-          <ul class="sr-list">
-            <li class="sr-list-item">
-              <div class="sr-explain">
-                <small class="sr-explain-1"> - 提高 - </small>
-                <small class="sr-explain-2"><span class="sr-explain-grade label label-primary">高一</span><span class="sr-explain-discipline label label-default">数学</span></small>
+      <div class="row">
+        <div class="col-md-9 main">
+          <div class="wrap-panel">
+            <div class="wp-tit">
+              <h3 class="wp-tit-inner">学习进度</h3>
+            </div>
+            <div class="recharge-list wp-body">
+              <div class="table-wrap">
+                <table class="table-one">
+                  <thead>
+                    <tr>
+                      <th width="20%">创建时间</th>
+                      <th width="32%">订单号</th>
+                      <th width="15%">金额</th>
+                      <th width="15%">充值方式</th>
+                      <th width="18%">状态/操作</th>
+                    </tr>
+                  </thead>
+                  <thbody>
+                    <tr>
+                      <td class="creation-time">
+                        <div class="date">2016-01-06</div>
+                        <div class="time">14:20</div>
+                      </td>
+                      <td class="order">
+                        E1456465485643651
+                      </td>
+                      <td class="price">
+                        ￥100.00
+                      </td>
+                      <td class="type">
+                        <!-- glyphicon glyphicon-info-sign -->
+                        网银 <i class="glyphicon glyphicon-info-sign"></i>
+                      </td>
+                      <td class="status">
+                        <button type="button" class="btn btn-primary">去付款</button>
+                      </td>
+                      <!-- <button type="button" class="btn btn-default" disabled="disabled">已关闭</button> -->
+                      <!-- <button type="button" class="btn btn-success" disabled="disabled">成功</button> -->
+                    </tr>
+                  </thbody>
+                </table>
               </div>
-              <div class="sr-cont">
-                <h4 class="sr-tit"><b>第一课</b><em>集合</em>的含义t与表示 - 1</h4>
-                <div class="sr-des">在1742年给欧拉的信中哥德巴赫提出了以下猜想：任一大于2的偶数都可写成两个质数之和。阿萨德阿萨德阿萨德</div>
+              <div class="load-box">
+                <button type="button" id="loadBtn" data-loading-text="正在加载" class="btn btn-lg btn-gpsload" autocomplete="off">加载更多</button>
               </div>
-              <div class="sr-duration"><span>时长</span><i> - </i><em>13:20</em></div>
-              <a href="javascript:;" class="sr-anchor"></a>
-            </li>
-            <li class="sr-list-item sr-list-striped">
-              <div class="sr-explain">
-                <small class="sr-explain-1"> - 提高 - </small>
-                <small class="sr-explain-2"><span class="sr-explain-grade label label-primary">高一</span><span class="sr-explain-discipline label label-default">数学</span></small>
-              </div>
-              <div class="sr-cont">
-                <h4 class="sr-tit"><b>第一课</b><em>集合</em>的含义t与表示 - 1</h4>
-                <div class="sr-des">在1742年给欧拉的信中哥德巴赫提出了以下猜想：任一大于2的偶数都可写成两个质数之和。</div>
-              </div>
-              <div class="sr-duration"><span>时长</span><i> - </i><em>13:20</em></div>
-              <a href="javascript:;" class="sr-anchor"></a>
-            </li>
-          </ul>
-          <div class="load-box">
-            <button type="button" id="loadBtn" data-loading-text="正在加载" class="btn btn-lg btn-gpsload" autocomplete="off">加载更多</button>
+            </div>
           </div>
+        </div>
+        <div class="col-md-3" id="sidebar">
+
         </div>
       </div>
     </div>
@@ -137,6 +157,5 @@
     </div>
   </footer>
 </body>
-<script data-main="static/js/course-search" src="lib/require.js"></script>
 
 </html>

@@ -4,7 +4,6 @@
  * 2.code课程列表 的程序逻辑
  */
 define(function (require) {
-  var mCom = require('mod/common');
   var $ = require('jquery'),
       mDevice = require('device'),
       ResetMenu = require('mod/reset-menu'),

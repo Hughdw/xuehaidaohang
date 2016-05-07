@@ -84,86 +84,58 @@
               <h3 class="wp-tit-inner">学习进度</h3>
             </div>
             <div class="progress-list wp-body">
-              <table class="pl-table">
-                <thead>
-                  <tr>
-                    <th>课程</th>
-                    <th>进度</th>
-                    <th>观看时间</th>
-                    <th>状态</th>
-                  </tr>
-                </thead>
-                <thbody>
-                  <tr>
-                    <td class="course-tit">第一课 集合的含义与表示</td>
-                    <td class="progress-display">
-                      <div class="gps-progress hidden-xs">
-                        <div class="gps-progress-bar"></div>
-                      </div>
-                      <div class="gps-progress-number visible-xs-block">
-                        20%
-                      </div>
-                    </td>
-                    <td class="view-time">
-                      <div class="date">2016-01-06</div>
-                      <div class="time">14:20</div>
-                    </td>
-                    <td class="status"></td>
-                  </tr>
-                  <tr>
-                    <td class="course-tit">第一课 集合的含义与表示</td>
-                    <td class="progress-display">
-                      <div class="gps-progress hidden-xs">
-                        <div class="gps-progress-bar"></div>
-                      </div>
-                      <div class="gps-progress-number visible-xs-block">
-                        20%
-                      </div>
-                    </td>
-                    <td class="time"></td>
-                    <td class="status"></td>
-                  </tr>
-                  <tr>
-                    <td class="course-tit">第一课 集合的含义与表示</td>
-                    <td class="progress-display">
-                      <div class="gps-progress hidden-xs">
-                        <div class="gps-progress-bar"></div>
-                      </div>
-                      <div class="gps-progress-number visible-xs-block">
-                        20%
-                      </div>
-                    </td>
-                    <td class="time"></td>
-                    <td class="status"></td>
-                  </tr>
-                  <tr>
-                    <td class="course-tit">第一课 集合的含义与表示</td>
-                    <td class="progress-display">
-                      <div class="gps-progress hidden-xs">
-                        <div class="gps-progress-bar"></div>
-                      </div>
-                      <div class="gps-progress-number visible-xs-block">
-                        20%
-                      </div>
-                    </td>
-                    <td class="time"></td>
-                    <td class="status"></td>
-                  </tr>
-                  <tr>
-                    <td class="course-tit">第一课 集合的含义与表示</td>
-                    <td class="progress-display">
-                      <div class="gps-progress hidden-xs">
-                        <div class="gps-progress-bar"></div>
-                      </div>
-                      <div class="gps-progress-number visible-xs-block">
-                        20%
-                      </div>
-                    </td>
-                    <td class="time"></td>
-                    <td class="status"></td>
-                  </tr>
-                </thbody>
-              </table>
+              <div class="table-wrap">
+                <table class="table-one">
+                  <thead>
+                    <tr>
+                      <th width="28%">课程</th>
+                      <th width="42%">进度</th>
+                      <th width="15%">观看时间</th>
+                      <th width="15%">状态</th>
+                    </tr>
+                  </thead>
+                  <thbody>
+                    <tr>
+                      <td class="course-tit">第一课 集合的含义与表示</td>
+                      <td class="progress-display">
+                        <div class="gps-progress">
+                          <div class="gps-progress-bar"></div>
+                        </div>
+                      </td>
+                      <td class="viewing-time">
+                        <div class="date">2016-01-06</div>
+                        <div class="time">14:20</div>
+                      </td>
+                      <td class="status">
+                        <div class="des">剩余</div>
+                        <div class="remaining-time">2小时05分钟</div>
+                        <a class="link" href="#">继续观看</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="course-tit">第一课 集合的含义与表示</td>
+                      <td class="progress-display">
+                        <div class="gps-progress">
+                          <div class="gps-progress-bar"></div>
+                        </div>
+                      </td>
+                      <td class="viewing-time">
+                        <div class="date">2016-01-06</div>
+                        <div class="time">14:20</div>
+                      </td>
+                      <td class="status">
+                        <div class="des">剩余</div>
+                        <div class="remaining-time">2小时05分钟</div>
+                        <a class="link" href="#">继续观看</a>
+                      </td>
+                    </tr>
+                  </thbody>
+                </table>
+              </div>
+
+              <div class="load-box">
+                <button type="button" id="loadBtn" data-loading-text="正在加载" class="btn btn-lg btn-gpsload" autocomplete="off">加载更多</button>
+              </div>
             </div>
           </div>
         </div>
@@ -171,7 +143,7 @@
           <div class="wrap-panel">
             <div class="wp-body">
               <div class="media">
-                <div class="media-left"><img src="static/img/personal/personal-avatar-1.gif" alt="小丸子" class="media-object"></div>
+                <div class="media-left"><img src="static/img/personal/personal-avatar-1.gif" alt="小丸子" class="media-object" width="100%" height="100%"></div>
                 <div class="media-body">
                   <h4 class="media-heading">小丸子</h4>
                   <dl class="media-cont">

@@ -1,3 +1,3 @@
 requirejs(['static/js/config.js'], function(config) {
-  requirejs(['jquery', 'bootstrap', 'app/personal-progress-main']);
+  requirejs(['jquery', 'bootstrap', 'mod/common', 'app/personal-progress-main']);
 });
