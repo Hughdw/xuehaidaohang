@@ -1,0 +1,24 @@
+<% for (i = 0; i < list.length; i++) { %>
+<tr>
+  <td class="course-tit"><%= list[i].title %></td>
+  <td class="progress-display">
+    <div class="gps-progress">
+      <div class="gps-progress-bar"></div>
+    </div>
+  </td>
+  <td class="viewing-time">
+    <div class="date"><%= list[i].viewingDate %></div>
+    <div class="time"><%= list[i].viewingTime %></div>
+  </td>
+  <td class="status">
+    <div class="des">剩余</div>
+
+    <% if (list[i].remainingTime === null) {%>
+      <div class="remaining-time">已过期</div>
+    <% } else {%>
+    <div class="remaining-time">2小时05分钟</div>
+    <a class="link" href="<%= list[i].url %>">继续观看</a>
+    <% } %>
+  </td>
+</tr>
+<%}%>

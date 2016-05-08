@@ -4,10 +4,6 @@ define(function (require) {
       replaceImgPath = require('mod/replace-img-path'),
       mButton = require('mod/button');
   $(function() {
-    tpldata.sidebar.activeMenu = 0;//设置激活导航
-    // 插入绑定好数据的模版
-    document.getElementById('sidebar').innerHTML = template('personal/sidebar',tpldata.sidebar);
-    replaceImgPath();
     // 用户是否已经设置或绑定了对应资料
     var oSetDone = {
       'avatar':null,
@@ -16,6 +12,12 @@ define(function (require) {
       'mobile':true,
       'email':false
     };
+    tpldata.sidebar.activeMenu = 0;//设置激活导航
+    // 获取到模版，然后渲染数据
+    // 将选好数据的字符串通过 innerHTML 插入到指定的元素中（#main）
+    document.getElementById('main').innerHTML = template('personal/account-main',tpldata);
+    replaceImgPath();
+
 
     // 网站头像相关事件
     mButton.bindEvent('#collapse-link-avatar','#collapse-avatar',oSetDone.avatar);
