@@ -1,8 +1,7 @@
-/*TMODJS:{"version":1,"md5":"9130fa262390f4e7a01ffb9b5fd8de1b"}*/
+/*TMODJS:{"version":2,"md5":"5778ceda8bb3ad4e59a492c7a5b6756f"}*/
 template('personal/recharge-content',function($data,$filename
 /**/) {
-'use strict';var $utils=this,$helpers=$utils.$helpers,i=$data.i,list=$data.list,$escape=$utils.$escape,$out='';$out+='<div class="table-wrap"> <table class="table-one"> <thead> <tr> <th width="20%">创建时间</th> <th width="32%">订单号</th> <th width="15%">金额</th> <th width="15%">充值方式</th> <th width="18%">状态/操作</th> </tr> </thead> <tbody> ';
- for (i = 0; i < list.length; i++) { 
+'use strict';var $utils=this,$helpers=$utils.$helpers,i=$data.i,list=$data.list,$escape=$utils.$escape,$out=''; for (i = 0; i < list.length; i++) { 
 $out+=' <tr> <td class="creation-time"> <div class="date">';
 $out+=$escape( list[i].creationDate);
 $out+='</div> <div class="time">';
@@ -41,6 +40,6 @@ $out+='" class="btn btn-primary">去付款</a> ';
  } 
 $out+=' </td> </tr> ';
 }
-$out+=' </tbody> </table> </div> <div class="load-box"> <button type="button" id="loadBtn" data-loading-text="正在加载" class="btn btn-lg btn-gpsload" autocomplete="off">加载更多</button> </div> ';
+$out+=' ';
 return new String($out);
 });

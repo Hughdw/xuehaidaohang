@@ -29,6 +29,24 @@ define(function (require) {
         }
       ]
     },
+    progress:{
+      list:[
+        {
+          title:'第一课 集合的含义与表示',
+          viewingDate:'2016-01-06',
+          viewingTime:'14:20',
+          remainingTime:'2小时05分钟',
+          url:'#'
+        },
+        {
+          title:'第二课 集合的含义与表示2',
+          viewingDate:'2016-01-07',
+          viewingTime:'10:21',
+          remainingTime:null,
+          url:null
+        }
+      ]
+    },
     recharge:{
       list:[
         {

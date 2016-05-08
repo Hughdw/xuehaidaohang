@@ -4,8 +4,9 @@ define(function (require) {
       replaceImgPath = require('mod/replace-img-path');
   $(function() {
     tpldata.sidebar.activeMenu = 1;//设置激活导航
-    // 插入绑定好数据的模版
-    document.getElementById('sidebar').innerHTML = template('personal/sidebar',tpldata.sidebar);
+    // 获取到模版，然后渲染数据
+    // 将选好数据的字符串通过 innerHTML 插入到指定的元素中（#main）
+    document.getElementById('main').innerHTML = template('personal/progress-main',tpldata);
     replaceImgPath();
     // 开始时间  02:30
     // 视频总时间  10:20
