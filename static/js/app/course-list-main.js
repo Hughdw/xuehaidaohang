@@ -5,7 +5,7 @@
  */
 define(function (require) {
   var $ = require('jquery'),
-      mDevice = require('device'),
+      mGlobal = require('mod/global'),
       ResetMenu = require('mod/reset-menu'),
       mBindDropdown = require('mod/dropdown');
   // 页面载入
@@ -18,13 +18,13 @@ define(function (require) {
     // 窗口重置
     var iTimer = 0;
     $(window).resize(function() {
-      if (!mDevice.desktop()) {
-        oResetMenu.render();
-      }else {
+      if (mGlobal.isPC) {
         clearTimeout(iTimer);
         iTimer = setTimeout(function() {
           oResetMenu.render();
         },500);
+      }else {
+        oResetMenu.render();
       }
     });
 

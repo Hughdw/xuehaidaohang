@@ -136,7 +136,7 @@ main{
 }
 // 加载动画
 .loading{
-  .size(200px,100px);
+  .size(100px,100px);
   background: #fff;
   .var-border-radius(@border-radius-lg);
   .box-shadow(@mod-box-shadow);
@@ -188,6 +188,88 @@ main{
       }
   }
 }
+
+// 表格相关
+.table-wrap{
+  overflow-x:auto;
+  overflow-y: hidden;
+}
+.table-base{
+  width: 100%;
+  min-width: 600px;
+  text-align: center;
+  vertical-align: middle;
+}
+.table-base thead tr{
+  background-color: #f8f8f8;
+}
+.table-base th{
+  text-align: center;
+  color: #555;
+  font-weight: normal;
+  height: 40px;
+}
+.table-base td{
+  height: 70px;
+  border:1px #eee solid;
+}
+.table-base td:first-child{
+  border-left: none;
+}
+.table-base td:last-child{
+  border-right: none;
+}
+// 表格1
+.table-one th{
+  border-left:1px #eee solid;
+  border-right:1px #eee solid;
+}
+.table-one th:first-child{
+  border-left: none;
+}
+.table-one th:last-child{
+  border-left: none;
+}
+.table-one tbody tr:nth-child(even){
+  background-color: #fcfcfc;
+}
+.table-one tbody tr:hover{
+  background: #eee;
+}
+
+// 内容中的 区域分割标题
+.area-tit{
+  margin: 0;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #555;
+  background: #f8f8f8;
+  padding-left: 15px;
+}
+// 内容中的 课程说明
+.area-explain{
+  width: 70px;
+  .explain-1{
+    color: #aaa;
+  }
+  .explain-1,.explain-2{
+    .center-block();
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+  }
+  .label {
+    display: inline-block;
+    font-size: 85%;
+    padding: 0.2em 0.3em;
+  }
+  .explain-grade{
+    margin-right: 5px;
+  }
+}
+
+
 // ----------底部相关
 footer{
   background-color: #e9e5db;

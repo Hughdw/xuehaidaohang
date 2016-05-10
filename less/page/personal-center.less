@@ -72,54 +72,6 @@
   }
 }//.sidebar
 
-// ----------表格 相关
-// 表格基础
-.table-wrap{
-  overflow-x:auto;
-  overflow-y: hidden;
-}
-.table-base{
-  width: 100%;
-  min-width: 600px;
-  text-align: center;
-  vertical-align: middle;
-}
-.table-base thead tr{
-  background-color: #f8f8f8;
-}
-.table-base th{
-  text-align: center;
-  color: #555;
-  font-weight: normal;
-  height: 40px;
-}
-.table-base td{
-  height: 70px;
-  border:1px #eee solid;
-}
-.table-base td:first-child{
-  border-left: none;
-}
-.table-base td:last-child{
-  border-right: none;
-}
-// 表格1 （学习进度/充值记录）
-.table-one th{
-  border-left:1px #eee solid;
-  border-right:1px #eee solid;
-}
-.table-one th:first-child{
-  border-left: none;
-}
-.table-one th:last-child{
-  border-left: none;
-}
-.table-one tbody tr:nth-child(even){
-  background-color: #fcfcfc;
-}
-.table-one tbody tr:hover{
-  background: #eee;
-}
 
 // 表格2 （购买记录）
 .table-two th small {
@@ -254,37 +206,18 @@
     border-left: none;
     border-right: none;
   }
+  .purchase-explain .area-explain{
+    margin: 0 auto;
+  }
   .purchase-title{
     text-align: left;
     padding-left: 10px;
-  }
-  .explain-1,.explain-2{
-    .center-block();
-    width: 70px;
-    height: 25px;
-    line-height: 25px;
-  }
-  .purchase-explain .label {
-    display: inline-block;
-    font-size: 85%;
-    padding: 0.2em 0.3em;
-  }
-  .explain-grade{
-    margin-right: 5px;
   }
 }
 
 // ----------优惠信息
   .preferential{
-    .preferential-tit{
-      margin: 0;
-      height: 40px;
-      line-height: 40px;
-      font-size: 14px;
-      color: #555;
-      background: #f8f8f8;
-      padding-left: 30px;
-    }
+
     .exchange .form-inline{
       margin: 5px;
       padding: 15px;

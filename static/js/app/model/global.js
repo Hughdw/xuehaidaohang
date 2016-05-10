@@ -4,7 +4,9 @@
  */
 define(function (require) {
   var $ = require('jquery');
-  $(function(){
-    
-  });
+  var mDevice = require('device');
+  var clientStatus = {
+    isPC : !mDevice.mobile()
+  };
+  return clientStatus;
 });

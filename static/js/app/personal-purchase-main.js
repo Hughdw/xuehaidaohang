@@ -1,7 +1,7 @@
 define(function (require) {
   var $ = require('jquery'),
       tpldata = require('tpldata'),
-      // handlebars = require('handlebars'),
+      
       replaceImgPath = require('mod/replace-img-path');
   $(function() {
     tpldata.sidebar.activeMenu = 3;//设置激活导航
