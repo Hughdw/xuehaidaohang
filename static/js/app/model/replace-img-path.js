@@ -3,12 +3,12 @@
  * 替换图片路径
  */
 define(function (require) {
-  var mDevice = require('device');
+  var mGlobal = require('mod/global');
   // 非移动端设备（PC、平板）批量替换IMG标签中的路径
   // 替换更大的图片
   // 测试时，会将ipad归到desktop()，因此使用mobile()
   return function() {
-    if (!mDevice.mobile()) {
+    if (mGlobal.isPC) {
       for (var i = 0; i < document.images.length; i++) {
         // document.images[i].src =
         var aResult = /.gif$|.jpg$|.png$/i.exec(document.images[i].src);

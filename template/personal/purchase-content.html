@@ -13,8 +13,10 @@
     <% for (j = 0; j < list[i].courseList.length; j++) { %>
     <tr>
       <td class="purchase-explain">
-        <small class="explain-1"> - <%= list[i].courseList[j].level %> - </small>
-        <small class="explain-2"><span class="explain-grade label label-primary"><%= list[i].courseList[j].grade %></span><span class="explain-subjects label label-default"><%= list[i].courseList[j].subject %></span></small>
+        <div class="area-explain">
+          <small class="explain-1"> - <%= list[i].courseList[j].level %> - </small>
+          <small class="explain-2"><span class="explain-grade label label-primary"><%= list[i].courseList[j].grade %></span><span class="explain-subjects label label-default"><%= list[i].courseList[j].subject %></span></small>
+        </div>
       </td>
       <td class="purchase-title"><%= list[i].courseList[j].title %></td>
       <td class="purchase-price"><%= list[i].courseList[j].price %></td>
