@@ -1,3 +1,3 @@
 requirejs(['static/js/config.js'], function(config) {
-  requirejs(['jquery', 'bootstrap', 'mod/common' 'app/xxx-xxx-main']);
+  requirejs(['jquery', 'bootstrap', 'mod/set-min-height' 'app/xxx-xxx-main']);
 });

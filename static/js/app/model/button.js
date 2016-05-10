@@ -33,12 +33,12 @@ define(function (require) {
         var $Prev = $Self.prev();
         // body...
         if (bSetDone === null) {
-          $Prev.addClass('al-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][0]);
+          $Prev.addClass('account-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][0]);
         }else if (bSetDone) {//已设置
-          $Prev.addClass('al-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][0]);
+          $Prev.addClass('account-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][0]);
           $Self.find('.collapse-edit').removeClass('hidden');
         } else {//未设置
-          $Prev.addClass('al-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][0]);
+          $Prev.addClass('account-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][0]);
           $Self.find('.collapse-default').removeClass('hidden');
         }
       });
@@ -47,9 +47,9 @@ define(function (require) {
         var $Prev = $(this).prev();
         // body...
         if (bSetDone || bSetDone === null) {
-          $Prev.removeClass('al-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][2]);
+          $Prev.removeClass('account-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][2]);
         } else {
-          $Prev.removeClass('al-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][1]);
+          $Prev.removeClass('account-tit-active').find('.collapse-link').text(self.btnTxt[aBtnType][1]);
         }
       });
     }

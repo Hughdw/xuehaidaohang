@@ -1,6 +1,5 @@
 define(function (require) {
-  var title = ['账户资料','学习进度','充值记录','购买记录','优惠信息'];
-  var data = {
+  return {
     sidebar : {
       userName:'小丸子',
       avatarUrl:'static/img/personal/personal-avatar-1.gif',
@@ -94,7 +93,47 @@ define(function (require) {
           url:'#'
         }
       ]
+    },
+    purchase:{
+      list:[
+        {
+          date:'2016-01-05',
+          order:'E145654545151125',
+          courseList:[
+            {
+              grade:'高一',
+              level:'提高',
+              subject:'数学',
+              title:'第一课 数列的概念与简单表示法',
+              price:'5'
+            },
+            {
+              grade:'高二',
+              level:'提高',
+              subject:'数学',
+              title:'第一课 构造辅助数列法求数列',
+              price:'6'
+            },
+            {
+              grade:'高二',
+              level:'提高',
+              subject:'数学',
+              title:'第三课 等差数列-1',
+              price:'4'
+            },
+            {
+              grade:'高一',
+              level:'提高',
+              subject:'数学',
+              title:'第三课 等差数列-2',
+              price:'4'
+            }
+          ],
+          totalPrice:20,
+          status:0,
+          url:'#'
+        }
+      ]
     }
   };
-  return data;
 });

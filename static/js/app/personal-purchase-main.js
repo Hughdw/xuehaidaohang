@@ -4,7 +4,7 @@ define(function (require) {
       // handlebars = require('handlebars'),
       replaceImgPath = require('mod/replace-img-path');
   $(function() {
-    tpldata.sidebar.activeMenu = 2;//设置激活导航
+    tpldata.sidebar.activeMenu = 3;//设置激活导航
     // 获取到模版，然后渲染数据
     // 将选好数据的字符串通过 innerHTML 插入到指定的元素中（#main）
     document.getElementById('main').innerHTML = template('personal/purchase-main',tpldata);

@@ -1,6 +1,6 @@
 /**
  * define函数用来定义模块
- * 公共组件
+ * 替换图片路径
  */
 define(function (require) {
   var mDevice = require('device');

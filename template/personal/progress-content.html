@@ -1,16 +1,16 @@
 <% for (i = 0; i < list.length; i++) { %>
 <tr>
-  <td class="course-tit"><%= list[i].title %></td>
+  <td class="progress-tit"><%= list[i].title %></td>
   <td class="progress-display">
     <div class="gps-progress">
       <div class="gps-progress-bar"></div>
     </div>
   </td>
-  <td class="viewing-time">
-    <div class="date"><%= list[i].viewingDate %></div>
-    <div class="time"><%= list[i].viewingTime %></div>
+  <td class="progress-viewing-time">
+    <div><%= list[i].viewingDate %></div>
+    <div><%= list[i].viewingTime %></div>
   </td>
-  <td class="status">
+  <td class="progress-status">
     <div class="des">剩余</div>
 
     <% if (list[i].remainingTime === null) {%>

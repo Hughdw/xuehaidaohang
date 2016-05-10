@@ -72,22 +72,39 @@
   }
 }//.sidebar
 
-// ----------表格1 样式
+// ----------表格 相关
+// 表格基础
 .table-wrap{
   overflow-x:auto;
+  overflow-y: hidden;
 }
-.table-one{
+.table-base{
   width: 100%;
   min-width: 600px;
   text-align: center;
   vertical-align: middle;
 }
-.table-one thead tr{
+.table-base thead tr{
   background-color: #f8f8f8;
 }
-.table-one th{
+.table-base th{
   text-align: center;
+  color: #555;
+  font-weight: normal;
   height: 40px;
+}
+.table-base td{
+  height: 70px;
+  border:1px #eee solid;
+}
+.table-base td:first-child{
+  border-left: none;
+}
+.table-base td:last-child{
+  border-right: none;
+}
+// 表格1 （学习进度/充值记录）
+.table-one th{
   border-left:1px #eee solid;
   border-right:1px #eee solid;
 }
@@ -97,22 +114,19 @@
 .table-one th:last-child{
   border-left: none;
 }
-
 .table-one tbody tr:nth-child(even){
   background-color: #fcfcfc;
 }
 .table-one tbody tr:hover{
-    background: #eee;
+  background: #eee;
 }
-.table-one td{
-  height: 70px;
-  border:1px #eee solid;
+
+// 表格2 （购买记录）
+.table-two th small {
+  color: #aaa;
 }
-.table-one td:first-child{
-  border-left: none;
-}
-.table-one td:last-child{
-  border-right: none;
+.table-two .order-num{
+  color: #aaa;
 }
 
 // ************************************************************
@@ -123,12 +137,12 @@
 .panel-group{
   margin-bottom: 0;
 }
-#accordion .al-panel {
+#accordion .account-panel {
   margin-top: 0;
   border-bottom-color: #eee;
   border-top:none;
 }
-.al-tit{
+.account-tit{
   box-sizing: content-box;
   height: 70px;
   line-height: 70px;
@@ -163,13 +177,13 @@
     padding-right: 15px;
   }
 }
-.al-tit-active {
+.account-tit-active {
   background-color: #f8f8f8;
 }
-.al-collapse{
+.account-collapse{
   overflow: hidden;
 }
-.al-collapse-inner{
+.account-collapse-inner{
   margin: 5px;
   padding:15px 15px 0 15px;
   .var-border-radius(@border-radius-sm);
@@ -187,8 +201,8 @@
   }
 }
 // 网站头像特殊样式
-.al-avatar {
-  .al-tit {
+.account-avatar {
+  .account-tit {
     padding-top: 15px;
     padding-bottom: 15px;
   }
@@ -198,17 +212,17 @@
   .avatar-img{
     .img-responsive();
   }
-  .al-collapse-inner{
+  .account-collapse-inner{
     padding-left: 0;
     padding-right: 0;
   }
-  .al-btn-box{
+  .account-btn-box{
     margin-bottom: 15px;
   }
 }
 
 // ----------学习进度
-.viewing-time{
+.progress-viewing-time{
   font-size: 12px;
 }
 .gps-progress{
@@ -221,6 +235,103 @@
 .gps-progress-bar{
 
 }
-.status{
+.progress-status{
   font-size: 12px;
 }
+
+// ----------购买记录
+.purchase-list thead{
+  .purchase-date,.purchase-order{
+    background: #f2f2f2;
+  }
+  .purchase-price,.purchase-total-price{
+    border-left: 1px #eee solid;
+    border-right: 1px #eee solid;
+  }
+}
+.purchase-list tbody{
+  .purchase-explain,.purchase-title,.purchase-price{
+    border-left: none;
+    border-right: none;
+  }
+  .purchase-title{
+    text-align: left;
+    padding-left: 10px;
+  }
+  .explain-1,.explain-2{
+    .center-block();
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+  }
+  .purchase-explain .label {
+    display: inline-block;
+    font-size: 85%;
+    padding: 0.2em 0.3em;
+  }
+  .explain-grade{
+    margin-right: 5px;
+  }
+}
+
+// ----------优惠信息
+  .preferential{
+    .preferential-tit{
+      margin: 0;
+      height: 40px;
+      line-height: 40px;
+      font-size: 14px;
+      color: #555;
+      background: #f8f8f8;
+      padding-left: 30px;
+    }
+    .exchange .form-inline{
+      margin: 5px;
+      padding: 15px;
+    }
+    .preferential-scrip{
+      position: relative;
+      .size(120px,300px);
+      .var-border-radius(@border-radius-sm);
+      margin-top: 15px;
+      margin-bottom: 15px;
+      background: #f8f8f8;
+    }
+    .preferential-scrip-left{
+      float: right;
+    }
+    .ps-tit{
+      .text-hide();
+      .size(120px,84px);
+      background: url("../img/personal/preferential-scrip-tit-y.jpg") no-repeat left top;
+    }
+    .ps-cont {
+      padding: 10px;
+      .price{
+        // text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 26px;
+        font-weight: bold;
+        small{
+          font-size: 12px;
+          margin-left: 5px;
+        }
+      }
+      dl{
+        font-size: 12px;
+        color: #aaa;
+      }
+    }
+    .expired {
+      position: absolute;
+      .size(120px,300px);
+      left:0;
+      top:0;
+      background: url("../img/personal/preferential-scrip-y-expired.png") no-repeat left top;
+    }
+  }
+
+
+// }

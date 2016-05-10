@@ -1,38 +1,34 @@
-/*TMODJS:{"version":2,"md5":"5778ceda8bb3ad4e59a492c7a5b6756f"}*/
+/*TMODJS:{"version":3,"md5":"ad5c797d030b6a7acca2505f528f4bec"}*/
 template('personal/recharge-content',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,i=$data.i,list=$data.list,$escape=$utils.$escape,$out=''; for (i = 0; i < list.length; i++) { 
-$out+=' <tr> <td class="creation-time"> <div class="date">';
+$out+=' <tr> <td class="recharge-creation-time"> <div>';
 $out+=$escape( list[i].creationDate);
-$out+='</div> <div class="time">';
+$out+='</div> <div>';
 $out+=$escape( list[i].creationTime);
-$out+='</div> </td> <td class="order"> ';
+$out+='</div> </td> <td class="recharge-order"> ';
 $out+=$escape( list[i].order);
-$out+=' </td> <td class="price"> ￥';
+$out+=' </td> <td class="recharge-price"> ￥';
 $out+=$escape( list[i].price);
 $out+=' </td> ';
  if (list[i].paymentType === 0) { 
-$out+=' <td class="type"> ';
+$out+=' <td class="recharge-type"> ';
 $out+=$escape( list[i].paymentName);
-$out+=' <i class="glyphicon glyphicon-info-sign"></i> </td> ';
+$out+=' <i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" title="';
+$out+=$escape( list[i].typeInfo);
+$out+='"></i> </td> ';
  } else { 
-$out+=' <td class="type"> ';
+$out+=' <td class="recharge-type"> ';
 $out+=$escape( list[i].paymentName);
 $out+=' </td> ';
  } 
-$out+=' <td class="status"> ';
+$out+=' <td class="recharge-status"> ';
  if (list[i].status === 1){
-$out+=' <a href="';
-$out+=$escape( list[i].url);
-$out+='" class="btn btn-success" disabled="disabled">成功</a> ';
+$out+=' <a href="javascript:;" class="btn btn-success" disabled="disabled">成功</a> ';
  } else if (list[i].status === 2){ 
-$out+=' <a href="';
-$out+=$escape( list[i].url);
-$out+='" class="btn btn-default" disabled="disabled">失败</a> ';
+$out+=' <a href="javascript:;" class="btn btn-default" disabled="disabled">失败</a> ';
  } else if (list[i].status === 3) { 
-$out+=' <a href="';
-$out+=$escape( list[i].url);
-$out+='" class="btn btn-default" disabled="disabled">已关闭</a> ';
+$out+=' <a href="javascript:;" class="btn btn-default" disabled="disabled">已关闭</a> ';
  } else { 
 $out+=' <a href="';
 $out+=$escape( list[i].url);

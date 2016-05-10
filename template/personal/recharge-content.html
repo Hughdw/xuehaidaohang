@@ -1,25 +1,25 @@
 <% for (i = 0; i < list.length; i++) { %>
 <tr>
-  <td class="creation-time">
-    <div class="date"><%= list[i].creationDate %></div>
-    <div class="time"><%= list[i].creationTime %></div>
+  <td class="recharge-creation-time">
+    <div><%= list[i].creationDate %></div>
+    <div><%= list[i].creationTime %></div>
   </td>
-  <td class="order">
+  <td class="recharge-order">
     <%= list[i].order %>
   </td>
-  <td class="price">
+  <td class="recharge-price">
     ￥<%= list[i].price %>
   </td>
   <% if (list[i].paymentType === 0) { %>
-  <td class="type">
+  <td class="recharge-type">
     <%= list[i].paymentName %> <i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" title="<%= list[i].typeInfo %>"></i>
   </td>
   <% } else { %>
-    <td class="type">
+    <td class="recharge-type">
       <%= list[i].paymentName %>
     </td>
   <% } %>
-  <td class="status">
+  <td class="recharge-status">
   <% if (list[i].status === 1){%>
       <a href="javascript:;" class="btn btn-success" disabled="disabled">成功</a>
   <% } else if (list[i].status === 2){ %>
