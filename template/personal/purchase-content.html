@@ -1,0 +1,41 @@
+<% for (i = 0; i < list.length; i++) { %>
+<table class="table-two table-base">
+  <thead>
+    <tr>
+      <th width="16%" class="purchase-date"><%= list[i].date %></th>
+      <th width="36%" class="purchase-order">订单号：<span class="order-num"><%= list[i].order %></span></th>
+      <th width="15%" class="purchase-price">单价<small>（金钥）</small></th>
+      <th width="15%" class="purchase-total-price">总价<small>（金钥）</small></th>
+      <th width="18%" class="purchase-status">状态/操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (j = 0; j < list[i].courseList.length; j++) { %>
+    <tr>
+      <td class="purchase-explain">
+        <small class="explain-1"> - <%= list[i].courseList[j].level %> - </small>
+        <small class="explain-2"><span class="explain-grade label label-primary"><%= list[i].courseList[j].grade %></span><span class="explain-subjects label label-default"><%= list[i].courseList[j].subject %></span></small>
+      </td>
+      <td class="purchase-title"><%= list[i].courseList[j].title %></td>
+      <td class="purchase-price"><%= list[i].courseList[j].price %></td>
+      <% if (j === 0) {%>
+      <td rowspan="<%= list[i].courseList.length %>" class="purchase-total-price">
+        <%= list[i].totalPrice %><i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" title="余额：20金钥"></i>
+      </td>
+      <td rowspan="<%= list[i].courseList.length %>" class="purchase-status">
+        <% if (list[i].status === 1){%>
+            <a href="javascript:;" class="btn btn-success" disabled="disabled">成功</a>
+        <% } else if (list[i].status === 2){ %>
+            <a href="javascript:;" class="btn btn-default" disabled="disabled">失败</a>
+        <% } else if (list[i].status === 3) { %>
+            <a href="javascript:;" class="btn btn-default" disabled="disabled">已关闭</a>
+        <% } else { %>
+            <a href="<%= list[i].url %>" class="btn btn-primary">去付款</a>
+        <% } %>
+      </td>
+      <% } %>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+<% } %>

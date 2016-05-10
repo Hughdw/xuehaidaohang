@@ -4,6 +4,7 @@ define(function (require) {
       replaceImgPath = require('mod/replace-img-path'),
       mButton = require('mod/button');
   $(function() {
+    // console.log(mCommon.height.navbar);
     // 用户是否已经设置或绑定了对应资料
     var oSetDone = {
       'avatar':null,

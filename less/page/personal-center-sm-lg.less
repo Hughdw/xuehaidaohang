@@ -5,7 +5,7 @@
 @import "../bootstrap/mixins.less";
 
 // @media (min-width:@screen-xs-min) and (max-width:@screen-sm-min) {
-//   .al-tit{
+//   .account-tit{
 //     .des {
 //       max-width: 150px;
 //     }
@@ -42,7 +42,7 @@
 
   // ----------用户资料
   // 列表通用样式
-  .al-tit {
+  .account-tit {
     h3{
       font-size: 16px;
       width: 110px;
@@ -57,7 +57,7 @@
       }
     }
   }
-  .al-collapse-inner {
+  .account-collapse-inner {
     margin: 15px;
     padding-left: 0;
     padding-right: 0;
@@ -67,8 +67,8 @@
     width: 370px;
   }
   // 网站头像特殊样式
-  .al-avatar {
-    .al-tit{
+  .account-avatar {
+    .account-tit{
       height: 100px;
       line-height: 100px;
     }
@@ -77,6 +77,37 @@
   // ----------学习进度
   .gps-progress{
     .size(250px,25px);
+  }
+
+  // ----------优惠信息
+  .preferential{
+    .vouchers-inner{
+      padding: 10px;
+    }
+    .preferential-scrip{
+      .size(310px,120px);
+      background-image:none;
+    }
+    .ps-tit{
+      float: left;
+      .size(84px,120px);
+      background: url("../img/personal/preferential-scrip-tit-x.jpg");
+    }
+    .ps-cont {
+      float: left;
+      .size(226px,120px);
+      padding-left: 10px;
+      dl{
+        margin-bottom: 6px;
+      }
+      dt{
+        float: left;
+      }
+    }
+    .expired {
+      .size(310px,120px);
+      background: url("../img/personal/preferential-scrip-x-expired-2.png") no-repeat left top;
+    }
   }
 
 }
@@ -89,11 +120,22 @@
   #sidebar{
     margin-top: 0;
   }
+  // ----------优惠信息
+
 }
 
 // ************************************************************
 // >=大屏幕（1200px）
 // ************************************************************
 @media (min-width: @screen-lg-min) {
-
+  // ----------优惠信息
+  .preferential{
+    .preferential-scrip{
+      width: 330px;
+    }
+    .expired {
+      .size(330px,120px);
+      background: url("../img/personal/preferential-scrip-x-expired.png") no-repeat left top;
+    }
+  }
 }

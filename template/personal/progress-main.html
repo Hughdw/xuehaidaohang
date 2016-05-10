@@ -5,9 +5,9 @@
         <div class="wp-tit">
           <h3 class="wp-tit-inner"><%= sidebar.list[sidebar.activeMenu].txt%></h3>
         </div>
-        <div class="wp-body" id="progress-list">
+        <div class="wp-body progress-list">
           <div class="table-wrap">
-            <table class="table-one">
+            <table class="table-one table-base">
               <thead>
                 <tr>
                   <th width="28%">课程</th>
@@ -16,7 +16,7 @@
                   <th width="15%">状态</th>
                 </tr>
               </thead>
-              <tbody  id="progress-content">
+              <tbody id="progress-content">
                 <% include('./progress-content',progress) %>
               </tbody>
             </table>

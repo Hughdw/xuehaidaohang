@@ -12,7 +12,8 @@ gulp.task('browser-sync',function() {
   var files = [
     './*.html',
     './static/css/*.css',
-    './gulpfile.js'
+    './gulpfile.js',
+    './static/template.js'
     // './static/**/*.js'
   ];
   browserSync.init(files,{
@@ -28,7 +29,8 @@ gulp.task('tmod',function() {
           .pipe(tmodjs({
             templateBase:'template',
             syntax:'native',
-            debuge:true
+            debuge:true,
+            cache:false
           }))//设置模板文件的文件名
           .pipe(gulp.dest('./static'));//输出路径
   return stream;
@@ -58,9 +60,9 @@ gulp.task('tmod',function() {
 //
 // 监听文件改动，执行对应的任务
 gulp.task('tmodWatch',function() {
-  gulp.watch('./template/**/*.html',['tmod']);
+  gulp.watch('./template/**/*.html',['tmod'],function(event) {
+    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+  });
 });
-
-
 
 gulp.task('default',['browser-sync','tmodWatch']); //定义默认任务
