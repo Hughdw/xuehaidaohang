@@ -11,9 +11,9 @@
         "helpers": null,
         "escape": true,
         "compress": true,
-        "type": "default",
+        "type": "amd",
         "runtime": "template.js",
-        "combo": true,
+        "alias": null,
         "minify": true,
         "cache": true
     }
