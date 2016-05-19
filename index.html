@@ -49,9 +49,9 @@
                   <li><a href="#" class="nav-link">社区</a></li>
               </ul>
               <div class="navbar-left">
-                <button type="button" class="btn btn-gpsnav navbar-btn">注册</button>
+                <button type="button" class="btn btn-gpsnav navbar-btn" data-toggle="modal" data-target="#sign-modal" data-whatever="#sign-up">注册</button>
                 <span class="v-line">|</span>
-                <button type="button" class="btn btn-gpsnav navbar-btn">登录</button>
+                <button type="button" class="btn btn-gpsnav navbar-btn" data-toggle="modal" data-target="#sign-modal" data-whatever="#sign-in">登录</button>
               </div>
             </div>
             <div class="signed navbar-right hidden">
@@ -195,6 +195,56 @@
     </div>
   </div>
 </footer>
+<div id="sign-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <!-- 注册 -->
+    <div class="modal-content" id="sign-up">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">注册</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+    <!-- 登录 -->
+    <div class="modal-content" id="sign-in">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">登录</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="password-retrieve" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">找回密码</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 <script data-main="static/js/index" src="lib/require.js"></script>
 </html>

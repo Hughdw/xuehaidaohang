@@ -27,12 +27,16 @@ gulp.task('tmod',function() {
   //将src获取到的流 导入到tmodjs
   var stream = gulp.src('./template/**/*.html')
           .pipe(tmodjs({
+            output:'./static/tpl',
+            // runtime:'tpl.js',
             templateBase:'template',
             syntax:'native',
             debuge:true,
-            cache:false
+            cache:false,
+            type:'amd',
+            minify:false
           }))//设置模板文件的文件名
-          .pipe(gulp.dest('./static'));//输出路径
+          // .pipe(gulp.dest('./static'));//输出路径
   return stream;
 });
 

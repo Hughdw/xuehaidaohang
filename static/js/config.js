@@ -13,7 +13,8 @@ requirejs.config({
       'bootstrap': 'bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
       'app': '../static/js/app',
       'mod': '../static/js/app/model',
-      'tpldata':'../static/js/app/data/template'
+      'tpldata':'../static/js/app/data/template',
+      'tpl':'../static/tpl'
     },
     shim: {//声明模块之间的依赖
       'bootstrap':['jquery']
