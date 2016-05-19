@@ -89,6 +89,51 @@ a {
   padding: 0;
   .text-hide();
 }
+
+// ----------对话框
+.modal-header{
+  padding: 10px 15px;
+  background: #eee;
+  border-bottom: none;
+  .var-border-radius-1(@border-radius-lg);
+  .var-border-radius-2(@border-radius-lg);
+  h4{
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .close{
+    margin-top: 0;
+  }
+}
+.modal-body {
+  padding: 0;
+  .label-tit {
+    font-size: 12px;
+    font-weight: normal;
+    padding-left: 20px;
+  }
+  .form-cont {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+  }
+}
+
+.modal-footer{
+  padding: 25px;
+}
+@media (min-width: @screen-sm-min) {
+  .modal-dialog{
+    width: 400px;
+  }
+  .modal-header{
+    padding: 15px 15px 14px 15px;
+    h4{
+      line-height: 20px;
+      font-size: 18px;
+    }
+  }
+}
 // 手机端 导航样式覆盖
 @media (max-width: @screen-xs-max) {
   .navbar-gps {
@@ -140,9 +185,45 @@ main{
 
 // 登录/注册/忘记密码
 #sign-modal{
-  .modal-content{
-    display: none;
+  .tab-list {
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    .size(100%,40px);
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 0;
+    li {
+      float: left;
+      width: 50%;
+      background: #cac3af;
+    }
+    .tab-list-item {
+      display: block;
+      color: #fff;
+    }
+    .active {
+      background: #fff;
+      .tab-list-item {
+        color: #333;
+      }
+    }
   }
+
+
+  .link-txt {
+    font-size: 12px;
+    text-align: right;
+    padding-right: 20px;
+  }
+  .signin-btn{
+    margin-left: 2px;
+  }
+  .checkbox{
+    padding-top: 0;
+    padding-bottom: 8px;
+  }
+
 }
 
 // 加载动画

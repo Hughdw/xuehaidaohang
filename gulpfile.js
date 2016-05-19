@@ -13,7 +13,7 @@ gulp.task('browser-sync',function() {
     './*.html',
     './static/css/*.css',
     './gulpfile.js',
-    './static/template.js'
+    './static/tpl/**/*.js'
     // './static/**/*.js'
   ];
   browserSync.init(files,{
@@ -32,7 +32,7 @@ gulp.task('tmod',function() {
             templateBase:'template',
             syntax:'native',
             debuge:true,
-            cache:false,
+            cache:true,
             type:'amd',
             minify:false
           }))//设置模板文件的文件名

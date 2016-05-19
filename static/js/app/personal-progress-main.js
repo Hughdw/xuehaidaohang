@@ -1,13 +1,13 @@
 define(function (require) {
   var $ = require('jquery'),
       tpldata = require('tpldata'),
-      render = require('tpl/personal/progress-main'),
+      tplProgressMain = require('tpl/personal/progress-main'),
       replaceImgPath = require('mod/replace-img-path');
   $(function() {
     tpldata.sidebar.activeMenu = 1;//设置激活导航
     // 获取到模版，然后渲染数据
     // 将选好数据的字符串通过 innerHTML 插入到指定的元素中（#main）
-    document.getElementById('main').innerHTML = render(tpldata);
+    document.getElementById('main').innerHTML = tplProgressMain(tpldata);
     // document.getElementById('main').innerHTML = template('personal/progress-main',tpldata);
     replaceImgPath();
     // 开始时间  02:30

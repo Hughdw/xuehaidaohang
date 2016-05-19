@@ -12,7 +12,7 @@
 	// Add the ignore rules that Koala will not search them.
 	// 添加过滤文件和文件夹
 	// e.g. ["*.json", "*.txt", "test", "path/libs"]
-	"ignores": ["variables.less","template.less","template-sm-lg.less"],
+	"ignores": ["variables.less","demo.less","demo-sm-lg.less"],
 
 	// Compile options of LESS.
 	"options": {
