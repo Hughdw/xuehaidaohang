@@ -129,11 +129,22 @@ a {
 // ************************************
 main{
   margin-top:@navbar-height-xs;
+}
+// #main 除了首页外会在main标签中加id="main"
+#main{
   margin-bottom: 20px;
   .container{
     padding-top: 15px;
   }
 }
+
+// 登录/注册/忘记密码
+#sign-modal{
+  .modal-content{
+    display: none;
+  }
+}
+
 // 加载动画
 .loading{
   .size(100px,100px);
@@ -300,9 +311,9 @@ footer{
 @media (min-width:@screen-sm-min) {
   main{
     margin-top:@navbar-height;
-    .container{
-      padding-top: 30px;
-    }
+  }
+  #main .container{
+    padding-top: 30px;
   }
   footer {
     height: @footer-height-sm;
@@ -321,10 +332,8 @@ footer{
   }
 }
 @media (min-width:@screen-md-min) {
-  main{
-    .container{
-      padding-top: 60px;
-    }
+  #main .container{
+    padding-top: 60px;
   }
 }
 // ----------购物车
