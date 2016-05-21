@@ -6,18 +6,24 @@
 requirejs.config({
     baseUrl: 'lib',//设置模块加载的基础路径
     paths: {//指定不在baseUrl根目录的模块路径指向
-      'handlebars': 'handlebars/4.0.5/handlebars.min',
+      'handlebars': 'handlebars/4.0.5/handlebars.min',// 模板引擎，不用
       'device': 'device/0.2.7/device.min',
       'less': 'less/1.7.0/less',
       'jquery': 'jquery/1.11.3/jquery.min',
       'bootstrap': 'bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
+      'angular': 'angular/1.2.29/angular',
       'app': '../static/js/app',
       'mod': '../static/js/app/model',
       'tpldata':'../static/js/app/data/template',
       'tpl':'../static/tpl'
     },
-    shim: {//声明模块之间的依赖
-      'bootstrap':['jquery']
+    shim: {
+      'bootstrap':{
+        deps:['jquery']//声明模块之间的依赖
+      },
+      'angular':{
+        exports:'angular'//声明不符合AMD规范模块的调用时名称
+      }
     }
 });
 
