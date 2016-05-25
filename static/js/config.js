@@ -13,7 +13,7 @@ requirejs.config({
       'bootstrap': 'bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
       'angular': 'angular/1.2.29/angular',
       'app': '../static/js/app',
-      'mod': '../static/js/app/model',
+      'mod': '../static/js/app/module',
       'tpldata':'../static/js/app/data/template',
       'tpl':'../static/tpl'
     },
