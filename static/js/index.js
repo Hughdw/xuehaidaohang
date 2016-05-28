@@ -1,3 +1,3 @@
-requirejs(['static/js/config.js'], function (config){
-    requirejs(['jquery','bootstrap','app/index-main']);
+require(['static/js/config.js'], function (config){
+    require(['jquery','bootstrap','app/index-main']);
 });
