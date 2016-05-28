@@ -1,0 +1,24 @@
+<div class="modal-content" ng-controller="selectTypeCtrl">
+  <div class="modal-header">
+    <h4 class="modal-title">找回密码</h4>
+  </div>
+  <div class="modal-body">
+    <div class="select-type">
+      <div class="select-item " ng-class="getActiveClass('mobile')">
+        <label>
+          <input type="radio" name="findType" id="options-mobile" value="mobile" ng-model="findTypeStep.selectType" checked="checked">
+          通过手机找回
+        </label>
+      </div>
+      <div class="select-item " ng-class="getActiveClass('email')">
+        <label>
+          <input type="radio" name="findType" id="options-email" value="email" ng-model="findTypeStep.selectType">
+          通过邮箱找回
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="$emit('typeNext',findTypeStep.selectType)">下一步</button>
+  </div>
+</div>
