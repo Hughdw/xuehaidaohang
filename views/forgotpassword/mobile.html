@@ -36,10 +36,10 @@
               ng-model="findFromMobile.captcha"
               ng-minlength="5"
               ng-maxlength="5"
-              ensure-unique="findFromMobile.captcha"
+              ensure-correct="findFromMobile.captcha"
               required>
               <!-- glyphicon glyphicon-ok-sign -->
-              <span class="glyphicon glyphicon-remove-sign inner-absolute"></span>
+              <span class="glyphicon glyphicon-remove-sign inner-absolute" ng-show=""></span>
             </div>
             <div class="col-xs-6 col-sm-4">
               <img ng-src="{{getCaptcha}}" alt="" ng-click="reloadCaptcha()">
@@ -54,7 +54,7 @@
                   <li ng-show="mobileForm_0.mobile.$dirty && (mobileForm_0.mobile.$error.minlength || mobileForm_0.mobile.$error.maxlength)">手机号码位数不正确</li>
                   <li ng-show="mobileForm_0.imgCaptcha.$dirty && mobileForm_0.imgCaptcha.$error.required">验证码不能为空</li>
                   <li ng-show="mobileForm_0.imgCaptcha.$dirty && (mobileForm_0.imgCaptcha.$error.minlength || mobileForm_0.imgCaptcha.$error.maxlength)">验证码为5位</li>
-                  <li ng-show="mobileForm_0.imgCaptcha.$error.unique">111</li>
+                  <li ng-show="mobileForm_0.imgCaptcha.$error.correct">验证码错误</li>
                 </ul>
               </div>
             </div>
