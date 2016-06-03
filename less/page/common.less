@@ -34,6 +34,14 @@ body {
 em{
   font-style: normal;
 }
+// 隐藏input右侧小箭头
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
 .active() {
   text-decoration: none;
   // .opacity(.9);
@@ -45,6 +53,12 @@ a {
   &:hover {
     .active();
   }
+}
+.wrap-relative{
+  position: relative;
+}
+.inner-absolute{
+  position: absolute;
 }
 // ************************************
 // bootstarp style 扩展
