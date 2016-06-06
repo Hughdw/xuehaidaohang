@@ -11,7 +11,7 @@ require.config({
       'less': 'less/1.7.0/less',
       'jquery': 'jquery/1.11.3/jquery.min',
       'bootstrap': 'bootstrap/bootstrap-3.3.5/dist/js/bootstrap.min',
-      'angular': 'angular/1.2.29/angular.min',
+      'angular': 'angular/1.2.29/angular',
       'ngRoute':'angular-route/1.2.29/angular-route',
       'app': '../static/js/app',
       'mod': '../static/js/app/components',
