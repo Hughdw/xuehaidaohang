@@ -19,9 +19,8 @@
               class="form-control"
               id="input-mobile-0"
               placeholder="您绑定的手机号码"
-              ng-model="findFromMobile.mobile"
-              ng-minlength="11"
-              ng-maxlength="11"
+              ng-model="mobile"
+              ng-pattern="/^(13|14|15|18)\d{9}$/"
               required>
             </div>
           </div>
@@ -33,27 +32,31 @@
               class="form-control"
               id="input-mobile-imgcaptcha"
               placeholder="输入验证码"
-              ng-model="findFromMobile.captcha"
-              ng-minlength="5"
-              ng-maxlength="5"
-              ensure-correct="findFromMobile.captcha"
+              ng-model="captcha"
+              ng-pattern="/[A-Za-z0-9]{5}/"
+              ensure-correct="imgCaptcha"
               required>
-              <!-- glyphicon glyphicon-ok-sign -->
-              <span class="glyphicon glyphicon-remove-sign inner-absolute" ng-show=""></span>
+              <span class="inner-absolute" ng-hide="mobileForm_0.imgCaptcha.$isEmpty(captcha) || mobileForm_0.imgCaptcha.$error.pattern">
+                <span class="glyphicon glyphicon-remove-sign text-danger" ng-show="mobileForm_0.imgCaptcha.$error.correct && captchaFirstCallback" ng-modle="captchaFirstCallback"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success" ng-show="!mobileForm_0.imgCaptcha.$error.correct && captchaFirstCallback" ng-model="captchaFirstCallback"></span>
+              </span>
             </div>
             <div class="col-xs-6 col-sm-4">
               <img ng-src="{{getCaptcha}}" alt="" ng-click="reloadCaptcha()">
             </div>
           </div>
+          <button type="button" class="btn btn-primary" ng-click="testFn()" >test</button>
+          {{captchaFirstCallback}}
+          <!-- {{mobileForm_0.imgCaptcha.$error.correct}} -->
           <div class="form-group" ng-show="mobileForm_0.$dirty && mobileForm_0.$invalid">
             <div class="col-xs-12">
               <div class="alert alert-danger">
                 <ul>
                   <li ng-show="mobileForm_0.$dirty && mobileForm_0.$invalid">信息未填完</li>
                   <li ng-show="mobileForm_0.mobile.$dirty && mobileForm_0.mobile.$error.required">手机号码不能为空</li>
-                  <li ng-show="mobileForm_0.mobile.$dirty && (mobileForm_0.mobile.$error.minlength || mobileForm_0.mobile.$error.maxlength)">手机号码位数不正确</li>
+                  <li ng-show="mobileForm_0.mobile.$dirty && mobileForm_0.mobile.$error.pattern">手机号码格式不正确或位数不对</li>
                   <li ng-show="mobileForm_0.imgCaptcha.$dirty && mobileForm_0.imgCaptcha.$error.required">验证码不能为空</li>
-                  <li ng-show="mobileForm_0.imgCaptcha.$dirty && (mobileForm_0.imgCaptcha.$error.minlength || mobileForm_0.imgCaptcha.$error.maxlength)">验证码为5位</li>
+                  <li ng-show="mobileForm_0.imgCaptcha.$dirty && mobileForm_0.imgCaptcha.$error.pattern">验证码格式不正确或位数不对</li>
                   <li ng-show="mobileForm_0.imgCaptcha.$error.correct">验证码错误</li>
                 </ul>
               </div>
