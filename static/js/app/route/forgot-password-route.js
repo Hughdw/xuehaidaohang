@@ -8,7 +8,7 @@ define(function(require) {
       templateUrl:'./views/forgotpassword/findType.html'
     })
     .when('/mobile',{
-      templateUrl:'./views/forgotpassword/mobile.html'
+      templateUrl:'./views/forgotpassword/mobile.html?bust='+ (new Date()).getTime()
     })
     .when('/email',{
       templateUrl:'./views/forgotpassword/email.html'
