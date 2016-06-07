@@ -6,8 +6,6 @@ lib/*
 node_modules/*
 static/tpl/*
 template/build/*
-#指定跟踪(未生效)
-!/lib/bootstrap/bootstrap-3.3.5/less/*
 *.psd
 *.png
 *.jpg
