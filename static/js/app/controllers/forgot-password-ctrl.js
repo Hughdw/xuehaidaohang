@@ -1,3 +1,4 @@
+// 初期处于学习阶段，service factory directive controller 都写在一个页面中
 define(function(require) {
   'use strict';
   var ngModule = require('../module/forgot-password-module');
