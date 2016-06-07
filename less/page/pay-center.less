@@ -1,0 +1,252 @@
+// ************************************
+// 引入mixins 变量
+// ************************************
+@import "./variables.less";
+@import "../bootstrap/mixins.less";
+// ************************************
+// 共用样式
+// ************************************
+// ----------结算
+.sidebar{
+  margin-top: 20px;
+}
+// 优惠券
+.payment-coupon{
+  overflow: hidden;
+  .vouchers-scrip{
+    .size(124px,56px);
+    margin: 10px 0 10px 10px;
+    padding: 0 5px;
+    .var-border-radius(@border-radius-sm);
+    font-weight: normal;
+    background: #f8f8f8;
+    &.active{
+      background: #eee;
+    }
+    .raido{
+      float: left;
+      margin-top: 23px;
+    }
+    .tit{
+      float: left;
+      margin-right: 5px;
+      padding: 7px 8px 0 8px;
+      width: 28px;
+      line-height: 14px;
+      font-size: 12px;
+      border-right: 1px #ccc dashed;
+    }
+    .cont{
+      float: left;
+      line-height: 56px;
+      em{
+        font-size: 24px;
+      }
+    }
+  }
+
+}
+// 支付方式
+.payment-type{
+  font-size: 14px;
+  .checkbox{
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-right: 10px;
+    label{
+      padding-left: 0;
+    }
+    input[type="checkbox"]{
+      position: relative;
+      margin-left: 0;
+    }
+  }
+  .btn-default{
+    .caret{
+      margin-left: 6px;
+    }
+    &:hover{
+      background: #ededed;
+    }
+  }
+  .active{
+    color: #fff;
+    background: #333;
+    border-color: #222;
+    &:hover{
+      color: #fff;
+      background: #333;
+      border-color: #222;
+    }
+  }
+  .balance{
+    height: 70px;
+    line-height: 70px;
+    padding-left: 15px;
+    border-bottom: 1px #eee solid;
+    em{
+      font-size: 16px;
+      color: #ff8e46;
+    }
+  }
+  .third-party{
+    height: 70px;
+    line-height: 70px;
+    padding-left: 15px;
+  }
+}
+// 订单
+.payment-detail{
+  font-size: 12px;
+  font-weight: normal;
+  .detail-cont{
+    margin-bottom: 0;
+    padding: 10px 20px;
+    dt{
+      float: left;
+      width: 48px;
+      font-weight: normal;
+    }
+  }
+  .detail-confirm{
+    border-top: 1px #eee solid;
+    padding: 0 20px;
+    // height: 90px;
+    .info{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      // vertical-align: bottom;
+      dt{
+        float: left;
+        height: 28px;
+        line-height: 28px;
+        font-weight: normal;
+        font-size: 16px;
+      }
+      dd{
+        font-size: 12px;
+        span{
+          color: #aaa;
+        }
+      }
+      em{
+        font-size: 20px;
+        color: #ff8e46;
+      }
+    }
+    .btnbox{
+      margin-bottom: 20px;
+    }
+    // vertical-align: middle;
+    // text-align: justify;
+  }
+}
+
+
+// ************************************
+// 购物车
+// ************************************
+// ----------购物车
+// 列表
+.shopping-checkbox{
+  text-align: left;
+  padding-left: 20px;
+}
+.shopping-course{
+  padding-left: 10px;
+  .area-explain{
+    float: left;
+    padding: 10px 0;
+  }
+  .shopping-tit{
+    float: left;
+    padding-left: 10px;
+    height: 70px;
+    line-height: 70px;
+  }
+}
+// 确认
+.shopping-confirm{
+  padding: 0 20px;
+  .check-all{
+    float: left;
+    margin-top: 27px;
+  }
+  .confirmbox{
+    float: right;
+    height: 70px;
+    line-height: 70px;
+    text-align: right;
+    color: #333;
+    em{
+      font-size: 20px;
+      color: #ff8e46;
+      margin: 0 2px;
+    }
+    .btn-primary{
+      margin-left: 5px;
+    }
+  }
+}
+
+// ************************************
+// 金钥充值
+// ************************************
+.recharge-list{
+  margin-left: 0;
+  margin-right: 0;
+  .recharge-item{
+    margin: 15px 0;
+    .size(150px,50px);
+    line-height: 50px;
+    .var-border-radius(@border-radius-sm);
+    background: #f8f8f8 url("../img/pay/yuan.png") no-repeat 6px center;
+    .recharge-raido{
+      display: none;
+    }
+    .cont{
+      font-weight: normal;
+      font-size: 20px;
+      margin-left: 52px;
+    }
+    &.active{
+      background-color: #eee;
+      border: 1px #aaa dashed;
+    }
+  }
+  .other-money{
+    margin: 15px 0;
+  }
+}
+.recharge-info{
+  padding: 0 20px;
+  height: 50px;
+  line-height: 50px;
+  border-top: 1px #eee solid;
+  .current-balances{
+    float: left;
+    span{
+      color: #777;
+      font-size: 12px;
+      em{
+        margin: 0 4px;
+        color: #ff8e46;
+        font-size: 20px;
+      }
+    }
+  }
+  .recharge-money{
+    float: right;
+    span{
+      color: #777;
+      font-size: 12px;
+      em{
+        margin: 0 4px;
+        color: #00f449;
+        font-size: 20px;
+      }
+    }
+  }
+}

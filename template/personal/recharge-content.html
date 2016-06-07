@@ -1,0 +1,34 @@
+<% for (i = 0; i < list.length; i++) { %>
+<tr>
+  <td class="recharge-creation-time">
+    <div><%= list[i].creationDate %></div>
+    <div><%= list[i].creationTime %></div>
+  </td>
+  <td class="recharge-order">
+    <%= list[i].order %>
+  </td>
+  <td class="recharge-price">
+    ￥<%= list[i].price %>
+  </td>
+  <% if (list[i].paymentType === 0) { %>
+  <td class="recharge-type">
+    <%= list[i].paymentName %> <i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="bottom" title="<%= list[i].typeInfo %>"></i>
+  </td>
+  <% } else { %>
+    <td class="recharge-type">
+      <%= list[i].paymentName %>
+    </td>
+  <% } %>
+  <td class="recharge-status">
+  <% if (list[i].status === 1){%>
+      <a href="javascript:;" class="btn btn-success" disabled="disabled">成功</a>
+  <% } else if (list[i].status === 2){ %>
+      <a href="javascript:;" class="btn btn-default" disabled="disabled">失败</a>
+  <% } else if (list[i].status === 3) { %>
+      <a href="javascript:;" class="btn btn-default" disabled="disabled">已关闭</a>
+  <% } else { %>
+      <a href="<%= list[i].url %>" class="btn btn-primary">去付款</a>
+  <% } %>
+  </td>
+</tr>
+<%}%>

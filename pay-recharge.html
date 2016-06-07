@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 通知 IE 采用其所支持的最新的模式 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 指定用户是否可以缩放Web页面 -->
+  <title>金钥充值 - 支付中心</title>
+  <meta name="Description" content="" />
+  <meta name="Keywords" content="" />
+  <meta content="http://addaad.com/z/img/favicon-48.png" itemprop="image">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="http://addaad.com/z/img/favicon-24.ico" />
+  <link rel="stylesheet" href="lib/bootstrap/bootstrap-3.3.5/dist/css/bootstrap.css">
+  <!-- 生产环境样式 -->
+  <link rel="stylesheet" href="static/css/common.css">
+  <link rel="stylesheet" href="static/css/pay-center.css">
+  <link rel="stylesheet" href="static/css/pay-center-sm-lg.css" media="screen and (min-width:768px)" title="no title" charset="utf-8">
+  <!--[if lt IE 9]>
+    <script src="lib/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="lib/respondjs/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <!-- <script src="static/template.js"></script> -->
+  <script data-main="static/js/pay-recharge.js" src="lib/require.js"></script>
+</head>
+
+<body id="pay-recharge">
+  <nav class="navbar navbar-gps navbar-fixed-top">
+    <div class="container">
+      <!-- 折叠内容 -->
+      <div class="navbar-header">
+        <!--移动端触发按钮-->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gps-navbar-collapse" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">学海导航</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="gps-navbar-collapse">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="input-group">
+            <input type="text" class="form-control form-control-gpsnav" placeholder="请输入关键词">
+            <span class="input-group-btn">
+              <button class="btn btn-gpsnav" type="button">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+            </span>
+          </div>
+        </form>
+        <div class="sign navbar-right">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#" class="nav-link">首页</a></li>
+            <li><a href="#" class="nav-link">课程</a></li>
+            <li><a href="#" class="nav-link">社区</a></li>
+          </ul>
+          <div class="navbar-left">
+            <button type="button" class="btn btn-gpsnav navbar-btn">注册</button>
+            <span class="v-line">|</span>
+            <button type="button" class="btn btn-gpsnav navbar-btn">登录</button>
+          </div>
+        </div>
+        <div class="signed navbar-right hidden">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#" class="nav-link">首页</a></li>
+            <li><a href="#" class="nav-link">课程</a></li>
+            <li><a href="#" class="nav-link">社区</a></li>
+            <li><a href="#" class="nav-link">个人中心</a></li>
+          </ul>
+          <div class="navbar-left">
+            <button type="button" class="btn btn-gpsnav signout navbar-btn">退出</button>
+          </div>
+        </div>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+  <main id="main">
+    <div class="loading">
+      <div class="circle-side"></div>
+      <!--[if lte IE 9]>
+        <div class="circle-ie"></div>
+      <![endif]-->
+    </div>
+  </main>
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <p class="copywrite">
+            <span>Copyright © 2016, baoqingshangmao Co., Ltd.</span>
+            <span>All Rights Reserved.</span>
+            <span>陕西省铜川市宝青商贸有限责任公司</span>
+          </p>
+          <p class="power">Power by Robin 知更鸟</p>
+        </div>
+        <div class="col-sm-4">
+          <div class="footer-link">
+            <a href="">关于我们</a>
+            <span class="v-line">|</span>
+            <a href="">联系我们</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

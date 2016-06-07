@@ -1,0 +1,114 @@
+<div class="modal-content find-from-mobile" id="forgot-mobile" ng-controller="mobileCtrl">
+  <div class="modal-header">
+    <h4 class="modal-title">通过手机找回密码</h4>
+  </div>
+  <div class="modal-body" ng-switch="mobileData.currentStep">
+    <ul class="step-tit">
+      <li ng-class="getActiveClass(0)">第一步</li>
+      <li ng-class="getActiveClass(1)">第二步</li>
+      <li ng-class="getActiveClass(2)">第三步</li>
+    </ul>
+    <div class="step-cont">
+      <form name="mobileForm_0" ng-switch-when='0' novalidate>
+        <div class="form-horizontal form-cont">
+          <div class="form-group">
+            <label for="input-mobile-0" class="label-tit col-xs-12">手机号码：</label>
+            <div class="col-xs-12">
+              <input type="number"
+              name="mobile"
+              class="form-control"
+              id="input-mobile-0"
+              placeholder="您绑定的手机号码"
+              ng-model="mobileData.mobile"
+              ng-pattern="/^(13|14|15|18)\d{9}$/"
+              required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-mobile-imgcaptcha" class="label-tit col-xs-12">验证码：</label>
+            <div class="col-xs-6 col-sm-8 wrap-relative">
+              <input type="text"
+              name="imgCaptcha"
+              class="form-control"
+              id="input-mobile-imgcaptcha"
+              placeholder="输入验证码"
+              ng-model="imgCaptcha"
+              ng-pattern="/[A-Za-z0-9]{5}/"
+              ensure-correct="imgCaptcha"
+              required>
+              <span class="inner-absolute" ng-hide="mobileForm_0.imgCaptcha.$isEmpty(imgCaptcha) || mobileForm_0.imgCaptcha.$error.pattern">
+                <span class="glyphicon glyphicon-remove-sign text-danger" ng-show="mobileData.imgCaptchaCallback && mobileForm_0.imgCaptcha.$error.correct"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success" ng-show="mobileData.imgCaptchaCallback && !mobileForm_0.imgCaptcha.$error.correct"></span>
+              </span>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+              <img ng-src="{{getCaptcha}}" alt="" ng-click="reloadCaptcha()">
+            </div>
+          </div>
+          <div class="form-group" ng-show="mobileForm_0.$dirty && mobileForm_0.$invalid">
+            <div class="col-xs-12">
+              <div class="alert alert-danger">
+                <ul>
+                  <li ng-show="mobileForm_0.$dirty && mobileForm_0.$invalid">信息不完整或不正确</li>
+                  <li ng-show="mobileForm_0.mobile.$dirty && mobileForm_0.mobile.$error.required">手机号码不能为空</li>
+                  <li ng-show="mobileForm_0.mobile.$dirty && mobileForm_0.mobile.$error.pattern">手机号码格式不正确或位数不对</li>
+                  <li ng-show="mobileForm_0.imgCaptcha.$dirty && mobileForm_0.imgCaptcha.$error.required">验证码不能为空</li>
+                  <li ng-show="mobileForm_0.imgCaptcha.$dirty && mobileForm_0.imgCaptcha.$error.pattern">验证码格式不正确或位数不对</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="mobileForm_0.$invalid" ng-click="mobileData.currentStep = 1">下一步</button>
+        </div>
+      </form>
+      <form name="mobileForm_1" ng-switch-when='1' novalidate>
+        <div class="form-horizontal form-cont">
+          <div class="form-group">
+            <label for="input-mobile-1" class="label-tit col-xs-12">手机号码：</label>
+            <div class="col-xs-12">
+              <input type="number" class="form-control" id="input-mobile-1" placeholder="{{mobileData.mobile}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-mobile-captcha" class="label-tit col-xs-12">短信验证码：</label>
+            <div class="col-xs-6 col-sm-8">
+              <input type="text" class="form-control" id="input-mobile-captcha" placeholder="短信验证码">
+            </div>
+            <div class="col-xs-6 col-sm-4">
+              <button type="submit" class="btn btn-primary">获取验证码</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="mobileForm_1.$invalid" ng-click="mobileData.currentStep = 2">下一步</button>
+        </div>
+      </form>
+
+      <div class="form-horizontal form-cont" ng-switch-when='2'>
+        <div class="form-group">
+          <label for="input-mobile-2" class="label-tit col-xs-12">手机号码：</label>
+          <div class="col-xs-12">
+            <input type="number" class="form-control" id="input-mobile-2" placeholder="13900008888" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="input-mobile-password" class="label-tit col-xs-12">设置密码：</label>
+          <div class="col-xs-12">
+            <input type="password" class="form-control" id="input-mobile-password" placeholder="您要设置的密码">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="input-mobile-confirmpassword" class="label-tit col-xs-12">密码确认：</label>
+          <div class="col-xs-12">
+            <input type="password" class="form-control" id="input-mobile-confirmpassword" placeholder="重新输入您的密码">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="">下一步</button>
+  </div> -->
+</div>

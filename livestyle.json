@@ -1,0 +1,5 @@
+{
+  "livestyle":{
+    "globals":["./less/page/variables.less","../bootstrap/mixins.less"]
+  }
+}

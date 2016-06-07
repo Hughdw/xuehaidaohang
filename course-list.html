@@ -79,62 +79,59 @@
     </div>
     <!-- /.container -->
   </nav>
-  <main>
+  <main id="main">
     <div class="container">
       <!-- menu menu-collapse collapse in -->
       <div class="menu collapse menu-collapse" id="gps-menu-collapse">
         <div class="row">
           <!-- TAG切换按钮 -->
           <div class="col-md-1" id="menu-tabs">
-            <ul role="tablist">
-              <li role="presentation" class="menu-tabs-item active"><a href="#basis" aria-controls="basis" role="tab" class="menu-tab"><span>基础</span></a></li>
-              <li role="presentation" class="menu-tabs-item"><a href="#enhance" aria-controls="enhance" role="tab" class="menu-tab"><span>提高</span></a></li>
+            <ul role="tablist" class="tab-list">
+              <li role="presentation" class="menu-tabs-item active"><a data-target="#basis" aria-controls="basis" role="tab" class="menu-tab"><span>基础</span></a></li>
+              <li role="presentation" class="menu-tabs-item"><a data-target="#enhance" aria-controls="enhance" role="tab" class="menu-tab"><span>提高</span></a></li>
             </ul>
           </div>
           <!-- TAG切换内容 -->
           <div class="col-md-11">
             <div class="tab-content" id="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="basis">
-                <div class="row">
+              <div role="tabpanel" class="row tab-pane active" id="basis">
                   <div class="col-md-12 menu-filter">
                     <!-- Nav tabs -->
                     <div class="menu-filter-des">
                       <span class="menu-filter-des-item">年级</span>
                     </div>
-
                     <!-- Tab panes -->
                     <div class="menu-filter-cont grade">
                       <span class="grade-p">
-                      <a href="javascript:;" class="menu-filter-bt grade-bt active">小<i> · </i>一</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>二</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>三</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>四</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>五</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>六</a>
-                    </span>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt active">小<i> · </i>一</a>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>二</a>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>三</a>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>四</a>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>五</a>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>六</a>
+                      </span>
                       <span class="grade-jh">
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>一</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>二</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>三</a>
-                    </span>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>一</a>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>二</a>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>三</a>
+                      </span>
                       <span class="grade-sh">
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>一</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>二</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt disabled">高<i> · </i>三</a>
-                    </span>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>一</a>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>二</a>
+                        <a href="javascript:;" class="menu-filter-bt grade-bt disabled">高<i> · </i>三</a>
+                      </span>
                     </div>
                   </div>
                   <div class="col-md-12 menu-filter">
                     <div class="menu-filter-des">
                       <span class="menu-filter-des-item">学科</span>
                     </div>
-
-                    <div class="menu-filter-cont discipline">
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt active">语文</a>
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt">数学</a>
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt disabled">英语</a>
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt">物理</a>
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt">化学</a>
+                    <div class="menu-filter-cont subjects">
+                      <a href="javascript:;" class="menu-filter-bt subjects-bt active">语文</a>
+                      <a href="javascript:;" class="menu-filter-bt subjects-bt">数学</a>
+                      <a href="javascript:;" class="menu-filter-bt subjects-bt disabled">英语</a>
+                      <a href="javascript:;" class="menu-filter-bt subjects-bt">物理</a>
+                      <a href="javascript:;" class="menu-filter-bt subjects-bt">化学</a>
                     </div>
                   </div>
                   <div class="col-md-12 menu-filter">
@@ -158,90 +155,87 @@
                       <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
                       <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
                     </div>
+                  </div>
+              </div>
+              <div role="tabpanel" class="row tab-pane" id="enhance">
+                <div class="col-md-12 menu-filter">
+                  <!-- Nav tabs -->
+                  <div class="menu-filter-des">
+                    <span class="menu-filter-des-item">年级</span>
+                  </div>
+
+                  <!-- Tab panes -->
+                  <div class="menu-filter-cont grade">
+                    <span class="grade-p">
+                    <a href="javascript:;" class="menu-filter-bt grade-bt active">小<i> · </i>一</a>
+                    <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>二</a>
+                    <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>三</a>
+                    <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>四</a>
+                    <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>五</a>
+                    <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>六</a>
+                  </span>
+                    <span class="grade-jh">
+                    <a href="javascript:;" class="menu-filter-bt grade-bt active">初<i> · </i>一</a>
+                    <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>二</a>
+                    <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>三</a>
+                  </span>
+                    <span class="grade-sh">
+                    <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>一</a>
+                    <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>二</a>
+                    <a href="javascript:;" class="menu-filter-bt grade-bt disabled">高<i> · </i>三</a>
+                  </span>
                   </div>
                 </div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="enhance">
-                <div class="row">
-                  <div class="col-md-12 menu-filter">
-                    <!-- Nav tabs -->
-                    <div class="menu-filter-des">
-                      <span class="menu-filter-des-item">年级</span>
-                    </div>
-
-                    <!-- Tab panes -->
-                    <div class="menu-filter-cont grade">
-                      <span class="grade-p">
-                      <a href="javascript:;" class="menu-filter-bt grade-bt active">小<i> · </i>一</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>二</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>三</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>四</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>五</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>六</a>
-                    </span>
-                      <span class="grade-jh">
-                      <a href="javascript:;" class="menu-filter-bt grade-bt active">初<i> · </i>一</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>二</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>三</a>
-                    </span>
-                      <span class="grade-sh">
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>一</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>二</a>
-                      <a href="javascript:;" class="menu-filter-bt grade-bt disabled">高<i> · </i>三</a>
-                    </span>
-                    </div>
+                <div class="col-md-12 menu-filter">
+                  <div class="menu-filter-des">
+                    <span class="menu-filter-des-item">学科</span>
                   </div>
-                  <div class="col-md-12 menu-filter">
-                    <div class="menu-filter-des">
-                      <span class="menu-filter-des-item">学科</span>
-                    </div>
 
-                    <div class="menu-filter-cont discipline">
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt active">语文</a>
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt">数学</a>
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt disabled">英语</a>
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt">物理</a>
-                      <a href="javascript:;" class="menu-filter-bt discipline-bt">化学</a>
-                    </div>
+                  <div class="menu-filter-cont subjects">
+                    <a href="javascript:;" class="menu-filter-bt subjects-bt active">语文</a>
+                    <a href="javascript:;" class="menu-filter-bt subjects-bt">数学</a>
+                    <a href="javascript:;" class="menu-filter-bt subjects-bt disabled">英语</a>
+                    <a href="javascript:;" class="menu-filter-bt subjects-bt">物理</a>
+                    <a href="javascript:;" class="menu-filter-bt subjects-bt">化学</a>
                   </div>
-                  <div class="col-md-12 menu-filter">
-                    <div class="menu-filter-des">
-                      <span class="menu-filter-des-item">版本</span>
-                    </div>
+                </div>
+                <div class="col-md-12 menu-filter">
+                  <div class="menu-filter-des">
+                    <span class="menu-filter-des-item">版本</span>
+                  </div>
 
-                    <div class="menu-filter-cont version">
-                      <a href="javascript:;" class="menu-filter-bt version-bt active">人教版</a>
-                      <a href="javascript:;" class="menu-filter-bt version-bt">沪教版</a>
-                      <a href="javascript:;" class="menu-filter-bt version-bt disabled">苏教版</a>
-                    </div>
+                  <div class="menu-filter-cont version">
+                    <a href="javascript:;" class="menu-filter-bt version-bt active">人教版</a>
+                    <a href="javascript:;" class="menu-filter-bt version-bt">沪教版</a>
+                    <a href="javascript:;" class="menu-filter-bt version-bt disabled">苏教版</a>
                   </div>
-                  <div class="col-md-12 menu-filter menu-filter-last">
-                    <div class="menu-filter-des">
-                      <span class="menu-filter-des-item">知识</span>
-                    </div>
-                    <div class="menu-filter-cont knowledge">
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt active">名著阅读</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
-                      <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法s</a>
-                    </div>
+                </div>
+                <div class="col-md-12 menu-filter menu-filter-last">
+                  <div class="menu-filter-des">
+                    <span class="menu-filter-des-item">知识</span>
+                  </div>
+                  <div class="menu-filter-cont knowledge">
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt active">名著阅读</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+                    <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法s</a>
                   </div>
                 </div>
               </div>
@@ -252,30 +246,27 @@
       <!--menu content -->
       <div class="content">
         <div class="toolbar">
-          <div class="row">
-            <div class="crumbs col-sm-6 col-xs-8">
-              <a href="javascript:;" class="crumbs-item active">全部</a>
-              <span class="crumbs-v-line">|</span>
-              <a href="javascript:;" class="crumbs-item">试看</a>
-              <span class="crumbs-v-line">|</span>
-              <a href="javascript:;" class="crumbs-item">已买</a>
-              <span class="crumbs-v-line">|</span>
-              <a href="javascript:;" class="crumbs-item">未买</a>
-            </div>
-            <div class="shopping-car col-sm-6 col-xs-4">
-              <!-- Single button -->
-              <div class="btn-group">
-                <button type="button" id="sc-btn" class="btn btn-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                  购物车<span class="badge">4</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right sc-panel">
-                  <li class="sc-panel-item"><a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程但降幅扩大进口放进口袋就疯狂点击放大</span></li>
-                  <li class="sc-panel-item"><a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程2</span></li>
-                  <li class="sc-panel-item"><a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程3</span></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="http://baidu.com" class="goto">前去结算</a></li>
-                </ul>
-              </div>
+          <div class="crumbs">
+            <a href="javascript:;" class="crumbs-item active">全部</a>
+            <span class="crumbs-v-line">|</span>
+            <a href="javascript:;" class="crumbs-item">试看</a>
+            <span class="crumbs-v-line">|</span>
+            <a href="javascript:;" class="crumbs-item">已买</a>
+            <span class="crumbs-v-line">|</span>
+            <a href="javascript:;" class="crumbs-item">未买</a>
+          </div>
+          <div class="shopping-car">
+            <div class="btn-group">
+              <button type="button" id="sc-btn" class="btn btn-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                购物车<span class="badge">4</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right sc-panel">
+                <li class="sc-panel-item"><a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程但降幅扩大进口放进口袋就疯狂点击放大</span></li>
+                <li class="sc-panel-item"><a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程2</span></li>
+                <li class="sc-panel-item"><a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程3</span></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="http://baidu.com" class="goto">前去结算</a></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -291,7 +282,7 @@
                   <span class="rp-duration">时长 - <em>15:30</em></span>
                 </a>
                 <div class="rp-operation">
-                  <button type="button" class="btn btn-success btn-sm" disabled="disabled">可试看</button>
+                  <button type="button" class="btn btn-success" disabled="disabled">可试看</button>
                   <div class="rp-price"><em>5</em>金钥</div>
                 </div>
               </div>
