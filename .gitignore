@@ -1,4 +1,5 @@
 # My configurations:
+.ftpconfig
 .idea/*
 other/*
 lib/*
