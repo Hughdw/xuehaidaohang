@@ -1,0 +1,17 @@
+{
+  "name": "xuehaidaohang",
+  "version": "1.0.0",
+  "description": "video web site.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hugh",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.12.5",
+    "gulp": "^3.9.1",
+    "gulp-tmod": "^2.0.3",
+    "handlebars": "^4.0.5"
+  }
+}

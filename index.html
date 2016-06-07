@@ -49,9 +49,9 @@
                   <li><a href="#" class="nav-link">社区</a></li>
               </ul>
               <div class="navbar-left">
-                <button type="button" class="btn btn-gpsnav navbar-btn">注册</button>
+                <button type="button" class="btn btn-gpsnav navbar-btn" data-toggle="modal" data-target="#sign-modal" data-whatever="#sign-up">注册</button>
                 <span class="v-line">|</span>
-                <button type="button" class="btn btn-gpsnav navbar-btn">登录</button>
+                <button type="button" class="btn btn-gpsnav navbar-btn" data-toggle="modal" data-target="#sign-modal" data-whatever="#sign-in">登录</button>
               </div>
             </div>
             <div class="signed navbar-right hidden">
@@ -68,10 +68,11 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
 </nav>
-<header>
-  <div class="header-img"></div>
-</header>
+
 <main>
+  <header>
+    <div class="header-img"></div>
+  </header>
   <section id="know">
     <div class="container">
       <div class="tit">
@@ -194,6 +195,7 @@
     </div>
   </div>
 </footer>
+<div id="sign-modal" class="modal fade" tabindex="-1" role="dialog"></div>
 </body>
 <script data-main="static/js/index" src="lib/require.js"></script>
 </html>
