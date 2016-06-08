@@ -1,9 +1,9 @@
 define(function (require) {
   var $ = require('jquery'),
-      tpldata = require('tpldata'),
+      tpldata = require('./data/template'),
       tplRechargeMain = require('tpl/personal/recharge-main'),
       tplRechargeCont = require('tpl/personal/recharge-content'),
-      replaceImgPath = require('mod/replace-img-path');
+      replaceImgPath = require('./components/replace-img-path');
   $(function() {
     tpldata.sidebar.activeMenu = 2;//设置激活导航
     // 获取到模版，然后渲染数据

@@ -1,10 +1,13 @@
 # My configurations:
 .ftpconfig
+.r.js
 .idea/*
 other/*
 lib/*
+dist/*
 node_modules/*
-static/tpl/*
+static/js/libs/*
+static/js/tpl/*
 template/build/*
 *.psd
 *.png

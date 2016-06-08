@@ -1,8 +1,8 @@
 define(function (require) {
   var $ = require('jquery'),
-      tpldata = require('tpldata'),
+      tpldata = require('./data/template'),
       tplProgressMain = require('tpl/personal/progress-main'),
-      replaceImgPath = require('mod/replace-img-path');
+      replaceImgPath = require('./components/replace-img-path');
   $(function() {
     tpldata.sidebar.activeMenu = 1;//设置激活导航
     // 获取到模版，然后渲染数据

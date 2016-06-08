@@ -1,7 +1,7 @@
 define(function (require) {
   var $ = require('jquery'),
       tplSign = require('tpl/public/sign-modal'),
-      mSign = require('mod/sign');
+      mSign = require('./components/sign');
   $(function() {
     var $SignModal = $('#sign-modal');
     // 获取到模版，然后渲染数据

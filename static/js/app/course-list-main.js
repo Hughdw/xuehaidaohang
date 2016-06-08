@@ -5,9 +5,9 @@
  */
 define(function (require) {
   var $ = require('jquery'),
-      mGlobal = require('mod/global'),
-      ResetMenu = require('mod/reset-menu'),
-      mBindDropdown = require('mod/dropdown');
+      mGlobal = require('./components/global'),
+      ResetMenu = require('./components/reset-menu'),
+      mBindDropdown = require('./components/dropdown');
   // 页面载入
   $(function() {
     // 实例化 操作的构造函数

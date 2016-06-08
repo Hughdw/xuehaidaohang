@@ -1,6 +1,6 @@
 define(function (require) {
   var $ = require('jquery'),
-      mBindDropdown = require('mod/dropdown');
+      mBindDropdown = require('./components/dropdown');
   $(function() {
 
     // 绑定 TAG切换事件。

@@ -1,4 +1,4 @@
-require(['static/js/config.js'], function(config) {
+require(['config'], function(config) {
   require([
     'jquery',
     'bootstrap',
