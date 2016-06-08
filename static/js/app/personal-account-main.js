@@ -1,9 +1,9 @@
 define(function (require) {
   var $ = require('jquery'),
-      tpldata = require('tpldata'),
+      tpldata = require('./data/template'),
       tplAccountMain = require('tpl/personal/account-main'),
-      replaceImgPath = require('mod/replace-img-path'),
-      mButton = require('mod/button');
+      replaceImgPath = require('./components/replace-img-path'),
+      mButton = require('./components/button');
   $(function() {
     // console.log(mCommon.height.navbar);
     // 用户是否已经设置或绑定了对应资料

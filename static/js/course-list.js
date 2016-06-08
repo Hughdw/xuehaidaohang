@@ -5,6 +5,6 @@
  ***bootstrap中有对页面的操作程序
  ***jquery必须在bootstrap之前引入
  */
-require(['static/js/config.js'], function(config) {
-  require(['jquery','bootstrap','mod/set-min-height', 'app/course-list-main']);
+require(['config'], function(config) {
+  require(['jquery','bootstrap','app/components/set-min-height', 'app/course-list-main']);
 });
