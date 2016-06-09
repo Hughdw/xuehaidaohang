@@ -77,6 +77,14 @@ gulp.task('tmod',function() {
 //       .pipe(gulp.dest('./')); //以CSS生成目录为根目录
 // });
 //
+// 监听文件改动，执行对应的任务
+gulp.task('tmodWatch',function() {
+  gulp.watch('./template/**/*.html',['tmod'],function(event) {
+    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+  });
+});
+
+// 批量构建页面相关的js
 gulp.task('jsbuild-a',function() {
   // body...
   var pipes = [];
@@ -92,16 +100,18 @@ gulp.task('jsbuild-a',function() {
       .pipe(gulp.dest('./dist/js/'))
   );
 
-
   eventstream.merge(tasks)
     .on('dne',callback);
 });
 
-
+// 页面相关js的 包装require模块，合并，压缩，添加md5后缀并提取路径映射
 gulp.task('jsbuild',function() {
   // body...
-  return gulp.src('./static/js/**/*.js')
+  return gulp.src('static/js/**/*.js')
     .pipe(amdOptimize('personal-account',{
+      paths:{
+
+      },
       configFile:'static/js/config.js',
       findNestedDependencies:true,//找到嵌套依赖关系
       include:false,
@@ -109,22 +119,126 @@ gulp.task('jsbuild',function() {
     }))
     .pipe(concatFile('personal-account.js'))//合并的文件名称
     .pipe(gulp.dest('./dist/js'))
-    .pipe(rename({suffix:'.min'}))
-    .pipe(uglify())
+    // .pipe(rename({suffix:'.min'}))
+    .pipe(uglify())//js压缩
     .pipe(rev())
-    .pipe(gulp.dest('./dist/js'))
-    .pipe(rev.manifest())
-    .pipe(gulp.dest('./dist/rev'))
+    .pipe(gulp.dest('./dist/assets/js'))
+    .pipe(rev.manifest({
+      // base:'dist/revs',
+      merge: true //与当前名单合并
+    }))//生成路径映射
+    .pipe(gulp.dest('./dist/rev/js'))
     .pipe(notify({message:'personal-account.min.js ok'}));
 });
 
+// 页面相关CSS的
+gulp.task('cssbuild',function() {
+  // body...
+  return gulp.src('static/css/common.css')
+    // .pipe(rename({suffix:'.min'}))
+    .pipe(minifycss())
+    .pipe(rev())
+    .pipe(gulp.dest('dist/assets/css'))
+    .pipe(rev.manifest({
+      merge:true
+    }))
+    .pipe(gulp.dest('./dist/rev/css'))
+    .pipe(notify({message:'common.min.css ok'}));
+});
+
+gulp.task('cssbuild-all',function() {
+  // body...
+  var pipes = [];
+
+  var cssArray = ['common','course','personal','pay','index'];
+  for (var i = 0; i < cssArray.length; i++) {
+    pipes.push(
+      gulp.src('static/css/'+cssArray[i]+'*.css')
+        .pipe(concatFile(cssArray[i]+'.css'))//合并的文件名称
+        .pipe(minifycss())
+        .pipe(rev())
+        .pipe(gulp.dest('dist/assets/css'))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest('./dist/rev/css/'+cssArray[i]))
+    );
+  }
+  //
+  // pipes.push(
+  //   gulp.src('static/css/common.css')
+  //     .pipe(concatFile('common.css'))//合并的文件名称
+  //     .pipe(minifycss())
+  //     .pipe(rev())
+  //     .pipe(gulp.dest('dist/assets/css'))
+  //     .pipe(rev.manifest({
+  //       merge:true
+  //     }))
+  //     .pipe(gulp.dest('./dist/rev/css'))
+  // );
+  // pipes.push(
+  //   gulp.src('static/css/course*.css')
+  //     .pipe(concatFile('course.css'))//合并的文件名称
+  //     // .pipe(minifycss())
+  //     .pipe(rev())
+  //     .pipe(gulp.dest('dist/assets/css'))
+  //     .pipe(rev.manifest({
+  //       merge:true
+  //     }))
+  //     .pipe(gulp.dest('./dist/rev/css'))
+  // );
+  //
+  // pipes.push(
+  //   gulp.src('static/css/personal*.css')
+  //     .pipe(concatFile('personal.css'))//合并的文件名称
+  //     // .pipe(minifycss())
+  //     .pipe(rev())
+  //     .pipe(gulp.dest('dist/assets/css'))
+  //     .pipe(rev.manifest({
+  //       merge:true
+  //     }))
+  //     .pipe(gulp.dest('./dist/rev/css'))
+  // );
+  //
+  // pipes.push(
+  //   gulp.src('static/css/pay*.css')
+  //     .pipe(concatFile('pay.css'))//合并的文件名称
+  //     // .pipe(minifycss())
+  //     .pipe(rev())
+  //     .pipe(gulp.dest('dist/assets/css'))
+  //     .pipe(rev.manifest({
+  //       merge:true
+  //     }))
+  //     .pipe(gulp.dest('./dist/rev/css'))
+  // );
+  //
+  // pipes.push(
+  //   gulp.src(['static/css/index*.css'])
+  //     .pipe(concatFile('index.css'))//合并的文件名称
+  //     // .pipe(minifycss())
+  //     .pipe(rev())
+  //     .pipe(gulp.dest('dist/assets/css'))
+  //     .pipe(rev.manifest({
+  //       merge:true
+  //     }))
+  //     .pipe(gulp.dest('./dist/rev/css'))
+  // );
+
+  eventstream.merge(pipes)
+    .on('end',function() {
+      console.log('aaak');
+      // body...
+  });
+});
+
+// 根据 gulp-rev提供的路径映射文件替换HTML文件中的文件名
+// gulp-replace替换路径
+// 压缩HTML文件
 gulp.task('rev',function() {
   // body...
   return gulp.src(['./dist/rev/**/*.json','personal-account.html'])
     .pipe(revCollector())
-    .pipe(replace('static/js/','js/'))
+    .pipe(replace('static/','assets/'))
     .pipe(replace('lib/','../lib/'))
-    .pipe(replace('static/css/','../static/css/'))
+    // .pipe(replace('static/css/','../static/css/'))
     // .pipe(htmlmin(
     //   {
     //     collapseWhitespace:true,//压缩HTML
@@ -138,11 +252,6 @@ gulp.task('rev',function() {
 });
 
 
-// 监听文件改动，执行对应的任务
-gulp.task('tmodWatch',function() {
-  gulp.watch('./template/**/*.html',['tmod'],function(event) {
-    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-  });
-});
 
+gulp.task('build',['jsbuild','cssbuild-all']);
 gulp.task('default',['browser-sync','tmodWatch']); //定义默认任务
