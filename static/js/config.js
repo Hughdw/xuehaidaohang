@@ -7,16 +7,16 @@ require.config({
     baseUrl: '/static/js',//设置模块加载的基础路径
     paths: {//指定不在baseUrl根目录的模块路径指向
       // 'handlebars': 'handlebars/4.0.5/handlebars.min',// 模板引擎，不用
-      'device': './libs/device/0.2.7/device.min',
+      'device': 'libs/device/0.2.7/device.min',
       // 'less': 'less/1.7.0/less',//在线编译less，不用
-      'jquery': './libs/jquery/1.11.3/jquery',
-      'bootstrap': './libs/bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
-      'angular': './libs/angular/1.2.29/angular',
-      'ngRoute':'./libs/angular-route/1.2.29/angular-route',
+      'jquery': 'libs/jquery/1.11.3/jquery',
+      'bootstrap': 'libs/bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
+      'angular': 'libs/angular/1.2.29/angular',
+      'ngRoute':'libs/angular-route/1.2.29/angular-route',
       // 'app': '../static/js/app',
       // 'mod': '../static/js/app/components',
       // 'tpldata':'./app/data/template',
-      'tpl':'../tpl'
+      'tpl':'tpl'
     },
     shim: {
       'bootstrap':{
