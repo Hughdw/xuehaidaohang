@@ -65,6 +65,8 @@ gulp.task('tmodWatch',function() {
   });
 });
 
+
+
 // 批量构建页面相关的js
 gulp.task('jsbuild-all',function() {
   // body...
@@ -126,27 +128,27 @@ gulp.task('cssbuild-all',function() {
       .pipe(gulp.dest('./dist/rev/css'))
   );
 
-  var styleArr = ['course','forgotpassword','pay','personal'];
-  for (var i = 0; i < styleArr.length; i++) {
+  var cssDir = ['course','forgotpassword','pay','personal'];
+  for (var i = 0; i < cssDir.length; i++) {
     pipes.push(
-      gulp.src('static/css/'+styleArr[i]+'/*base.css')
-        // .pipe(concatFile(styleArr[i]+'-base.css'))//合并的文件名称
+      gulp.src('static/css/'+cssDir[i]+'/*base.css')
+        // .pipe(concatFile(cssDir[i]+'-base.css'))//合并的文件名称
         // .pipe(minifycss())
         .pipe(rev())
-        .pipe(gulp.dest('dist/assets/css/'+styleArr[i]+'/'))
+        .pipe(gulp.dest('dist/assets/css/'+cssDir[i]+'/'))
         .pipe(rev.manifest({
-          path:styleArr[i]+'-base.json'
+          path:cssDir[i]+'-base.json'
         }))
         .pipe(gulp.dest('./dist/rev/css'))
     );
     pipes.push(
-      gulp.src('static/css/'+styleArr[i]+'/*sm-lg.css')
-        // .pipe(concatFile(styleArr[i]+'-sm-lg.css'))//合并的文件名称
+      gulp.src('static/css/'+cssDir[i]+'/*sm-lg.css')
+        // .pipe(concatFile(cssDir[i]+'-sm-lg.css'))//合并的文件名称
         // .pipe(minifycss())
         .pipe(rev())
-        .pipe(gulp.dest('dist/assets/css/'+styleArr[i]+''))
+        .pipe(gulp.dest('dist/assets/css/'+cssDir[i]+''))
         .pipe(rev.manifest({
-          path:styleArr[i]+'-sm-lg.json'
+          path:cssDir[i]+'-sm-lg.json'
         }))
         .pipe(gulp.dest('./dist/rev/css'))
     );
@@ -178,11 +180,13 @@ gulp.task('rev',['jsbuild','cssbuild-all'],function() {
     .pipe(gulp.dest('./dist'));
 });
 
+// 移动libs
 gulp.task('move-libs',function() {
   // body...
   gulp.src('./static/js/libs/**/**')
     .pipe(gulp.dest('./dist/assets/js/libs'));
 });
+// 移动相关图片
 gulp.task('move-img',function() {
   // body...
   gulp.src('./static/img/**/?(*.jpg|*.png|*.gif)')
@@ -191,6 +195,7 @@ gulp.task('move-img',function() {
 
 
 
-
+// 构建生产环境
 gulp.task('build',['jsbuild','cssbuild-all','rev','move-libs','move-img']);
-gulp.task('default',['browser-sync','tmodWatch']); //定义默认任务
+//定义默认任务
+gulp.task('default',['browser-sync','tmodWatch']);

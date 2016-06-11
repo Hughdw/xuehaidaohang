@@ -16,7 +16,8 @@ require.config({
       // 'app': '../static/js/app',
       // 'mod': '../static/js/app/components',
       // 'tpldata':'./app/data/template',
-      'tpl':'tpl'
+      'tpl':'tpl',
+      'ngMock':'libs/angular-mocks'
     },
     shim: {
       'bootstrap':{
@@ -28,6 +29,10 @@ require.config({
       'ngRoute':{
         deps:['angular'],
         exports:'ngRoute'
+      },
+      'ngMock':{
+        deps:['angular'],
+        exports:'ngMock'
       }
     },
     // deps:['bootstrap']//确保首先加载bootstrap
