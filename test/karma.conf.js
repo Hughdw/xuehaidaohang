@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Sat Jun 11 2016 11:26:31 GMT+0800 (中国标准时间)
+// Generated on Sat Jun 11 2016 13:37:29 GMT+0800 (中国标准时间)
 
 module.exports = function(config) {
   config.set({
@@ -10,17 +10,16 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'test-main.js',
-      {pattern: 'static/js/**/*.js', included: false},
-      {pattern: 'test/lib/angular.js', included: false},
-      {pattern: 'test/lib/angular-mocks.js', included: false},
-      {pattern: 'test/lib/angular-route.js', included: false},
-      {pattern: 'test/unit/**/*.js', included: false}
+      'test/lib/angular.js',
+      'test/lib/angular-mocks.js',
+      'test/lib/angular-route.js',
+      'static/js/app/**/forgot-password-*.js',
+      'test/unit/**/*.js'
     ],
 
 
@@ -42,7 +41,7 @@ module.exports = function(config) {
 
 
     // web server port
-    port: 9876,
+    port: 3000,
 
 
     // enable / disable colors in the output (reporters and logs)
