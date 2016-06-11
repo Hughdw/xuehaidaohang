@@ -7,6 +7,7 @@ require(['config'], function(config) {
     'app/forgot-password-main'
   ],function() {
     // 手动启动 angular 应用
-    angular.bootstrap(document,['findPDApp']);
+    // 转向纯angular应用，此页面暂时无用
+
   });
 });
