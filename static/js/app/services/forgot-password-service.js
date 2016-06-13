@@ -3,25 +3,32 @@ angular.module('findPDApp')
 
 })
 .factory('apiURL', function() {
+  var oServiceApi = {};
   var sHost = 'http://www.quick.com:8081';
-  return {
-    imgCaptcha:sHost + '/api/getCaptcha',
-    mobileCode:sHost + '/api/sendMobileCode',
-    mailCode:sHost + '/api/sendMailCode',
-    verifyCode:sHost + '/api/verifyCode'
-  };
+  var testPostfix = '';
+  // var sHost = 'https://xuehaidaohang.wilddogio.com';
+  // var testPostfix = '.json';
+  // 图片验证码
+  oServiceApi.imgCaptcha = 'http://www.quick.com:8081/api/getCaptcha';
+  // 发送手机验证码
+  oServiceApi.mobileCode = sHost + '/api/sendMobileCode' + testPostfix;
+  // 发送邮箱验证码
+  oServiceApi.mailCode = sHost + '/api/sendMailCode' + testPostfix;
+  // 验证验证码
+  oServiceApi.verifyCode = sHost + '/api/verifyCode' + testPostfix;
+  return oServiceApi;
 })
 .factory('CAPTCHAService', function($q, $http, apiURL) {
   var oService = {};
   var fnPretreatment = function(answer,deferred) {
     // 对后台返回的状态码做预处理
     // 200返回执行，401拒绝
-    if (answer.data.code === 200) {
+    if (answer.data.code == 200) {
       answer.status = true;
-      deferred.resolve(answer);
-    } else if (answer.data.code === 401) {
+      deferred.resolve(answer.data);
+    } else if (answer.data.code == 401) {
       answer.status = false;
-      deferred.reject(answer);
+      deferred.reject(answer.data);
     }
   };
 
@@ -41,7 +48,6 @@ angular.module('findPDApp')
         fnPretreatment(answer,oDeferred);
       },
       function(error) {
-        console.log(error);
         oDeferred.reject(error);
       }
     );
@@ -60,7 +66,6 @@ angular.module('findPDApp')
         fnPretreatment(answer,oDeferred);
       },
       function(error) {
-        console.log(error);
         oDeferred.reject(error);
       }
     );
@@ -69,10 +74,10 @@ angular.module('findPDApp')
   oService.verifyCode = function(type,code) {
     var oVerifyType;
     switch (type) {
-      case 'mobile':
+      case 'mobileCaptcha':
         oVerifyType = {activationMobileCode:code};
         break;
-      case 'mail':
+      case 'mailCaptcha':
         oVerifyType = {activationMailCode:code};
         break;
       default:
@@ -88,7 +93,6 @@ angular.module('findPDApp')
         fnPretreatment(answer,oDeferred);
       },
       function(error) {
-        console.log(error);
         oDeferred.reject(error);
       }
     );
