@@ -24,8 +24,16 @@ angular.module('findPDApp')
     $scope.mobileData = {
       mobile:'',//记录用户输入的手机号码
       currentStep:0,//当前步骤
-      imgCaptchaCallback:false// 记录 验证图片验证码的请求是否返回
+      verifyCallback:{
+        img:false,// 记录 验证图片验证码的请求是否返回
+        mobile:false,
+        mail:false
+      }
     };
+    // ************************************
+    // 第一步
+    // ************************************
+
     // 获取验证码按钮 显示开关
     $scope.showBtn = true;
     // 获取验证码按钮 是否禁用
@@ -44,13 +52,16 @@ angular.module('findPDApp')
     $scope.reloadCaptcha = function() {
       $scope.getCaptcha = CAPTCHAService.getImgCaptcha();
     };
+
+    // ************************************
+    // 第一步
+    // ************************************
     // 获取短信验证码
     // 1.请求发送短信的借口
     // 2.表单校验输入的格式
     // 3.输入完成，点击提交按钮进行验证
     // 4.1.验证通过 按钮文字变为 下一步
     // 4.2.验证未通过 按钮文字还是 提交
-
     $scope.getMobileCode = function(mobile) {
       var nTotal = 30;
       var vCountDownId;
@@ -61,7 +72,7 @@ angular.module('findPDApp')
           $scope.showBtn = false;
           $scope.countDown = nTotal;
           vCountDownId = $interval(function() {
-            console.log(nTotal);
+            // console.log(nTotal);
             if (nTotal === 0) {
               $scope.btnDis = false;
               $scope.showBtn = true;
@@ -77,9 +88,12 @@ angular.module('findPDApp')
       );
     };
 
+
+
+
     // 测试相关变量控制
     $scope.mobileData.mobile = 13917232473;
-    $scope.mobileData.currentStep = 0;
+    $scope.mobileData.currentStep = 2;
     $scope.testFn = function() {
       console.log($scope.mobileData.imgCaptchaCallback);
     };
