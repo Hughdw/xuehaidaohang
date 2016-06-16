@@ -1,71 +1,158 @@
-<div class="modal-content" id="forgot-email" ng-controller="emailCtrl">
+<div class="modal-content" id="forgot-mail" ng-controller="mailCtrl">
   <div class="modal-header">
     <h4 class="modal-title">通过邮箱找回密码</h4>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" ng-switch="mailData.currentStep">
     <ul class="step-tit">
-      <li class="active">第一步</li>
-      <li>第二步</li>
-      <li>第三步</li>
+      <li ng-class="getActiveClass(0)">第一步</li>
+      <li ng-class="getActiveClass(1)">第二步</li>
+      <li ng-class="getActiveClass(2)">第三步</li>
     </ul>
     <div class="step-cont">
-      <div class="form-horizontal form-cont hide" id="email-step-1">
-        <div class="form-group">
-          <label for="input-email-1" class="label-tit col-xs-12">邮箱地址：</label>
-          <div class="col-xs-12">
-            <input type="text" class="form-control" id="input-email-1" placeholder="您绑定的邮箱">
+      <!-- 第一步 输入图片验证码 -->
+      <form name="mailForm_0" ng-switch-when='0' novalidate>
+        <div class="form-horizontal form-cont">
+          <div class="form-group">
+            <label for="input-mail-0" class="label-tit col-xs-12">邮箱地址：</label>
+            <div class="col-xs-12">
+              <input
+              type="email"
+              name="mail"
+              class="form-control"
+              id="input-mail-0"
+              placeholder="您绑定的邮箱"
+              ng-model="mailData.mail"
+              required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-mail-imgcaptcha" class="label-tit col-xs-12">验证码：</label>
+            <div class="col-xs-6 col-sm-8 wrap-relative">
+              <!-- ensure-correct的值 用来在自定义指令中做些判断 -->
+              <input
+              type="text"
+              name="imgCaptcha"
+              class="form-control"
+              id="input-mail-imgcaptcha"
+              placeholder="输入验证码"
+              ng-model="imgCaptcha"
+              maxlength="5"
+              ng-pattern="/[A-Za-z0-9]{5}/"
+              ensure-correct="img"
+              required>
+              <span class="inner-absolute" ng-show="!mailForm_0.imgCaptcha.$isEmpty(imgCaptcha) && !mailForm_0.imgCaptcha.$error.pattern">
+                <span class="glyphicon glyphicon-remove-sign text-danger" ng-show="vm.verifyCallback.img && mailForm_0.imgCaptcha.$error.correct"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success" ng-show="vm.verifyCallback.img && !mailForm_0.imgCaptcha.$error.correct"></span>
+              </span>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+              <img ng-src="{{vm.getCaptcha}}" ng-click="vm.reloadCaptcha()">
+            </div>
+          </div>
+          <div class="form-group" ng-show="mailForm_0.$dirty && mailForm_0.$invalid">
+            <div class="col-xs-12">
+              <div class="alert alert-danger">
+                <ul>
+                  <li ng-show="mailForm_0.$dirty && mailForm_0.$invalid">信息不完整或不正确</li>
+                  <li ng-show="mailForm_0.mail.$dirty && mailForm_0.mail.$error.required">邮箱不能为空</li>
+                  <li ng-show="mailForm_0.mail.$dirty && mailForm_0.mail.$error.mail">邮箱格式不正确或位数不对</li>
+                  <li ng-show="mailForm_0.imgCaptcha.$dirty && mailForm_0.imgCaptcha.$error.required">验证码不能为空</li>
+                  <li ng-show="mailForm_0.imgCaptcha.$dirty && mailForm_0.imgCaptcha.$error.pattern">验证码格式不正确或位数不对</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="input-email-imgcaptcha" class="label-tit col-xs-12">验证码：</label>
-          <div class="col-xs-6 col-sm-8">
-            <input type="text" class="form-control" id="input-email-imgcaptcha" placeholder="输入验证码">
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="mailForm_0.$invalid || mailForm_0.imgCaptcha.$error.correct" ng-click="mailData.currentStep = 1">下一步</button>
+        </div>
+      </form>
+      <!-- 第二步 输入短信验证码 -->
+      <form name="mailForm_1" ng-switch-when='1' novalidate>
+        <div class="form-horizontal form-cont">
+          <div class="form-group">
+            <label for="input-mail-1" class="label-tit col-xs-12">邮箱地址：</label>
+            <div class="col-xs-12">
+              <input type="email" class="form-control" id="input-mail-1" placeholder="{{mailData.mail}}" readonly>
+            </div>
           </div>
-          <div class="col-xs-6 col-sm-4">
-            <img src="/" alt="">
+          <div class="form-group">
+            <label for="input-mail-captcha" class="label-tit col-xs-12">邮件验证码：</label>
+            <div class="col-xs-6 col-sm-7 wrap-relative">
+              <input
+              type="text"
+              name="mailCaptcha"
+              class="form-control"
+              id="input-mail-captcha"
+              ng-model="mailCaptcha"
+              maxlength="4"
+              ng-pattern="/[0-9]{4}/"
+              ensure-correct="mail"
+              placeholder="邮件验证码"
+              required>
+              <span class="inner-absolute" ng-show="!mailForm_1.mailCaptcha.$isEmpty(mailCaptcha) && !mailForm_1.mailCaptcha.$error.pattern">
+                <span class="glyphicon glyphicon-remove-sign text-danger" ng-show="vm.verifyCallback.mail && mailForm_1.mailCaptcha.$error.correct"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success" ng-show="vm.verifyCallback.mail && !mailForm_1.mailCaptcha.$error.correct"></span>
+              </span>
+            </div>
+            <div class="col-xs-6 col-sm-5">
+              <button type="button" class="btn btn-primary" ng-show="mailBtn.isShow" ng-disabled="mailBtn.isDis"  ng-click="getMailCode(mailData.mail)">{{mailBtn.txt}}</button>
+              <button type="button" class="btn btn-default" ng-show="!mailBtn.isShow" disabled>{{mailBtn.countDown}}后重新发送</button>
+            </div>
+          </div>
+          <div class="form-group" ng-show="mailForm_1.$dirty && mailForm_1.$invalid">
+            <div class="col-xs-12">
+              <div class="alert alert-danger">
+                <ul>
+                  <li ng-show="mailForm_1.$dirty && mailForm_1.$invalid">信息不完整或不正确</li>
+                  <li ng-show="mailForm_1.mailCaptcha.$dirty && mailForm_1.mailCaptcha.$error.required">验证码不能为空</li>
+                  <li ng-show="mailForm_1.mailCaptcha.$dirty && mailForm_1.mailCaptcha.$error.pattern">验证码格式不正确或位数不对</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="form-horizontal form-cont hide" id="email-step-2">
-        <div class="form-group">
-          <label for="input-email-2" class="label-tit col-xs-12">邮箱地址：</label>
-          <div class="col-xs-12">
-            <input type="number" class="form-control" id="input-email-2" placeholder="example_email@gmail.com" readonly>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="mailForm_1.$invalid || mailForm_1.mailCaptcha.$error.correct" ng-click="mailData.currentStep = 2">下一步</button>
+        </div>
+      </form>
+      <!-- 第三步 输入新密码 -->
+      <form name="mailForm_2" ng-switch-when='2' novalidate>
+        <div class="form-horizontal form-cont">
+          <div class="form-group">
+            <label for="input-mail-2" class="label-tit col-xs-12">邮箱地址：</label>
+            <div class="col-xs-12">
+              <input type="number" class="form-control" id="input-mail-2" placeholder="{{mailData.mail}}" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-mail-password" class="label-tit col-xs-12">设置密码：</label>
+            <div class="col-xs-12">
+              <input
+              type="password"
+              class="form-control"
+              id="input-mail-password"
+              placeholder="您要设置的密码"
+              required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-mail-confirmpassword" class="label-tit col-xs-12">密码确认：</label>
+            <div class="col-xs-12">
+              <input
+              type="password"
+              class="form-control"
+              id="input-mail-confirmpassword"
+              placeholder="重新输入您的密码"
+              required>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="input-email-captcha" class="label-tit col-xs-12">邮件验证码：</label>
-          <div class="col-xs-6 col-sm-8">
-            <input type="text" class="form-control" id="input-email-captcha" placeholder="邮件验证码">
-          </div>
-          <div class="col-xs-6 col-sm-4">
-            <button type="submit" class="btn btn-primary" id="get-email-captcha">获取验证码</button>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" ng-click="testFn()">测试</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="mailForm_2.$invalid " ng-click="">提交</button>
         </div>
-      </div>
-      <div class="form-horizontal form-cont" id="email-step-3">
-        <div class="form-group">
-          <label for="input-email-3" class="label-tit col-xs-12">邮箱地址：</label>
-          <div class="col-xs-12">
-            <input type="number" class="form-control" id="input-email-3" placeholder="example_email@gmail.com" readonly>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="input-email-password" class="label-tit col-xs-12">设置密码：</label>
-          <div class="col-xs-12">
-            <input type="password" class="form-control" id="input-email-password" placeholder="您要设置的密码">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="input-email-confirmpassword" class="label-tit col-xs-12">密码确认：</label>
-          <div class="col-xs-12">
-            <input type="password" class="form-control" id="input-email-confirmpassword" placeholder="重新输入您的密码">
-          </div>
-        </div>
-      </div>
+      </form>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary btn-lg btn-block">下一步</button>
   </div>
 </div>

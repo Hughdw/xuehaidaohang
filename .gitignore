@@ -5,6 +5,7 @@
 other/*
 lib/*
 dist/*
+deployd/*
 node_modules/*
 static/js/libs/*
 static/js/tpl/*

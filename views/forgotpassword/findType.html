@@ -5,18 +5,18 @@
   <div class="modal-body">
     <div class="select-item " ng-class="getActiveClass('mobile')">
       <label>
-        <input type="radio" name="findType" id="options-mobile" value="mobile" ng-model="findTypeStep.selectType" checked="checked">
+        <input type="radio" name="findType" id="options-mobile" value="mobile" ng-model="findType.select" checked="checked">
         通过手机找回
       </label>
     </div>
     <div class="select-item " ng-class="getActiveClass('email')">
       <label>
-        <input type="radio" name="findType" id="options-email" value="email" ng-model="findTypeStep.selectType">
+        <input type="radio" name="findType" id="options-email" value="email" ng-model="findType.select">
         通过邮箱找回
       </label>
     </div>
   </div>
   <div class="modal-footer">
-    <a href="#/{{findTypeStep.selectType}}" class="btn btn-primary btn-lg btn-block">下一步</a>
+    <a href="#/{{findType.select}}" class="btn btn-primary btn-lg btn-block">下一步</a>
   </div>
 </div>

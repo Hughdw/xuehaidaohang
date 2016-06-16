@@ -4,18 +4,30 @@ angular.module('findPDApp')
 })
 .factory('apiURL', function() {
   var oServiceApi = {};
-  var sHost = 'http://www.quick.com:8081';
+  // var sHost = 'http://xuehaidaohanglocalapi.com:5500';
+  var sHost = 'http://www.quick.com:8081/api';
   var testPostfix = '';
-  // var sHost = 'https://xuehaidaohang.wilddogio.com';
+  // var sHost = 'https://xuehaidaohang.wilddogio.com/api';
   // var testPostfix = '.json';
   // 图片验证码
   oServiceApi.imgCaptcha = 'http://www.quick.com:8081/api/getCaptcha';
   // 发送手机验证码
-  oServiceApi.mobileCode = sHost + '/api/sendMobileCode' + testPostfix;
+  oServiceApi.mobileCode = sHost + '/sendMobileCode' + testPostfix;
   // 发送邮箱验证码
-  oServiceApi.mailCode = sHost + '/api/sendMailCode' + testPostfix;
+  oServiceApi.mailCode = sHost + '/sendMailCode' + testPostfix;
   // 验证验证码
-  oServiceApi.verifyCode = sHost + '/api/verifyCode' + testPostfix;
+  oServiceApi.verifyCode = sHost + '/verifyCode' + testPostfix;
+  // 通过手机重置密码
+  oServiceApi.updateMobilePassword = sHost + '/updateMobilePassword' + testPostfix;
+  // 通过邮箱重置密码
+  oServiceApi.updateMailPassword = sHost + '/updateMailPassword' + testPostfix;
+  // 本地使用Deployd做测试API时，需要把请求字符串转换成小写。
+  // for(var p in oServiceApi){
+  //   if (typeof p === 'string') {
+  //     oServiceApi[p] = oServiceApi[p].toLowerCase();
+  //   }
+  // }
+
   return oServiceApi;
 })
 .factory('CAPTCHAService', function($q, $http, apiURL) {
@@ -26,7 +38,7 @@ angular.module('findPDApp')
     if (answer.data.code == 200) {
       answer.status = true;
       deferred.resolve(answer.data);
-    } else if (answer.data.code == 401) {
+    } else if (answer.data.code > 200) {
       answer.status = false;
       deferred.reject(answer.data);
     }
@@ -53,12 +65,12 @@ angular.module('findPDApp')
     );
     return oDeferred.promise;
   };
-  oService.getMailCode = function(email) {
+  oService.getMailCode = function(mail) {
     var oDeferred = $q.defer();
-    var oPromise = $http.get(apiURL.mobileCode,{
+    var oPromise = $http.get(apiURL.mailCode,{
       params:{
         reg:0,
-        mobile:mobile
+        email:mail
       }
     });
     oPromise.then(
@@ -74,14 +86,17 @@ angular.module('findPDApp')
   oService.verifyCode = function(type,code) {
     var oVerifyType;
     switch (type) {
-      case 'mobileCaptcha':
+      case 'mobile':
         oVerifyType = {activationMobileCode:code};
         break;
-      case 'mailCaptcha':
+      case 'mail':
         oVerifyType = {activationMailCode:code};
         break;
-      default:
+      case 'img':
         oVerifyType = {captcha:code};
+        break;
+      default:
+        oVerifyType = {};
     }
     // 构建一个新的延迟实例
     var oDeferred = $q.defer();
@@ -99,5 +114,24 @@ angular.module('findPDApp')
     // 与当前oDeferred有关的oPromise对象。
     return oDeferred.promise;
   };
+  oService.updateMobilePassword = function(mobile,password,confirmpassword,token) {
+    var oDeferred = $q.defer();
+    var oPromise = $http.get(apiURL.updateMobilePassword,{
+      params:{
+        mobile:mobile,
+        password:password,
+        repassword:confirmpassword
+      }
+    });
+    oPromise.then(
+      function(answer) {
+        fnPretreatment(answer,oDeferred);
+      },
+      function(error) {
+        oDeferred.reject(error);
+      }
+    );
+    return oDeferred.promise;
+  }
   return oService;
 })
