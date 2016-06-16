@@ -33,11 +33,17 @@ gulp.task('browser-sync',function() {
     // './static/**/*.js'
   ];
   browserSync.init(files,{
-        server: {
+        server: {// 创建一个基本的HTML/JS/CSS服务器
             baseDir: './'
-        }
+        },
+        online:false, //不会尝试确定你的网络状况
+        open:false //停止自动打开浏览器
   });
 });
+// browserSync({
+// server:'./',
+// https:true
+// })
 
 // tmod转换模板文件的任务
 gulp.task('tmod',function() {
