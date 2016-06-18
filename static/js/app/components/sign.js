@@ -9,6 +9,9 @@ define(function(require) {
       var hideModal = $('.modal-content');
       hideModal.hide();
       parentModal.find(showModal).show();
+    },
+    showModal : function($Btn) {
+      // body...
     }
   };
   return sign;

@@ -15,19 +15,23 @@ define(function (require) {
       $(this).tab('show');
     });
 
-    // 登录注册对话框相关事件绑定
+    // 点击#signup-btn按钮切换模态框显示为登录
     $SignModal.on('click', '.signin-btn', function(event) {
       event.preventDefault();
       /* Act on the event */
       var $Button = $(event.currentTarget);
       mSign.switchShowModal($Button,$SignModal);
     });
+    // 点击#signup-btn按钮切换模态框显示为注册
     $SignModal.on('click', '#signup-btn', function(event) {
       event.preventDefault();
       /* Act on the event */
       var $Button = $(event.currentTarget);
       mSign.switchShowModal($Button,$SignModal);
     });
+
+    // BS 模态框显示事件
+    // 通过 event.relatedTarget 可以访问到触发事件的元素
     $SignModal.on('show.bs.modal',function(event) {
       var $Button = $(event.relatedTarget);
       mSign.switchShowModal($Button,$SignModal);

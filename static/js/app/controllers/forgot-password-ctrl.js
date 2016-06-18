@@ -106,16 +106,6 @@ angular.module('findPDApp')
     // console.log('%chello','font-size:25px;color:red');
     mobileData.mobile = 13917232473;
     // mobileData.currentStep = 2;
-    $scope.testFn = function() {
-      CAPTCHAService.updateMobilePassword(13917232473,123123,123123).then(
-        function(success) {
-          // body...
-        },
-        function(error) {
-          // body...
-        }
-      );
-    };
 
   })
 
@@ -172,7 +162,7 @@ angular.module('findPDApp')
     // 重置密码
     // ************************************
     mailData.updatePassword = function() {
-      CAPTCHAService.updateMailPassword(mailData.mobile,mailData.password,mailData.confirmpassword).then(
+      CAPTCHAService.updateMailPassword(mailData.mail,mailData.password,mailData.confirmpassword).then(
         function(success) {
           alert('成功');
         },
@@ -185,15 +175,5 @@ angular.module('findPDApp')
     // 测试相关变量控制
     mailData.mail = 'whd007@163.com';
     mailData.currentStep = 0;
-    $scope.testFn = function() {
-      CAPTCHAService.updateMailPassword('whd007@163.com',123123,123123).then(
-        function(success) {
-          // body...
-        },
-        function(error) {
-          // body...
-        }
-      );
-    };
 
   });

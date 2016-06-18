@@ -132,6 +132,25 @@ angular.module('findPDApp')
       }
     );
     return oDeferred.promise;
-  }
+  };
+  oService.updateMailPassword = function(mail,password,confirmpassword,token) {
+    var oDeferred = $q.defer();
+    var oPromise = $http.get(apiURL.updateMailPassword,{
+      params:{
+        email:mail,
+        password:password,
+        repassword:confirmpassword
+      }
+    });
+    oPromise.then(
+      function(answer) {
+        fnPretreatment(answer,oDeferred);
+      },
+      function(error) {
+        oDeferred.reject(error);
+      }
+    );
+    return oDeferred.promise;
+  };
   return oService;
-})
+});
