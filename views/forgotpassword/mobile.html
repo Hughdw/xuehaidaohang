@@ -138,7 +138,6 @@
               ng-model="mobileData.password"
               ng-minlength="6"
               ng-maxlength="15"
-              ng-pattern="/[A-Za-z0-9]/"
               required>
             </div>
           </div>
@@ -154,7 +153,6 @@
               ng-model="mobileData.confirmpassword"
               pd-confirm="password"
               required>
-              <!-- pd- -->
             </div>
           </div>
           <div class="form-group" ng-show="mobileForm_2.$dirty && mobileForm_2.$invalid">
@@ -165,8 +163,6 @@
                   <li ng-show="mobileForm_2.password.$dirty && mobileForm_2.password.$error.required">密码不能为空</li>
                   <li ng-show="mobileForm_2.password.$dirty && mobileForm_2.password.$error.minlength">密码长度不能小于6个字符</li>
                   <li ng-show="mobileForm_2.password.$dirty && mobileForm_2.password.$error.maxlength">密码长度不能大于15个字符</li>
-                  <li ng-show="mobileForm_2.password.$dirty && !mobileForm_2.password.$error.minlength && mobileForm_2.password.$error.maxlength && mobileForm_2.password.$error.pattern">密码格式不正确或位数不对</li>
-
                   <li ng-show="mobileForm_2.confirmpassword.$dirty && mobileForm_2.confirmpassword.$error.confirm">两次密码输入不一样</li>
                 </ul>
               </div>
@@ -174,7 +170,6 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" ng-click="testFn()">测试</button>
           <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="mobileForm_2.$invalid " ng-click="mobileData.updatePassword()">提交</button>
         </div>
       </form>
