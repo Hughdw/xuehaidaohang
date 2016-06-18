@@ -4,9 +4,9 @@
   </div>
   <div class="modal-body" ng-switch="mailData.currentStep">
     <ul class="step-tit">
-      <li ng-class="getActiveClass(0)">第一步</li>
-      <li ng-class="getActiveClass(1)">第二步</li>
-      <li ng-class="getActiveClass(2)">第三步</li>
+      <li ng-class="mailData.getActiveClass(0)">第一步</li>
+      <li ng-class="mailData.getActiveClass(1)">第二步</li>
+      <li ng-class="mailData.getActiveClass(2)">第三步</li>
     </ul>
     <div class="step-cont">
       <!-- 第一步 输入图片验证码 -->
@@ -96,7 +96,7 @@
               </span>
             </div>
             <div class="col-xs-6 col-sm-5">
-              <button type="button" class="btn btn-primary" ng-show="mailBtn.isShow" ng-disabled="mailBtn.isDis"  ng-click="getMailCode(mailData.mail)">{{mailBtn.txt}}</button>
+              <button type="button" class="btn btn-primary" ng-show="mailBtn.isShow" ng-disabled="mailBtn.isDis"  ng-click="mailData.getMailCode(mailData.mail)">{{mailBtn.txt}}</button>
               <button type="button" class="btn btn-default" ng-show="!mailBtn.isShow" disabled>{{mailBtn.countDown}}后重新发送</button>
             </div>
           </div>
@@ -130,9 +130,13 @@
             <div class="col-xs-12">
               <input
               type="password"
+              name="password"
               class="form-control"
               id="input-mail-password"
               placeholder="您要设置的密码"
+              ng-model="mailData.password"
+              ng-minlength="6"
+              ng-maxlength="15"
               required>
             </div>
           </div>
@@ -141,16 +145,31 @@
             <div class="col-xs-12">
               <input
               type="password"
+              name="confirmpassword"
               class="form-control"
               id="input-mail-confirmpassword"
               placeholder="重新输入您的密码"
+              ng-model="mailData.confirmpassword"
+              pd-confirm="password"
               required>
+            </div>
+          </div>
+          <div class="form-group" ng-show="mailForm_2.$dirty && mailForm_2.$invalid">
+            <div class="col-xs-12">
+              <div class="alert alert-danger">
+                <ul>
+                  <li ng-show="mailForm_2.$dirty && mailForm_2.$invalid">请正确填完表单</li>
+                  <li ng-show="mailForm_2.password.$dirty && mailForm_2.password.$error.required">密码不能为空</li>
+                  <li ng-show="mailForm_2.password.$dirty && mailForm_2.password.$error.minlength">密码长度不能小于6个字符</li>
+                  <li ng-show="mailForm_2.password.$dirty && mailForm_2.password.$error.maxlength">密码长度不能大于15个字符</li>
+                  <li ng-show="mailForm_2.confirmpassword.$dirty && mailForm_2.confirmpassword.$error.confirm">两次密码输入不一样</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" ng-click="testFn()">测试</button>
-          <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="mailForm_2.$invalid " ng-click="">提交</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="mailForm_2.$invalid " ng-click="mailData.upddataPassword()">提交</button>
         </div>
       </form>
     </div>

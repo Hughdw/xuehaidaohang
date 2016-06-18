@@ -38,6 +38,7 @@ angular.module('findPDApp')
       mobile:'',//记录用户输入的手机号码
       currentStep:0,//当前步骤
     };
+
     //切换 步骤样式
     mobileData.getActiveClass = function(type) {
       return type === mobileData.currentStep ? addActiveClass : '';
@@ -85,7 +86,7 @@ angular.module('findPDApp')
     };
 
     // ************************************
-    //
+    // 重置密码
     // ************************************
     mobileData.updatePassword = function() {
       CAPTCHAService.updateMobilePassword(mobileData.mobile,mobileData.password,mobileData.confirmpassword).then(
@@ -104,7 +105,7 @@ angular.module('findPDApp')
     // 测试相关变量控制
     // console.log('%chello','font-size:25px;color:red');
     mobileData.mobile = 13917232473;
-    mobileData.currentStep = 2;
+    // mobileData.currentStep = 2;
     $scope.testFn = function() {
       CAPTCHAService.updateMobilePassword(13917232473,123123,123123).then(
         function(success) {
@@ -126,7 +127,7 @@ angular.module('findPDApp')
     };
 
     //切换 步骤样式
-    $scope.getActiveClass = function(type) {
+    mailData.getActiveClass = function(type) {
       return type === mailData.currentStep ? addActiveClass : '';
     };
 
@@ -141,11 +142,11 @@ angular.module('findPDApp')
       mailBtn.countDown = 30;//倒计时总秒数
     };
     mailBtn.default();
-
+    console.log(mailBtn.isShow);
     // ************************************
     // 获取邮件验证码
     // ************************************
-    $scope.getMailCode = function(mail) {
+    mailData.getMailCode = function(mail) {
       var nTotal = mailBtn.countDown;
       var vIntervalId;
       mailBtn.isDis = true;
@@ -167,10 +168,23 @@ angular.module('findPDApp')
       );
     };
 
+    // ************************************
+    // 重置密码
+    // ************************************
+    mailData.updatePassword = function() {
+      CAPTCHAService.updateMailPassword(mailData.mobile,mailData.password,mailData.confirmpassword).then(
+        function(success) {
+          alert('成功');
+        },
+        function(error) {
+          alert(error.message);
+        }
+      );
+    };
 
     // 测试相关变量控制
     mailData.mail = 'whd007@163.com';
-    mailData.currentStep = 1;
+    mailData.currentStep = 0;
     $scope.testFn = function() {
       CAPTCHAService.updateMailPassword('whd007@163.com',123123,123123).then(
         function(success) {
