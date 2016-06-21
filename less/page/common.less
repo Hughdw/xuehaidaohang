@@ -54,12 +54,37 @@ a {
     .active();
   }
 }
+// 表单控件提醒文字/图标的定位
 .wrap-relative{
   position: relative;
 }
 .inner-absolute{
   position: absolute;
+  right: 26px;
+  top: 8px;
 }
+.hint-icon{
+  position: absolute;
+}
+.hint-info{
+  position: absolute;
+  right: 15px;
+  top: 1px;
+  padding: 6px 12px;
+  color: #fff;
+  background-color: #d16d62;
+  .var-border-radius(@border-radius-sm);
+}
+// ng表单控件的border警示状态
+textarea .ng-dirty.ng-invalid,
+select .ng-dirty.ng-invalid,
+input.ng-focused.ng-dirty.ng-invalid {
+    border-color: #d16d62;
+    -webkit-box-shadow: 0 0 6px #f8b9b7;
+    -moz-box-shadow: 0 0 6px #f8b9b7;
+    box-shadow: 0 0 6px #f8b9b7;
+}
+
 // ************************************
 // bootstarp style 扩展
 // ************************************
@@ -197,48 +222,7 @@ main{
   }
 }
 
-// 登录/注册/忘记密码
-#sign-modal{
-  .tab-list {
-    overflow: hidden;
-    list-style: none;
-    padding: 0;
-    .size(100%,40px);
-    line-height: 40px;
-    text-align: center;
-    margin-bottom: 0;
-    li {
-      float: left;
-      width: 50%;
-      background: #cac3af;
-    }
-    .tab-list-item {
-      display: block;
-      color: #fff;
-    }
-    .active {
-      background: #fff;
-      .tab-list-item {
-        color: #333;
-      }
-    }
-  }
 
-
-  .link-txt {
-    font-size: 12px;
-    text-align: right;
-    padding-right: 20px;
-  }
-  .signin-btn{
-    margin-left: 2px;
-  }
-  .checkbox{
-    padding-top: 0;
-    padding-bottom: 8px;
-  }
-
-}
 
 // 加载动画
 .loading{

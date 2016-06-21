@@ -4,9 +4,9 @@ angular.module('findPDApp')
   .constant('addActiveClass', 'active')
 
   // 总控制器
-  .controller('appCtrl', function($scope, CAPTCHAService) {
+  .controller('appCtrl', function($scope, apiService) {
     var vm = $scope.vm = {
-      getCaptcha: CAPTCHAService.getImgCaptcha(),
+      getCaptcha: apiService.getImgCaptcha(),
       verifyCallback:{
         img:false,// 记录 验证图片验证码的请求是否返回
         mobile:false,
@@ -14,10 +14,10 @@ angular.module('findPDApp')
       }
     };
     // // 图片验证码
-    // $scope.getCaptcha = CAPTCHAService.getImgCaptcha();
+    // $scope.getCaptcha = apiService.getImgCaptcha();
     // 刷新验证码
     vm.reloadCaptcha = function() {
-      vm.getCaptcha = CAPTCHAService.getImgCaptcha();
+      vm.getCaptcha = apiService.getImgCaptcha();
     };
   })
 
@@ -33,7 +33,7 @@ angular.module('findPDApp')
   })
 
   // 子控制器 - 通过手机找回密码相关
-  .controller('mobileCtrl', function($scope, $interval, addActiveClass, CAPTCHAService) {
+  .controller('mobileCtrl', function($scope, $interval, addActiveClass, apiService) {
     var mobileData = $scope.mobileData = {
       mobile:'',//记录用户输入的手机号码
       currentStep:0,//当前步骤
@@ -69,7 +69,7 @@ angular.module('findPDApp')
       var vIntervalId;
       smsBtn.isDis = true;
       smsBtn.txt = aBtnTxt[1];
-      CAPTCHAService.getMobileCode(mobile).then(
+      apiService.getMobileCode(mobile).then(
         function(success) {
           smsBtn.isShow = false;
           vIntervalId = $interval(function() {
@@ -89,7 +89,7 @@ angular.module('findPDApp')
     // 重置密码
     // ************************************
     mobileData.updatePassword = function() {
-      CAPTCHAService.updateMobilePassword(mobileData.mobile,mobileData.password,mobileData.confirmpassword).then(
+      apiService.updateMobilePassword(mobileData.mobile,mobileData.password,mobileData.confirmpassword).then(
         function(success) {
           alert('成功');
           // body...
@@ -110,7 +110,7 @@ angular.module('findPDApp')
   })
 
   // 子控制器 - 通过邮箱找回密码相关
-  .controller('mailCtrl', function($scope, $interval, addActiveClass, CAPTCHAService) {
+  .controller('mailCtrl', function($scope, $interval, addActiveClass, apiService) {
     var mailData = $scope.mailData = {
       mail:'',//记录用户输入的手机号码
       currentStep:0,//当前步骤
@@ -141,7 +141,7 @@ angular.module('findPDApp')
       var vIntervalId;
       mailBtn.isDis = true;
       mailBtn.txt = aBtnTxt[1];
-      CAPTCHAService.getMailCode(mail).then(
+      apiService.getMailCode(mail).then(
         function(success) {
           mailBtn.isShow = false;
           vIntervalId = $interval(function() {
@@ -162,7 +162,7 @@ angular.module('findPDApp')
     // 重置密码
     // ************************************
     mailData.updatePassword = function() {
-      CAPTCHAService.updateMailPassword(mailData.mail,mailData.password,mailData.confirmpassword).then(
+      apiService.updateMailPassword(mailData.mail,mailData.password,mailData.confirmpassword).then(
         function(success) {
           alert('成功');
         },

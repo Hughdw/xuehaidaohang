@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- 通知 IE 采用其所支持的最新的模式 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- 指定用户是否可以缩放Web页面 -->
-  <title>首页</title>
+  <title>登录注册</title>
   <meta name="Description" content=""/>
   <meta name="Keywords" content=""/>
   <meta content="http://addaad.com/z/img/favicon-48.png" itemprop="image">
   <link rel="icon" type="image/vnd.microsoft.icon" href="http://addaad.com/z/img/favicon-24.ico"/>
   <link rel="stylesheet" href="static/js/libs/bootstrap/bootstrap-3.3.5/dist/css/bootstrap.css">
   <link rel="stylesheet" href="static/css/common.css">
+  <link rel="stylesheet" href="static/css/login/login-base.css">
+  
+  <script src="static/js/libs/jquery/1.11.3/jquery.js"></script>
+  <script src="static/js/libs/bootstrap/bootstrap-3.3.5/dist/js/bootstrap.js"></script>
+  <script data-main="static/js/login" src="static/js/libs/require.js"></script>
+
 </head>
 <body>
-
+<div id="sign-modal">
+  <div class="modal-dialog" role="document">
     <!-- 注册 -->
     <div class="modal-content" id="sign-up">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close close-ele" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">注册</h4>
       </div>
       <div class="modal-body">
@@ -113,7 +120,7 @@
     <!-- 登录 -->
     <div class="modal-content" id="sign-in">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close close-ele" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">登录</h4>
       </div>
       <div class="modal-body">
@@ -143,6 +150,54 @@
         <button type="button" class="btn btn-primary btn-lg btn-block">登录</button>
       </div>
     </div>
+  </div>
+  <div class="waper close-ele"></div>
+</div>
+<script>
+// 为父窗口提供调用函数，使其可以控制 模态框显示登录还是注册。
+var fnSwitchShowModal;
+$(function() {
+  var jqSignModal = $('#sign-modal');
+  // 切换显示窗口（注册/登录）
+  fnSwitchShowModal = function(btn) {
+    var showModal = btn.data('whatever');
+    var parentModal = jqSignModal;
+    var hideModal = $('.modal-content');
+    hideModal.hide();
+    parentModal.find(showModal).show();
+  };
 
+  // 关闭父窗口的modal模态框
+  $('.close-ele').on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    parent.fnCloseModal();
+  });
+
+  // 注册方式切换 手机/邮箱
+  jqSignModal.on('click', '.tab-list a', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $(this).tab('show');
+  });
+
+  // 点击#signup-btn按钮切换模态框显示为登录
+  jqSignModal.on('click', '.signin-btn', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    var btn = $(event.currentTarget);
+    fnSwitchShowModal(btn);
+  });
+  // 点击#signup-btn按钮切换模态框显示为注册
+  jqSignModal.on('click', '#signup-btn', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    var btn = $(event.currentTarget);
+    fnSwitchShowModal(btn);
+  });
+});
+
+
+</script>
 </body>
 </html>

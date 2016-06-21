@@ -1,0 +1,20 @@
+<style>
+  #sign-modal iframe{
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+<div id="sign-modal" class="modal fade" tabindex="-1" role="dialog">
+  <iframe allowtransparency="true" src="" frameborder="0"></iframe>
+</div>
+<script>
+  var fnCloseModal = function (){
+    $('#sign-modal').modal('hide');
+    var eModal = document.getElementById('sign-modal');
+    var eFrame = eModal.getElementsByTagName('iframe');
+    eFrame[0].src="";
+  };
+</script>
