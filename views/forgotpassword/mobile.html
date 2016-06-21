@@ -81,15 +81,15 @@
             <label for="input-mobile-captcha" class="label-tit col-xs-12">短信验证码：</label>
             <div class="col-xs-6 col-sm-7 wrap-relative">
               <input
-              type="text"
+              type="number"
               name="mobileCaptcha"
               class="form-control"
               id="input-mobile-captcha"
-              ng-model="mobileCaptcha"
+              placeholder="短信验证码"
               maxlength="4"
+              ng-model="mobileCaptcha"
               ng-pattern="/[0-9]{4}/"
               ensure-correct="mobile"
-              placeholder="短信验证码"
               required>
               <span class="inner-absolute" ng-show="!mobileForm_1.mobileCaptcha.$isEmpty(mobileCaptcha) && !mobileForm_1.mobileCaptcha.$error.pattern">
                 <span class="glyphicon glyphicon-remove-sign text-danger" ng-show="vm.verifyCallback.mobile && mobileForm_1.mobileCaptcha.$error.correct"></span>

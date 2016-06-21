@@ -10,8 +10,9 @@ define(function(require) {
       hideModal.hide();
       parentModal.find(showModal).show();
     },
-    showModal : function($Btn) {
+    test1 : function(instruct) {
       // body...
+
     }
   };
   return sign;

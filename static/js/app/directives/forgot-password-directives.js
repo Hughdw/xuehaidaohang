@@ -1,6 +1,6 @@
 angular.module('formCheck', [])
   // 通过请求API接口，验证输入的验证码是否正确
-  .directive('ensureCorrect', function(CAPTCHAService) {
+  .directive('ensureCorrect', function(apiService) {
     return {
       //依赖ngModel数据模型
       require: 'ngModel',
@@ -21,7 +21,7 @@ angular.module('formCheck', [])
           }
           // iAttrs.ensureCorrect 获取实例元素上的ensure-correct属性值
           // 通过ensure-correct属性值在verifyCode中进一步筛选请求的参数
-          CAPTCHAService.verifyCode(iAttrs.ensureCorrect, ctrl.$modelValue).then(
+          apiService.verifyCode(iAttrs.ensureCorrect, ctrl.$modelValue).then(
             function(seccess) {
               // XHR请求成功后，显示提醒标示
               scope.vm.verifyCallback[iAttrs.ensureCorrect] = true;
@@ -37,19 +37,19 @@ angular.module('formCheck', [])
       }
     };
   })
-  .directive("pdConfirm", function() {
+  .directive('pdConfirm', function() {
     return {
-      require: "ngModel",
+      require: 'ngModel',
       link: function(scope, iEle, iAttrs, ctrl) {
         if (ctrl) {
           // 获取 $formController 表单控制器下的 密码框控制器（[iAttrs.pdConfirm]的值指向将要进行相等判断的password控件）
-          var otherInput = iEle.inheritedData("$formController")[iAttrs.pdConfirm];
+          var otherInput = iEle.inheritedData('$formController')[iAttrs.pdConfirm];
           var confirmValidator = function(value) {
             // 判断value 与 密码框的值是否相等。
             // 其中value在$parsers分析程序中自动传入
             var validity = value === otherInput.$viewValue;
             // 向当前自定义指令所在控制器 设置验证的状态，并通知表单。
-            ctrl.$setValidity("confirm", validity);
+            ctrl.$setValidity('confirm', validity);
             return validity ? value : undefined;
           };
           // 向分析程序 $parsers中加入一个新的验证函数
@@ -59,7 +59,7 @@ angular.module('formCheck', [])
           // 向密码输入框控制器的分析程序中加入一个验证函数
           // 函数用来实时判断密码输入框中的值与密码确认输入框中的值是否相等，并设置验证的状态
           otherInput.$parsers.push(function(value) {
-            ctrl.$setValidity("confirm", value === ctrl.$viewValue);
+            ctrl.$setValidity('confirm', value === ctrl.$viewValue);
             return value;
           });
         }

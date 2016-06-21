@@ -1,5 +1,5 @@
 // angular route配置
-angular.module('findPDApp',['ngRoute','formCheck'])
+angular.module('findPDApp',['ngRoute','formCheck','api'])
 .config(function($routeProvider) {
   $routeProvider
   .when('/findType',{
