@@ -18,6 +18,10 @@ angular.module('api',[])
   oServiceApi.updateMobilePassword = sHost + '/updateMobilePassword' + testPostfix;
   // 通过邮箱重置密码
   oServiceApi.updateMailPassword = sHost + '/updateMailPassword' + testPostfix;
+  // 判断账号是否存在
+  oServiceApi.checkUsername = sHost + '/isUserReg' + testPostfix;
+  // 注册账号
+  oServiceApi.register = sHost +'/register' + testPostfix;
   // 本地使用Deployd做测试API时，需要把请求字符串转换成小写。
   // for(var p in oServiceApi){
   //   if (typeof p === 'string') {
@@ -40,15 +44,16 @@ angular.module('api',[])
       deferred.reject(answer.data);
     }
   };
-
+  // 获取图片验证码
   oService.getImgCaptcha = function() {
     return apiURL.imgCaptcha + '?v=' + Math.random();
   };
-  oService.getMobileCode = function(mobile) {
+  // 获取短信验证码
+  oService.getMobileCode = function(type,mobile) {
     var oDeferred = $q.defer();
     var oPromise = $http.get(apiURL.mobileCode,{
       params:{
-        reg:0,
+        reg:type,
         mobile:mobile
       }
     });
@@ -62,11 +67,12 @@ angular.module('api',[])
     );
     return oDeferred.promise;
   };
-  oService.getMailCode = function(mail) {
+  // 获取邮件验证码
+  oService.getMailCode = function(type,mail) {
     var oDeferred = $q.defer();
     var oPromise = $http.get(apiURL.mailCode,{
       params:{
-        reg:0,
+        reg:type,
         email:mail
       }
     });
@@ -80,6 +86,7 @@ angular.module('api',[])
     );
     return oDeferred.promise;
   };
+  // 校验验证码
   oService.verifyCode = function(type,code) {
     var oVerifyType;
     switch (type) {
@@ -111,6 +118,7 @@ angular.module('api',[])
     // 与当前oDeferred有关的oPromise对象。
     return oDeferred.promise;
   };
+  // 找回密码 - 通过手机重置密码
   oService.updateMobilePassword = function(mobile,password,confirmpassword,token) {
     var oDeferred = $q.defer();
     var oPromise = $http.get(apiURL.updateMobilePassword,{
@@ -130,6 +138,7 @@ angular.module('api',[])
     );
     return oDeferred.promise;
   };
+  // 找回密码 - 通过邮箱重置密码
   oService.updateMailPassword = function(mail,password,confirmpassword,token) {
     var oDeferred = $q.defer();
     var oPromise = $http.get(apiURL.updateMailPassword,{
@@ -147,6 +156,52 @@ angular.module('api',[])
         oDeferred.reject(error);
       }
     );
+    return oDeferred.promise;
+  };
+  // 检查账号是否存在
+  oService.checkUsername = function(type,username) {
+    var oParams;
+    if (type === 'mobile') {
+      oParams = {mobile:username};
+    } else if (type === 'email') {
+      oParams = {email:username};
+    }
+    // 构建一个新的延迟实例
+    var oDeferred = $q.defer();
+    var oPromise = $http.get(apiURL.checkUsername,{
+      params:oParams
+    });
+    oPromise.then(
+      function(answer) {
+        fnPretreatment(answer,oDeferred);
+      },
+      function(error) {
+        oDeferred.reject(error);
+      }
+    );
+    // 与当前oDeferred有关的oPromise对象。
+    return oDeferred.promise;
+  };
+  // 注册账号
+  oService.register = function(type,username,password,repassword) {
+    var oData;
+    if (type === 'mobile') {
+      oData = {mobile:username,password:password,repassword:repassword};
+    } else if (type === 'email') {
+      oData = {email:username,password:password,repassword:repassword};
+    }
+    // 构建一个新的延迟实例
+    var oDeferred = $q.defer();
+    var oPromise = $http.post(apiURL.register,oData);
+    oPromise.then(
+      function(answer) {
+        fnPretreatment(answer,oDeferred);
+      },
+      function(error) {
+        oDeferred.reject(error);
+      }
+    );
+    // 与当前oDeferred有关的oPromise对象。
     return oDeferred.promise;
   };
   return oService;

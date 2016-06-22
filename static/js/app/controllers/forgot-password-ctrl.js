@@ -1,7 +1,7 @@
 angular.module('findPDApp')
   // constant() 方法总会在所有配置块之前被执行，可以将一个已经存在的变量值注册为服务，该服务可以注入到应用的其他部分使用
   // 为切换active类提供常量
-  .constant('addActiveClass', 'active')
+  .constant('ACTIVE_CLASS', 'active')
 
   // 总控制器
   .controller('appCtrl', function($scope, apiService) {
@@ -22,18 +22,18 @@ angular.module('findPDApp')
   })
 
   // 子控制器 - 密码找回方式选择
-  .controller('selectTypeCtrl', function($scope, addActiveClass) {
+  .controller('selectTypeCtrl', function($scope, ACTIVE_CLASS) {
     $scope.findType = {
       select: 'mobile'
     };
     //切换 当前选择项样式
     $scope.getActiveClass = function(type) {
-      return type === $scope.findType.select ? addActiveClass : '';
+      return type === $scope.findType.select ? ACTIVE_CLASS : '';
     };
   })
 
   // 子控制器 - 通过手机找回密码相关
-  .controller('mobileCtrl', function($scope, $interval, addActiveClass, apiService) {
+  .controller('mobileCtrl', function($scope, $interval, ACTIVE_CLASS, apiService) {
     var mobileData = $scope.mobileData = {
       mobile:'',//记录用户输入的手机号码
       currentStep:0,//当前步骤
@@ -41,7 +41,7 @@ angular.module('findPDApp')
 
     //切换 步骤样式
     mobileData.getActiveClass = function(type) {
-      return type === mobileData.currentStep ? addActiveClass : '';
+      return type === mobileData.currentStep ? ACTIVE_CLASS : '';
     };
 
     // 验证码按钮 文字切换
@@ -69,7 +69,7 @@ angular.module('findPDApp')
       var vIntervalId;
       smsBtn.isDis = true;
       smsBtn.txt = aBtnTxt[1];
-      apiService.getMobileCode(mobile).then(
+      apiService.getMobileCode(0,mobile).then(
         function(success) {
           smsBtn.isShow = false;
           vIntervalId = $interval(function() {
@@ -110,7 +110,7 @@ angular.module('findPDApp')
   })
 
   // 子控制器 - 通过邮箱找回密码相关
-  .controller('mailCtrl', function($scope, $interval, addActiveClass, apiService) {
+  .controller('mailCtrl', function($scope, $interval, ACTIVE_CLASS, apiService) {
     var mailData = $scope.mailData = {
       mail:'',//记录用户输入的手机号码
       currentStep:0,//当前步骤
@@ -118,7 +118,7 @@ angular.module('findPDApp')
 
     //切换 步骤样式
     mailData.getActiveClass = function(type) {
-      return type === mailData.currentStep ? addActiveClass : '';
+      return type === mailData.currentStep ? ACTIVE_CLASS : '';
     };
 
     // 验证码按钮 文字切换

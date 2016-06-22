@@ -114,7 +114,12 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-lg btn-block" ng-disabled="mobileForm_1.$invalid || mobileForm_1.mobileCaptcha.$error.correct" ng-click="mobileData.currentStep = 2">下一步</button>
+          <!-- mobileForm_1.mobileCaptcha.$error.correct是为了防止服务器验证未返回的情况下，mobileForm_1.$invalid 出现短暂的可用状态 -->
+          <button
+          type="button"
+          class="btn btn-primary btn-lg btn-block"
+          ng-disabled="mobileForm_1.$invalid || mobileForm_1.mobileCaptcha.$error.correct"
+          ng-click="mobileData.currentStep = 2">下一步</button>
         </div>
       </form>
       <!-- 第三步 输入新密码 -->
