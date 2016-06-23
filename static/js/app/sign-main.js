@@ -1,4 +1,4 @@
-angular.module('signApp',['ngRoute','formCheck','api'])
+angular.module('signApp',['ngRoute','formCheck','api','sign-service'])
 .config(function($routeProvider,$httpProvider) {
   $routeProvider
   .when('/login',{

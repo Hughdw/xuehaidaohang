@@ -1,5 +1,4 @@
 angular.module('formCheck', [])
-.constant('FOCUS_CLASS','ng-focused')
 .directive('checkText',function() {
   return {
     restrict: 'A',
@@ -10,69 +9,28 @@ angular.module('formCheck', [])
     }
   };
 })
-.directive('checkUsername',function(apiService,FOCUS_CLASS) {
+.directive('checkUsername',function(FOCUS_CLASS,submitForm) {
   return {
     require: 'ngModel',
     link: function(scope, iEle, iAttrs, ctrl) {
-      //
       scope.$watch(iAttrs.ngModel,function(oldValue,newValue) {
+        // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
+        // 1.去除错误的文字提示
+        // 2.去除错误的边框提示
+        // 3.删除远程验证留下的标示
         if (oldValue !== newValue) {
-          // 隐藏文字提示
+          delete ctrl.$error.emailsole;
+          delete ctrl.$error.mobilesole;
+          delete ctrl.$error.empty;
           ctrl.$showhint = false;
-          // 去除控件border的警示状态
           iEle.removeClass(FOCUS_CLASS);
         }
       });
-      // 验证规则
-      var fnUsernameFormat = {
-        mobile:function(str) {
-          var reg = /^(13|14|15|18|17)\d{9}$/;
-          return reg.test(str);
-        },
-        email:function(str) {
-          var reg = /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*(\.[a-zA-Z0-9]+[-a-zA-Z0-9]*)+[a-zA-Z0-9]+$/;
-          return reg.test(str);
-        }
-      };
-      iEle.bind('blur',function(evt) {
-        // 控件为空时，不进行相关验证。
-        if (ctrl.$isEmpty(ctrl.$viewValue)) return;
-        var bFormat = fnUsernameFormat.mobile(ctrl.$viewValue) || fnUsernameFormat.email(ctrl.$viewValue);
 
-        // 控制边框是否显示红色
-        iEle.addClass(FOCUS_CLASS);
-        // 触发$digest循环，同步数据
-        // 这里的$showhint需要手动与view中的数据同步
-        scope.$apply(function() {
-          if (!bFormat) {
-            // 控制边框是否显示红色
-            iEle.addClass(FOCUS_CLASS);
-            // 设置文字提示为显示
-            ctrl.$showhint = true;
-          }
-          // 设置验证规则是否通过
-          ctrl.$setValidity('pattern', bFormat);
-          // 规则验证通过后，请求服务器验证验证码是否正确
-          if (!ctrl.$error.pattern) {
-            apiService.checkUsername(iAttrs.checkCaptcha,ctrl.$modelValue).then(
-              function(seccess) {
-                // XHR请求成功后，显示提醒标示
-                ctrl.$showhint = true;
-                iEle.addClass(FOCUS_CLASS);
-                ctrl.$setValidity('correct', false);
-              },
-              function(error) {
-                // XHR请求成功后，显示提醒标示
-                ctrl.$showhint = true;
-                iEle.removeClass(FOCUS_CLASS);
-                ctrl.$setValidity('correct', true);
-                // angularJS的BUG，再验证错误一次后，再次验证成功，$error中的所有属性都为false的情况下 $valid没有更新为true
-                ctrl.$valid = true;
-              }
-            );
-          }
-        });
-      });
+      // 1.将link函数的参数传入服务中
+      // 2.绑定相关验证的事件
+      submitForm.saveUsernameArgs(arguments);
+      submitForm.bindUsernameEvt();
     }
   };
 })
@@ -80,15 +38,13 @@ angular.module('formCheck', [])
   return {
     require: 'ngModel',
     link: function(scope, iEle, iAttrs, ctrl) {
-      // 通过监控ngModel，让输入框中的错误提示立马隐藏
       scope.$watch(iAttrs.ngModel,function(oldValue,newValue) {
-        // 正在输入的时候去除提示
+        // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
         // 1.去除错误的文字提示
         // 2.去除错误的边框提示
+        // 3.删除远程验证留下的标示
         if (oldValue !== newValue) {
-          // 隐藏文字提示
           ctrl.$showhint = false;
-          // 去除控件border的警示状态
           iEle.removeClass(FOCUS_CLASS);
         }
       });
@@ -96,17 +52,14 @@ angular.module('formCheck', [])
         // 获取 $formController 表单控制器下的 密码框控制器（[iAttrs.confirmPassword]的值指向将要进行相等判断的password控件）
         var otherInput = iEle.inheritedData('$formController')[iAttrs.confirmPassword];
         var correct = ctrl.$viewValue === otherInput.$viewValue;
-        // console.log(correct);
-        if (correct) {
-          iEle.removeClass(FOCUS_CLASS);
-        } else {
-          iEle.addClass(FOCUS_CLASS);
-        }
         scope.$apply(function() {
-          // 设置文字提示为显示
-          ctrl.$showhint = true;
-          // 设置验证规则是否通过
           ctrl.$setValidity('confirm', correct);
+          ctrl.$showhint = true;
+          if (correct) {
+            iEle.removeClass(FOCUS_CLASS);
+          } else {
+            iEle.addClass(FOCUS_CLASS);
+          }
         });
 
         // 向密码输入框控制器的分析程序中加入一个验证函数
@@ -127,68 +80,41 @@ angular.module('formCheck', [])
     }
   };
 })
-.directive('checkPassword',function(FOCUS_CLASS) {
+.directive('checkPassword',function(FOCUS_CLASS,submitForm) {
   return {
     require: 'ngModel',
     link: function(scope, iEle, iAttrs, ctrl) {
-      // 通过监控ngModel，让输入框中的错误提示立马隐藏
       scope.$watch(iAttrs.ngModel,function(oldValue,newValue) {
-        // 正在输入的时候去除提示
+        // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
         // 1.去除错误的文字提示
         // 2.去除错误的边框提示
+        // 3.删除远程验证留下的标示
         if (oldValue !== newValue) {
-          // 隐藏文字提示
+          delete ctrl.$error.empty;
           ctrl.$showhint = false;
-          // 去除控件border的警示状态
           iEle.removeClass(FOCUS_CLASS);
         }
       });
-      // 验证规则
-      var fnPasswordFormat = {
-        password:function(str) {
-          var reg = /^[^\s]{6,15}$/;
-          return reg.test(str);
-        }
-      };
 
-      // 给模板实例（jqLite将checkFocus自定义指令所在的标签元素封装起来）绑定事件，进行相关验证。
-      // 1.离开焦点的时候,进行相关规则的验证
-      // 2.验证结果不符合规则，则显示 边框提示 和对应的 文字提示。
-      iEle.bind('blur',function(evt) {
-        // 控件为空时，不进行相关验证。
-        if (ctrl.$isEmpty(ctrl.$viewValue)) return;
-        var bFormat = fnPasswordFormat.password(ctrl.$viewValue);
-        if (bFormat){
-          iEle.removeClass(FOCUS_CLASS);
-        } else {
-          iEle.addClass(FOCUS_CLASS);
-        }
-        // 触发$digest循环，同步数据
-        // 这里的$showhint需要手动与view中的数据同步
-        scope.$apply(function() {
-          // 设置文字提示为显示
-          ctrl.$showhint = true;
-          // 设置验证规则是否通过
-          ctrl.$setValidity('pattern', bFormat);
-        });
-      });
+      // 1.将link函数的参数传入服务中
+      // 2.绑定相关验证的事件
+      submitForm.savePasswordArgs(arguments);
+      submitForm.bindPasswordEvt();
     }
   };
-
 })
 .directive('checkCaptcha', function(apiService,FOCUS_CLASS) {
   return {
-    //依赖ngModel数据模型
     require: 'ngModel',
     link: function(scope, iEle, iAttrs, ctrl) {
       scope.$watch(iAttrs.ngModel, function(newValue, oldValue) {
-        // 输入的验证码没有通过控制器验证时为undefined
+        // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
+        // 1.去除错误的文字提示
+        // 2.去除错误的边框提示
+        // 3.删除远程验证留下的标示
         if (oldValue !== newValue) {
-          // 删除$error中的远程验证标示
           delete ctrl.$error.correct;
-          // 隐藏文字提示
           ctrl.$showhint = false;
-          // 去除控件border的警示状态
           iEle.removeClass(FOCUS_CLASS);
         }
       });
@@ -207,39 +133,33 @@ angular.module('formCheck', [])
           return reg.test(str);
         }
       };
+      // 给模板实例（jqLite将checkFocus自定义指令所在的标签元素封装起来）绑定事件，进行相关验证。
+      // 1.离开焦点的时候,进行相关规则的验证
+      // 2.1.验证结果不符合规则，则显示 边框提示 和显示 文字提示。
+      // 2.2.验证结果符合规则，则进行远程验证。
+      // 2.2.1.成功，则隐藏 边框提示 和 显示成功提示。
+      // 2.2.2.失败，则显示 边框提示 和 显示失败提示。
       iEle.bind('blur',function(evt) {
-        // 控件为空时，不进行相关验证。
         if (ctrl.$isEmpty(ctrl.$viewValue)) return;
         var bFormat = fnCaptchaFormat[iAttrs.checkCaptcha](ctrl.$viewValue);
-        // 控制边框是否显示红色
-        iEle.addClass(FOCUS_CLASS);
-        // 触发$digest循环，同步数据
-        // 这里的$showhint需要手动与view中的数据同步
         scope.$apply(function() {
-          if (!bFormat) {
-            // 控制边框是否显示红色
-            iEle.addClass(FOCUS_CLASS);
-            // 设置文字提示为显示
-            ctrl.$showhint = true;
-          }
-          // 设置验证规则是否通过
+
           ctrl.$setValidity('pattern', bFormat);
-          // 规则验证通过后，请求服务器验证验证码是否正确
-          if (!ctrl.$error.pattern) {
-            apiService.verifyCode(iAttrs.checkCaptcha,ctrl.$modelValue).then(
+          if (!bFormat) {
+            ctrl.$showhint = true;
+            iEle.addClass(FOCUS_CLASS);
+          } else {
+            apiService.verifyCode(iAttrs.checkCaptcha,ctrl.$viewValue).then(
               function(seccess) {
-                // XHR请求成功后，显示提醒标示
                 ctrl.$showhint = true;
-                iEle.removeClass(FOCUS_CLASS);
                 ctrl.$setValidity('correct', true);
-                // angularJS的BUG，再验证错误一次后，再次验证成功，$error中的所有属性都为false的情况下 $valid没有更新为true
+                iEle.removeClass(FOCUS_CLASS);
                 ctrl.$valid = true;
               },
               function(error) {
-                // XHR请求成功后，显示提醒标示
                 ctrl.$showhint = true;
-                iEle.addClass(FOCUS_CLASS);
                 ctrl.$setValidity('correct', false);
+                iEle.addClass(FOCUS_CLASS);
               }
             );
           }
@@ -250,17 +170,18 @@ angular.module('formCheck', [])
 })
 .directive('regUsername',function(apiService,FOCUS_CLASS) {
   return {
+    //依赖ngModel数据模型
     require: 'ngModel',
     link: function(scope, iEle, iAttrs, ctrl) {
-      // 通过监控ngModel，让输入框中的错误提示立马隐藏
       scope.$watch(iAttrs.ngModel,function(oldValue,newValue) {
-        // 正在输入的时候去除提示
+        // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
         // 1.去除错误的文字提示
         // 2.去除错误的边框提示
+        // 3.删除远程验证留下的标示
         if (oldValue !== newValue) {
-          // 删除$error中的远程验证标示
-          // delete ctrl.$error.sole;
-          // 隐藏文字提示
+          // 删除$error中的远程验证标示，防止提示重叠
+          delete ctrl.$error.sole;
+          // 隐藏提示
           ctrl.$showhint = false;
           // 去除控件border的警示状态
           iEle.removeClass(FOCUS_CLASS);
@@ -280,38 +201,47 @@ angular.module('formCheck', [])
 
       // 给模板实例（jqLite将checkFocus自定义指令所在的标签元素封装起来）绑定事件，进行相关验证。
       // 1.离开焦点的时候,进行相关规则的验证
-      // 2.验证结果不符合规则，则显示 边框提示 和对应的 文字提示。
+      // 2.1.验证结果不符合规则，则显示 边框提示 和显示 文字提示。
+      // 2.2.验证结果符合规则，则进行远程验证。
+      // 2.2.1.成功，则隐藏 边框提示 和 显示成功提示。
+      // 2.2.2.失败，则显示 边框提示 和 显示失败提示。
       iEle.bind('blur',function(evt) {
         // 控件为空时，不进行相关验证。
         if (ctrl.$isEmpty(ctrl.$viewValue)) return;
+        // 记录输入是否通过正则验证
         var bFormat = fnUsernameFormat[iAttrs.regUsername](ctrl.$viewValue);
         // 触发$digest循环，同步数据
         // 这里的$showhint需要手动与view中的数据同步
         scope.$apply(function() {
-          if (!bFormat) {
-            // 控制边框是否显示红色
-            iEle.addClass(FOCUS_CLASS);
-            // 设置文字提示为显示
-            ctrl.$showhint = true;
-          }
-          // 设置验证规则是否通过
+          // 设置验证规则是否通过标示
           ctrl.$setValidity('pattern', bFormat);
-          // 规则验证通过后，请求服务器验证账号是否存在
-          if (!ctrl.$error.pattern) {
-            // 通过ensure-correct属性值在verifyCode中进一步筛选请求的参数
-            apiService.checkUsername( iAttrs.regUsername,ctrl.$modelValue).then(
+          if (!bFormat) {
+            // 没有通过正则验证
+            // 显示提示
+            ctrl.$showhint = true;
+            // 添加提醒样式
+            iEle.addClass(FOCUS_CLASS);
+          }else {
+            // 通过正则验证，请求远程服务器，验证账号是否存在。
+            apiService.checkUsername( iAttrs.regUsername,ctrl.$viewValue).then(
               function(seccess) {
-                // XHR请求成功后，显示提醒标示
+                // 显示提示
+                // 多个地方分别设置$showhint是为了跟响应同步
                 ctrl.$showhint = true;
-                iEle.removeClass(FOCUS_CLASS);
+                // 设置成功标示
                 ctrl.$setValidity('sole', true);
+                // 移除提醒样式
+                iEle.removeClass(FOCUS_CLASS);
+                // angularJS的BUG，再验证错误一次后，再次验证成功，$error中的所有属性都为false的情况下 $valid没有更新为true
                 ctrl.$valid = true;
               },
               function(error) {
-                // XHR请求成功后，显示提醒标示
+                // 显示提示
                 ctrl.$showhint = true;
-                iEle.addClass(FOCUS_CLASS);
+                // 设置失败标示
                 ctrl.$setValidity('sole', false);
+                // 添加提醒样式
+                iEle.addClass(FOCUS_CLASS);
               }
             );
           }

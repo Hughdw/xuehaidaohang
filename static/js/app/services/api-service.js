@@ -1,4 +1,13 @@
-angular.module('api',[])
+angular.module('api', [])
+.constant('AUTH_EVENTS', {
+
+})
+// 储存session
+.service('authUser', function() {
+  this.create = function(token,) {
+    // body...
+  }
+})
 .factory('apiURL', function() {
   var oServiceApi = {};
   // var sHost = 'http://xuehaidaohanglocalapi.com:5500';
@@ -21,7 +30,11 @@ angular.module('api',[])
   // 判断账号是否存在
   oServiceApi.checkUsername = sHost + '/isUserReg' + testPostfix;
   // 注册账号
-  oServiceApi.register = sHost +'/register' + testPostfix;
+  oServiceApi.register = sHost + '/register' + testPostfix;
+  // 邮箱账号登录
+  oServiceApi.emailLogin = sHost + '/postEmailLogin' + testPostfix;
+  // 手机账号登录
+  oServiceApi.mobileLogin = sHost + '/postMobileLogin' + testPostfix;
   // 本地使用Deployd做测试API时，需要把请求字符串转换成小写。
   // for(var p in oServiceApi){
   //   if (typeof p === 'string') {
@@ -184,15 +197,17 @@ angular.module('api',[])
   };
   // 注册账号
   oService.register = function(type,username,password,repassword) {
-    var oData;
+    var oParams;
     if (type === 'mobile') {
-      oData = {mobile:username,password:password,repassword:repassword};
+      oParams = {mobile:username,password:password,repassword:repassword};
     } else if (type === 'email') {
-      oData = {email:username,password:password,repassword:repassword};
+      oParams = {email:username,password:password,repassword:repassword};
     }
     // 构建一个新的延迟实例
     var oDeferred = $q.defer();
-    var oPromise = $http.post(apiURL.register,oData);
+    var oPromise = $http.get(apiURL.register,{
+      params:oParams
+    });
     oPromise.then(
       function(answer) {
         fnPretreatment(answer,oDeferred);
@@ -204,5 +219,31 @@ angular.module('api',[])
     // 与当前oDeferred有关的oPromise对象。
     return oDeferred.promise;
   };
+  // 登录
+  oService.login = function(type,username,password) {
+    var oParams,sLoginUrl;
+    if (type === 'mobile') {
+      oParams = {mobile:username,password:password};
+      sLoginUrl = apiURL.mobileLogin;
+    } else if (type === 'email') {
+      oParams = {email:username,password:password};
+      sLoginUrl = apiURL.emailLogin;
+    }
+    // 构建一个新的延迟实例
+    var oDeferred = $q.defer();
+    var oPromise = $http.get(sLoginUrl,{
+      params:oParams
+    });
+    oPromise.then(
+      function(answer) {
+        fnPretreatment(answer,oDeferred);
+      },
+      function(error) {
+        oDeferred.reject(error);
+      }
+    );
+    // 与当前oDeferred有关的oPromise对象。
+    return oDeferred.promise;
+  }
   return oService;
 });
