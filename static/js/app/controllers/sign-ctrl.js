@@ -115,6 +115,23 @@ angular.module('signApp')
     );
   };
 })
-.controller('loginCtrl',function($scope,apiService) {
-  
-})
+.controller('loginCtrl',function($scope,apiService,submitForm) {
+  var loginData = $scope.loginData = {
+    usernameType : '',// 账号登录方式
+    user:{}
+  };
+  loginData.login = function(loginForm) {
+    if (loginForm.$valid) {
+      apiService.login(loginData.usernameType,loginData.user.username,loginData.user.password).then(
+        function(success) {
+          console.log(success);
+        },
+        function(error) {
+          alert(error.message);
+        }
+      );
+    }
+    var testaaa = submitForm.checkUsernameInput('submit');
+    submitForm.checkPasswordInput('submit');
+  };
+});
