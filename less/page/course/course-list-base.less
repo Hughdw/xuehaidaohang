@@ -190,7 +190,7 @@
 .subjects,
 .knowledge,
 .version {
-  .active {
+  .selected {
     color: @courselist-menu-btn-color-active;
     background-color: @courselist-menu-btn-bg-active;
     &:hover {
@@ -199,6 +199,15 @@
     }
   }
 }
+.subjects-cont{
+  > .subjects-panel{
+    display: none;
+  }
+  > .active{
+    display: block;
+  }
+}
+
 // 面包屑（筛选条件）
 .toolbar {
   height: 34px;

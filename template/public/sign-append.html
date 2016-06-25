@@ -1,3 +1,4 @@
+<!-- 向页面中添加登录窗口的元素 -->
 <style>
   #sign-modal iframe{
     position: fixed;
@@ -7,14 +8,6 @@
     width: 100%;
   }
 </style>
-<div id="sign-modal" class="modal fade" tabindex="-1" role="dialog">
+<div id="sign-modal" class="modal fade" tabindex="-1">
   <iframe allowtransparency="true" src="" frameborder="0"></iframe>
 </div>
-<script>
-  var fnCloseModal = function (){
-    $('#sign-modal').modal('hide');
-    var eModal = document.getElementById('sign-modal');
-    var eFrame = eModal.getElementsByTagName('iframe');
-    eFrame[0].src="";
-  };
-</script>

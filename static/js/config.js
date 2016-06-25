@@ -10,6 +10,7 @@ require.config({
       'device': 'libs/device/0.2.7/device.min',
       // 'less': 'less/1.7.0/less',//在线编译less，不用
       'jquery': 'libs/jquery/1.11.3/jquery',
+      'jq-cookie':'libs/jquery-cookie/2.1.2/js.cookie',
       'bootstrap': 'libs/bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
       'angular': 'libs/angular/1.2.29/angular',
       'ngRoute':'libs/angular-route/1.2.29/angular-route',
@@ -20,6 +21,9 @@ require.config({
       'ngMock':'libs/angular-mocks'
     },
     shim: {
+      'jq-cookie':{
+        deps:['jquery']
+      },
       'bootstrap':{
         deps:['jquery']//声明模块之间的依赖
       },

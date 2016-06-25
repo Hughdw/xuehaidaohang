@@ -1,7 +1,7 @@
 <!-- 注册 -->
 <div class="modal-content" id="sign-up" ng-controller="registerCtrl">
   <div class="modal-header">
-    <button type="button" class="close close-ele" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close close-ele" data-dismiss="modal" aria-label="Close" ng-click="top.closeSignModal()"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">注册</h4>
   </div>
   <div class="modal-body" ng-switch="regData.currentTab">

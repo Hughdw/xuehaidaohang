@@ -28,15 +28,15 @@
 
 </head>
 <body>
-<div id="sign-modal">
-  <div class="modal-dialog" role="document">
+<div id="sign-modal" ng-controller="topCtrl">
+  <div class="modal-dialog">
     <div ng-view></div>
   </div>
-  <div class="waper close-ele"></div>
+  <div class="waper close-ele" ng-click="top.closeSignModal()"></div>
 </div>
 <script>
 // 为父窗口提供调用函数，使其可以控制 模态框显示登录还是注册。
-var fnSwitchShowModal;
+// var fnSwitchShowModal;
 
 
 

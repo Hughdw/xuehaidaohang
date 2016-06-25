@@ -22,11 +22,16 @@ define(function (require) {
     replaceImgPath();
 
 
-    // 网站头像相关事件
+    // 折叠版块事件绑定
+    // 头像
     mButton.bindEvent('#collapse-link-avatar','#collapse-avatar',oSetDone.avatar);
+    // 昵称
     mButton.bindEvent('#collapse-link-nickname','#collapse-nickname',oSetDone.nickname);
+    // 登录密码
     mButton.bindEvent('#collapse-link-password','#collapse-password',oSetDone.password);
+    // 绑定手机
     mButton.bindEvent('#collapse-link-mobile','#collapse-mobile',oSetDone.mobile);
+    // 绑定邮箱
     mButton.bindEvent('#collapse-link-email','#collapse-email',oSetDone.email);
 
 

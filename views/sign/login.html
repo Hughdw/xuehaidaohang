@@ -1,11 +1,11 @@
 <!-- 登录 -->
 <div class="modal-content" id="sign-in">
   <div class="modal-header">
-    <button type="button" class="close close-ele" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close close-ele" data-dismiss="modal" aria-label="Close" ng-click="top.closeSignModal()"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">登录</h4>
   </div>
   <div class="modal-body">
-    <form name="loginForm" novalidate ng-controller="loginCtrl">
+    <form name="loginForm" novalidate ng-controller="loginCtrl" ng-submit="login(loginForm.$valid,loginUser)">
       <div class="form-horizontal form-cont">
         <div class="form-group">
           <label for="signin-account" class="label-tit col-xs-5">账号：</label>
@@ -17,13 +17,13 @@
             class="form-control"
             id="signin-account"
             placeholder="请输入邮箱或者手机号"
-            ng-model="loginData.user.username"
+            ng-model="loginUser.username"
             check-username
             required>
             <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.empty">邮箱/手机号不能为空</span>
             <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.pattern">邮箱/手机号格式错误</span>
-            <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.emailsole">该邮箱未注册</span>
-            <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.mobilesole">该手机未注册</span>
+            <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.sole && loginForm.username.$usernameType === 'email'">该邮箱未注册</span>
+            <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.sole && loginForm.username.$usernameType === 'mobile'">该手机未注册</span>
             <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="loginForm.username.$showhint && loginForm.username.$valid"></span>
           </div>
         </div>
@@ -37,24 +37,24 @@
             class="form-control"
             id="signin-password"
             placeholder="请输入您的密码"
-            ng-model="loginData.user.password"
+            ng-model="loginUser.password"
             check-password
             required>
-            <span class="hint-info" ng-show="loginForm.password.$showhint && loginForm.password.$error.pattern">密码格式错误</span>
             <span class="hint-info" ng-show="loginForm.password.$showhint && loginForm.password.$error.empty">密码不能为空</span>
+            <span class="hint-info" ng-show="loginForm.password.$showhint && loginForm.password.$error.pattern">密码格式错误</span>
+            <span class="hint-info" ng-show="loginForm.password.$showhint && loginForm.password.$error.correct">密码错误</span>
           </div>
         </div>
-        <div class="checkbox">
+        <!-- <div class="checkbox">
           <label class="col-xs-12">
             <input type="checkbox">7天内自动登录
           </label>
-        </div>
+        </div> -->
       </div>
       <div class="modal-footer">
         <button
-        type="button"
+        type="submit"
         class="btn btn-primary btn-lg btn-block"
-        ng-click="loginData.login(loginForm)"
         >登录</button>
       </div>
     </form>
