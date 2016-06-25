@@ -1,5 +1,11 @@
 angular.module('signApp')
 .constant('ACTIVE_CLASS','active')
+.controller('topCtrl',function($scope) {
+  var top = $scope.top = {};
+  top.closeSignModal = function() {
+    parent.globalModule.closeModal();
+  };
+})
 .controller('registerCtrl',function($scope,$interval,ACTIVE_CLASS,apiService) {
   // body...
   var regData = $scope.regData = {
@@ -116,22 +122,32 @@ angular.module('signApp')
   };
 })
 .controller('loginCtrl',function($scope,apiService,submitForm) {
-  var loginData = $scope.loginData = {
-    usernameType : '',// 账号登录方式
-    user:{}
+  var loginUser = $scope.users = {
+    type : '',// 账号登录方式
+    username : '',
+    password : ''
   };
-  loginData.login = function(loginForm) {
-    if (loginForm.$valid) {
-      apiService.login(loginData.usernameType,loginData.user.username,loginData.user.password).then(
+  $scope.login = function(formIsValid,user) {
+    // 表单通过规则验证后，才能进行提交
+    if (formIsValid) {
+      apiService.login(user.type,user.username,user.password).then(
         function(success) {
-          console.log(success);
+          // 把token传递到调用登录窗口的页面
+          parent.globalModule.transferToken(success.data[0].token);
+          // 登录成功后，关闭窗口
+          parent.globalModule.closeModal();
         },
         function(error) {
-          alert(error.message);
+          // 登录失败
+          // 显示密码错误提示
+          var passwordError = error.code === 401 ? true : false;
+          submitForm.checkPasswordInput('submit',passwordError);
         }
       );
+    } else {
+      // 验证表单输入数据，显示提示
+      submitForm.checkUsernameInput('submit');
+      submitForm.checkPasswordInput('submit');
     }
-    var testaaa = submitForm.checkUsernameInput('submit');
-    submitForm.checkPasswordInput('submit');
   };
 });

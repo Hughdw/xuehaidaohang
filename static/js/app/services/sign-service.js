@@ -1,5 +1,6 @@
 angular.module('sign-service',[])
 .constant('FOCUS_CLASS','ng-focused')
+// 为自定义指令 和 表单提交 提供事件绑定、验证服务。
 .service('submitForm',function(apiService,FOCUS_CLASS) {
   // 验证规则
   var fnUsernameFormat = {
@@ -19,41 +20,41 @@ angular.module('sign-service',[])
       return reg.test(str);
     }
   };
-  // 储存通过参数传入的对象
+  // 储存通过参数传入的对象（socpe,iEle,iAttrs,ctrl）
   var _args = {
-    username:''
+    username:'',
+    password:''
   };
-  var fnCheckInput = {};
-  fnCheckInput.username = function (scope, iEle, iAttrs, ctrl, isSubmit) {
-    // 2.2.验证结果符合规则，则进行远程验证。
-    // 2.2.1.成功，则隐藏 边框提示 和 显示成功提示。
-    // 2.2.2.失败，则显示 边框提示 和 显示失败提示。
+  // 检查输入的字符是否符合规则
+  var _fnCheckInput = {};
+  _fnCheckInput.username = function (scope, iEle, iAttrs, ctrl, isSubmit) {
+    // 分两种情况，1.控件失去焦点。2.提交表单。
+    // 1.1.为空时，不进行验证，直接返回。
+    // 1.2.不为空时，进行正则验证，并设置账号类型。
+    // 1.2.1.正则未通过，显示错误。
+    // 1.2.2.正则通过，请求API。
+    // 2.1.为空时，显示错误，并且返回。
+    // 2.2.不为空时，进行正则验证，并设置账号类型。直接返回。
     if (ctrl.$isEmpty(ctrl.$viewValue) && !isSubmit) {
       return;
     } else if (ctrl.$isEmpty(ctrl.$viewValue) && isSubmit) {
-      ctrl.$setValidity('empty',!isSubmit);
+      ctrl.$setValidity('empty', false);
       ctrl.$showhint = true;
       iEle.addClass(FOCUS_CLASS);
-      return false;
+      return;
     }
     // 记录登录的账号类型
     if (fnUsernameFormat.mobile(ctrl.$viewValue)) {
-      scope.loginData.usernameType = 'mobile';
+      scope.loginUser.type = 'mobile';
     } else if (fnUsernameFormat.email(ctrl.$viewValue)) {
-      scope.loginData.usernameType = 'email';
+      scope.loginUser.type = 'email';
     } else {
-      scope.loginData.usernameType = 'error';
+      scope.loginUser.type = 'error';
     }
-    var bFormat = scope.loginData.usernameType === 'error' ? false : true;
+    var bFormat = scope.loginUser.type === 'error' ? false : true;
+    ctrl.$usernameType = scope.loginUser.type;
     // 提交表单时，返回当前控件是否已经验证通过。
-    if (isSubmit) {
-      if (ctrl.$valid) {
-        return true;
-      }else{
-        // 验证未通过返回 false
-        return false;
-      }
-    } else {
+    if (!isSubmit) {
       scope.$apply(function() {
         // 设置验证规则是否通过
         ctrl.$setValidity('pattern', bFormat);
@@ -63,25 +64,22 @@ angular.module('sign-service',[])
           // 控制边框是否显示红色
           iEle.addClass(FOCUS_CLASS);
         } else {
-          apiService.checkUsername(scope.loginData.usernameType,ctrl.$viewValue).then(
+          apiService.checkUsername(scope.loginUser.type,ctrl.$viewValue).then(
             function(seccess) {
               // 账号不存在，不能登录
               // 1.邮箱未注册，进行提示
               // 2.手机未注册，进行提示
-              if (scope.loginData.usernameType === 'mobile')
-                ctrl.$setValidity('mobilesole', false);
-              else
-                ctrl.$setValidity('emailsole', false);
-
+              // if (scope.loginUser.type === 'mobile')
+              //   ctrl.$setValidity('mobilesole', false);
+              // else
+              //   ctrl.$setValidity('emailsole', false);
+              ctrl.$setValidity('sole',false);
               ctrl.$showhint = true;
               iEle.addClass(FOCUS_CLASS);
             },
             function(error) {
-              if (scope.loginData.usernameType === 'mobile')
-                ctrl.$setValidity('mobilesole', true);
-              else
-                ctrl.$setValidity('emailsole', true);
               // 账号存在，可以登录
+              ctrl.$setValidity('sole',true);
               ctrl.$showhint = true;
               iEle.removeClass(FOCUS_CLASS);
               ctrl.$valid = true;
@@ -89,37 +87,50 @@ angular.module('sign-service',[])
           );
         }
       });
+    } else {
+      // 可以通过返回当前表单项的状态来控制是否用动画进行提示。
+      if (ctrl.$valid) {
+        return;
+      }else{
+
+        return;
+      }
     }
   };
-
-  fnCheckInput.password = function(scope, iEle, iAttrs, ctrl, isSubmit) {
+  // 分两种情况，1.控件失去焦点。2.提交表单。
+  // 1.1.为空时，不进行验证，直接返回。
+  // 1.2.不为空时，进行正则验证，并设置账号类型。
+  // 1.2.1.正则未通过，显示错误。
+  // 1.2.2.正则通过，不作操作。
+  // 2.1.为空时，显示错误，并且返回。
+  // 2.2.不为空时，进行正则验证。直接返回。
+  // 2.3.正则通过，服务器返回密码错误时，显示错误提示。
+  _fnCheckInput.password = function(scope, iEle, iAttrs, ctrl, isSubmit,passwordError) {
     if (ctrl.$isEmpty(ctrl.$viewValue) && !isSubmit) {
       return;
     } else if (ctrl.$isEmpty(ctrl.$viewValue) && isSubmit) {
-      ctrl.$setValidity('empty',!isSubmit);
+      // 提交表单时，设置当前的空状态。
+      ctrl.$setValidity('empty', false);
       ctrl.$showhint = true;
       iEle.addClass(FOCUS_CLASS);
-      return false;
+      return;
     }
     var bFormat = fnPasswordFormat.password(ctrl.$viewValue);
-    // 提交表单时，返回当前控件是否已经验证通过。
-    if (isSubmit) {
-      if (ctrl.$valid) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
+
+    if (!isSubmit) {
       scope.$apply(function() {
         ctrl.$setValidity('pattern', bFormat);
-        ctrl.$showhint = true;
-        if (bFormat){
-          iEle.removeClass(FOCUS_CLASS);
-          ctrl.$valid = true;
-        } else {
+        if (!bFormat) {
           iEle.addClass(FOCUS_CLASS);
+          ctrl.$showhint = true;
         }
       });
+    } else {
+      if (ctrl.$valid && passwordError) {
+        ctrl.$setValidity('correct', false);
+        ctrl.$showhint = true;
+        iEle.addClass(FOCUS_CLASS);
+      }
     }
   };
 
@@ -134,10 +145,10 @@ angular.module('sign-service',[])
     _args.username[1].bind('blur',this.checkUsernameInput);
   };
   this.checkUsernameInput = function(type) {
-    // 提交表单时，进行标识
+    // 对提交表单操作进行标识
     var isSubmit = type === 'submit' ? true : false;
     // 执行服务中的 表单校验 函数
-    return fnCheckInput.username(_args.username[0],_args.username[1],_args.username[2],_args.username[3],isSubmit);
+    _fnCheckInput.username(_args.username[0],_args.username[1],_args.username[2],_args.username[3],isSubmit);
   };
 
   // 密码相关的方法
@@ -147,8 +158,9 @@ angular.module('sign-service',[])
   this.bindPasswordEvt = function() {
     _args.password[1].bind('blur',this.checkPasswordInput);
   };
-  this.checkPasswordInput = function(type) {
+  this.checkPasswordInput = function(type,error) {
+    // 对提交表单操作进行标识
     var isSubmit = type === 'submit' ? true : false;
-    return fnCheckInput.password(_args.password[0],_args.password[1],_args.password[2],_args.password[3],isSubmit);
+    _fnCheckInput.password(_args.password[0],_args.password[1],_args.password[2],_args.password[3],isSubmit,error);
   };
 });

@@ -4,56 +4,57 @@ angular.module('api', [])
 })
 // 储存session
 .service('authUser', function() {
-  this.create = function(token,) {
-    // body...
-  }
+  // this.create = function(token,) {
+  //   // body...
+  // }
 })
 .factory('apiURL', function() {
-  var oServiceApi = {};
+  var oServiceUrl = {};
   // var sHost = 'http://xuehaidaohanglocalapi.com:5500';
   var sHost = 'http://www.quick.com:8081/api';
   var testPostfix = '';
   // var sHost = 'https://xuehaidaohang.wilddogio.com/api';
   // var testPostfix = '.json';
   // 图片验证码
-  oServiceApi.imgCaptcha = 'http://www.quick.com:8081/api/getCaptcha';
+  oServiceUrl.imgCaptcha = 'http://www.quick.com:8081/api/getCaptcha';
   // 发送手机验证码
-  oServiceApi.mobileCode = sHost + '/sendMobileCode' + testPostfix;
+  oServiceUrl.mobileCode = sHost + '/sendMobileCode' + testPostfix;
   // 发送邮箱验证码
-  oServiceApi.mailCode = sHost + '/sendMailCode' + testPostfix;
+  oServiceUrl.mailCode = sHost + '/sendMailCode' + testPostfix;
   // 验证验证码
-  oServiceApi.verifyCode = sHost + '/verifyCode' + testPostfix;
+  oServiceUrl.verifyCode = sHost + '/verifyCode' + testPostfix;
   // 通过手机重置密码
-  oServiceApi.updateMobilePassword = sHost + '/updateMobilePassword' + testPostfix;
+  oServiceUrl.updateMobilePassword = sHost + '/updateMobilePassword' + testPostfix;
   // 通过邮箱重置密码
-  oServiceApi.updateMailPassword = sHost + '/updateMailPassword' + testPostfix;
+  oServiceUrl.updateMailPassword = sHost + '/updateMailPassword' + testPostfix;
   // 判断账号是否存在
-  oServiceApi.checkUsername = sHost + '/isUserReg' + testPostfix;
+  oServiceUrl.checkUsername = sHost + '/isUserReg' + testPostfix;
   // 注册账号
-  oServiceApi.register = sHost + '/register' + testPostfix;
+  oServiceUrl.register = sHost + '/register' + testPostfix;
   // 邮箱账号登录
-  oServiceApi.emailLogin = sHost + '/postEmailLogin' + testPostfix;
+  oServiceUrl.emailLogin = sHost + '/postEmailLogin' + testPostfix;
   // 手机账号登录
-  oServiceApi.mobileLogin = sHost + '/postMobileLogin' + testPostfix;
+  oServiceUrl.mobileLogin = sHost + '/postMobileLogin' + testPostfix;
   // 本地使用Deployd做测试API时，需要把请求字符串转换成小写。
-  // for(var p in oServiceApi){
+  // for(var p in oServiceUrl){
   //   if (typeof p === 'string') {
-  //     oServiceApi[p] = oServiceApi[p].toLowerCase();
+  //     oServiceUrl[p] = oServiceUrl[p].toLowerCase();
   //   }
   // }
 
-  return oServiceApi;
+  return oServiceUrl;
 })
 .factory('apiService', function($q, $http, apiURL) {
   var oService = {};
   var fnPretreatment = function(answer,deferred) {
     // 对后台返回的状态码做预处理
-    // 200返回执行，401拒绝
     if (answer.data.code == 200) {
       answer.status = true;
+      // 200返回到成功回调函数中seccess
       deferred.resolve(answer.data);
     } else if (answer.data.code > 200) {
       answer.status = false;
+      // 401返回到失败回调函数中error
       deferred.reject(answer.data);
     }
   };

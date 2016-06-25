@@ -1,28 +1,18 @@
 angular.module('formCheck', [])
-.directive('checkText',function() {
-  return {
-    restrict: 'A',
-    controller: function($scope) {
-      this.isTrue = function() {
-        return true;
-      };
-    }
-  };
-})
 .directive('checkUsername',function(FOCUS_CLASS,submitForm) {
   return {
     require: 'ngModel',
     link: function(scope, iEle, iAttrs, ctrl) {
       scope.$watch(iAttrs.ngModel,function(oldValue,newValue) {
         // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
-        // 1.去除错误的文字提示
-        // 2.去除错误的边框提示
-        // 3.删除远程验证留下的标示
+        // 1.关闭文字提示
+        // 2.关闭边框提示
+        // 3.关闭规则错误标示
         if (oldValue !== newValue) {
-          delete ctrl.$error.emailsole;
-          delete ctrl.$error.mobilesole;
-          delete ctrl.$error.empty;
           ctrl.$showhint = false;
+          ctrl.$setValidity('empty', true);
+          ctrl.$setValidity('pattern',true);
+          ctrl.$setValidity('sole', true);
           iEle.removeClass(FOCUS_CLASS);
         }
       });
@@ -34,15 +24,40 @@ angular.module('formCheck', [])
     }
   };
 })
+.directive('checkPassword',function(FOCUS_CLASS,submitForm) {
+  return {
+    require: 'ngModel',
+    link: function(scope, iEle, iAttrs, ctrl) {
+      scope.$watch(iAttrs.ngModel,function(oldValue,newValue) {
+        // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
+        // 1.关闭文字提示
+        // 2.关闭边框提示
+        // 3.关闭规则错误标示
+        if (oldValue !== newValue) {
+          ctrl.$showhint = false;
+          ctrl.$setValidity('empty',true);
+          ctrl.$setValidity('pattern',true);
+          ctrl.$setValidity('correct',true);
+          iEle.removeClass(FOCUS_CLASS);
+        }
+      });
+
+      // 1.将link函数的参数传入服务中
+      // 2.绑定相关验证的事件
+      submitForm.savePasswordArgs(arguments);
+      submitForm.bindPasswordEvt();
+    }
+  };
+})
 .directive('confirmPassword',function(FOCUS_CLASS) {
   return {
     require: 'ngModel',
     link: function(scope, iEle, iAttrs, ctrl) {
       scope.$watch(iAttrs.ngModel,function(oldValue,newValue) {
         // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
-        // 1.去除错误的文字提示
-        // 2.去除错误的边框提示
-        // 3.删除远程验证留下的标示
+        // 1.关闭文字提示
+        // 2.关闭边框提示
+        // 3.关闭规则错误标示
         if (oldValue !== newValue) {
           ctrl.$showhint = false;
           iEle.removeClass(FOCUS_CLASS);
@@ -80,40 +95,17 @@ angular.module('formCheck', [])
     }
   };
 })
-.directive('checkPassword',function(FOCUS_CLASS,submitForm) {
-  return {
-    require: 'ngModel',
-    link: function(scope, iEle, iAttrs, ctrl) {
-      scope.$watch(iAttrs.ngModel,function(oldValue,newValue) {
-        // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
-        // 1.去除错误的文字提示
-        // 2.去除错误的边框提示
-        // 3.删除远程验证留下的标示
-        if (oldValue !== newValue) {
-          delete ctrl.$error.empty;
-          ctrl.$showhint = false;
-          iEle.removeClass(FOCUS_CLASS);
-        }
-      });
-
-      // 1.将link函数的参数传入服务中
-      // 2.绑定相关验证的事件
-      submitForm.savePasswordArgs(arguments);
-      submitForm.bindPasswordEvt();
-    }
-  };
-})
 .directive('checkCaptcha', function(apiService,FOCUS_CLASS) {
   return {
     require: 'ngModel',
     link: function(scope, iEle, iAttrs, ctrl) {
       scope.$watch(iAttrs.ngModel, function(newValue, oldValue) {
         // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
-        // 1.去除错误的文字提示
-        // 2.去除错误的边框提示
-        // 3.删除远程验证留下的标示
+        // 1.关闭文字提示
+        // 2.关闭边框提示
+        // 3.关闭规则错误标示
         if (oldValue !== newValue) {
-          delete ctrl.$error.correct;
+          ctrl.$setValidity('correct', true);
           ctrl.$showhint = false;
           iEle.removeClass(FOCUS_CLASS);
         }
@@ -154,7 +146,6 @@ angular.module('formCheck', [])
                 ctrl.$showhint = true;
                 ctrl.$setValidity('correct', true);
                 iEle.removeClass(FOCUS_CLASS);
-                ctrl.$valid = true;
               },
               function(error) {
                 ctrl.$showhint = true;
@@ -175,12 +166,12 @@ angular.module('formCheck', [])
     link: function(scope, iEle, iAttrs, ctrl) {
       scope.$watch(iAttrs.ngModel,function(oldValue,newValue) {
         // 通过监控ngModel，当输入框中的文本发生变化时，错误提示立马隐藏
-        // 1.去除错误的文字提示
-        // 2.去除错误的边框提示
-        // 3.删除远程验证留下的标示
+        // 1.关闭文字提示
+        // 2.关闭边框提示
+        // 3.关闭规则错误标示
         if (oldValue !== newValue) {
           // 删除$error中的远程验证标示，防止提示重叠
-          delete ctrl.$error.sole;
+          ctrl.$setValidity('sole',true);
           // 隐藏提示
           ctrl.$showhint = false;
           // 去除控件border的警示状态
@@ -233,7 +224,8 @@ angular.module('formCheck', [])
                 // 移除提醒样式
                 iEle.removeClass(FOCUS_CLASS);
                 // angularJS的BUG，再验证错误一次后，再次验证成功，$error中的所有属性都为false的情况下 $valid没有更新为true
-                ctrl.$valid = true;
+                // 有可能是由于使用delete导致的BUG
+                // ctrl.$valid = true;
               },
               function(error) {
                 // 显示提示

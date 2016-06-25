@@ -1,0 +1,166 @@
+<div class="menu collapse menu-collapse">
+  <div class="row">
+    <!-- TAG切换按钮 -->
+    <div class="col-md-1" id="menu-tabs">
+      <ul class="tab-list">
+        <li class="menu-tabs-item active"><a data-target="#basis" class="menu-tab"><span><%= data[0].name %></span></a></li>
+        <li class="menu-tabs-item"><a data-target="#enhance" class="menu-tab"><span><%= data[1].name %></span></a></li>
+      </ul>
+    </div>
+    <!-- TAG切换内容 -->
+    <div class="col-md-11">
+      <div class="tab-content" id="tab-content">
+        <div class="row tab-pane active" id="basis">
+            <div class="col-md-12 menu-filter">
+              <!-- Nav tabs -->
+              <div class="menu-filter-des">
+                <span class="menu-filter-des-item">年级</span>
+              </div>
+              <!-- Tab panes -->
+              <div class="menu-filter-cont grade" id="grade-tabs">
+                <span class="grade-p">
+                  <a href="javascript:;" class="menu-filter-bt grade-bt active" data-target="#subjects-1">小<i> · </i>一</a>
+                  <a href="javascript:;" class="menu-filter-bt grade-bt" data-target="#subjects-2">小<i> · </i>二</a>
+                  <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>三</a>
+                  <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>四</a>
+                  <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>五</a>
+                  <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>六</a>
+                </span>
+                <span class="grade-jh">
+                  <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>一</a>
+                  <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>二</a>
+                  <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>三</a>
+                </span>
+                <span class="grade-sh">
+                  <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>一</a>
+                  <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>二</a>
+                  <a href="javascript:;" class="menu-filter-bt grade-bt disabled">高<i> · </i>三</a>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-12 menu-filter">
+              <div class="menu-filter-des">
+                <span class="menu-filter-des-item">学科</span>
+              </div>
+              <div class="menu-filter-cont subjects subjects-cont">
+                <div class="subjects-panel active" id="subjects-1">
+                  <a href="javascript:;" class="menu-filter-bt subjects-bt selected">语文</a>
+                  <a href="javascript:;" class="menu-filter-bt subjects-bt">数学</a>
+                  <a href="javascript:;" class="menu-filter-bt subjects-bt disabled">英语</a>
+                  <a href="javascript:;" class="menu-filter-bt subjects-bt">物理</a>
+                  <a href="javascript:;" class="menu-filter-bt subjects-bt">化学</a>
+                </div>
+                <div class="subjects-panel" id="subjects-2">
+                  <a href="javascript:;" class="menu-filter-bt subjects-bt selected">语文</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 menu-filter">
+              <div class="menu-filter-des">
+                <span class="menu-filter-des-item">版本</span>
+              </div>
+
+              <div class="menu-filter-cont version">
+                <a href="javascript:;" class="menu-filter-bt version-bt active">人教版</a>
+                <a href="javascript:;" class="menu-filter-bt version-bt">沪教版</a>
+                <a href="javascript:;" class="menu-filter-bt version-bt disabled">苏教版</a>
+              </div>
+            </div>
+            <div class="col-md-12 menu-filter menu-filter-last">
+              <div class="menu-filter-des">
+                <span class="menu-filter-des-item">知识</span>
+              </div>
+
+              <div class="menu-filter-cont knowledge">
+                <a href="javascript:;" class="menu-filter-bt knowledge-bt active">名著阅读</a>
+                <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+                <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+              </div>
+            </div>
+        </div>
+        <div class="row tab-pane" id="enhance">
+          <div class="col-md-12 menu-filter">
+            <!-- Nav tabs -->
+            <div class="menu-filter-des">
+              <span class="menu-filter-des-item">年级</span>
+            </div>
+
+            <!-- Tab panes -->
+            <div class="menu-filter-cont grade">
+              <span class="grade-p">
+              <a href="javascript:;" class="menu-filter-bt grade-bt active">小<i> · </i>一</a>
+              <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>二</a>
+              <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>三</a>
+              <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>四</a>
+              <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>五</a>
+              <a href="javascript:;" class="menu-filter-bt grade-bt">小<i> · </i>六</a>
+            </span>
+              <span class="grade-jh">
+              <a href="javascript:;" class="menu-filter-bt grade-bt active">初<i> · </i>一</a>
+              <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>二</a>
+              <a href="javascript:;" class="menu-filter-bt grade-bt">初<i> · </i>三</a>
+            </span>
+              <span class="grade-sh">
+              <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>一</a>
+              <a href="javascript:;" class="menu-filter-bt grade-bt">高<i> · </i>二</a>
+              <a href="javascript:;" class="menu-filter-bt grade-bt disabled">高<i> · </i>三</a>
+            </span>
+            </div>
+          </div>
+          <div class="col-md-12 menu-filter">
+            <div class="menu-filter-des">
+              <span class="menu-filter-des-item">学科</span>
+            </div>
+
+            <div class="menu-filter-cont subjects">
+              <a href="javascript:;" class="menu-filter-bt subjects-bt active">语文</a>
+              <a href="javascript:;" class="menu-filter-bt subjects-bt">数学</a>
+              <a href="javascript:;" class="menu-filter-bt subjects-bt disabled">英语</a>
+              <a href="javascript:;" class="menu-filter-bt subjects-bt">物理</a>
+              <a href="javascript:;" class="menu-filter-bt subjects-bt">化学</a>
+            </div>
+          </div>
+          <div class="col-md-12 menu-filter">
+            <div class="menu-filter-des">
+              <span class="menu-filter-des-item">版本</span>
+            </div>
+
+            <div class="menu-filter-cont version">
+              <a href="javascript:;" class="menu-filter-bt version-bt active">人教版</a>
+              <a href="javascript:;" class="menu-filter-bt version-bt">沪教版</a>
+              <a href="javascript:;" class="menu-filter-bt version-bt disabled">苏教版</a>
+            </div>
+          </div>
+          <div class="col-md-12 menu-filter menu-filter-last">
+            <div class="menu-filter-des">
+              <span class="menu-filter-des-item">知识</span>
+            </div>
+            <div class="menu-filter-cont knowledge">
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt active">名著阅读</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">名著阅读</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt">汉字</a>
+              <a href="javascript:;" class="menu-filter-bt knowledge-bt disabled">句法s</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
