@@ -1,12 +1,13 @@
 define(function(require) {
   var $ = require('jquery');
   var oUrl = {};
-  var sHost = 'http://www.quick.com:8081/api';
+  var sHost = 'http://139.196.173.103:8081/api';
   var testPostfix = '';
   oUrl.getAuthUser = sHost + '/getAuthUser' + testPostfix;
   oUrl.getcategory = sHost + '/getcategory' + testPostfix;
+  oUrl.getknowledge = sHost + '/getknowledge' + testPostfix;
+  oUrl.getproductlist = sHost + '/getproductlist' + testPostfix;
   oUrl.testUrl = sHost + '/isUserReg' + testPostfix;
-
   var api = {};
   var fnPretreatment = function(answer,deferred) {
     // 对后台返回的状态码做预处理
@@ -51,7 +52,31 @@ define(function(require) {
       oDeferred.reject(error);
     });
     return oDeferred.promise();
-  }
+  };
+  // 获取知识点
+  api.getknowledge = function(id) {
+    var oDeferred = $.Deferred();
+    $.get(oUrl.getknowledge,{id:id})
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 获取视频列表
+  api.getproductlist = function(level,grade,subjects,version,knowledge,page) {
+    var oDeferred = $.Deferred();
+    $.get(oUrl.getproductlist,{level:level,grade:grade,subjects:subjects,version:version,knowledge:knowledge,page:page})
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
 
   return api;
 });

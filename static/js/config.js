@@ -40,7 +40,7 @@ require.config({
       }
     },
     // deps:['bootstrap']//确保首先加载bootstrap
-    urlArgs: "bust=" + (new Date()).getTime()  //防止读取缓存，调试用。会在每个模块之后添加?bust=xxx
+    // urlArgs: "bust=" + (new Date()).getTime()  //防止读取缓存，调试用。会在每个模块之后添加?bust=xxx
 });
 
 

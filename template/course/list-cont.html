@@ -1,0 +1,26 @@
+<% for (var i = 0; i < data.length;i++) {%>
+<div class="results-item col-md-4 col-sm-6">
+  <div class="results-panel <%= data[i].float %>">
+    <a href="javascript:;" class="rp-detail">
+      <% if (data[i].isplay === 1) {%>
+        <span class="rp-corner">
+          <span class="label label-danger">正在播放</span>
+        </span>
+      <% } %>
+      <h3 class="rp-tit"><%= data[i].num %></h3>
+      <p class="rp-subtit">数列的概念与简单表示法</p>
+      <span class="rp-duration">时长 - <em><%= data[i].playtime %></em></span>
+    </a>
+    <div class="rp-operation">
+      <% if (data[i].issee === 1) {%>
+        <button type="button" class="btn btn-success" disabled="disabled">可试看</button>
+      <% } else if (data[i].isbuy === 1) {%>
+        <button type="button" class="btn btn-default" disabled="disabled">已购买</button>
+      <% } else {%>
+        <button type="button" class="btn btn-primary">加入购物车</button>
+      <% } %>
+      <div class="rp-price"><em><%= data[i].price %></em>金钥</div>
+    </div>
+  </div>
+</div>
+<% } %>
