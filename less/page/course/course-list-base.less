@@ -117,6 +117,7 @@
 // 删选条件
 .menu-filter-cont {
   float: left;
+  display: table;
   // box-sizing:content-box;
   .size(90%,auto);
   min-height: @courselist-menu-item-height;
@@ -140,57 +141,108 @@
     }
   }
 }
-// 年级
-.grade-p {
+.grade-list{
   float: left;
   margin-right: 5px;
-  // margin-top: 6px;
-  .grade-bt {
-    color: @courselist-menu-gradebtn-p-color;
+  margin-bottom: 0;
+  li{
+    float: left;
   }
-  .active {
-    color: @courselist-menu-gradebtn-color-active;
-    background-color: @courselist-menu-gradebtn-p-bg-active;
-    &:hover {
+  .primary{
+    .grade-bt {
+      color: @courselist-menu-gradebtn-p-color;
+    }
+    &.active > a {
       color: @courselist-menu-gradebtn-color-active;
       background-color: @courselist-menu-gradebtn-p-bg-active;
+      &:hover {
+        color: @courselist-menu-gradebtn-color-active;
+        background-color: @courselist-menu-gradebtn-p-bg-active;
+      }
     }
   }
-}
-.grade-jh {
-  float: left;
-  margin-right: 5px;
-  .grade-bt {
-    color: @courselist-menu-gradebtn-jh-color;
-  }
-  .active {
-    color: @courselist-menu-gradebtn-color-active;
-    background-color: @courselist-menu-gradebtn-jh-bg-active;
-    &:hover {
+  .junior{
+    .grade-bt {
+      color: @courselist-menu-gradebtn-jh-color;
+    }
+    &.active > a{
       color: @courselist-menu-gradebtn-color-active;
       background-color: @courselist-menu-gradebtn-jh-bg-active;
+      &:hover {
+        color: @courselist-menu-gradebtn-color-active;
+        background-color: @courselist-menu-gradebtn-jh-bg-active;
+      }
     }
   }
-}
-.grade-sh {
-  float: left;
-  .grade-bt {
-    color: @courselist-menu-gradebtn-sh-color;
-  }
-  .active {
-    color: @courselist-menu-gradebtn-color-active;
-    background-color: @courselist-menu-gradebtn-sh-bg-active;
-    &:hover {
+  .senior{
+    .grade-bt {
+      color: @courselist-menu-gradebtn-sh-color;
+    }
+    &.active > a{
       color: @courselist-menu-gradebtn-color-active;
       background-color: @courselist-menu-gradebtn-sh-bg-active;
+      &:hover {
+        color: @courselist-menu-gradebtn-color-active;
+        background-color: @courselist-menu-gradebtn-sh-bg-active;
+      }
     }
   }
 }
+// 年级
+// .grade-p {
+//   float: left;
+//   margin-right: 5px;
+//   // margin-top: 6px;
+//   .grade-bt {
+//     color: @courselist-menu-gradebtn-p-color;
+//   }
+//   .active > a {
+//     color: @courselist-menu-gradebtn-color-active;
+//     background-color: @courselist-menu-gradebtn-p-bg-active;
+//     &:hover {
+//       color: @courselist-menu-gradebtn-color-active;
+//       background-color: @courselist-menu-gradebtn-p-bg-active;
+//     }
+//   }
+// }
+// .grade-p li{
+//   float: left;
+//
+// }
+// .grade-j {
+//   float: left;
+//   margin-right: 5px;
+//   .grade-bt {
+//     color: @courselist-menu-gradebtn-jh-color;
+//   }
+//   .active > a{
+//     color: @courselist-menu-gradebtn-color-active;
+//     background-color: @courselist-menu-gradebtn-jh-bg-active;
+//     &:hover {
+//       color: @courselist-menu-gradebtn-color-active;
+//       background-color: @courselist-menu-gradebtn-jh-bg-active;
+//     }
+//   }
+// }
+// .grade-s {
+//   float: left;
+//   .grade-bt {
+//     color: @courselist-menu-gradebtn-sh-color;
+//   }
+//   .active > a{
+//     color: @courselist-menu-gradebtn-color-active;
+//     background-color: @courselist-menu-gradebtn-sh-bg-active;
+//     &:hover {
+//       color: @courselist-menu-gradebtn-color-active;
+//       background-color: @courselist-menu-gradebtn-sh-bg-active;
+//     }
+//   }
+// }
 // 学科、版本、知识的active样式
 .subjects,
 .knowledge,
 .version {
-  .selected {
+  a.active {
     color: @courselist-menu-btn-color-active;
     background-color: @courselist-menu-btn-bg-active;
     &:hover {
@@ -199,12 +251,33 @@
     }
   }
 }
-.subjects-cont{
-  > .subjects-panel{
+// 默认隐藏切换元素
+// 设置显示激活元素
+#subjects-1-content,#subjects-2-content{
+  .subjects-panel{
     display: none;
   }
-  > .active{
+  .subjects-panel.active{
     display: block;
+  }
+}
+#version-1-content,#version-2-content{
+  .version-panel{
+    display: none;
+  }
+  .version-panel.active{
+    display: block;
+  }
+}
+// 操作提示
+.operation-hint{
+  display: none;
+  // height: 100%;
+  color: #aaa;
+  // line-height: 100%;
+  &.active {
+    display: table-cell;
+    vertical-align: middle;
   }
 }
 

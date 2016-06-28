@@ -2,7 +2,7 @@
 define(function(require) {
   var $ = require('jquery'),
       Cookies = require('jq-cookie'),
-      mApi = require('./api');
+      mApi = require('../api');
   var oSession = {};
   oSession.user = {
     token:'',

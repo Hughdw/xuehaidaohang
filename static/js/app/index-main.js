@@ -1,6 +1,6 @@
 define(function (require) {
   var $ = require('jquery'),
-      mSignModal = require('./components/sign-modal');
+      mSignModal = require('./components/sign/sign-modal');
   $(function() {
 
     // 获取到模版，然后渲染数据
