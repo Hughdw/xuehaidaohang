@@ -1,6 +1,5 @@
 define(function (require) {
-  var $ = require('jquery'),
-      tpldata = require('./data/template'),
+  var tpldata = require('./data/template'),
       tplProgressMain = require('tpl/personal/progress-main'),
       replaceImgPath = require('./components/replace-img-path');
   $(function() {

@@ -1,19 +1,32 @@
-
 /**
  * define函数用来定义模块
  * 1.加载模块
  * 2.课程列表 的程序逻辑
  */
 define(function (require) {
-  var $ = require('jquery'),
-      mApi = require('./components/api'),
+  var mApi = require('./components/api'),
       mResetMenu = require('./components/course/reset-menu'),
       mBindDropdown = require('./components/dropdown'),
       tplListMenu = require('tpl/course/list-menu'),
       mListData = require('./components/course/list-data'),
-      mFilterCont = require('./components/course/filter-cont');
+      mFilterCont = require('./components/course/filter-cont'),
+      mAuth = require('./components/sign/auth');
   // 页面载入
   $(function() {
+
+    // 测试登录状态
+    $('#testBtn').on('click', function(event) {
+      event.preventDefault();
+      /* Act on the event */
+      console.log(mAuth.isAuthenticated());
+    });
+    // 退出
+    $('#testBtn2').on('click', function(event) {
+      event.preventDefault();
+      /* Act on the event */
+      mAuth.logout();
+    });
+
     // 获取视频目录列表
     mApi.getcategory()
     .done(function(success) {

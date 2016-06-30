@@ -3,8 +3,7 @@
  * 2.课程详情 的程序逻辑
  */
 define(function (require) {
-  var $ = require('jquery'),
-      mUtil = require('./components/util'),
+  var mUtil = require('./components/util'),
       mApi = require('./components/api'),
       mBindDropdown = require('./components/dropdown'),
       mVideoPlay = require('./components/course/video-play'),

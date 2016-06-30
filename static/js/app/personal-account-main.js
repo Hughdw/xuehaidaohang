@@ -1,6 +1,5 @@
 define(function (require) {
-  var $ = require('jquery'),
-      tpldata = require('./data/template'),
+  var tpldata = require('./data/template'),
       tplAccountMain = require('tpl/personal/account-main'),
       replaceImgPath = require('./components/replace-img-path'),
       mButton = require('./components/personal/button');
