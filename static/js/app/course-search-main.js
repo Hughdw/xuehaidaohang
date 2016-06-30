@@ -1,5 +1,5 @@
 define(function (require) {
-  var $ = require('jquery');
+  
   $(function() {
     $('#loadBtn').on('click', function(event) {
       // event.preventDefault();

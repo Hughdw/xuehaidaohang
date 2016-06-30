@@ -1,3 +1,3 @@
 require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'app/components/set-min-height', 'app/course-search-main']);
+  require(['jquery', 'bootstrap', 'app/components/common', 'app/course-search-main']);
 });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +21,7 @@
     <script src="lib/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="lib/respondjs/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+  <script src="static/js/app/common/global.js"></script>
 </head>
 
 <body id="course-display">
@@ -48,27 +49,20 @@
             </span>
           </div>
         </form>
-        <div class="sign navbar-right">
+        <div class="navbar-right sign-box" id="sign-wrap">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#" class="nav-link">首页</a></li>
-            <li><a href="#" class="nav-link">课程</a></li>
+            <li><a href="/index.html" class="nav-link">首页</a></li>
+            <li class="active"><a href="/course-list.html" class="nav-link">课程</a></li>
             <li><a href="#" class="nav-link">社区</a></li>
+            <li class="personal"><a href="/personal-account.html" class="nav-link">个人中心</a></li>
           </ul>
-          <div class="navbar-left">
-            <button type="button" class="btn btn-gpsnav navbar-btn">注册</button>
-            <span class="v-line">|</span>
-            <button type="button" class="btn btn-gpsnav navbar-btn">登录</button>
+          <div class="navbar-left logout">
+            <button type="button" class="btn btn-gpsnav navbar-btn" id="logout">退出</button>
           </div>
-        </div>
-        <div class="signed navbar-right hidden">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#" class="nav-link">首页</a></li>
-            <li><a href="#" class="nav-link">课程</a></li>
-            <li><a href="#" class="nav-link">社区</a></li>
-            <li><a href="#" class="nav-link">个人中心</a></li>
-          </ul>
-          <div class="navbar-left">
-            <button type="button" class="btn btn-gpsnav signout navbar-btn">退出</button>
+          <div class="navbar-left sign">
+            <button type="button" class="btn btn-gpsnav navbar-btn" id="sign-up" data-whatever="register">注册</button>
+            <span class="v-line">|</span>
+            <button type="button" class="btn btn-gpsnav navbar-btn" id="sign-in" data-whatever="login">登录</button>
           </div>
         </div>
       </div>
@@ -99,9 +93,12 @@
                   购物车<span class="badge">4</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right sc-panel">
-                  <li class="sc-panel-item"><a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程但降幅扩大进口放进口袋就疯狂点击放大</span></li>
-                  <li class="sc-panel-item"><a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程2</span></li>
-                  <li class="sc-panel-item"><a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程3</span></li>
+                  <li class="sc-panel-item">
+                    <a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程但降幅扩大进口放进口袋就疯狂点击放大</span></li>
+                  <li class="sc-panel-item">
+                    <a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程2</span></li>
+                  <li class="sc-panel-item">
+                    <a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程3</span></li>
                   <li class="divider"></li>
                   <li><a href="http://baidu.com" class="goto">前去结算</a></li>
                 </ul>

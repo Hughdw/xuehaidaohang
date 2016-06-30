@@ -1,5 +1,3 @@
-//
-
 define(function(require) {
   var $ = require('jquery'),
       mAuth = require('./auth'),

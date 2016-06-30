@@ -1,3 +1,3 @@
 require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'app/components/set-min-height', 'app/personal-preferential-main']);
+  require(['jquery', 'bootstrap', 'app/components/common', 'app/personal-preferential-main']);
 });
