@@ -2,7 +2,7 @@
 /**
  * define函数用来定义模块
  * 1.加载模块
- * 2.code课程列表 的程序逻辑
+ * 2.课程列表 的程序逻辑
  */
 define(function (require) {
   var $ = require('jquery'),
@@ -14,8 +14,6 @@ define(function (require) {
       mFilterCont = require('./components/course/filter-cont');
   // 页面载入
   $(function() {
-    // 保存用户选择的目录选线
-    var aSelectedName;
     // 获取视频目录列表
     mApi.getcategory()
     .done(function(success) {
@@ -25,17 +23,17 @@ define(function (require) {
       document.getElementById('gps-menu').innerHTML = tplListMenu(oMenuData);
       // 重置 筛选列表 的高度
       mResetMenu('tab-content');
+      // 当前目录选择项目的categoryid
+      var nLevelActiveId = mListData.getLevelActiveId();
       // 为目录绑定事件（包括基础和提高）
-      mFilterCont.bindEvt([1,2]);
-      // 默认内容
-      mFilterCont.getProductlist(mListData.getSelectedName(),1);
+      mFilterCont.bindEvt([1,2],nLevelActiveId);
+      // 视频列表默认内容
+      mFilterCont.getProductlist(mListData.getSelectedName(nLevelActiveId),1);
     })
     .fail(function(error) {
       alert('服务器请求错误');
     });
     // 购物车下拉事件
     mBindDropdown.init('#sc-btn','.shopping-car',true);
-
-
   });
 });

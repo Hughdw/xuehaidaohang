@@ -14,11 +14,12 @@ define(function(require) {
   oSession.saveToken = function(token,fn) {
     // 保存token到cookie中
     Cookies.set('token',token);
-    fn();
+    // 把token保存到
+    oSession.user.token = token;
+    // 保存用户信息到cookie中
+    oSession.createUser();
   };
   oSession.createUser = function() {
-    // 把token保存到
-    oSession.user.token = Cookies.get('token');
     // 将用户的个人信息保存到cookies中
     mApi.getAuthUser(oSession.user.token)
     .done(function(success) {

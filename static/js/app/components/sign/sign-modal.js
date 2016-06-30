@@ -10,7 +10,7 @@ define(function(require) {
     btn.on('click', function(event) {
       event.preventDefault();
       /* Act on the event */
-      // 获取模板
+      // 获取登录模态框的HTML（iframe）
       var str = tplSignAppend();
       var jqBtn = $(this);
       // 插入HTML，避免重复创建
@@ -28,9 +28,9 @@ define(function(require) {
           event.preventDefault();
           /* Act on the event */
           // 窗口关闭后，判断是否登录成功
-          // 登录成功后，登录窗口会把token传递到调用登录窗口的页面（当前页面）
-          // 登录成功，调用login方法
+          // 登录成功后，登录窗口会把token传递到调用登录窗口的页面（当前页面），通过globalModule获取
           var token = globalModule.getToken();
+          // 调用login方法
           if (token) mAuth.login(token);
         });
       }

@@ -7,6 +7,7 @@ define(function(require) {
   oUrl.getcategory = sHost + '/getcategory' + testPostfix;
   oUrl.getknowledge = sHost + '/getknowledge' + testPostfix;
   oUrl.getproductlist = sHost + '/getproductlist' + testPostfix;
+  oUrl.getproduct = sHost + '/getproduct' + testPostfix;
   oUrl.testUrl = sHost + '/isUserReg' + testPostfix;
   var api = {};
   var fnPretreatment = function(answer,deferred) {
@@ -69,6 +70,18 @@ define(function(require) {
   api.getproductlist = function(level,grade,subjects,version,knowledge,page) {
     var oDeferred = $.Deferred();
     $.get(oUrl.getproductlist,{level:level,grade:grade,subjects:subjects,version:version,knowledge:knowledge,page:page})
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 获取视频详情
+  api.getproduct = function(pid) {
+    var oDeferred = $.Deferred();
+    $.get(oUrl.getproduct,{pid:pid})
     .done(function(answer) {
       fnPretreatment(answer,oDeferred);
     })

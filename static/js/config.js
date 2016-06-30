@@ -14,6 +14,10 @@ require.config({
       'bootstrap': 'libs/bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
       'angular': 'libs/angular/1.2.29/angular',
       'ngRoute':'libs/angular-route/1.2.29/angular-route',
+      'qcVideo':[
+        'libs/video/h5connect',
+        'http://qzonestyle.gtimg.cn/open/qcloud/video/h5/h5connect'
+      ],
       // 'app': '../static/js/app',
       // 'mod': '../static/js/app/components',
       // 'tpldata':'./app/data/template',

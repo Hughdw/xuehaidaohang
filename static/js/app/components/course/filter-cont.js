@@ -7,7 +7,7 @@ define(function(require) {
 
   var oFilterCont = {};
   // 当前目录选择项目的categoryid
-  var aSelectId = mListData.getSelectedId();
+  var nLevelActiveId;
   // 清除选择
   function fnClearSelect (btn) {
     btn.find('a').removeClass('active');
@@ -48,7 +48,8 @@ define(function(require) {
     });
   };
   // 目录按钮绑定事件
-  oFilterCont.bindEvt = function(num) {
+  oFilterCont.bindEvt = function(num,levelId) {
+    nLevelActiveId = levelId;
     // 切换TAB时，重置高度
     $('#menu-tabs').on('click', '.menu-tab', function(event) {
       event.preventDefault();
@@ -56,8 +57,10 @@ define(function(require) {
       var jqSelf = $(this);
       jqSelf.tab('show');
       // 保存当前目录筛选条件的选择categoryid 和 name
-      mListData.selected(0,jqSelf.data('name'),jqSelf.data('categoryid'));
-      aSelectId = mListData.getSelectedId();
+      mListData.saveLevelActiveId(jqSelf.data('categoryid'));
+      nLevelActiveId = mListData.getLevelActiveId();
+      mListData.saveSelectedName(0,nLevelActiveId,jqSelf.data('name'));
+
     });
     // 给新创建的知识点元素委派绑定的事件
     $('#knowledge-1-list,#knowledge-2-list').delegate('a', 'click', function(event) {
@@ -68,14 +71,14 @@ define(function(require) {
       jqSelf.siblings().removeClass('active');
       jqSelf.addClass('active');
       // 保存当前目录筛选条件的选择categoryid 和 name
+      mListData.saveSelectedName(4,nLevelActiveId,jqSelf.data('name'));
       // 获取到当前目录筛选条件的选择name
-       mListData.selected(4,jqSelf.data('name'),jqSelf.data('categoryid'));
-      aSelectedName = mListData.getSelectedName();
+      var aSelectedName = mListData.getSelectedName(nLevelActiveId);
       //设置获取的页面
       var page = 1;
       oFilterCont.getProductlist(aSelectedName,page);
       // 清除 知识点 的选择
-      var nInvert = aSelectId[0] === 1 ? 2 : 1;
+      var nInvert = nLevelActiveId === 1 ? 2 : 1;
       fnClearSelect($('#knowledge-'+nInvert+'-list'));
     });
     // 绑定目录-年级按钮
@@ -87,13 +90,13 @@ define(function(require) {
       jqSelf.siblings().removeClass('active');
       jqSelf.tab('show').addClass('active');
       // 清除 学科 的选择
-      fnClearSelect($('#subjects-'+aSelectId[0]+'-content'));
+      fnClearSelect($('#subjects-'+nLevelActiveId+'-content'));
       // 隐藏版本元素 && 显示 版本 提示
-      fnClearActive($('#version-'+aSelectId[0]+'-content'));
+      fnClearActive($('#version-'+nLevelActiveId+'-content'));
       // 删除 知识点 元素 && 显示 知识点 提示
-      fnDeleteEle($('#knowledge-'+aSelectId[0]+'-list'));
+      fnDeleteEle($('#knowledge-'+nLevelActiveId+'-list'));
       // 保存当前目录筛选条件的选择categoryid 和 name
-      mListData.selected(1,jqSelf.data('name'),$(this).data('categoryid'));
+      mListData.saveSelectedName(1,nLevelActiveId,jqSelf.data('name'));
     });
     // 绑定目录-学科按钮
     $('#subjects-1-content,#subjects-2-content').on('click', '.subjects-bt', function(event) {
@@ -104,11 +107,11 @@ define(function(require) {
       jqSelf.siblings().removeClass('active');
       jqSelf.tab('show').addClass('active');
       // 清除 版本 的选择
-      fnClearSelect($('#version-'+aSelectId[0]+'-content'));
+      fnClearSelect($('#version-'+nLevelActiveId+'-content'));
       // 删除 知识点 元素 && 显示 知识点 提示
-      fnDeleteEle($('#knowledge-'+aSelectId[0]+'-list'));
+      fnDeleteEle($('#knowledge-'+nLevelActiveId+'-list'));
       // 保存当前目录筛选条件的选择categoryid 和 name
-      mListData.selected(2,jqSelf.data('name'),$(this).data('categoryid'));
+      mListData.saveSelectedName(2,nLevelActiveId,jqSelf.data('name'));
     });
     // 绑定目录-版本按钮
     $('#version-1-content,#version-2-content').on('click', '.version-bt', function(event) {
@@ -119,9 +122,9 @@ define(function(require) {
       jqSelf.siblings().removeClass('active');
       jqSelf.addClass('active');
       // 保存当前目录筛选条件的选择categoryid 和 name
-      mListData.selected(3,jqSelf.data('name'));
+      mListData.saveSelectedName(3,nLevelActiveId,jqSelf.data('name'));
       // 获取知识点
-      oFilterCont.getKnowledge(jqSelf.data('categoryid'),aSelectId[0]);
+      oFilterCont.getKnowledge(jqSelf.data('categoryid'),nLevelActiveId);
     });
   };
   return oFilterCont;

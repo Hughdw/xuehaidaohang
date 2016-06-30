@@ -8,9 +8,9 @@ define(function (require) {
   var aStoreToggleParent = [];
   var oBindDropdown = {
     init:function (toggleBtn,parent,last) {
-      this._bind(toggleBtn);
-      this._saveToggle(toggleBtn,parent);
-      if (last) this._reset();
+      oBindDropdown._bind(toggleBtn);
+      oBindDropdown._saveToggle(toggleBtn,parent);
+      if (last) oBindDropdown._reset();
     },
     _bind: function(toggleBtn) {
         $(toggleBtn).on('click',function (event) {
@@ -47,9 +47,6 @@ define(function (require) {
     }
   };
   return {
-    init:oBindDropdown.init,
-    _bind:oBindDropdown._bind,
-    _reset:oBindDropdown._reset,
-    _saveToggle:oBindDropdown._saveToggle
+    init:oBindDropdown.init
   };
 });
