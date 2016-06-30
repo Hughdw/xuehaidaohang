@@ -13,10 +13,7 @@ define(function(require) {
   // 登录成功后，保存token，获取用户个人信息。
   auth.login = function(token) {
     // 将token保存到cookie中
-    mSession.saveToken(token,function() {
-      // 保存用户信息到cookie中
-      mSession.createUser();
-    });
+    mSession.saveToken(token);
     // 进行广播，触发相关模块进行响应
   };
   // 退出后，删除token，删除用户个人信息。

@@ -1,5 +1,4 @@
 define(function(require) {
-  mGlobal = require('../global');
   // body...
   var oListData = {};
   // 定义最终返回数据的基本结构
@@ -10,14 +9,18 @@ define(function(require) {
     version:{}
   };
   // 当前激活按钮的分类categoryid
+  // 写死的值，目前没有其他地方做变更
   var oActiveId = {
     level:[1],
     grade:[3,21]//分别对应基础和提高
   };
   // 当前选择categoryid
-  var aSelectId = [];
+  var nLevelActiveId;
   // 保存当前选择的name值
-  var aSelectName = ["基础", "小一", "数学", "人教版", "重点"];
+  var aSelectedName = [
+    ["基础", "小一", "数学", "人教版", "重点"],
+    ["提高", "小一", "数学", "人教版", "重点"]
+  ];
 
   // 记录每个等级的分类categoryid，在重组数据函数中用
   var aLevelId = [];
@@ -26,17 +29,19 @@ define(function(require) {
   // 记录每个学科的分类categoryid，在重组数据函数中用
   var aSubjectsId = [];
 
-  oListData.getSelectedId = function() {
-    return aSelectId;
+  oListData.getLevelActiveId = function() {
+    return nLevelActiveId;
   };
-  oListData.getSelectedName = function() {
-    return aSelectName;
+  oListData.getSelectedName = function(levelId) {
+    return aSelectedName[levelId-1];
   };
-  oListData.selected = function(index,value,value2) {
-    aSelectName[index] = value;
-    aSelectId[index] = value2;
+  oListData.saveLevelActiveId = function(num) {
+    nLevelActiveId = num;
   };
-  // 重新组织数据
+  oListData.saveSelectedName = function(index,levelId,name) {
+    aSelectedName[levelId-1][index] = name;
+  };
+  // 重新组织目录数据
   // 1.改变数据结构
   // 2.增加一些帮助判断的字段
   oListData.regroupMenu = function(data) {
@@ -48,8 +53,8 @@ define(function(require) {
         if (data[i].categoryid === oActiveId.level[0]) {
           data[i].active = 'active';
           // 保存当前选择
-          aSelectName.push(data[i].name);
-          aSelectId.push(data[i].categoryid);
+          nLevelActiveId = data[i].categoryid;
+          aSelectedName[nLevelActiveId-1].push(data[i].name);
         } else {
           data[i].active = '';
         }
@@ -72,8 +77,8 @@ define(function(require) {
               data[i].active = 'active';
               if (data[i].parentid === oActiveId.level[0]) {
                 // 保存当前选择
-                aSelectName.push(data[i].name);
-                aSelectId.push(data[i].categoryid);
+                aSelectedName[nLevelActiveId-1].push(data[i].name);
+                // aSelectId.push(data[i].categoryid);
               }
             } else {
               data[i].active = '';
@@ -113,14 +118,13 @@ define(function(require) {
     }
     return oNewData;
   };
+  // 重新组织视频列表数据
   oListData.regroupList = function(data) {
     var aLeftEle = [0,3,6];
     // var aMiddleEle = [2,5,8];
     var aRightEle = [2,5,8];
     var oNewList = {};
     for (var i = 0; i < data.length; i++) {
-      // data[i]
-      // console.log($.inArray(i,aLeftEle);
       if ( $.inArray(i,aLeftEle) != -1 ) {
         data[i].float = 'results-panel-left';
       } else if ($.inArray(i,aRightEle) != -1) {

@@ -1,7 +1,7 @@
 <% for (var i = 0; i < data.length;i++) {%>
 <div class="results-item col-md-4 col-sm-6">
   <div class="results-panel <%= data[i].float %>">
-    <a href="javascript:;" class="rp-detail">
+    <a href="/course-display.html?pid=<%= data[i].pid %>" class="rp-detail">
       <% if (data[i].isplay === 1) {%>
         <span class="rp-corner">
           <span class="label label-danger">正在播放</span>

@@ -3,6 +3,8 @@
  * 重置course-list.html 中 Menu尺寸的模块
  */
 define(function (require) {
+  var mUtil = require('../util');
+  
   var resizeMenu = {};
   var eTabCont;
   resizeMenu.render = function(tabContent) {
@@ -39,7 +41,7 @@ define(function (require) {
     var iTimer = 0;
     // 窗口发生变化时候，重置高度
     $(window).resize(function() {
-      if (mGlobal.isPC) {
+      if (mUtil.isPC) {
         clearTimeout(iTimer);
         iTimer = setTimeout(function() {
           resizeMenu._reset();
