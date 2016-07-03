@@ -29,7 +29,7 @@ gulp.task('browser-sync',function() {
     './static/css/*.css',
     './gulpfile.js',
     './static/tpl/**/*.js',
-    './views/**/*.html'
+    './views/**/*.html',
     // './static/**/*.js'
   ];
   browserSync.init(files,{

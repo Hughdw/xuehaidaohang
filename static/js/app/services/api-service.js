@@ -10,11 +10,18 @@ angular.module('api', [])
 })
 .factory('apiURL', function() {
   var oServiceUrl = {};
+  // 本地deployd测试地址
   // var sHost = 'http://xuehaidaohanglocalapi.com:5500';
-  var sHost = 'http://www.quick.com:8081/api';
+
+  // 服务器API地址
+  // var sHost = 'http://www.quick.com:8081/api';
+  var sHost = 'http://139.196.173.103:8081/api';
   var testPostfix = '';
+
+  // 野狗测试地址
   // var sHost = 'https://xuehaidaohang.wilddogio.com/api';
   // var testPostfix = '.json';
+
   // 图片验证码
   oServiceUrl.imgCaptcha = 'http://www.quick.com:8081/api/getCaptcha';
   // 发送手机验证码
@@ -102,24 +109,24 @@ angular.module('api', [])
   };
   // 校验验证码
   oService.verifyCode = function(type,code) {
-    var oVerifyType;
+    var oParams;
     switch (type) {
       case 'mobile':
-        oVerifyType = {activationMobileCode:code};
+        oParams = {activationMobileCode:code};
         break;
       case 'mail':
-        oVerifyType = {activationMailCode:code};
+        oParams = {activationMailCode:code};
         break;
       case 'img':
-        oVerifyType = {captcha:code};
+        oParams = {captcha:code};
         break;
       default:
-        oVerifyType = {};
+        oParams = {};
     }
     // 构建一个新的延迟实例
     var oDeferred = $q.defer();
     var oPromise = $http.get(apiURL.verifyCode,{
-      params:oVerifyType
+      params:oParams
     });
     oPromise.then(
       function(answer) {

@@ -55,9 +55,9 @@ a {
   }
 }
 // 表单控件提醒文字/图标的定位
-.wrap-relative{
-  position: relative;
-}
+// .wrap-relative{
+//   position: relative;
+// }
 .inner-absolute{
   position: absolute;
   right: 26px;
@@ -80,12 +80,15 @@ a {
 // ng表单控件的border警示状态
 textarea .ng-dirty.ng-invalid,
 select .ng-dirty.ng-invalid,
-input.ng-focused.ng-invalid {
+input.ng-focused.ng-invalid,
+// 普通表单控件的border警示状态
+input.invalid {
     border-color: #d16d62;
     -webkit-box-shadow: 0 0 6px #f8b9b7;
     -moz-box-shadow: 0 0 6px #f8b9b7;
     box-shadow: 0 0 6px #f8b9b7;
 }
+
 
 // ************************************
 // bootstarp style 扩展
@@ -230,7 +233,7 @@ input.ng-focused.ng-invalid {
 main{
   margin-top:@navbar-height-xs;
 }
-// #main 除了首页外会在main标签中加id="main"
+// 除了首页外其他页面会在main标签中加id="main"
 #main{
   margin-bottom: 20px;
   .container{
@@ -238,7 +241,22 @@ main{
   }
 }
 
-
+.alert-wrap{
+  display: none;
+  position: fixed;
+  top: 55px;
+  width: 100%;
+  height: 52px;
+  padding: 0;
+  z-index: 99;
+}
+.alert{
+  float: right;
+  text-align: center;
+  width: 200px;
+  padding: 8px;
+  margin-right: 5px;
+}
 
 // 加载动画
 .loading{
@@ -375,8 +393,7 @@ main{
   }
 }
 
-
-// ----------底部相关
+// 底部相关
 footer{
   background-color: #e9e5db;
 }
@@ -410,6 +427,13 @@ footer{
   #main .container{
     padding-top: 30px;
   }
+  .alert-wrap{
+    top: 85px;
+  }
+  .alert{
+    float: none;
+    margin: 0 auto;
+  }
   footer {
     height: @footer-height-sm;
   }
@@ -431,6 +455,8 @@ footer{
     padding-top: 60px;
   }
 }
+
+
 // ----------购物车
 .shopping-car {
   float: right;

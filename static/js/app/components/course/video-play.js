@@ -60,6 +60,7 @@ define(function(require) {
           suspended:'暂停', playing:'播放中' , playEnd:'播放结束' , stop: '试看
           结束触发'}'*/
           //console.debug('out listener status == ',status);
+          console.log(player.getCurrentTime());
         },
         //拖动播放位置变化 ； second 拖动播放的位置（单位秒）
         'dragPlay': function(second) {

@@ -8,23 +8,23 @@ define(function (require) {
       list:[
         {
           txt:'账户资料',
-          url:'personal-account.html'
+          url:'/personal-account.html'
         },
         {
           txt:'学习进度',
-          url:'personal-progress.html'
+          url:'/personal-progress.html'
         },
         {
           txt:'充值记录',
-          url:'personal-recharge-records.html'
+          url:'/personal-recharge-records.html'
         },
         {
           txt:'购买记录',
-          url:'personal-purchase-records.html'
+          url:'/personal-purchase-records.html'
         },
         {
           txt:'优惠信息',
-          url:'personal-preferential.html'
+          url:'/personal-preferential.html'
         }
       ]
     },

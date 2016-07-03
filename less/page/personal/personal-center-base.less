@@ -81,6 +81,10 @@
   color: #aaa;
 }
 
+// 输入框 提示默认不显示
+.hint-info{
+  display: none;
+}
 // ************************************
 // 页面样式
 // ************************************
@@ -154,6 +158,9 @@
 }
 // 网站头像特殊样式
 .account-avatar {
+  #current-avatar{
+    .square(70px);
+  }
   .account-tit {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -163,6 +170,9 @@
   }
   .avatar-img{
     .img-responsive();
+  }
+  .active .avatar-img{
+    border: 2px #CCC dashed;
   }
   .account-collapse-inner{
     padding-left: 0;
