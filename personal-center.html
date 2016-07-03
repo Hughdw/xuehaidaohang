@@ -7,7 +7,7 @@
   <!-- 通知 IE 采用其所支持的最新的模式 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- 指定用户是否可以缩放Web页面 -->
-  <title>课程列表</title>
+  <title>账户资料 - 用户中心</title>
   <meta name="Description" content="" />
   <meta name="Keywords" content="" />
   <meta content="http://addaad.com/z/img/favicon-48.png" itemprop="image">
@@ -15,17 +15,18 @@
   <link rel="stylesheet" href="static/js/libs/bootstrap/bootstrap-3.3.5/dist/css/bootstrap.css">
   <!-- 生产环境样式 -->
   <link rel="stylesheet" href="static/css/common.css">
-  <link rel="stylesheet" href="static/css/course/course-list-base.css">
-  <link rel="stylesheet" href="static/css/course/course-list-sm-lg.css" media="screen and (min-width:768px)" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="static/css/personal/personal-center-base.css">
+  <link rel="stylesheet" href="static/css/personal/personal-center-sm-lg.css" media="screen and (min-width:768px)" title="no title" charset="utf-8">
   <!--[if lt IE 9]>
     <script src="lib/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="lib/respondjs/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <!-- <script src="static/template.js"></script> -->
   <script src="static/js/app/common/global.js"></script>
+  <script data-main="static/js/personal-center.js" src="static/js/libs/require.js"></script>
 </head>
 
-<body id="course-list">
-  <button type="button" class="btn collapsed menu-toggle menu-toggle-filter" data-toggle="collapse" data-target="#gps-menu-collapse" aria-expanded="false" aria-label="筛选条件"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></button>
+<body id="personal-center">
   <nav class="navbar navbar-gps navbar-fixed-top">
     <div class="container">
       <!-- 折叠内容 -->
@@ -53,9 +54,9 @@
         <div class="navbar-right sign-box" id="sign-wrap">
           <ul class="nav navbar-nav">
             <li><a href="/index.html" class="nav-link">首页</a></li>
-            <li class="active"><a href="/course-list.html" class="nav-link">课程</a></li>
+            <li><a href="/course-list.html" class="nav-link">课程</a></li>
             <li><a href="#" class="nav-link">社区</a></li>
-            <li class="personal"><a href="/personal-account.html" class="nav-link">个人中心</a></li>
+            <li class="personal active"><a href="/personal-account.html" class="nav-link">个人中心</a></li>
           </ul>
           <div class="navbar-left logout">
             <button type="button" class="btn btn-gpsnav navbar-btn" id="logout">退出</button>
@@ -72,50 +73,22 @@
     <!-- /.container -->
   </nav>
   <main id="main">
-    <div class="container">
-      <!-- menu menu-collapse collapse in -->
-      <div id="gps-menu">
-        <div class="loading">
-          <div class="circle-side"></div>
-          <!--[if lte IE 9]>
-            <div class="circle-ie"></div>
-          <![endif]-->
-        </div>
+    <div class="alert-wrap alert-dismissible" id="alert-success">
+      <div class="alert alert-success">
+        <!-- <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button> -->
+        <strong>提示：</strong><i id="alert-success-txt"></i>
       </div>
-      <!--menu content -->
-      <div class="content">
-        <div class="toolbar">
-          <div class="crumbs">
-            <a href="javascript:;" class="crumbs-item active">全部</a>
-            <span class="crumbs-v-line">|</span>
-            <a href="javascript:;" class="crumbs-item">试看</a>
-            <span class="crumbs-v-line">|</span>
-            <a href="javascript:;" class="crumbs-item">已买</a>
-            <span class="crumbs-v-line">|</span>
-            <a href="javascript:;" class="crumbs-item">未买</a>
-            <button type="button" id="testBtn">测试是否登录</button>
-            <button type="button" id="testBtn2">退出</button>
-          </div>
-          <div class="shopping-car">
-            <div class="btn-group">
-              <button type="button" id="sc-btn" class="btn btn-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                购物车<span class="badge">4</span>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-right sc-panel">
-                <li class="sc-panel-item">
-                  <a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程但降幅扩大进口放进口袋就疯狂点击放大</span></li>
-                <li class="sc-panel-item">
-                  <a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程2</span></li>
-                <li class="sc-panel-item">
-                  <a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del"></a><span>课程3</span></li>
-                <li class="divider"></li>
-                <li><a href="http://baidu.com" class="goto">前去结算</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="results results-primary">
-          <div class="row" id="list-cont">
+    </div>
+    <div class="alert-wrap alert-dismissible"id="alert-danger">
+      <div class="alert alert-danger" >
+        <!-- <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button> -->
+        <strong>警告：</strong><i id="alert-danger-txt"></i>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 main">
+          <div class="wrap-panel" id="mainbar">
             <div class="loading">
               <div class="circle-side"></div>
               <!--[if lte IE 9]>
@@ -124,23 +97,13 @@
             </div>
           </div>
         </div>
-        <ul class="pagination pagination-lg">
-          <li>
-            <a href="javascript:;" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li><a href="javascript:;">1</a></li>
-          <li><a href="javascript:;">2</a></li>
-          <li><a href="javascript:;">3</a></li>
-          <li><a href="javascript:;">4</a></li>
-          <li><a href="javascript:;">5</a></li>
-          <li>
-            <a href="javascript:;" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
+        <div class="col-md-3">
+          <div class="wrap-panel" id="sidebar">
+
+              <!-- <% include('./sidebar',sidebar) %> -->
+
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -166,6 +129,5 @@
     </div>
   </footer>
 </body>
-<script data-main="static/js/course-list" src="static/js/libs/require.js"></script>
 
 </html>

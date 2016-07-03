@@ -19,14 +19,13 @@ define(function (require) {
       document.getElementById('title').innerHTML = tplTitle(success.data);
       // 渲染侧栏的模板
       document.getElementById('tab-content').innerHTML = tplSidebar(success);
-      console.log(success);
       // 标题下拉事件
       mBindDropdown.init('#tm-btn','.tit-master');
       // 购物车下拉事件
       mBindDropdown.init('#sc-btn','.shopping-car',true);
     })
     .fail(function(error) {
-      alert('服务器请求错误');
+      console.log(error);
     });
     // 绑定 TAG切换事件。
     $('#sidebar-tabs').on('click', '.sidebar-tab', function(event) {

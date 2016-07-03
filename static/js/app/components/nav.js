@@ -3,20 +3,21 @@ define(function(require) {
       mAuth = require('./sign/auth'),
       mSignModal = require('./sign/sign-modal');
   $(function(){
-    var nav = {};
-    nav.login = function() {
+    var oNavSign = {};
+    // 向auth模块中加入导航的登录/登出方法。
+    oNavSign.login = function() {
       $('#sign-wrap').addClass('signed');
     };
-    nav.logout = function() {
+    oNavSign.logout = function() {
       $('#sign-wrap').removeClass('signed');
     };
-    mAuth.addNoticeList(nav);
+    mAuth.addNoticeList(oNavSign);
 
     // 登录/注册按钮绑定 模态框 事件
     var jqBtn = $('#sign-up,#sign-in');
-    mSignModal(jqBtn);
+    mSignModal.bindModal(jqBtn);
 
-    //退出事件
+    //退出按钮 绑定事件
     $('#logout').on('click', function(event) {
       event.preventDefault();
       /* Act on the event */
