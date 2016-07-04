@@ -68,6 +68,8 @@ a {
   right: 26px;
   top: 10px;
 }
+// 使用angularJS的页面和使用jquery的页面都在使用.hint-info，不能随便设置显示/隐藏等属性
+// 如果需要可以在对应的页面进行设置。
 .hint-info{
   position: absolute;
   right: 15px;
@@ -76,6 +78,9 @@ a {
   color: #fff;
   background-color: #d16d62;
   .var-border-radius(@border-radius-sm);
+}
+.hint-success{
+  display: none;
 }
 // ng表单控件的border警示状态
 textarea .ng-dirty.ng-invalid,

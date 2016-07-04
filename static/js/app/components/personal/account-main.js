@@ -2,6 +2,7 @@ define(function(require) {
   var mApi = require('components/api'),
       mButton = require('components/personal/button'),
       mData = require('components/personal/data'),
+      mCheckInput = require('components/personal/check-input'),
       tplAccountMain = require('tpl/personal/account-main'),
       replaceImgPath = require('components/replace-img-path'),
       Validate = require('components/validate');
@@ -46,17 +47,25 @@ define(function(require) {
     // 绑定邮箱
     mButton.bindEvent(jqEmailBtn,'#collapse-email','email',!!setDone.email);
 
-    // 所有输入框，发生输入事件时，清空对应的错误提示。
-    $('.form-group').on('input propertychange', '.form-control', function(event) {
+    // 所有输入框，发生输入事件时，清空对应的提示。
+    $('.form-group').on('input propertychange', '.input-clear', function(event) {
       event.preventDefault();
       /* Act on the event */
       var jqSelf = $(this);
       jqSelf.removeClass('invalid');
       jqSelf.next('.hint-info').hide();
+      jqSelf.nextAll('.hint-icon').hide();
     });
 
     // 验证规则
     var oCheckFormat = {
+      nicknameLength:function(str) {
+        var aZhStr = str.match(/[\u4e00-\u9fa5]/g) || [];
+        var aEnStr = str.match(/\w/g) || [];
+        var nZhStrLen = aZhStr.length*2;
+        var nEnStrLen = aEnStr.length;
+        return (nZhStrLen + nEnStrLen) > 10 ? false : true;
+      },
       password:function(str) {
         var reg = /^[^\s]{6,15}$/;
         return reg.test(str);
@@ -143,6 +152,17 @@ define(function(require) {
     // ************************************
     // 用户昵称
     // ************************************
+    // 验证昵称的输入是否超出长度
+    $('#input-nickname').on('input propertychange', function(event) {
+      event.preventDefault();
+      /* Act on the event */
+      var jqSelf = $(this);
+      // 实例化 验证相关的标记、提示文字、和方法。
+      var oValidate = new Validate();
+      // var bJudge = oCheckFormat.nicknameLength(jqSelf.val());
+      mCheckInput.nickname(oValidate,jqSelf,5);
+    });
+    // 提交昵称
     $('#button-nickname').on('click', function(event) {
       event.preventDefault();
       /* Act on the event */
@@ -158,7 +178,7 @@ define(function(require) {
       .fail(function(error) {
         if (error.code === 201) {
           jqInputNickname.addClass('invalid');
-          $('#hint-nickname').show().text(error.message);
+          $('#hint-edit-nickname').show().text(error.message);
         } else {
           oAlert.error(error.message);
         }
@@ -170,17 +190,16 @@ define(function(require) {
     // ************************************
     var jqOldPassword = $('#input-old-password'),
         jqNewPassword = $('#input-new-password'),
-        jqConfirmPassword = $('#input-confirm-password');
+        jqConfirmPassword = $('#input-confirm-password'),
+        jqPasswordEditForm = $('#form-password-edit'),
+        PasswordEditValidate = new Validate();
     // 验证老密码格式
     jqOldPassword.on('blur', function(event) {
       event.preventDefault();
       /* Act on the event */
       var jqSelf = $(this);
-      if (jqSelf.val() === '') return;
-      if (!oCheckFormat.password(jqSelf.val())) {
-        jqSelf.addClass('invalid');
-        $('#hint-old-password').show().text('密码格式错误');
-      }
+      mCheckInput.password(PasswordEditValidate,jqPasswordEditForm,jqSelf,6);
+      console.log(PasswordEditValidate);
     });
     // 验证新密码格式
     jqNewPassword.on('blur', function(event) {
@@ -251,21 +270,16 @@ define(function(require) {
     // 1.验证当前输入格式（是否为空，是否符合正则）
     // 1.1.格式错误，进行对应的提示
     var jqMobileNum = $('#input-mobile'),
-        jqGetMobileCaptcha = $('.get-mobile-captcha'),
-        jqInputMobileCaptcha0 = $('#input-mobile-captcha-0');
+        jqGetMobileCaptcha = $('.get-mobile-captcha');
     // 验证手机格式
     jqMobileNum.on('blur', function(event) {
       event.preventDefault();
       /* Act on the event */
       var jqSelf = $(this);
-
-      // 为空返回
-      if (jqSelf.val() === '') return;
-      if (!oCheckFormat.mobile(jqSelf.val())) {
-        jqSelf.addClass('invalid');
-        $('#hint-bind-mobile').show().text('手机格式错误');
-      }
-
+      // 当前所在表单
+      var jqForm = $('#form-mobile-bind');
+      var checkItem = [0,3];
+      mCheckInput.mobile(jqForm,jqSelf,0);
     });
     // 获取短信验证码
     jqGetMobileCaptcha.on('click', function(event) {

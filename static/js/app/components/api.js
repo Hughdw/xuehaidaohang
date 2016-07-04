@@ -166,7 +166,7 @@ define(function(require) {
     });
     return oDeferred.promise();
   };
-  // 更新新邮箱
+  // 更新新邮箱/设置邮箱
   api.updateEmail = function(token,email) {
     var oDeferred = $.Deferred();
     $.get(oUrl.updateAccount,{token:token,newemail:email})
@@ -178,7 +178,7 @@ define(function(require) {
     });
     return oDeferred.promise();
   };
-  // 更新新手机
+  // 更新新手机/设置手机
   api.updateMobile = function(token,mobile) {
     var oDeferred = $.Deferred();
     $.get(oUrl.updateAccount,{token:token,newmobile:mobile})
@@ -240,7 +240,7 @@ define(function(require) {
     });
     return oDeferred.promise();
   };
-  // 获取邮件验证码
+  // 判断账号是否存在
   api.checkUsername = function(type,username) {
     var oParams;
     if (type === 'mobile') {
