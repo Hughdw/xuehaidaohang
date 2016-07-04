@@ -1,7 +1,7 @@
 // 负责将token，用户信息等存入cookies中
 define(function(require) {
   var Cookies = require('jq-cookie'),
-      mApi = require('../api');
+      mApi = require('components/api');
   var oSession = {};
   oSession.user = {
     token:'',

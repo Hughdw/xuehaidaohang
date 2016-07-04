@@ -4,8 +4,8 @@
  */
 define(function (require) {
   var $ = require('jquery'),
-      mAuth = require('./sign/auth'),
-      mNav = require('./nav');
+      mAuth = require('components/sign/auth'),
+      mNav = require('components/nav');
   $(function(){
     // 设置页面内容区域的最小高度
     var oHeight = {};

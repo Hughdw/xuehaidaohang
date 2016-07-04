@@ -6,5 +6,5 @@
  ***jquery必须在bootstrap之前引入
  */
 require(['config'], function(config) {
-  require(['jquery','bootstrap','app/components/common', 'app/course-list-main']);
+  require(['jquery','bootstrap','components/common', 'course-list-main']);
 });

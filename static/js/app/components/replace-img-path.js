@@ -3,7 +3,7 @@
  * 替换图片路径
  */
 define(function (require) {
-  var mUtil = require('./util');
+  var mUtil = require('components/util');
   // 非移动端设备（PC、平板）批量替换IMG标签中的路径
   // 替换更大的图片
   // 测试时，会将ipad归到desktop()，因此使用mobile()

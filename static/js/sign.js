@@ -1,3 +1,3 @@
 require(['config'], function (config){
-    require(['jquery','bootstrap','app/login-main']);
+    require(['jquery','bootstrap','login-main']);
 });

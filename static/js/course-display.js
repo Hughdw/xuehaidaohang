@@ -1,3 +1,3 @@
 require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'qcVideo', 'app/components/common', 'app/course-display-main']);
+  require(['jquery', 'bootstrap', 'qcVideo', 'components/common', 'course-display-main']);
 });

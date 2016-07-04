@@ -1,7 +1,7 @@
 // 当登录状态发生变化或者刷新页面时，进行相关操作。
 // 每次刷新页面判断当前
 define(function(require) {
-  var mSession = require('./session');
+  var mSession = require('components/sign/session');
   var auth = {};
   // 登录状态发生变化时，需要通知的模块列表
   auth.noticeList = [];

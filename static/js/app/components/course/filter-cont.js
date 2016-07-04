@@ -1,7 +1,7 @@
 define(function(require) {
   var $ = require('jquery'),
-      mApi = require('../api'),
-      mListData = require('./list-data'),
+      mApi = require('components/api'),
+      mListData = require('components/course/list-data'),
       tplKnowledge = require('tpl/course/menu-knowledge'),
       tplListCont = require('tpl/course/list-cont');
 

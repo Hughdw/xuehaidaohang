@@ -1,9 +1,10 @@
 define(function(require) {
-  var mApi = require('../api'),
-      mButton = require('./button'),
-      mData = require('../personal/data'),
+  var mApi = require('components/api'),
+      mButton = require('components/personal/button'),
+      mData = require('components/personal/data'),
       tplAccountMain = require('tpl/personal/account-main'),
-      replaceImgPath = require('../replace-img-path');
+      replaceImgPath = require('components/replace-img-path'),
+      Validate = require('components/validate');
 
   var oAccount = {};
 
@@ -55,9 +56,17 @@ define(function(require) {
     });
 
     // 验证规则
-    var fnCheckFormat = {
+    var oCheckFormat = {
       password:function(str) {
         var reg = /^[^\s]{6,15}$/;
+        return reg.test(str);
+      },
+      mobile:function(str) {
+        var reg = /^(13|14|15|18|17)\d{9}$/;
+        return reg.test(str);
+      },
+      email:function(str) {
+        var reg = /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*(\.[a-zA-Z0-9]+[-a-zA-Z0-9]*)+[a-zA-Z0-9]+$/;
         return reg.test(str);
       }
     };
@@ -168,7 +177,7 @@ define(function(require) {
       /* Act on the event */
       var jqSelf = $(this);
       if (jqSelf.val() === '') return;
-      if (!fnCheckFormat.password(jqSelf.val())) {
+      if (!oCheckFormat.password(jqSelf.val())) {
         jqSelf.addClass('invalid');
         $('#hint-old-password').show().text('密码格式错误');
       }
@@ -179,7 +188,7 @@ define(function(require) {
       /* Act on the event */
       var jqSelf = $(this);
       if (jqSelf.val() === '') return;
-      if (!fnCheckFormat.password(jqSelf.val())) {
+      if (!oCheckFormat.password(jqSelf.val())) {
         jqSelf.addClass('invalid');
         $('#hint-new-password').show().text('密码格式错误');
       } else if (jqSelf.val() === jqOldPassword.val()) {
@@ -230,8 +239,47 @@ define(function(require) {
     // ************************************
     // 绑定手机
     // ************************************
+    // 手机号码输入框失去焦点时
+    // 1.验证当前输入格式（是否为空，是否符合正则）
+    // 1.1.格式错误，进行对应提示
+    // 1.2.格式正确，请求接口验证手机/邮箱是否可用（未注册则可用），进行对应的提示
+    // 验证码输入框正在输入时（每次值发生变化，都要进行验证）
+    // 1.验证当前输入格式是否符合正则，并且清空之前遗留的提示（这个事件已经批量绑定）
+    // 1.1.不符合正则，不做操作
+    // 1.2.符合正则，请求接口验证验证码是否正确，进行对应的提示，激活提交按钮。
+    // 验证码输入框失去焦点时
+    // 1.验证当前输入格式（是否为空，是否符合正则）
+    // 1.1.格式错误，进行对应的提示
+    var jqMobileNum = $('#input-mobile'),
+        jqGetMobileCaptcha = $('.get-mobile-captcha'),
+        jqInputMobileCaptcha0 = $('#input-mobile-captcha-0');
+    // 验证手机格式
+    jqMobileNum.on('blur', function(event) {
+      event.preventDefault();
+      /* Act on the event */
+      var jqSelf = $(this);
 
+      // 为空返回
+      if (jqSelf.val() === '') return;
+      if (!oCheckFormat.mobile(jqSelf.val())) {
+        jqSelf.addClass('invalid');
+        $('#hint-bind-mobile').show().text('手机格式错误');
+      }
 
+    });
+    // 获取短信验证码
+    jqGetMobileCaptcha.on('click', function(event) {
+      event.preventDefault();
+      /* Act on the event */
+      var jqSelf = $(this);
+
+    });
+    // 提交绑定手机
+    $('#button-bind-mobile').on('click', function(event) {
+      event.preventDefault();
+      /* Act on the event */
+
+    });
   };
 
   return oAccount;

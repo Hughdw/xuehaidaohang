@@ -1,3 +1,3 @@
 require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'app/components/common', 'app/personal-preferential-main']);
+  require(['jquery', 'bootstrap', 'components/common', 'personal-preferential-main']);
 });

@@ -1,5 +1,5 @@
 define(function(require) {
-  var mUtil = require('../util');
+  var mUtil = require('components/util');
 
   var oVideo = {};
   // 播放器实例

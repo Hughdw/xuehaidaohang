@@ -4,13 +4,13 @@
  * 2.课程列表 的程序逻辑
  */
 define(function (require) {
-  var mApi = require('./components/api'),
-      mResetMenu = require('./components/course/reset-menu'),
-      mBindDropdown = require('./components/dropdown'),
+  var mApi = require('components/api'),
+      mResetMenu = require('components/course/reset-menu'),
+      mBindDropdown = require('components/dropdown'),
       tplListMenu = require('tpl/course/list-menu'),
-      mListData = require('./components/course/list-data'),
-      mFilterCont = require('./components/course/filter-cont'),
-      mAuth = require('./components/sign/auth');
+      mListData = require('components/course/list-data'),
+      mFilterCont = require('components/course/filter-cont'),
+      mAuth = require('components/sign/auth');
   // 页面载入
   $(function() {
 

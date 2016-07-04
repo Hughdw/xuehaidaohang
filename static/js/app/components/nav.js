@@ -1,7 +1,7 @@
 define(function(require) {
   var $ = require('jquery'),
-      mAuth = require('./sign/auth'),
-      mSignModal = require('./sign/sign-modal');
+      mAuth = require('components/sign/auth'),
+      mSignModal = require('components/sign/sign-modal');
   $(function(){
     var oNavSign = {};
     // 向auth模块中加入导航的登录/登出方法。
