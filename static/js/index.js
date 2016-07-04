@@ -1,3 +1,3 @@
 require(['config'], function (config){
-    require(['jquery','bootstrap','app/index-main']);
+    require(['jquery','bootstrap','index-main']);
 });

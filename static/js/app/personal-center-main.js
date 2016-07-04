@@ -1,11 +1,11 @@
 define(function (require) {
-  var mUtil = require('./components/util'),
-      mApi = require('./components/api'),
-      mAuth = require('./components/sign/auth'),
-      mSession = require('./components/sign/session'),
-      mSignModal = require('./components/sign/sign-modal'),
-      mData = require('./components/personal/data'),
-      mAccountMain = require('./components/personal/account-main'),
+  var mUtil = require('components/util'),
+      mApi = require('components/api'),
+      mAuth = require('components/sign/auth'),
+      mSession = require('components/sign/session'),
+      mSignModal = require('components/sign/sign-modal'),
+      mData = require('components/personal/data'),
+      mAccountMain = require('components/personal/account-main'),
       tplSidebar = require('tpl/personal/sidebar');
   $(function() {
     // 向auth模块中加入导航的登录/登出方法。

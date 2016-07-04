@@ -4,25 +4,25 @@
  * 声明库的依赖关系，以保证顺序加载
  */
 require.config({
-    baseUrl: './static/js',//设置模块加载的基础路径
+    baseUrl: './static/js/app',//设置模块加载的基础路径
     paths: {//指定不在baseUrl根目录的模块路径指向
       // 'handlebars': 'handlebars/4.0.5/handlebars.min',// 模板引擎，不用
-      'device': 'libs/device/0.2.7/device.min',
+      'device': '../libs/device/0.2.7/device.min',
       // 'less': 'less/1.7.0/less',//在线编译less，不用
-      'jquery': 'libs/jquery/1.11.3/jquery',
-      'jq-cookie':'libs/jquery-cookie/2.1.2/js.cookie',
-      'bootstrap': 'libs/bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
-      'angular': 'libs/angular/1.2.29/angular',
-      'ngRoute':'libs/angular-route/1.2.29/angular-route',
+      'jquery': '../libs/jquery/1.11.3/jquery',
+      'jq-cookie':'../libs/jquery-cookie/2.1.2/js.cookie',
+      'bootstrap': '../libs/bootstrap/bootstrap-3.3.5/dist/js/bootstrap',
+      'angular': '../libs/angular/1.2.29/angular',
+      'ngRoute':'../libs/angular-route/1.2.29/angular-route',
       'qcVideo':[
-        'libs/video/h5connect',
+        '../libs/video/h5connect',
         'http://qzonestyle.gtimg.cn/open/qcloud/video/h5/h5connect'
       ],
       // 'app': '../static/js/app',
       // 'mod': '../static/js/app/components',
       // 'tpldata':'./app/data/template',
-      'tpl':'tpl',
-      'ngMock':'libs/angular-mocks'
+      'tpl':'../tpl',
+      'ngMock':'../libs/angular-mocks'
     },
     shim: {
       'jq-cookie':{

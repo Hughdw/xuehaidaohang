@@ -14,9 +14,9 @@ define(function (require) {
 		var r = window.location.search.substr(1).match(reg);
     return r === null ? null : unescape(r[2]);
 	};
+  // 获取地址中#号之后的内容
   util.strGetHash = function(str) {
     var start = str.indexOf('#',0);
-    console.log();
     return str.substring(start);
   };
   return util;

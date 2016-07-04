@@ -3,10 +3,10 @@
  * 2.课程详情 的程序逻辑
  */
 define(function (require) {
-  var mUtil = require('./components/util'),
-      mApi = require('./components/api'),
-      mBindDropdown = require('./components/dropdown'),
-      mVideoPlay = require('./components/course/video-play'),
+  var mUtil = require('components/util'),
+      mApi = require('components/api'),
+      mBindDropdown = require('components/dropdown'),
+      mVideoPlay = require('components/course/video-play'),
       tplTitle = require('tpl/course/display-title'),
       tplSidebar = require('tpl/course/display-sidebar');
   $(function() {

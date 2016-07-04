@@ -1,3 +1,3 @@
 require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'app/components/common', 'app/personal-recharge-main']);
+  require(['jquery', 'bootstrap', 'components/common', 'personal-recharge-main']);
 });

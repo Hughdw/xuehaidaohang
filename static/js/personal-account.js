@@ -1,3 +1,3 @@
 require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'app/components/common', 'app/personal-account-main']);
+  require(['jquery', 'bootstrap', 'components/common', 'personal-account-main']);
 });

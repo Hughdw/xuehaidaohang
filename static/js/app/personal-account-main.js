@@ -1,13 +1,13 @@
 define(function (require) {
-  var mApi = require('./components/api'),
-      mAuth = require('./components/sign/auth'),
-      mSession = require('./components/sign/session'),
-      mSignModal = require('./components/sign/sign-modal'),
-      mData = require('./components/personal/data'),
+  var mApi = require('components/api'),
+      mAuth = require('components/sign/auth'),
+      mSession = require('components/sign/session'),
+      mSignModal = require('components/sign/sign-modal'),
+      mData = require('components/personal/data'),
       tplSidebar = require('tpl/personal/sidebar'),
       tplAccountMain = require('tpl/personal/account-main'),
-      replaceImgPath = require('./components/replace-img-path'),
-      mButton = require('./components/personal/button');
+      replaceImgPath = require('components/replace-img-path'),
+      mButton = require('components/personal/button');
   $(function() {
     // 需要向 auth模块中添加登录/登出方法。
 

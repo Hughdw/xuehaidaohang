@@ -1,6 +1,6 @@
 define(function(require) {
   var $ = require('jquery'),
-      mAuth = require('./auth'),
+      mAuth = require('components/sign/auth'),
       tplSignAppend = require('tpl/public/sign-append');
   // body...
   var oSignModal = {};

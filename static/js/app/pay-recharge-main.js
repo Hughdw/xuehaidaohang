@@ -1,7 +1,7 @@
 define(function (require) {
-  var tpldata = require('./data/template'),
+  var tpldata = require('data/template'),
       tplRecharteMain = require('tpl/pay/recharge-main'),
-      replaceImgPath = require('./components/replace-img-path');
+      replaceImgPath = require('components/replace-img-path');
   $(function() {
 
     // 获取到模版，然后渲染数据
