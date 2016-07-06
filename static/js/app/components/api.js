@@ -3,6 +3,7 @@ define(function(require) {
   var oUrl = {};
   var sHost = 'http://139.196.173.103:8081/api';
   var testPostfix = '';
+  oUrl.imgCaptcha = sHost + '/getCaptcha';
   oUrl.getAuthUser = sHost + '/getAuthUser' + testPostfix;
   oUrl.getcategory = sHost + '/getcategory' + testPostfix;
   oUrl.getknowledge = sHost + '/getknowledge' + testPostfix;
@@ -22,6 +23,24 @@ define(function(require) {
   oUrl.verifyCode = sHost + '/verifyCode' + testPostfix;
   // 判断账号是否存在
   oUrl.checkUsername = sHost + '/isUserReg' + testPostfix;
+  // 更新学习进度
+  oUrl.updateHistory = sHost + '/updateHistory' + testPostfix;
+  // 学习进度列表
+  oUrl.getHistory = sHost + '/getHistory' + testPostfix;
+  // 获取购物车当中的产品
+  oUrl.getCart = sHost + '/getcart' + testPostfix;
+  // 获取购物车当中的产品（简洁数据）
+  oUrl.getMiniCart = sHost + '/getminicart' + testPostfix;
+  //添加产品到购物车
+  oUrl.addToCart = sHost + '/addtocart' + testPostfix;
+  // 移除购物车当中的产品
+  oUrl.removeToCart = sHost + '/removetocart' + testPostfix;
+  //获取优惠券
+  oUrl.getCoupon = sHost + '/getCoupon' + testPostfix;
+  // 获取支付方式
+  oUrl.getPay = sHost + '/getPay' + testPostfix;
+  // 生成订单
+  oUrl.payMent = sHost + '/payment' + testPostfix;
   oUrl.testUrl = sHost + '/isUserReg' + testPostfix;
 
 
@@ -39,6 +58,10 @@ define(function(require) {
     }
   };
 
+  // 获取图片验证码
+  api.getImgCaptcha = function() {
+    return oUrl.imgCaptcha + '?v=' + Math.random();
+  };
   // 获取用户信息
   api.getAuthUser = function(token) {
     var oDeferred = $.Deferred();
@@ -95,9 +118,15 @@ define(function(require) {
     return oDeferred.promise();
   };
   // 获取视频详情
-  api.getproduct = function(pid) {
+  api.getproduct = function(pid,uid) {
+    var oParams;
+    if (uid) {
+      oParams = {pid:pid,uid:uid};
+    } else {
+      oParams = {pid:pid};
+    }
     var oDeferred = $.Deferred();
-    $.get(oUrl.getproduct,{pid:pid})
+    $.get(oUrl.getproduct,oParams)
     .done(function(answer) {
       fnPretreatment(answer,oDeferred);
     })
@@ -191,6 +220,7 @@ define(function(require) {
     return oDeferred.promise();
   };
   // 获取短信验证码
+  // 注册：type = 1 其他：type = 0
   api.getMobileCode = function(type,mobile) {
     var oDeferred = $.Deferred();
     $.get(oUrl.mobileCode,{reg:type,mobile:mobile})
@@ -215,17 +245,29 @@ define(function(require) {
     return oDeferred.promise();
   };
   // 校验验证码
-  api.verifyCode = function(type,codu) {
+  api.verifyCode = function(type,code,account,accountType) {
     var oParams;
     switch (type) {
       case 'mobile':
-        oParams = {activationMobileCode:code};
+        if (accountType === 'mobile') {
+          oParams = {activationMobileCode:code,mobile:account};
+        } else if (accountType === 'email') {
+          oParams = {activationMobileCode:code,email:account};
+        }
         break;
       case 'mail':
-        oParams = {activationMailCode:code};
+        if (accountType === 'mobile') {
+          oParams = {activationMailCode:code,mobile:account};
+        } else if (accountType === 'email') {
+          oParams = {activationMailCode:code,email:account};
+        }
         break;
       case 'img':
-        oParams = {captcha:code};
+        if (accountType === 'mobile') {
+          oParams = {captcha:code,mobile:account};
+        } else if (accountType === 'email') {
+          oParams = {captcha:code,email:account};
+        }
         break;
       default:
         oParams = {};
@@ -258,6 +300,124 @@ define(function(require) {
     });
     return oDeferred.promise();
   };
+  // 保存播放位置（未完）
+  api.updateHistory = function(pid,begin,lasttime,token) {
+    var oDeferred = $.Deferred();
+    $.get(oUrl.updateHistory,{pid:pid,begin:begin,lasttime:lasttime,token:token})
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 学习进度列表
+  api.getHistory = function(page,token) {
+    var oDeferred = $.Deferred();
+    $.get(oUrl.getHistory,{page:page,token:token})
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 获取购物车中的产品
+  api.getCart = function() {
+    var oParams;
+    var oDeferred = $.Deferred();
+    $.get(oUrl.getCart)
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 获取购物车中的产品（简洁数据）
+  api.getMiniCart = function() {
+    var oParams;
+    var oDeferred = $.Deferred();
+    $.get(oUrl.getMiniCart)
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 添加产品到购物车
+  api.addToCart = function(pid) {
+    var oParams;
+    var oDeferred = $.Deferred();
+    $.get(oUrl.addToCart,{pid:pid})
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 移除产品到购物车
+  api.removeToCart = function(pid) {
+    var oParams;
+    var oDeferred = $.Deferred();
+    $.get(oUrl.removeToCart,{pid:pid})
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 获取优惠券
+  api.getCoupon = function() {
+    var oParams;
+    var oDeferred = $.Deferred();
+    $.get(oUrl.getCoupon)
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 获取支付方式
+  api.getPay = function() {
+    var oParams;
+    var oDeferred = $.Deferred();
+    $.get(oUrl.getPay)
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 生成订单
+  api.payMent = function(couponid,pay,total) {
+    var oParams;
+    var oDeferred = $.Deferred();
+    $.get(oUrl.payMent,{pid:pid})
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+
+
+
 
   return api;
 });

@@ -10,6 +10,7 @@ define(function (require) {
     init:function (toggleBtn,parent,last) {
       oBindDropdown._bind(toggleBtn);
       oBindDropdown._saveToggle(toggleBtn,parent);
+      // 最后一个绑定事件触发_reset()方法
       if (last) oBindDropdown._reset();
     },
     _bind: function(toggleBtn) {
@@ -28,8 +29,20 @@ define(function (require) {
           }
         });
     },
+    // 点击下拉列表元素，切换浏览器URL中的pid
+    _switch: function() {
+      $('#tm-list').on('click', '.tm-panel-item', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        var nPid = $(this).data('id');
+        var sSearch = window.location.search.replace(/[^\=]+$/,nPid);
+        window.location.search = sSearch;
+      });
+    },
     _reset: function () {
-        // 空白处隐藏指定元素
+      // 临时放在这里
+      oBindDropdown._switch();
+      // 点击空白地方收起标题列表
         $(document).on('click',function(event) {
           var $Target = $(event.target);
           for (var i = 0; i < aStoreToggleParent.length; i++) {
@@ -41,9 +54,10 @@ define(function (require) {
           }
         });
     },
-    _saveToggle:function (tb,tbp) {
-      aStoreToggle.push(tb);
-      aStoreToggleParent.push(tbp);
+    // 临时保存触发元素和触发范围
+    _saveToggle:function (toggleBtn,parent) {
+      aStoreToggle.push(toggleBtn);
+      aStoreToggleParent.push(parent);
     }
   };
   return {
