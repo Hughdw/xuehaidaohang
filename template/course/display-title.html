@@ -1,8 +1,8 @@
 <button type="button" id="tm-btn" class="btn btn-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-  <em>第一课 今天听的歌曲《斑马，斑马》哈哈啊但是速度速度哈啊啊</em><span class="glyphicon glyphicon-chevron-down "></span>
+  <em><%= num %> <%= title %></em><span class="glyphicon glyphicon-chevron-down "></span>
 </button>
-<ul class="dropdown-menu tm-panel">
-  <li class="tm-panel-item"><a href="javascript:;">第二课 chrome占用内存太严重了，只用来进行调试吧</a></li>
-  <li class="tm-panel-item"><a href="javascript:;">第二课 chrome占用内存太严重了，只用来进行调试吧</a></li>
-  <li class="tm-panel-item"><a href="javascript:;">第二课 chrome占用内存太严重了，只用来进行调试吧</a></li>
+<ul class="dropdown-menu tm-panel" id="tm-list">
+  <% for(var i = 0; i < list.length; i++){ %>
+    <li><a class="tm-panel-item" href="javascript:;" data-id="<%= list[i].pid %>"><%= list[i].num %> <%= list[i].title %></a></li>
+  <% } %>
 </ul>

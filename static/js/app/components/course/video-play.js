@@ -1,16 +1,21 @@
 define(function(require) {
-  var mUtil = require('components/util');
+  var mUtil = require('components/util'),
+      mApi = require('components/api');
 
   var oVideo = {};
   // 播放器实例
   var player;
   // 播放器容器ID
   var jqEle;
+  // 播放器的宽高
   var nVideoWidth,nVideoHeight;
-  oVideo.init = function(ele,videoId) {
+  // interval 方法的ID
+  var vIntervalId;
+  oVideo.init = function(ele,data,token) {
+    // videoId,lasttime_p
     jqEle = $('#'+ele);
     // 重新获取尺寸
-    oVideo._reset();
+    oVideo._getSize();
     // 绑定窗口重置事件
     oVideo._bindEve();
     // 构造播放器实例
@@ -18,9 +23,9 @@ define(function(require) {
       //页面放置播放位置的元素 ID
       ele, {
         //视频 ID (必选参数)
-        'file_id': videoId,
+        'file_id': data.video,
         //应用 ID (必选参数)，同一个账户下的视频，该参数是相同的
-        'app_id': '1252342399',
+        'app_id': '1252344145',
         //是否自动播放 默认值0 (0: 不自动，1: 自动播放)
         'auto_play': '0',
         //播放器宽度，单位像素
@@ -56,25 +61,50 @@ define(function(require) {
         },
         //播放状态发生变化时的回调
         'playStatus': function(status) {
-          /*status 可为 {ready: '播放器已准备就绪',seeking:'搜索',
+          if (token) {
+            if (status === 'ready' && data.lasttime !== 0) {
+              $('#firstBt').show().on('click', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+                player.play(data.lasttime);
+                $(this).hide();
+              });
+            }
+            if (status === 'playing') {
+              // 周期性请求 播放位置 更新接口
+              vIntervalId = setInterval(function() {
+                mApi.updateHistory(data.pid,data.lasttime,player.getCurrentTime(),token)
+                .done(function(success) {
+                  console.log(success);
+                })
+                .fail(function(error) {
+                  console.log(error);
+                });
+              },5000);
+            }
+            //暂停、播放结束，清除周期性请求接口
+            if (status === 'suspended' || status === 'playEnd') {
+              clearInterval(vIntervalId);
+            }
+          }
+          /*status 可为 {ready: '播放器已准备就绪',seeking:'搜索视频',
           suspended:'暂停', playing:'播放中' , playEnd:'播放结束' , stop: '试看
           结束触发'}'*/
           //console.debug('out listener status == ',status);
-          console.log(player.getCurrentTime());
         },
         //拖动播放位置变化 ； second 拖动播放的位置（单位秒）
         'dragPlay': function(second) {
-          //console.debug('out listener dragPlay == ',second);
+          // console.debug('out listener dragPlay == ',second);
         }
       }
     );
   };
-  oVideo._reset = function() {
+  oVideo._getSize = function() {
     nVideoWidth = jqEle.width();
     nVideoHeight = jqEle.height();
   };
   oVideo._resizeVideo = function() {
-    oVideo._reset();
+    oVideo._getSize();
     // 重置播放器的尺寸
     player.resize(nVideoWidth,nVideoHeight);
   };
@@ -92,11 +122,11 @@ define(function(require) {
       }
     });
   };
+
   return {
     init:oVideo.init,
     player:player
   };
-
   // // 获取当前视频总时长
   // player.getDuration();
   // // 获取当前播放位置
