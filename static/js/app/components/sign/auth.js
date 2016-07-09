@@ -10,7 +10,7 @@ define(function(require) {
     return !!mSession.user.token;
   };
   // 登录成功后，保存token
-  // 进行一些和登录有关的操作
+  // 只有在登陆成功后才会进行的一些和登录有关的操作
   auth.login = function(token) {
     // 将token保存到cookie中
     mSession.createUser(token);
@@ -38,7 +38,8 @@ define(function(require) {
   };
   // 向模块列表中添加需要监控登录状态的元素。
   auth.addNoticeList = function(mod) {
-    // 导航状态变更
+    // 导航状态变更 - 已添加
+    // 个人中心 - 已添加
     // 购物车信息变更
     // 支付页面信息变更
     auth.noticeList.push(mod);

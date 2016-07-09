@@ -191,7 +191,15 @@
     margin-bottom: 15px;
   }
 }
-
+.account-mobile,.account-email{
+  // 修改手机/邮箱时，默认只显示第一步
+  .edit-step{
+    display: none;
+  }
+  .edit-step-1{
+    display: block;
+  }
+}
 // ----------学习进度
 .progress-viewing-time{
   font-size: 12px;

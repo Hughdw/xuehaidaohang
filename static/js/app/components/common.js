@@ -14,7 +14,7 @@ define(function (require) {
     oHeight.mainMinHeight = window.innerHeight - oHeight.navbar - oHeight.footer;
     document.getElementsByTagName('main')[0].style.minHeight = oHeight.mainMinHeight + 'px';
 
-    // 已登录状态，更新所有对应模块的状态。
+    // 每一个添加了common模块的页面，当检测到为已登录状态时，更新当前页面已加入NoticeList的模块登录方法。
     if (mAuth.isAuthenticated()) {
       mAuth.updateLoginStatus();
     }

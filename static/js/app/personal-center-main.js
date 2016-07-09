@@ -28,7 +28,7 @@ define(function (require) {
       // 获取用户信息，加载侧导航
       mApi.getAuthUser(token)
       .done(function(success) {
-        console.log(success);
+        // console.log(success);
         oUserData = success.data[0].user;
         // 重新组织列表的数据
         var sideData = mData.regroupSidebar(oUserData,sHash);
@@ -79,10 +79,8 @@ define(function (require) {
       }
     }
 
-    // 已登录状态，加载数据
-    if (mAuth.isAuthenticated()) {
-      fnLoadSidebar();
-    } else {
+    // 检测到未登录状态，执行退出方法，并弹出登录对话框。
+    if (!mAuth.isAuthenticated()) {
       // 登录失效时
       // token过期自动登出
       mAuth.logout();
