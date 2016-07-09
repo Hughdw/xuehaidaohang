@@ -1,3 +1,5 @@
-require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'components/common', 'personal-center-main']);
+require(['config'], function() {
+  require(['jquery', 'bootstrap', 'personal-center-main'],function() {
+    require(['components/common']);
+  });
 });

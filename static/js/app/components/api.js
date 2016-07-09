@@ -54,6 +54,7 @@ define(function(require) {
     } else if (answer.code > 200) {
       answer.status = false;
       // 401返回到失败回调函数中error
+      // deferred.resolve(answer);
       deferred.reject(answer);
     }
   };
@@ -184,9 +185,15 @@ define(function(require) {
     return oDeferred.promise();
   };
   // 验证老账号
-  api.verfiyOldAccount = function(token) {
+  api.verfiyOldAccount = function(token,account,type) {
+    var oParams;
+    if (type === 'mobile') {
+      oParams = {token:token,mobile:account};
+    } else if (type === 'email') {
+      oParams = {token:token,email:account};
+    }
     var oDeferred = $.Deferred();
-    $.get(oUrl.verfiyOldAccount,{token:token})
+    $.get(oUrl.verfiyOldAccount,oParams)
     .done(function(answer) {
       fnPretreatment(answer,oDeferred);
     })
@@ -233,7 +240,7 @@ define(function(require) {
     return oDeferred.promise();
   };
   // 获取邮件验证码
-  api.getMailCode = function(type,mail) {
+  api.getEmailCode = function(type,mail) {
     var oDeferred = $.Deferred();
     $.get(oUrl.mailCode,{reg:type,email:mail})
     .done(function(answer) {
@@ -255,7 +262,7 @@ define(function(require) {
           oParams = {activationMobileCode:code,email:account};
         }
         break;
-      case 'mail':
+      case 'email':
         if (accountType === 'mobile') {
           oParams = {activationMailCode:code,mobile:account};
         } else if (accountType === 'email') {
