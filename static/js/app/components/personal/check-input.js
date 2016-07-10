@@ -220,6 +220,7 @@ define(function(require) {
       .fail(function(error) {
         validate.setHintValue(index,'2');
         inputEle.addClass('invalid');
+        formEle.find('.hint-icon-'+index).hide();
         formEle.find('.hint-info-'+index).show().text(validate.errMessage[index][validate.flagHint[index]]);
       });
     }
