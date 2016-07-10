@@ -46,9 +46,9 @@ define(function(require) {
     // 登录密码
     mButton.bindEvent(jqPasswordBtn,'#collapse-password','password',true);
     // 绑定手机
-    mButton.bindEvent(jqMobileBtn,'#collapse-mobile','mobile',!!setDone.mobile);
+    mButton.bindEvent(jqMobileBtn,'#collapse-mobile','mobile',!!setDone.mobile,fnDefaultMobile);
     // 绑定邮箱
-    mButton.bindEvent(jqEmailBtn,'#collapse-email','email',!!setDone.email);
+    mButton.bindEvent(jqEmailBtn,'#collapse-email','email',!!setDone.email,fnDefaultEmail);
 
     // 所有匹配输入框，发生输入事件时，清空对应的提示。
     $('.form-group').on('input propertychange', '.input-clear', function(event) {
@@ -285,7 +285,7 @@ define(function(require) {
       var jqSelf = $(this);
       var aCheckFlag = [0,2];
       var vIntervalId;
-      var nTotal = 30;
+      var nTotal = 60;
       // 检查手机号和验证码是否正确
       mCheckInput.submit(BindMobileValidate,aCheckFlag,jqBindMobile.form,fnSubmit);
       function fnSubmit () {
@@ -333,7 +333,8 @@ define(function(require) {
       function fnSubmit () {
         mApi.updateMobile(token_p,jqBindMobile.inputMobile.val())
         .done(function(success) {
-          mAlert.success(success.message);// 收起 选择框
+          mAlert.success(success.message);
+          // 收起 选择框
           jqMobileBtn.trigger('click');
         })
         .fail(function(error) {
@@ -358,7 +359,7 @@ define(function(require) {
       /* Act on the event */
       var jqSelf = $(this);
       var vIntervalId;
-      var nTotal = 30;
+      var nTotal = 60;
       mApi.getMobileCode(2,jqEditMobile1.inputMobile.val())
       .done(function(success) {
         jqSelf.hide();
@@ -399,7 +400,7 @@ define(function(require) {
       var aCheckFlag = [3];
       mCheckInput.submit(MobileValidateEdit1,aCheckFlag,jqEditMobile1.form,fnSubmit);
       function fnSubmit () {
-        mApi.verfiyOldAccount(token_p,jqEditMobile1.inputMobile.val(),'mobile')
+        mApi.verifyOldAccount(token_p,jqEditMobile1.inputMobile.val(),'mobile')
         .done(function(success) {
           jqEditMobile1.form.slideUp('fast');
           jqEditMobile2.form.slideDown('fast');
@@ -436,26 +437,30 @@ define(function(require) {
       event.preventDefault();
       /* Act on the event */
       var jqSelf = $(this);
+      var aCheckFlag = [0];
       var vIntervalId;
-      var nTotal = 30;
-      mApi.getMobileCode(2,jqEditMobile2.inputMobile.val())
-      .done(function(success) {
-        jqSelf.hide();
-        jqEditMobile2.countDown.show().text(nTotal+'秒后重发');
-        vIntervalId = setInterval(function() {
-          if (nTotal < 0) return;
-          nTotal--;
-          jqEditMobile2.countDown.text(nTotal+'秒后重发');
-          if (nTotal === 0) {
-            clearInterval(vIntervalId);
-            jqEditMobile2.countDown.hide();
-            jqSelf.show();
-          }
-        },1000);
-      })
-      .fail(function(error) {
-        mAlert.error(error.message);
-      });
+      var nTotal = 60;
+      mCheckInput.submit(MobileValidateEdit2,aCheckFlag,jqEditMobile2.form,fnSubmit);
+      function fnSubmit () {
+        mApi.getMobileCode(3,jqEditMobile2.inputMobile.val())
+        .done(function(success) {
+          jqSelf.hide();
+          jqEditMobile2.countDown.show().text(nTotal+'秒后重发');
+          vIntervalId = setInterval(function() {
+            if (nTotal < 0) return;
+            nTotal--;
+            jqEditMobile2.countDown.text(nTotal+'秒后重发');
+            if (nTotal === 0) {
+              clearInterval(vIntervalId);
+              jqEditMobile2.countDown.hide();
+              jqSelf.show();
+            }
+          },1000);
+        })
+        .fail(function(error) {
+          mAlert.error(error.message);
+        });
+      }
     });
     //实时验证验证码格式，符合格式自动验证验证码是否正确，并设置成功标识
     jqEditMobile2.mobileCaptcha.on('input propertychange', function(event) {
@@ -475,12 +480,17 @@ define(function(require) {
     $('#button-mobile-editmobile2').on('click', function(event) {
       event.preventDefault();
       /* Act on the event */
-      var aCheckFlag = [3];
-      mCheckInput.submit(MobileValidateEdit1,aCheckFlag,jqEditMobile2.form,fnSubmit);
+      var aCheckFlag = [0,3];
+      var nNewMobile = jqEditMobile2.inputMobile.val();
+      mCheckInput.submit(MobileValidateEdit2,aCheckFlag,jqEditMobile2.form,fnSubmit);
       function fnSubmit () {
-        mApi.updateMobile(token_p,jqEditMobile2.inputMobile.val())
+        mApi.updateMobile(token_p,nNewMobile)
         .done(function(success) {
           mAlert.success(success.message);// 收起 选择框
+          $('#des-mobile').text(nNewMobile);
+          jqEditMobile1.inputMobile.val(nNewMobile);
+          jqEditMobile1.form.slideDown('fast');
+          jqEditMobile2.form.slideUp('fast');
           jqMobileBtn.trigger('click');
         })
         .fail(function(error) {
@@ -488,6 +498,14 @@ define(function(require) {
         });
       }
     });
+    // 取消时，绑定手机恢复到初始状态
+    function fnDefaultMobile () {
+      jqEditMobile2.inputMobile.val('');
+      jqBindMobile.inputMobile.val('');
+      $('#collapse-mobile').find('.input-2').val('');
+      $('#collapse-mobile').find('.input-3').val('');
+      $('#collapse-mobile').find('.hint-icon').hide();
+    }
 
     // ************************************
     // 绑定邮箱
@@ -536,7 +554,7 @@ define(function(require) {
       var jqSelf = $(this);
       var aCheckFlag = [1,2];
       var vIntervalId;
-      var nTotal = 30;
+      var nTotal = 60;
       // 检查邮箱号和验证码是否正确
       mCheckInput.submit(BindEmailValidate,aCheckFlag,jqBindEmail.form,fnSubmit);
       function fnSubmit () {
@@ -584,7 +602,8 @@ define(function(require) {
       function fnSubmit () {
         mApi.updateEmail(token_p,jqBindEmail.inputEmail.val())
         .done(function(success) {
-          mAlert.success(success.message);// 收起 选择框
+          mAlert.success(success.message);
+          // 收起 选择框
           jqEmailBtn.trigger('click');
         })
         .fail(function(error) {
@@ -610,8 +629,8 @@ define(function(require) {
       /* Act on the event */
       var jqSelf = $(this);
       var vIntervalId;
-      var nTotal = 30;
-      mApi.getEmailCode(0,jqEditEmail1.inputEmail.val())
+      var nTotal = 60;
+      mApi.getEmailCode(2,jqEditEmail1.inputEmail.val())
       .done(function(success) {
         jqSelf.hide();
         jqEditEmail1.countDown.show().text(nTotal+'秒后重发');
@@ -651,7 +670,7 @@ define(function(require) {
       var aCheckFlag = [4];
       mCheckInput.submit(EmailValidateEdit1,aCheckFlag,jqEditEmail1.form,fnSubmit);
       function fnSubmit () {
-        mApi.verfiyOldAccount(token_p,jqEditEmail1.inputEmail.val(),'email')
+        mApi.verifyOldAccount(token_p,jqEditEmail1.inputEmail.val(),'email')
         .done(function(success) {
           jqEditEmail1.form.slideUp('fast');
           jqEditEmail2.form.slideDown('fast');
@@ -688,26 +707,31 @@ define(function(require) {
       event.preventDefault();
       /* Act on the event */
       var jqSelf = $(this);
+      var aCheckFlag = [1];
       var vIntervalId;
-      var nTotal = 30;
-      mApi.getEmailCode(0,jqEditEmail2.inputEmail.val())
-      .done(function(success) {
-        jqSelf.hide();
-        jqEditEmail2.countDown.show().text(nTotal+'秒后重发');
-        vIntervalId = setInterval(function() {
-          if (nTotal < 0) return;
-          nTotal--;
-          jqEditEmail2.countDown.text(nTotal+'秒后重发');
-          if (nTotal === 0) {
-            clearInterval(vIntervalId);
-            jqEditEmail2.countDown.hide();
-            jqSelf.show();
-          }
-        },1000);
-      })
-      .fail(function(error) {
-        mAlert.error(error.message);
-      });
+      var nTotal = 60;
+      // 检查邮箱地址是否正确
+      mCheckInput.submit(EmailValidateEdit2,aCheckFlag,jqEditEmail2.form,fnSubmit);
+      function fnSubmit () {
+        mApi.getEmailCode(3,jqEditEmail2.inputEmail.val())
+        .done(function(success) {
+          jqSelf.hide();
+          jqEditEmail2.countDown.show().text(nTotal+'秒后重发');
+          vIntervalId = setInterval(function() {
+            if (nTotal < 0) return;
+            nTotal--;
+            jqEditEmail2.countDown.text(nTotal+'秒后重发');
+            if (nTotal === 0) {
+              clearInterval(vIntervalId);
+              jqEditEmail2.countDown.hide();
+              jqSelf.show();
+            }
+          },1000);
+        })
+        .fail(function(error) {
+          mAlert.error(error.message);
+        });
+      }
     });
     //实时验证验证码格式，符合格式自动验证验证码是否正确，并设置成功标识
     jqEditEmail2.emailCaptcha.on('input propertychange', function(event) {
@@ -727,12 +751,17 @@ define(function(require) {
     $('#button-email-editemail2').on('click', function(event) {
       event.preventDefault();
       /* Act on the event */
-      var aCheckFlag = [4];
-      mCheckInput.submit(EmailValidateEdit1,aCheckFlag,jqEditEmail2.form,fnSubmit);
+      var aCheckFlag = [1,4];
+      var nNewEmail = jqEditEmail2.inputEmail.val();
+      mCheckInput.submit(EmailValidateEdit2,aCheckFlag,jqEditEmail2.form,fnSubmit);
       function fnSubmit () {
-        mApi.updateEmail(token_p,jqEditEmail2.inputEmail.val())
+        mApi.updateEmail(token_p,nNewEmail)
         .done(function(success) {
           mAlert.success(success.message);// 收起 选择框
+          $('#des-email').text(nNewEmail);
+          jqEditEmail1.inputEmail.val(nNewEmail);
+          jqEditEmail1.form.slideDown('fast');
+          jqEditEmail2.form.slideUp('fast');
           jqEmailBtn.trigger('click');
         })
         .fail(function(error) {
@@ -740,7 +769,14 @@ define(function(require) {
         });
       }
     });
-
+    // 取消时，绑定手机恢复到初始状态
+    function fnDefaultEmail () {
+      jqEditEmail2.inputEmail.val('');
+      jqBindEmail.inputEmail.val('');
+      $('#collapse-email').find('.input-2').val('');
+      $('#collapse-email').find('.input-4').val('');
+      $('#collapse-email').find('.hint-icon').hide();
+    }
 
     console.timeEnd('_bind time');
   };

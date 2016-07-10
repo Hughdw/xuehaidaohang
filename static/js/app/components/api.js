@@ -13,7 +13,7 @@ define(function(require) {
   oUrl.updateAvatar = sHost + '/updateAvatar' + testPostfix;
   oUrl.updateNickName = sHost + '/updateNickName' + testPostfix;
   oUrl.updatePassword = sHost + '/updatePassword' + testPostfix;
-  oUrl.verfiyOldAccount = sHost + '/verfiyOldAccount' + testPostfix;
+  oUrl.verifyOldAccount = sHost + '/verifyOldAccount' + testPostfix;
   oUrl.updateAccount = sHost + '/updateAccount' + testPostfix;
   // 发送手机验证码
   oUrl.mobileCode = sHost + '/sendMobileCode' + testPostfix;
@@ -185,7 +185,7 @@ define(function(require) {
     return oDeferred.promise();
   };
   // 验证老账号
-  api.verfiyOldAccount = function(token,account,type) {
+  api.verifyOldAccount = function(token,account,type) {
     var oParams;
     if (type === 'mobile') {
       oParams = {token:token,mobile:account};
@@ -193,7 +193,7 @@ define(function(require) {
       oParams = {token:token,email:account};
     }
     var oDeferred = $.Deferred();
-    $.get(oUrl.verfiyOldAccount,oParams)
+    $.get(oUrl.verifyOldAccount,oParams)
     .done(function(answer) {
       fnPretreatment(answer,oDeferred);
     })
