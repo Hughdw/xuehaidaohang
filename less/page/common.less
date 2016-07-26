@@ -254,14 +254,15 @@ main{
   height: 52px;
   padding: 0;
   z-index: 99;
+  .alert{
+    float: right;
+    text-align: center;
+    width: 200px;
+    padding: 8px;
+    margin-right: 5px;
+  }
 }
-.alert{
-  float: right;
-  text-align: center;
-  width: 200px;
-  padding: 8px;
-  margin-right: 5px;
-}
+
 
 // 加载动画
 .loading{
@@ -434,10 +435,10 @@ footer{
   }
   .alert-wrap{
     top: 85px;
-  }
-  .alert{
-    float: none;
-    margin: 0 auto;
+    .alert{
+      float: none;
+      margin: 0 auto;
+    }
   }
   footer {
     height: @footer-height-sm;

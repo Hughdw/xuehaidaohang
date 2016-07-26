@@ -26,7 +26,7 @@
               class="form-control"
               id="signup-mobile"
               placeholder="您的手机号码"
-              ng-model="user.username"
+              ng-model="user.account"
               reg-username="mobile"
               required>
               <!--
@@ -78,7 +78,7 @@
               <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="mobileForm.mobileCaptcha.$showhint && mobileForm.mobileCaptcha.$valid"></span>
             </div>
             <div class="col-xs-6 col-sm-4">
-              <button type="button" class="btn btn-primary" ng-show="smsBtn.isShow" ng-disabled="smsBtn.isDis"  ng-click="mobileData.getMobileCode(user.username)">{{smsBtn.txt}}</button>
+              <button type="button" class="btn btn-primary" ng-show="smsBtn.isShow" ng-disabled="smsBtn.isDis"  ng-click="mobileData.getMobileCode(user.account)">{{smsBtn.txt}}</button>
               <button type="button" class="btn btn-default" ng-show="!smsBtn.isShow" disabled>{{smsBtn.countDown}}后重新发送</button>
             </div>
           </div>
@@ -140,7 +140,7 @@
               class="form-control"
               id="signup-email"
               placeholder="您的邮箱地址"
-              ng-model="user.username"
+              ng-model="user.account"
               reg-username="email"
               required>
               <span class="hint-info" ng-show="emailForm.email.$showhint && emailForm.email.$error.pattern">邮箱格式错误</span>
@@ -180,14 +180,14 @@
               id="signup-email-captcha"
               placeholder="邮件验证码"
               ng-model="regData.emailCaptcha"
-              check-captcha="mail"
+              check-captcha="email"
               required>
               <span class="hint-info" ng-show="emailForm.emailCaptcha.$showhint && emailForm.emailCaptcha.$error.pattern">验证码格式错误</span>
               <span class="hint-info" ng-show="emailForm.emailCaptcha.$showhint && emailForm.emailCaptcha.$error.correct">验证码错误</span>
               <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="emailForm.emailCaptcha.$showhint && emailForm.emailCaptcha.$valid"></span>
             </div>
             <div class="col-xs-6 col-sm-4">
-              <button type="button" class="btn btn-primary" ng-show="mailBtn.isShow" ng-disabled="mailBtn.isDis"  ng-click="emailData.getMailCode(user.username)">{{mailBtn.txt}}</button>
+              <button type="button" class="btn btn-primary" ng-show="mailBtn.isShow" ng-disabled="mailBtn.isDis"  ng-click="emailData.getMailCode(user.account)">{{mailBtn.txt}}</button>
               <button type="button" class="btn btn-default" ng-show="!mailBtn.isShow" disabled>{{mailBtn.countDown}}后重新发送</button>
             </div>
           </div>

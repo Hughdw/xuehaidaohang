@@ -80,5 +80,8 @@ define(function(require) {
     // ];
     return oNewData.account;
   };
+  oData.regroupProgress = function(progressData) {
+    // body...
+  };
   return oData;
 });

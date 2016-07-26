@@ -5,7 +5,6 @@ define(function(require) {
       mCheckInput = require('components/personal/check-input'),
       mAlert = require('components/alert'),
       tplAccountMain = require('tpl/personal/account-main'),
-      // replaceImgPath = require('components/replace-img-path'),
       Validate = require('components/validate');
 
   var oAccount = {};

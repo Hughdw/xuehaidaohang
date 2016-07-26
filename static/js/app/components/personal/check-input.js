@@ -5,6 +5,7 @@ define(function(require) {
   // 验证规则
   var oCheckFormat = {
     nicknameLength:function(str) {
+      // 计算昵称长度，一个中文算等于两个字母。
       var aZhStr = str.match(/[\u4e00-\u9fa5]/g) || [];
       var aEnStr = str.match(/\w/g) || [];
       var nZhStrLen = aZhStr.length*2;

@@ -14,9 +14,9 @@
       <div class="account-collapse-inner row">
         <% for (var i = 0;i < avatarList.length;i++) { %>
           <%if (avatar === avatarList[i]) {%>
-            <a class="avatar-link col-xs-4 col-sm-2 active avatar-link-<%=i%>" href="javascript:;" data-id="<%=i%>" id="selected-avatar"><img class="avatar-img" src="<%= avatarList[i]%>"/></a>
+            <a class="avatar-link col-xs-4 col-sm-2 active avatar-link-<%=i%>" href="javascript:;" data-id="<%=i%>" id="selected-avatar"><img class="avatar-img" src="<%= avatarList[i]%>" width="100%" height="100%" /></a>
           <% } else {%>
-            <a class="avatar-link col-xs-4 col-sm-2 avatar-link-<%=i%>" href="javascript:;" data-id="<%=i%>"><img class="avatar-img" src="<%= avatarList[i]%>"/></a>
+            <a class="avatar-link col-xs-4 col-sm-2 avatar-link-<%=i%>" href="javascript:;" data-id="<%=i%>"><img class="avatar-img" src="<%= avatarList[i]%>" width="100%" height="100%" /></a>
           <% } %>
         <% } %>
         <div class="col-xs-12 col-sm-3 account-btn-box">

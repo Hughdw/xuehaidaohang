@@ -6,6 +6,10 @@ define(function (require) {
       mSignModal = require('components/sign/sign-modal'),
       mData = require('components/personal/data'),
       mAccountMain = require('components/personal/account-main'),
+      mProgressMain = require('components/personal/progress-main'),
+      mRechargeMain = require('components/personal/recharge-main'),
+      mPurchaseMain = require('components/personal/purchase-main'),
+      mPreferentialMain = require('components/personal/preferential-main'),
       tplSidebar = require('tpl/personal/sidebar');
   $(function() {
     // 向auth模块中加入导航的登录/登出方法。
@@ -37,11 +41,12 @@ define(function (require) {
 
         // 绑定按钮事件
         $('.menu-list').on('click', '.menu-list-link', function(event) {
-          var sHref = $(this).attr('href');
-          var route = mUtil.strGetHash(sHref);
+          $('.menu-list').find('a').removeClass('active');
+          var sHref = $(this).addClass('active').attr('href');
+          var sRoute = mUtil.getHash(sHref);
 
           // 侧导航按钮切换主内容
-          fnLoadMain(oUserData,route);
+          fnLoadMain(oUserData,sRoute);
         });
         // 加载完侧导航，加载主内容
         fnLoadMain(oUserData,sHash);
@@ -63,16 +68,20 @@ define(function (require) {
           mAccountMain.loadContent(userData,token);
           break;
         case '#progress':
-          //
+          // 加载学习进度的内容
+          mProgressMain.loadContent(userData,token);
           break;
         case '#recharge-records':
-
+          // 加载充值记录
+          mRechargeMain.loadContent(userData,token);
           break;
         case '#purchase-records':
-
+          // 加载购买记录
+          mPurchaseMain.loadContent(userData,token);
           break;
         case '#preferential':
-
+          // 加载优惠信息
+          mPreferentialMain.loadContent(userData,token);
           break;
         default:
           mAccountMain.loadContent(oUserData,token);

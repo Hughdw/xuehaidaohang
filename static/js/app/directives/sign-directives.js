@@ -141,7 +141,9 @@ angular.module('formCheck', [])
             ctrl.$showhint = true;
             iEle.addClass(FOCUS_CLASS);
           } else {
-            apiService.verifyCode(iAttrs.checkCaptcha,ctrl.$viewValue).then(
+            // console.log(scope.regData);
+            console.log(scope.user);
+            apiService.verifyCode(iAttrs.checkCaptcha,ctrl.$viewValue,scope.user.account,scope.user.accountType).then(
               function(seccess) {
                 ctrl.$showhint = true;
                 ctrl.$setValidity('correct', true);
