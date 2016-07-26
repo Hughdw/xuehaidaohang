@@ -21,7 +21,8 @@ angular.module('formCheck', [])
           }
           // iAttrs.ensureCorrect 获取实例元素上的ensure-correct属性值
           // 通过ensure-correct属性值在verifyCode中进一步筛选请求的参数
-          apiService.verifyCode(iAttrs.ensureCorrect, ctrl.$modelValue).then(
+          //
+          apiService.verifyCode(iAttrs.ensureCorrect, ctrl.$modelValue,scope.vm.account,scope.vm.accountType).then(
             function(seccess) {
               // XHR请求成功后，显示提醒标示
               scope.vm.verifyCallback[iAttrs.ensureCorrect] = true;

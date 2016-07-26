@@ -14,7 +14,7 @@
   <ul class="menu-list">
     <%for(i = 0;i < list.length;i++) {%>
       <%if (i === activeMenu) {%>
-        <li><a href="javasript:;" class="menu-list-link active"><%= list[i].txt %></a></li>
+        <li><a href="<%= list[i].url %>" class="menu-list-link active"><%= list[i].txt %></a></li>
       <%} else {%>
         <li><a href="<%= list[i].url %>" class="menu-list-link"><%= list[i].txt %></a></li>
       <%}%>

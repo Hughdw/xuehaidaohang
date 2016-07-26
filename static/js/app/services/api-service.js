@@ -1,13 +1,13 @@
 angular.module('api', [])
-.constant('AUTH_EVENTS', {
-
-})
-// 储存session
-.service('authUser', function() {
-  // this.create = function(token,) {
-  //   // body...
-  // }
-})
+// .constant('AUTH_EVENTS', {
+//
+// })
+// // 储存session
+// .service('authUser', function() {
+//   // this.create = function(token,) {
+//   //   // body...
+//   // }
+// })
 .factory('apiURL', function() {
   var oServiceUrl = {};
   // 本地deployd测试地址
@@ -23,7 +23,7 @@ angular.module('api', [])
   // var testPostfix = '.json';
 
   // 图片验证码
-  oServiceUrl.imgCaptcha = 'http://www.quick.com:8081/api/getCaptcha';
+  oServiceUrl.imgCaptcha = 'http://139.196.173.103:8081/api/getCaptcha';
   // 发送手机验证码
   oServiceUrl.mobileCode = sHost + '/sendMobileCode' + testPostfix;
   // 发送邮箱验证码
@@ -108,17 +108,29 @@ angular.module('api', [])
     return oDeferred.promise;
   };
   // 校验验证码
-  oService.verifyCode = function(type,code) {
+  oService.verifyCode = function(type,code,account,accountType) {
     var oParams;
     switch (type) {
       case 'mobile':
-        oParams = {activationMobileCode:code};
+        if (accountType === 'mobile') {
+          oParams = {activationMobileCode:code,mobile:account};
+        } else if (accountType === 'email') {
+          oParams = {activationMobileCode:code,email:account};
+        }
         break;
-      case 'mail':
-        oParams = {activationMailCode:code};
+      case 'email':
+        if (accountType === 'mobile') {
+          oParams = {activationMailCode:code,mobile:account};
+        } else if (accountType === 'email') {
+          oParams = {activationMailCode:code,email:account};
+        }
         break;
       case 'img':
-        oParams = {captcha:code};
+        if (accountType === 'mobile') {
+          oParams = {captcha:code,mobile:account};
+        } else if (accountType === 'email') {
+          oParams = {captcha:code,email:account};
+        }
         break;
       default:
         oParams = {};

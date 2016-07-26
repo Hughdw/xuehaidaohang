@@ -10,8 +10,10 @@ angular.module('findPDApp')
       verifyCallback:{
         img:false,// 记录 验证图片验证码的请求是否返回
         mobile:false,
-        mail:false
-      }
+        email:false
+      },
+      account:'',//记录找回密码的账号
+      accountType:''//找回密码的账号类型
     };
     // // 图片验证码
     // $scope.getCaptcha = apiService.getImgCaptcha();
@@ -35,10 +37,10 @@ angular.module('findPDApp')
   // 子控制器 - 通过手机找回密码相关
   .controller('mobileCtrl', function($scope, $interval, ACTIVE_CLASS, apiService) {
     var mobileData = $scope.mobileData = {
-      mobile:'',//记录用户输入的手机号码
       currentStep:0,//当前步骤
     };
-
+    // 设置账号类型
+    $scope.vm.accountType = 'mobile';
     //切换 步骤样式
     mobileData.getActiveClass = function(type) {
       return type === mobileData.currentStep ? ACTIVE_CLASS : '';
@@ -89,9 +91,9 @@ angular.module('findPDApp')
     // 重置密码
     // ************************************
     mobileData.updatePassword = function() {
-      apiService.updateMobilePassword(mobileData.mobile,mobileData.password,mobileData.confirmpassword).then(
+      apiService.updateMobilePassword($scope.vm.account,mobileData.password,mobileData.confirmpassword).then(
         function(success) {
-          alert('成功');
+          alert('密码修改成功');
           // body...
         },
         function(error) {
@@ -104,7 +106,7 @@ angular.module('findPDApp')
 
     // 测试相关变量控制
     // console.log('%chello','font-size:25px;color:red');
-    mobileData.mobile = 13917232473;
+    // mobileData.mobile = 13917232473;
     // mobileData.currentStep = 2;
 
   })
@@ -112,10 +114,10 @@ angular.module('findPDApp')
   // 子控制器 - 通过邮箱找回密码相关
   .controller('mailCtrl', function($scope, $interval, ACTIVE_CLASS, apiService) {
     var mailData = $scope.mailData = {
-      mail:'',//记录用户输入的手机号码
       currentStep:0,//当前步骤
     };
-
+    // 设置账号类型
+    $scope.vm.accountType = 'email';
     //切换 步骤样式
     mailData.getActiveClass = function(type) {
       return type === mailData.currentStep ? ACTIVE_CLASS : '';
@@ -132,7 +134,6 @@ angular.module('findPDApp')
       mailBtn.countDown = 30;//倒计时总秒数
     };
     mailBtn.default();
-    console.log(mailBtn.isShow);
     // ************************************
     // 获取邮件验证码
     // ************************************
@@ -141,7 +142,7 @@ angular.module('findPDApp')
       var vIntervalId;
       mailBtn.isDis = true;
       mailBtn.txt = aBtnTxt[1];
-      apiService.getMailCode(mail).then(
+      apiService.getMailCode(0,mail).then(
         function(success) {
           mailBtn.isShow = false;
           vIntervalId = $interval(function() {
@@ -162,9 +163,9 @@ angular.module('findPDApp')
     // 重置密码
     // ************************************
     mailData.updatePassword = function() {
-      apiService.updateMailPassword(mailData.mail,mailData.password,mailData.confirmpassword).then(
+      apiService.updateMailPassword($scope.vm.account,mailData.password,mailData.confirmpassword).then(
         function(success) {
-          alert('成功');
+          alert('密码修改成功');
         },
         function(error) {
           alert(error.message);
@@ -173,7 +174,7 @@ angular.module('findPDApp')
     };
 
     // 测试相关变量控制
-    mailData.mail = 'whd007@163.com';
+    // mailData.mail = 'whd007@163.com';
     mailData.currentStep = 0;
 
   });

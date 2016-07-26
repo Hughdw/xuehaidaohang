@@ -21,7 +21,7 @@
               class="form-control"
               id="input-mobile-0"
               placeholder="您绑定的手机号码"
-              ng-model="mobileData.mobile"
+              ng-model="vm.account"
               ng-pattern="/^(13|14|15|18)\d{9}$/"
               required>
             </div>
@@ -74,7 +74,7 @@
           <div class="form-group">
             <label for="input-mobile-1" class="label-tit col-xs-12">手机号码：</label>
             <div class="col-xs-12">
-              <input type="number" class="form-control" id="input-mobile-1" placeholder="{{mobileData.mobile}}" readonly>
+              <input type="number" class="form-control" id="input-mobile-1" placeholder="{{vm.account}}" readonly>
             </div>
           </div>
           <div class="form-group">
@@ -97,7 +97,7 @@
               </span>
             </div>
             <div class="col-xs-6 col-sm-5">
-              <button type="button" class="btn btn-primary" ng-show="smsBtn.isShow" ng-disabled="smsBtn.isDis"  ng-click="mobileData.getMobileCode(mobileData.mobile)">{{smsBtn.txt}}</button>
+              <button type="button" class="btn btn-primary" ng-show="smsBtn.isShow" ng-disabled="smsBtn.isDis"  ng-click="mobileData.getMobileCode(vm.account)">{{smsBtn.txt}}</button>
               <button type="button" class="btn btn-default" ng-show="!smsBtn.isShow" disabled>{{smsBtn.countDown}}后重新发送</button>
             </div>
           </div>
@@ -128,7 +128,7 @@
           <div class="form-group">
             <label for="input-mobile-2" class="label-tit col-xs-12">手机号码：</label>
             <div class="col-xs-12">
-              <input type="number" class="form-control" id="input-mobile-2" placeholder="{{mobileData.mobile}}" readonly>
+              <input type="number" class="form-control" id="input-mobile-2" placeholder="{{vm.account}}" readonly>
             </div>
           </div>
           <div class="form-group">

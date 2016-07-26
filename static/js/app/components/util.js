@@ -15,7 +15,7 @@ define(function (require) {
     return r === null ? null : unescape(r[2]);
 	};
   // 获取地址中#号之后的内容
-  util.strGetHash = function(str) {
+  util.getHash = function(str) {
     var start = str.indexOf('#',0);
     return str.substring(start);
   };

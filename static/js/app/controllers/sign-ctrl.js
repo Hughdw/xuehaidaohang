@@ -6,6 +6,7 @@ angular.module('signApp')
     parent.globalModule.closeModal();
   };
 })
+// 注册界面的总控制器
 .controller('registerCtrl',function($scope,$interval,ACTIVE_CLASS,apiService) {
   // body...
   var regData = $scope.regData = {
@@ -13,9 +14,10 @@ angular.module('signApp')
     getCaptcha: apiService.getImgCaptcha()//获取验证码
   };
   var user = $scope.user = {
-    username:'',
+    account:'',
     password:'',
-    confirmpassword:''
+    confirmpassword:'',
+    accountType:''
   };
   // 切换标签的当前选择样式
   regData.getActiveClass = function(num) {
@@ -33,7 +35,7 @@ angular.module('signApp')
   };
 
   regData.register = function(type) {
-    apiService.register(type,user.username,user.password,user.confirmpassword).then(
+    apiService.register(type,user.account,user.password,user.confirmpassword).then(
       function(success) {
         alert(success.message);
       },
@@ -43,15 +45,13 @@ angular.module('signApp')
     );
   };
 
-  // 测试
-  regData.consoleInfo = function() {
-    console.log(1);
-  };
 
 })
+// 手机注册控制器
 .controller('mobileCtrl',function($scope,$interval,apiService) {
   var mobileData = $scope.mobileData = {};
-
+  $scope.user.accountType = 'mobile';
+  console.log($scope.user.accountType);
   // 验证码按钮 文字切换
   var aBtnTxt = ['获取验证码','正在发送'];
   var smsBtn = $scope.smsBtn = {};
@@ -85,9 +85,11 @@ angular.module('signApp')
     );
   };
 })
+// 邮箱注册控制器
 .controller('emailCtrl',function($scope,$interval,apiService) {
   var emailData = $scope.emailData = {};
-
+  $scope.user.accountType = 'email';
+  console.log($scope.user.accountType);
   // 验证码按钮 文字切换
   var aBtnTxt = ['获取验证码','正在发送'];
   var mailBtn = $scope.mailBtn = {};
@@ -121,16 +123,17 @@ angular.module('signApp')
     );
   };
 })
+// 登录控制器
 .controller('loginCtrl',function($scope,apiService,submitForm) {
   var loginUser = $scope.users = {
     type : '',// 账号登录方式
-    username : '',
+    account : '',
     password : ''
   };
   $scope.login = function(formIsValid,user) {
     // 表单通过规则验证后，才能进行提交
     if (formIsValid) {
-      apiService.login(user.type,user.username,user.password).then(
+      apiService.login(user.type,user.account,user.password).then(
         function(success) {
           // 把token传递到调用登录窗口的页面
           parent.globalModule.transferToken(success.data[0].token);
