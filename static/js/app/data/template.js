@@ -1,3 +1,4 @@
+// 临时数据
 define(function (require) {
   return {
     sidebar : {

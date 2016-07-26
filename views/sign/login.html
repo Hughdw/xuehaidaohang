@@ -13,18 +13,18 @@
           <div class="col-xs-12">
             <input
             type="text"
-            name="username"
+            name="account"
             class="form-control"
             id="signin-account"
             placeholder="请输入邮箱或者手机号"
             ng-model="loginUser.account"
-            check-username
+            check-account
             required>
-            <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.empty">邮箱/手机号不能为空</span>
-            <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.pattern">邮箱/手机号格式错误</span>
-            <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.sole && loginForm.username.$usernameType === 'email'">该邮箱未注册</span>
-            <span class="hint-info" ng-show="loginForm.username.$showhint && loginForm.username.$error.sole && loginForm.username.$usernameType === 'mobile'">该手机未注册</span>
-            <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="loginForm.username.$showhint && loginForm.username.$valid"></span>
+            <span class="hint-info" ng-show="loginForm.account.$showhint && loginForm.account.$error.empty">邮箱/手机号不能为空</span>
+            <span class="hint-info" ng-show="loginForm.account.$showhint && loginForm.account.$error.pattern">邮箱/手机号格式错误</span>
+            <span class="hint-info" ng-show="loginForm.account.$showhint && loginForm.account.$error.sole && loginForm.account.$accountType === 'email'">该邮箱未注册</span>
+            <span class="hint-info" ng-show="loginForm.account.$showhint && loginForm.account.$error.sole && loginForm.account.$accountType === 'mobile'">该手机未注册</span>
+            <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="loginForm.account.$showhint && loginForm.account.$valid"></span>
           </div>
         </div>
         <div class="form-group">

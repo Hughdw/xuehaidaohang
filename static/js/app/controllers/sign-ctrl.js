@@ -149,7 +149,7 @@ angular.module('signApp')
       );
     } else {
       // 验证表单输入数据，显示提示
-      submitForm.checkUsernameInput('submit');
+      submitForm.checkAccountInput('submit');
       submitForm.checkPasswordInput('submit');
     }
   };

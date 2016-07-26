@@ -1,5 +1,5 @@
 angular.module('formCheck', [])
-.directive('checkUsername',function(FOCUS_CLASS,submitForm) {
+.directive('checkAccount',function(FOCUS_CLASS,submitForm) {
   return {
     require: 'ngModel',
     link: function(scope, iEle, iAttrs, ctrl) {
@@ -19,8 +19,8 @@ angular.module('formCheck', [])
 
       // 1.将link函数的参数传入服务中
       // 2.绑定相关验证的事件
-      submitForm.saveUsernameArgs(arguments);
-      submitForm.bindUsernameEvt();
+      submitForm.saveAccountArgs(arguments);
+      submitForm.bindAccountEvt();
     }
   };
 })
@@ -116,7 +116,7 @@ angular.module('formCheck', [])
           var reg = /^\d{4}$/;
           return reg.test(str);
         },
-        mail:function(str) {
+        email:function(str) {
           var reg = /^\d{4}$/;
           return reg.test(str);
         },
@@ -161,7 +161,7 @@ angular.module('formCheck', [])
     }
   };
 })
-.directive('regUsername',function(apiService,FOCUS_CLASS) {
+.directive('regAccount',function(apiService,FOCUS_CLASS) {
   return {
     //依赖ngModel数据模型
     require: 'ngModel',
@@ -181,7 +181,7 @@ angular.module('formCheck', [])
         }
       });
       // 验证规则
-      var fnUsernameFormat = {
+      var fnAccountFormat = {
         mobile:function(str) {
           var reg = /^(13|14|15|18|17)\d{9}$/;
           return reg.test(str);
@@ -202,7 +202,7 @@ angular.module('formCheck', [])
         // 控件为空时，不进行相关验证。
         if (ctrl.$isEmpty(ctrl.$viewValue)) return;
         // 记录输入是否通过正则验证
-        var bFormat = fnUsernameFormat[iAttrs.regUsername](ctrl.$viewValue);
+        var bFormat = fnAccountFormat[iAttrs.regAccount](ctrl.$viewValue);
         // 触发$digest循环，同步数据
         // 这里的$showhint需要手动与view中的数据同步
         scope.$apply(function() {
@@ -216,7 +216,7 @@ angular.module('formCheck', [])
             iEle.addClass(FOCUS_CLASS);
           }else {
             // 通过正则验证，请求远程服务器，验证账号是否存在。
-            apiService.checkUsername( iAttrs.regUsername,ctrl.$viewValue).then(
+            apiService.checkAccount( iAttrs.regAccount,ctrl.$viewValue).then(
               function(seccess) {
                 // 显示提示
                 // 多个地方分别设置$showhint是为了跟响应同步

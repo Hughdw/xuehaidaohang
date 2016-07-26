@@ -2,7 +2,7 @@ define(function(require) {
   var mApi = require('components/api'),
       mData = require('components/personal/data'),
       mAlert = require('components/alert'),
-      tplAccountMain = require('tpl/personal/account-main');
+      tplProgressMain = require('tpl/personal/progress-main');
 
   var oProgress = {};
 
@@ -13,9 +13,9 @@ define(function(require) {
     .done(function(success) {
       // 重新组织 学习进度 的数据
       console.log(success);
-      // var accountData = mData.regroupProgress(success.data,userData);
-      // document.getElementById('mainbar').innerHTML = tplAccountMain(accountData);
-      // oProgress._bind(accountData,token_p);
+      var progressData = mData.regroupProgress(success.data,userData);
+      document.getElementById('mainbar').innerHTML = tplProgressMain(progressData);
+      // oProgress._bind(progressData,token_p);
       // replaceImgPath();
     })
     .fail(function(error) {

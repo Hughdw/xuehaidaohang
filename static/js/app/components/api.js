@@ -22,7 +22,7 @@ define(function(require) {
   // 验证验证码
   oUrl.verifyCode = sHost + '/verifyCode' + testPostfix;
   // 判断账号是否存在
-  oUrl.checkUsername = sHost + '/isUserReg' + testPostfix;
+  oUrl.checkAccount = sHost + '/isUserReg' + testPostfix;
   // 更新学习进度
   oUrl.updateHistory = sHost + '/updateHistory' + testPostfix;
   // 学习进度列表
@@ -290,15 +290,15 @@ define(function(require) {
     return oDeferred.promise();
   };
   // 判断账号是否存在
-  api.checkUsername = function(type,username) {
+  api.checkAccount = function(type,account) {
     var oParams;
     if (type === 'mobile') {
-      oParams = {mobile:username};
+      oParams = {mobile:account};
     } else if (type === 'email') {
-      oParams = {email:username};
+      oParams = {email:account};
     }
     var oDeferred = $.Deferred();
-    $.get(oUrl.checkUsername,oParams)
+    $.get(oUrl.checkAccount,oParams)
     .done(function(answer) {
       fnPretreatment(answer,oDeferred);
     })

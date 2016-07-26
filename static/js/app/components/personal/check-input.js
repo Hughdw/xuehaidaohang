@@ -135,7 +135,7 @@ define(function(require) {
       validate.setHintValue(index,'1');
     } else {
       // 验证账号是否可用
-      mApi.checkUsername('mobile',inputEle.val())
+      mApi.checkAccount('mobile',inputEle.val())
       .done(function(success) {
         validate.setHintValue(index,'R');
         formEle.find('.hint-icon-'+index).show();
@@ -213,7 +213,7 @@ define(function(require) {
       validate.setHintValue(index,'1');
     } else {
       // 验证账号是否可用
-      mApi.checkUsername('email',inputEle.val())
+      mApi.checkAccount('email',inputEle.val())
       .done(function(success) {
         validate.setHintValue(index,'R');
         formEle.find('.hint-icon-'+index).show();

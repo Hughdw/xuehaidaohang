@@ -14,19 +14,6 @@ define(function (require) {
   // 页面载入
   $(function() {
 
-    // 测试登录状态
-    $('#testBtn').on('click', function(event) {
-      event.preventDefault();
-      /* Act on the event */
-      console.log(mAuth.isAuthenticated());
-    });
-    // 退出
-    $('#testBtn2').on('click', function(event) {
-      event.preventDefault();
-      /* Act on the event */
-      mAuth.logout();
-    });
-
     // 获取视频目录列表
     mApi.getcategory()
     .done(function(success) {

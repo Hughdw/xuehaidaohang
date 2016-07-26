@@ -27,7 +27,7 @@
               id="signup-mobile"
               placeholder="您的手机号码"
               ng-model="user.account"
-              reg-username="mobile"
+              reg-account="mobile"
               required>
               <!--
                1.空的时候不显示提示
@@ -141,7 +141,7 @@
               id="signup-email"
               placeholder="您的邮箱地址"
               ng-model="user.account"
-              reg-username="email"
+              reg-account="email"
               required>
               <span class="hint-info" ng-show="emailForm.email.$showhint && emailForm.email.$error.pattern">邮箱格式错误</span>
               <span class="hint-info" ng-show="emailForm.email.$showhint && emailForm.email.$error.sole">该邮箱已经注册</span>

@@ -3,7 +3,7 @@ angular.module('sign-service',[])
 // 为自定义指令 和 表单提交 提供事件绑定、验证服务。
 .service('submitForm',function(apiService,FOCUS_CLASS) {
   // 验证规则
-  var fnUsernameFormat = {
+  var fnAccountFormat = {
     mobile:function(str) {
       var reg = /^(13|14|15|18|17)\d{9}$/;
       return reg.test(str);
@@ -22,12 +22,12 @@ angular.module('sign-service',[])
   };
   // 储存通过参数传入的对象（socpe,iEle,iAttrs,ctrl）
   var _args = {
-    username:'',
+    account:'',
     password:''
   };
   // 检查输入的字符是否符合规则
   var _fnCheckInput = {};
-  _fnCheckInput.username = function (scope, iEle, iAttrs, ctrl, isSubmit) {
+  _fnCheckInput.account = function (scope, iEle, iAttrs, ctrl, isSubmit) {
     // 分两种情况，1.控件失去焦点。2.提交表单。
     // 1.1.为空时，不进行验证，直接返回。
     // 1.2.不为空时，进行正则验证，并设置账号类型。
@@ -44,15 +44,15 @@ angular.module('sign-service',[])
       return;
     }
     // 记录登录的账号类型
-    if (fnUsernameFormat.mobile(ctrl.$viewValue)) {
+    if (fnAccountFormat.mobile(ctrl.$viewValue)) {
       scope.loginUser.type = 'mobile';
-    } else if (fnUsernameFormat.email(ctrl.$viewValue)) {
+    } else if (fnAccountFormat.email(ctrl.$viewValue)) {
       scope.loginUser.type = 'email';
     } else {
       scope.loginUser.type = 'error';
     }
     var bFormat = scope.loginUser.type === 'error' ? false : true;
-    ctrl.$usernameType = scope.loginUser.type;
+    ctrl.$accountType = scope.loginUser.type;
     // 提交表单时，返回当前控件是否已经验证通过。
     if (!isSubmit) {
       scope.$apply(function() {
@@ -64,7 +64,7 @@ angular.module('sign-service',[])
           // 控制边框是否显示红色
           iEle.addClass(FOCUS_CLASS);
         } else {
-          apiService.checkUsername(scope.loginUser.type,ctrl.$viewValue).then(
+          apiService.checkAccount(scope.loginUser.type,ctrl.$viewValue).then(
             function(seccess) {
               // 账号不存在，不能登录
               // 1.邮箱未注册，进行提示
@@ -135,20 +135,20 @@ angular.module('sign-service',[])
   };
 
   // 登录账号相关的方法
-  this.saveUsernameArgs = function(args) {
-    _args.username = args;
+  this.saveAccountArgs = function(args) {
+    _args.account = args;
   };
-  this.bindUsernameEvt = function() {
+  this.bindAccountEvt = function() {
     // 给模板实例（jqLite将checkFocus自定义指令所在的标签元素封装起来）绑定事件，进行相关验证。
     // 1.离开焦点的时候,进行相关规则的验证
     // 2.1.验证结果不符合规则，则显示 边框提示 和显示 文字提示。
-    _args.username[1].bind('blur',this.checkUsernameInput);
+    _args.account[1].bind('blur',this.checkAccountInput);
   };
-  this.checkUsernameInput = function(type) {
+  this.checkAccountInput = function(type) {
     // 对提交表单操作进行标识
     var isSubmit = type === 'submit' ? true : false;
     // 执行服务中的 表单校验 函数
-    _fnCheckInput.username(_args.username[0],_args.username[1],_args.username[2],_args.username[3],isSubmit);
+    _fnCheckInput.account(_args.account[0],_args.account[1],_args.account[2],_args.account[3],isSubmit);
   };
 
   // 密码相关的方法
