@@ -35,7 +35,7 @@ angular.module('api', [])
   // 通过邮箱重置密码
   oServiceUrl.updateMailPassword = sHost + '/updateMailPassword' + testPostfix;
   // 判断账号是否存在
-  oServiceUrl.checkUsername = sHost + '/isUserReg' + testPostfix;
+  oServiceUrl.checkAccount = sHost + '/isUserReg' + testPostfix;
   // 注册账号
   oServiceUrl.register = sHost + '/register' + testPostfix;
   // 邮箱账号登录
@@ -192,16 +192,16 @@ angular.module('api', [])
     return oDeferred.promise;
   };
   // 检查账号是否存在
-  oService.checkUsername = function(type,username) {
+  oService.checkAccount = function(type,account) {
     var oParams;
     if (type === 'mobile') {
-      oParams = {mobile:username};
+      oParams = {mobile:account};
     } else if (type === 'email') {
-      oParams = {email:username};
+      oParams = {email:account};
     }
     // 构建一个新的延迟实例
     var oDeferred = $q.defer();
-    var oPromise = $http.get(apiURL.checkUsername,{
+    var oPromise = $http.get(apiURL.checkAccount,{
       params:oParams
     });
     oPromise.then(
@@ -216,12 +216,12 @@ angular.module('api', [])
     return oDeferred.promise;
   };
   // 注册账号
-  oService.register = function(type,username,password,repassword) {
+  oService.register = function(type,account,password,repassword) {
     var oParams;
     if (type === 'mobile') {
-      oParams = {mobile:username,password:password,repassword:repassword};
+      oParams = {mobile:account,password:password,repassword:repassword};
     } else if (type === 'email') {
-      oParams = {email:username,password:password,repassword:repassword};
+      oParams = {email:account,password:password,repassword:repassword};
     }
     // 构建一个新的延迟实例
     var oDeferred = $q.defer();
@@ -240,13 +240,13 @@ angular.module('api', [])
     return oDeferred.promise;
   };
   // 登录
-  oService.login = function(type,username,password) {
+  oService.login = function(type,account,password) {
     var oParams,sLoginUrl;
     if (type === 'mobile') {
-      oParams = {mobile:username,password:password};
+      oParams = {mobile:account,password:password};
       sLoginUrl = apiURL.mobileLogin;
     } else if (type === 'email') {
-      oParams = {email:username,password:password};
+      oParams = {email:account,password:password};
       sLoginUrl = apiURL.emailLogin;
     }
     // 构建一个新的延迟实例

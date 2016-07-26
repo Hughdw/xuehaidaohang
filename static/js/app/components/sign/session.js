@@ -6,7 +6,7 @@ define(function(require) {
   oSession.user = {
     token:'',
     nickname:'',//用户名
-    balance:'',
+    balance:'',//余额
     bindEmail:'',//绑定邮箱
     bindMobile:'',//绑定手机
     fail_time:'',//过期时间，暂时用不上
