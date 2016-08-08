@@ -25,7 +25,7 @@ define(function(require) {
         //视频 ID (必选参数)
         'file_id': data.video,
         //应用 ID (必选参数)，同一个账户下的视频，该参数是相同的
-        'app_id': '1252344145',
+        'app_id': '1252446141',
         //是否自动播放 默认值0 (0: 不自动，1: 自动播放)
         'auto_play': '0',
         //播放器宽度，单位像素
@@ -62,6 +62,7 @@ define(function(require) {
         //播放状态发生变化时的回调
         'playStatus': function(status) {
           if (token) {
+            // 准备状态 并且 不是第一次播放时，显示接着上一次播放按钮
             if (status === 'ready' && data.lasttime !== 0) {
               $('#firstBt').show().on('click', function(event) {
                 event.preventDefault();
@@ -70,10 +71,15 @@ define(function(require) {
                 $(this).hide();
               });
             }
+            // 正在播放状态，请求更新接口
             if (status === 'playing') {
+              $('#firstBt').hide();
               // 周期性请求 播放位置 更新接口
               vIntervalId = setInterval(function() {
-                mApi.updateHistory(data.pid,data.lasttime,player.getCurrentTime(),token)
+                // console.log(data.lasttime);
+                // console.log(player.getCurrentTime());
+                var nTimestamp = Math.round(new Date().getTime()/1000);
+                mApi.updateHistory(data.pid,nTimestamp,player.getCurrentTime(),token)
                 .done(function(success) {
                   console.log(success);
                 })

@@ -69,7 +69,7 @@ define(function (require) {
           break;
         case '#progress':
           // 加载学习进度的内容
-          mProgressMain.loadContent(userData,token);
+          mProgressMain.loadContent(token);
           break;
         case '#recharge-records':
           // 加载充值记录

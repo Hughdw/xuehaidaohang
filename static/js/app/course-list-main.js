@@ -10,9 +10,27 @@ define(function (require) {
       tplListMenu = require('tpl/course/list-menu'),
       mListData = require('components/course/list-data'),
       mFilterCont = require('components/course/filter-cont'),
-      mAuth = require('components/sign/auth');
+      mAuth = require('components/sign/auth'),
+      mShoppingOperation = require('components/shoppingcart/operation');
   // 页面载入
   $(function() {
+    // 注册购物车下拉事件的目标元素和父级元素
+    mBindDropdown.reg('#sc-btn','.shopping-car');
+
+    // 加载购物车
+    mShoppingOperation.miniCart(function() {
+      // 绑定按钮
+      mBindDropdown.bind('#sc-btn');
+    });
+
+    // 给筛选出的结果选项 委派 点击事件
+    $('#list-cont').delegate('button', 'click', function(event) {
+      // 添加到购物车
+      var nPid = $(this).data('pid'),
+          sTit = $('#video-'+nPid).find('.rp-tit').text(),
+          sSubtit = $('#video-'+nPid).find('.rp-subtit').text();
+      mShoppingOperation.add(nPid,sTit,sSubtit);
+    });
 
     // 获取视频目录列表
     mApi.getcategory()
@@ -33,7 +51,6 @@ define(function (require) {
     .fail(function(error) {
       alert('服务器请求错误');
     });
-    // 购物车下拉事件
-    mBindDropdown.init('#sc-btn','.shopping-car',true);
+
   });
 });

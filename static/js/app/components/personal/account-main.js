@@ -97,9 +97,9 @@ define(function(require) {
         // 2.更新当前头像
         jqCurrentAvatar.attr('src',sAvatarSavedUrl);
         // 3.更新头像列表选择
-        var num = jqAvatarCollapse.find('.active').data('id');
+        var nAvatarId = jqAvatarCollapse.find('.active').data('id');
         jqAvatarCollapse.find('.avatar-link').removeAttr('id');
-        $('.avatar-link-'+num).attr('id','selected-avatar');
+        $('.avatar-link-'+nAvatarId).attr('id','selected-avatar');
         // 收起 选择框
         jqAvatarBtn.trigger('click');
       })
