@@ -1,0 +1,14 @@
+<button type="button" id="sc-btn" class="btn btn-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+  购物车<span class="badge"><%= count %></span>
+</button>
+<ul class="dropdown-menu dropdown-menu-right sc-panel" id="sc-list">
+  <% for(var i = 0; i < miniCart.length; i++) { %>
+    <li class="sc-panel-item" id="miniCart-id-<%= miniCart[i].pid %>">
+      <a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del" data-pid="<%= miniCart[i].pid %>"></a>
+      <span><%= miniCart[i].num %></span>
+      <span><%= miniCart[i].title %></span>
+    </li>
+  <% } %>
+  <li class="divider"></li>
+  <li><a href="http://baidu.com" class="goto">前去结算</a></li>
+</ul>

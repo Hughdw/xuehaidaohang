@@ -3,10 +3,14 @@ define(function(require) {
   var oNewData = {
     sidebar : {},
     account : {},
+    progress : {},
+    recharge : {},
+    purchase : {},
+    preferential : {}
   };
   var currentNav;
 
-  // 记录当前侧导航的下标
+  // 记录当前侧导航的下标，在渲染模板时，
   function fnRoute (route) {
     switch (route) {
       case '#account':
@@ -28,13 +32,34 @@ define(function(require) {
         currentNav = 0;
     }
   }
-  oData.regroupSidebar = function(data,route) {
+  // 秒数转换成描述性的剩余时间
+  function timeStamp(second_time){
+    var time = parseInt(second_time) + "秒";
+    if (parseInt(second_time) > 60) {
+
+      var second = parseInt(second_time) % 60;
+      var min = parseInt(second_time / 60);
+      time = min + "分" + second + "秒";
+      if (min > 60) {
+        min = parseInt(second_time / 60) % 60;
+        var hour = parseInt(parseInt(second_time / 60) / 60);
+        time = hour + "小时" + min + "分" + second + "秒";
+        if (hour > 24) {
+          hour = parseInt(parseInt(second_time / 60) / 60) % 24;
+          var day = parseInt(parseInt(parseInt(second_time / 60) / 60) / 24);
+          time = day + "天" + hour + "小时" + min + "分" + second + "秒";
+        }
+      }
+    }
+    return time;
+  }
+  oData.regroupSidebar = function(userData,route) {
     fnRoute(route);
-    oNewData.sidebar.name = data.name;
+    oNewData.sidebar.name = userData.name;
     // oNewData.sidebar.name = '小丸子子';
-    oNewData.sidebar.sideAvatar = data.avatar;
+    oNewData.sidebar.sideAvatar = userData.avatar;
     // oNewData.sidebar.sideAvatar = 'static/img/personal/personal-avatar-2-pc.gif';
-    oNewData.sidebar.balance = data.total;
+    oNewData.sidebar.balance = userData.total;
     oNewData.sidebar.activeMenu = currentNav;
     oNewData.sidebar.list = [
       {
@@ -70,18 +95,31 @@ define(function(require) {
     for (var i = 0; i < accountData.length; i++) {
       oNewData.account.avatarList.push(accountData[i]);
     }
-    // oNewData.account.avatarList = [
-    //   'static/img/personal/personal-avatar-1-pc.gif',
-    //   'static/img/personal/personal-avatar-2-pc.gif',
-    //   'static/img/personal/personal-avatar-3-pc.gif',
-    //   'static/img/personal/personal-avatar-4-pc.gif',
-    //   'static/img/personal/personal-avatar-5-pc.gif',
-    //   'static/img/personal/personal-avatar-6-pc.gif'
-    // ];
     return oNewData.account;
   };
   oData.regroupProgress = function(progressData) {
-    // body...
+    console.log(progressData);
+    // userData 暂时没用上
+    // 目前的数据有部分字段不是实时更新：begin、playtime、num、title
+    oNewData.progress.list = [];
+    for (var i = 0; i < progressData.length; i++) {
+      oNewData.progress.list[i] = {};
+      oNewData.progress.list[i].num = progressData[i].num;
+      oNewData.progress.list[i].title = progressData[i].title;
+      oNewData.progress.list[i].viewDate = '2016-01-06';//观看日期
+      oNewData.progress.list[i].viewHMS = '14:20';//观看事件
+      //剩余时间
+      // oNewData.progress.list[i].remainingtime = timeStamp(progressData[i].remainingtime);
+      oNewData.progress.list[i].remainingtime = timeStamp(43124);
+      //开始播放位置的百分比
+      // oNewData.progress.list[i].playStart = progressData[i].starttime/progressData[i].playtime*100;
+      oNewData.progress.list[i].playStart = Math.round(120/1020*100);
+      //播放时长的百分比
+      // oNewData.progress.list[i].playLength = Math.round((progressData[i].lasttime - progressData[i].starttime)*100);
+      oNewData.progress.list[i].playLength = Math.round((600 - 120)/1020*100);
+    }
+    // oNewData.progress.list = progressData;
+    return oNewData.progress;
   };
   return oData;
 });
