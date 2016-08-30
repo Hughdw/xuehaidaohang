@@ -26,7 +26,7 @@ define(function(require) {
       // replaceImgPath();
     })
     .fail(function(error) {
-
+      
     });
   };
   // 绑定事件

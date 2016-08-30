@@ -14,23 +14,28 @@ define(function (require) {
       mShoppingOperation = require('components/shoppingcart/operation');
   // 页面载入
   $(function() {
-    // 注册购物车下拉事件的目标元素和父级元素
+    // 1.注册购物车下拉事件的目标元素和父级元素
     mBindDropdown.reg('#sc-btn','.shopping-car');
 
     // 加载购物车
-    mShoppingOperation.miniCart(function() {
-      // 绑定按钮
+    mShoppingOperation.loadMiniCart(function() {
+      // 2.绑定按钮事件
       mBindDropdown.bind('#sc-btn');
     });
+
+    mShoppingOperation.loadCart();
 
     // 给筛选出的结果选项 委派 点击事件
     $('#list-cont').delegate('button', 'click', function(event) {
       // 添加到购物车
       var nPid = $(this).data('pid'),
-          sTit = $('#video-'+nPid).find('.rp-tit').text(),
-          sSubtit = $('#video-'+nPid).find('.rp-subtit').text();
-      mShoppingOperation.add(nPid,sTit,sSubtit);
+          jqVideo = $('#video-'+nPid);
+      var sTit = jqVideo.find('.rp-tit').text(),
+          sSubtit = jqVideo.find('.rp-subtit').text();
+      mShoppingOperation.add(nPid,sTit,sSubtit,1);
     });
+
+
 
     // 获取视频目录列表
     mApi.getcategory()

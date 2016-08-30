@@ -2,13 +2,13 @@
 <tr>
   <td class="progress-tit"><%= list[i].title %></td>
   <td class="progress-display">
-    <div class="gps-progress">
-      <div class="gps-progress-bar"></div>
+    <div class="gps-progress progress">
+      <div class="progress-bar progress-bar-success" style="width:<%= list[i].playLength %>%;margin-left:<%= list[i].playStart %>%"></div>
     </div>
   </td>
   <td class="progress-viewing-time">
-    <div><%= list[i].viewingDate %></div>
-    <div><%= list[i].viewingTime %></div>
+    <div><%= list[i].begindate %></div>
+    <div class="viewHMS"><%= list[i].begintime %></div>
   </td>
   <td class="progress-status">
     <div class="des">剩余</div>
@@ -16,8 +16,8 @@
     <% if (list[i].remainingTime === null) {%>
       <div class="remaining-time">已过期</div>
     <% } else {%>
-    <div class="remaining-time">2小时05分钟</div>
-    <a class="link" href="<%= list[i].url %>">继续观看</a>
+      <div class="remaining-time">2小时05分钟</div>
+      <a class="link" target="_blank" href="/course-display.html?pid=<%= list[i].pid %>">继续观看</a>
     <% } %>
   </td>
 </tr>
