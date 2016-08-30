@@ -21,9 +21,8 @@ define(function (require) {
     mShoppingOperation.loadMiniCart(function() {
       // 2.绑定按钮事件
       mBindDropdown.bind('#sc-btn');
+      mShoppingOperation.showEmptyBg();
     });
-
-    mShoppingOperation.loadCart();
 
     // 给筛选出的结果选项 委派 点击事件
     $('#list-cont').delegate('button', 'click', function(event) {
@@ -34,8 +33,6 @@ define(function (require) {
           sSubtit = jqVideo.find('.rp-subtit').text();
       mShoppingOperation.add(nPid,sTit,sSubtit,1);
     });
-
-
 
     // 获取视频目录列表
     mApi.getcategory()
