@@ -4,9 +4,10 @@
 <ul class="dropdown-menu dropdown-menu-right sc-panel" id="sc-list">
   <% for(var i = 0; i < miniCart.length; i++) { %>
     <li class="sc-panel-item" id="miniCart-id-<%= miniCart[i].pid %>">
-      <a href="javascript:;" class="glyphicon glyphicon-minus-sign btn-del" data-pid="<%= miniCart[i].pid %>"></a>
+      <a href="javascript:;" class="glyphicon glyphicon-remove-sign btn-del" data-pid="<%= miniCart[i].pid %>"></a>
       <span><%= miniCart[i].num %></span>
-      <span><%= miniCart[i].title %></span>
+      <span class="sc-subtit"><%= miniCart[i].title %></span>
+      <span class="sc-qty">× <b><%= miniCart[i].qty %></b></span>
     </li>
   <% } %>
   <li class="divider"></li>

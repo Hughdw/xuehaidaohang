@@ -104,10 +104,11 @@ define(function(require) {
     oNewData.progress.list = [];
     for (var i = 0; i < progressData.length; i++) {
       oNewData.progress.list[i] = {};
+      oNewData.progress.list[i].pid = progressData[i].pid;
       oNewData.progress.list[i].num = progressData[i].num;
       oNewData.progress.list[i].title = progressData[i].title;
-      oNewData.progress.list[i].viewDate = '2016-01-06';//观看日期
-      oNewData.progress.list[i].viewHMS = '14:20';//观看事件
+      oNewData.progress.list[i].begindate = progressData[i].begindate;//观看日期
+      oNewData.progress.list[i].begintime = progressData[i].begintime;//观看时间
       //剩余时间
       // oNewData.progress.list[i].remainingtime = timeStamp(progressData[i].remainingtime);
       oNewData.progress.list[i].remainingtime = timeStamp(43124);
