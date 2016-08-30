@@ -476,20 +476,6 @@ footer{
       margin-left: 3px;
     }
   }
-  .open{
-    .dropdown-toggle{
-      background-color: @dropdown-bg;
-      border: 1px solid @dropdown-fallback-border; // IE8 fallback
-      border: 1px solid @dropdown-border;
-      border-bottom-width: 0;
-      .var-border-radius-1(@border-radius-lg);
-      .var-border-radius-2(@border-radius-lg);
-      .var-border-radius-3(0);
-      .var-border-radius-4(0);
-      z-index: 1001;
-      .box-shadow(0 -4px 7px rgba(0,0,0,.08));
-    }
-  }
   .sc-panel {
     width: @shopping-car-panel-width;
     padding: 10px 0;
@@ -498,6 +484,11 @@ footer{
     .var-border-radius-2(0);
     .var-border-radius-3(@border-radius-lg);
     .var-border-radius-4(@border-radius-lg);
+  }
+  .sc-cont{
+    padding: 0;
+    list-style: none;
+    min-height: 50px;
   }
   .sc-panel-item{
     // height: @shopping-car-panelitem-height;
@@ -516,9 +507,8 @@ footer{
     float: left;
     padding: 0;
     margin-right: 10px;
-    // margin: 0 10px;
+    margin-top: 2px;
     color: @gray-light;
-    // .text-emphasis-variant(@gray-light);
     &:hover{
       background-color: transparent;
     }
@@ -527,6 +517,28 @@ footer{
     text-align: right;
     color: @shopping-car-panel-gotobtn-color;
     font-size: 14px;
+  }
+  // 购物车为空时的背景
+  #sc-empty{
+    position: absolute;
+    top: 25px;
+    left: 30px;
+    color: #aaa;
+  }
+  // 列表展开时的样式改变
+  .open{
+    .dropdown-toggle{
+      background-color: @dropdown-bg;
+      border: 1px solid @dropdown-fallback-border; // IE8 fallback
+      border: 1px solid @dropdown-border;
+      border-bottom-width: 0;
+      .var-border-radius-1(@border-radius-lg);
+      .var-border-radius-2(@border-radius-lg);
+      .var-border-radius-3(0);
+      .var-border-radius-4(0);
+      z-index: 1001;
+      .box-shadow(0 -4px 7px rgba(0,0,0,.08));
+    }
   }
 }
 @media (min-width:@screen-sm-min) {

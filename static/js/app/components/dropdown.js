@@ -2,6 +2,7 @@
  * define函数用来定义模块
  * 下拉窗口事件绑定
  */
+ // 通过注册绑定事件记录事件绑定的总数，最后一个事件绑定触发后执行空白点击事件
 define(function(require) {
   var $ = require('jquery');
   // 绑定元素的总数
@@ -37,7 +38,7 @@ define(function(require) {
       if ($.isFunction(fn)) {
         fn();
       }
-      // 绑定数达到注册事件总数时，绑定
+      // 绑定数达到注册事件总数时，绑定空白地方的触发事件
       if (nBindTotal == nElementTotal) {
         // 点击空白地方收起标题列表
         $(document).on('click', function(event) {
