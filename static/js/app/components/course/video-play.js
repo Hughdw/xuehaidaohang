@@ -1,5 +1,6 @@
 define(function(require) {
-  var mUtil = require('components/util'),
+  var $ = require('jquery'),
+      mUtil = require('components/util'),
       mApi = require('components/api');
 
   var oVideo = {};

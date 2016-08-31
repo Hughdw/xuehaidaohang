@@ -1,36 +1,34 @@
-// 当登录状态发生变化或者刷新页面时，进行相关操作。
-// 每次刷新页面判断当前
+// 登录状态管理
+// 使用观察者模式，当登录状态发生变化时，对模块列表进行对应的操作。
 define(function(require) {
   var mSession = require('components/sign/session');
   var auth = {};
   // 登录状态发生变化时，需要通知的模块列表
   auth.noticeList = [];
-  // 返回是否已登录
+  // 被观察者的状态：是否已登录
   auth.isAuthenticated = function() {
     return !!mSession.user.token;
   };
-  // 登录成功后，保存token
-  // 只有在登陆成功后才会进行的一些和登录有关的操作
+  // 登录成功后，保存token、通知相关模块进行响应
   auth.login = function(token) {
     // 将token保存到cookie中
     mSession.createUser(token);
-    // 进行通知，触发相关模块进行响应
+    // 通知相关模块进行响应
     auth.updateLoginStatus();
   };
-  // 退出后，删除token
-  // 进行一些和退出登录有关的操作
+  // 退出后，删除token、通知相关模块进行响应
   auth.logout = function() {
     mSession.destroyUser();
-    // 进行通知，触发相关模块进行响应
+    // 通知相关模块进行响应
     auth.updateLogoutStatus();
   };
-  // 遍历调用模块列表中的模块的对应方法。
+  // 遍历模块列表中的模块，并调用对应的登录方法。
   auth.updateLoginStatus = function() {
     for (var i = 0; i < auth.noticeList.length; i++) {
       auth.noticeList[i].login();
     }
   };
-  // 遍历调用模块列表中的模块的对应方法。
+  // 遍历模块列表中的模块，并调用对应的退出方法。
   auth.updateLogoutStatus = function() {
     for (var i = 0; i < auth.noticeList.length; i++) {
       auth.noticeList[i].logout();

@@ -9,5 +9,5 @@ define(function(require) {
         var sKeyword = $('#search-input').text();
       });
     }
-  }
+  };
 });

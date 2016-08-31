@@ -1,5 +1,7 @@
+// 学习进度
 define(function(require) {
-  var mApi = require('components/api'),
+  var $ = require('jquery'),
+      mApi = require('components/api'),
       mData = require('components/personal/data'),
       mAlert = require('components/alert'),
       tplProgressMain = require('tpl/personal/progress-main'),
@@ -26,7 +28,7 @@ define(function(require) {
       // replaceImgPath();
     })
     .fail(function(error) {
-      
+
     });
   };
   // 绑定事件

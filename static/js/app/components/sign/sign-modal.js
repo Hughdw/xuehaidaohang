@@ -29,7 +29,7 @@ define(function(require) {
         event.preventDefault();
         /* Act on the event */
         // 窗口关闭后，判断是否登录成功
-        // 登录成功后，登录窗口会把token传递到调用登录窗口的页面（当前页面），通过globalModule获取
+        // 登录成功后，登录窗口会把token传递到调用登录窗口的页面（当前页面），通过globalModule获取token
         var token = globalModule.getToken();
         // 调用login方法
         if (token) mAuth.login(token);

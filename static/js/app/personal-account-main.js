@@ -1,5 +1,6 @@
 define(function (require) {
-  var mApi = require('components/api'),
+  var $ = require('jquery'),
+      mApi = require('components/api'),
       mAuth = require('components/sign/auth'),
       mSession = require('components/sign/session'),
       mSignModal = require('components/sign/sign-modal'),

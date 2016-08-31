@@ -1,8 +1,9 @@
-// 负责将token，用户信息等存入cookies中
+// 负责token以及用户信息的保存和移除
 define(function(require) {
   var Cookies = require('jq-cookie'),
       mApi = require('components/api');
   var oSession = {};
+  // 常用信息
   oSession.user = {
     token:'',
     nickname:'',//用户名
@@ -13,7 +14,7 @@ define(function(require) {
   };
   // 获取cookies中的token
   oSession.user.token = Cookies.get('token');
-  // 登陆时，将需要的信息保存到cookies中（token 和 nickname）
+  // 登陆时，将常用信息保存到cookies中
   oSession.updateUserInfo = function(name,balance,bindEmail,bindMobile) {
     // Cookies.set('nickname',name);
     // Cookies.set('balance',balance);
@@ -24,6 +25,7 @@ define(function(require) {
     // oSession.user.bindEmail = bindEmail;
     // oSession.user.bindMobile = bindMobile;
   };
+  // 将token保存到cookie中和oSession.user对象中
   oSession.createUser = function(token) {
     // 保存token到cookie中
     Cookies.set('token',token);
@@ -44,13 +46,10 @@ define(function(require) {
     //   alert(error);
     // });
   };
-  // 退出时，删除cookie
+  // 退出时，移除cookie和oSession.user对象中的token
   oSession.destroyUser = function() {
-    // 从cookies中删除token
     Cookies.remove('token');
-    Cookies.remove('nickname');
     oSession.user.token = Cookies.get('token');
-    oSession.user.nickname = Cookies.get('nickname');
   };
   return oSession;
 });

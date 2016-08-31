@@ -35,8 +35,10 @@ define(function(require) {
   oUrl.addToCart = sHost + '/addtocart' + testPostfix;
   // 移除购物车当中的产品
   oUrl.removeToCart = sHost + '/removetocart' + testPostfix;
-  //获取优惠券
-  oUrl.getCoupon = sHost + '/getCoupon' + testPostfix;
+  // 兑换优惠券
+  oUrl.getCoupon = sHost + '/exchange' + testPostfix;
+  //获取优惠券列表
+  oUrl.getCouponList = sHost + '/getCouponList' + testPostfix;
   // 获取支付方式
   oUrl.getPay = sHost + '/getPay' + testPostfix;
   // 生成订单
@@ -384,10 +386,10 @@ define(function(require) {
     return oDeferred.promise();
   };
   // 获取优惠券
-  api.getCoupon = function() {
+  api.getCouponList = function(page,token) {
     var oParams;
     var oDeferred = $.Deferred();
-    $.get(oUrl.getCoupon)
+    $.get(oUrl.getCouponList,{page:page,token:token})
     .done(function(answer) {
       fnPretreatment(answer,oDeferred);
     })

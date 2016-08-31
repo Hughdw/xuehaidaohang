@@ -1,4 +1,5 @@
 define(function(require) {
+  var $ = require('jquery');
   // 操作结果提示
   return {
     success : function(message) {
