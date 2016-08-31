@@ -1,3 +1,4 @@
+// 用户中心主文件
 define(function (require) {
   var mUtil = require('components/util'),
       mApi = require('components/api'),

@@ -1,5 +1,6 @@
 define(function(require) {
-  var Validate = require('components/validate'),
+  var $ = require('jquery'),
+      Validate = require('components/validate'),
       mApi = require('components/api');
 
   // 验证规则

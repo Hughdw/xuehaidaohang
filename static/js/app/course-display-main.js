@@ -3,7 +3,8 @@
  * 2.课程详情 的程序逻辑
  */
 define(function (require) {
-  var mUtil = require('components/util'),
+  var $ = require('jquery'),
+      mUtil = require('components/util'),
       mAuth = require('components/sign/auth'),
       mSession = require('components/sign/session'),
       mApi = require('components/api'),

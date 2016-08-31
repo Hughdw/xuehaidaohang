@@ -4,7 +4,8 @@
  * 2.课程列表 的程序逻辑
  */
 define(function (require) {
-  var mApi = require('components/api'),
+  var $ = require('jquery'),
+      mApi = require('components/api'),
       mResetMenu = require('components/course/reset-menu'),
       mBindDropdown = require('components/dropdown'),
       tplListMenu = require('tpl/course/list-menu'),

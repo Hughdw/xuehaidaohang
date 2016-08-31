@@ -1,5 +1,5 @@
 define(function(require) {
-  // body...
+  var $ = require('jquery');
   var oListData = {};
   // 定义最终返回数据的基本结构
   var oNewData = {

@@ -1,5 +1,6 @@
 define(function(require) {
-  var mApi = require('components/api'),
+  var $ = require('jquery'),
+      mApi = require('components/api'),
       tplMiniList = require('tpl/shoppingcart/mini-list'),
       tplMiniListItem = require('tpl/shoppingcart/mini-list-item'),
       Cookies = require('jq-cookie');

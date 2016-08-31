@@ -1,6 +1,7 @@
 /**
  * define函数用来定义模块
  * 替换图片路径
+ * 放弃使用
  */
 define(function (require) {
   var mUtil = require('components/util');

@@ -3,7 +3,8 @@
  * 重置course-list.html 中 Menu尺寸的模块
  */
 define(function (require) {
-  var mUtil = require('components/util');
+  var $ = require('jquery'),
+      mUtil = require('components/util');
 
   var resizeMenu = {};
   var eTabCont;

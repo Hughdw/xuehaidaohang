@@ -1,5 +1,7 @@
+// 个人资料
 define(function(require) {
-  var mApi = require('components/api'),
+  var $ = require('jquery'),
+      mApi = require('components/api'),
       mButton = require('components/personal/button'),
       mData = require('components/personal/data'),
       mCheckInput = require('components/personal/check-input'),

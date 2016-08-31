@@ -1,5 +1,6 @@
 define(function (require) {
-  var tpldata = require('data/template'),
+  var $ = require('jquery'),
+      tpldata = require('data/template'),
       tplRecharteMain = require('tpl/pay/recharge-main'),
       replaceImgPath = require('components/replace-img-path');
   $(function() {
