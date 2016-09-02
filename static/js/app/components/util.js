@@ -5,19 +5,27 @@
 define(function (require) {
   var $ = require('jquery'),
       mDevice = require('device');
-  var util = {};
+  var oUtil = {};
   // 判断是否为PC端
-  util.isPC = !mDevice.mobile();
+  oUtil.isPC = !mDevice.mobile();
   // 获取URL中指定参数的值
-  util.getQueryString = function (name) {
-		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-		var r = window.location.search.substr(1).match(reg);
-    return r === null ? null : unescape(r[2]);
+  oUtil.getQueryString = function (name) {
+		var reGetParm = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var sParmVal = window.location.search.substr(1).match(reGetParm);
+    return sParmVal === null ? null : sParmVal[2];
 	};
   // 获取地址中#号之后的内容
-  util.getHash = function(str) {
-    var start = str.indexOf('#',0);
-    return str.substring(start);
+  oUtil.getHash = function(str) {
+    var sStart = str.indexOf('#',0);
+    return str.substring(sStart);
   };
-  return util;
+  // 获取跳转链接
+  oUtil.getSkipUrl = function(path) {
+    var sProtocol = window.location.protocol;
+    var sHost = window.location.host;
+    var sSkipUrl = sProtocol + '//' + sHost + path;
+    // 1.对要查询的关键词进行编码
+    return encodeURI(sSkipUrl);
+  };
+  return oUtil;
 });

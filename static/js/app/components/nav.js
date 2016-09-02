@@ -1,5 +1,6 @@
 define(function(require) {
   var $ = require('jquery'),
+      mSearch = require('components/course/search'),
       mAuth = require('components/sign/auth'),
       mSignModal = require('components/sign/sign-modal');
   $(function(){
@@ -16,6 +17,9 @@ define(function(require) {
     // 登录/注册按钮绑定 模态框 事件
     var jqBtn = $('#sign-up,#sign-in');
     mSignModal.bindModal(jqBtn);
+
+    mSearch.bind();
+
 
     //退出按钮 绑定事件
     $('#logout').on('click', function(event) {
