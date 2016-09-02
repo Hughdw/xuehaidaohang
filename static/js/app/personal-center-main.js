@@ -1,6 +1,7 @@
 // 用户中心主文件
 define(function (require) {
-  var mUtil = require('components/util'),
+  var $ = require('jquery'),
+      mUtil = require('components/util'),
       mApi = require('components/api'),
       mAuth = require('components/sign/auth'),
       mSession = require('components/sign/session'),

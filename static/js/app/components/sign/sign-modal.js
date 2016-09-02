@@ -1,5 +1,6 @@
 define(function(require) {
   var $ = require('jquery'),
+      mUtil = require('components/util'),
       mAuth = require('components/sign/auth'),
       tplSignAppend = require('tpl/public/sign-append');
   // body...
@@ -38,10 +39,7 @@ define(function(require) {
         var sPathname = window.location.pathname;
         // 当登录状态失效，同时页面处在用户中心时，关闭登录窗口强制页面自动跳转到首页
         if (!mAuth.isAuthenticated() && sPathname === '/personal-center.html') {
-          var sHost = window.location.host;
-          var sProtocol = window.location.protocol;
-          var newUrl = sProtocol + '//' + sHost + '/index.html';
-          window.location.href = newUrl;
+          window.location.href = mUtil.getSkipUrl('/index.html');
         }
       });
     }
