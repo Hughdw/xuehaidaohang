@@ -53,6 +53,7 @@ define(function(require) {
     }
     return time;
   }
+  // 重新组织数据
   oData.regroupSidebar = function(userData,route) {
     fnRoute(route);
     oNewData.sidebar.name = userData.name;
@@ -98,7 +99,6 @@ define(function(require) {
     return oNewData.account;
   };
   oData.regroupProgress = function(progressData) {
-    console.log(progressData);
     // userData 暂时没用上
     // 目前的数据有部分字段不是实时更新：begin、playtime、num、title
     oNewData.progress.list = [];
@@ -121,6 +121,9 @@ define(function(require) {
     }
     // oNewData.progress.list = progressData;
     return oNewData.progress;
+  };
+  oData.regroupPreferential = function(preferentialData) {
+    // oNewData.preferential.
   };
   return oData;
 });

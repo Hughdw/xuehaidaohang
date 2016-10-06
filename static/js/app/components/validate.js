@@ -1,3 +1,6 @@
+/**
+ * 表单验证的标记以及文字
+ */
 define(function(require) {
   var oValidate = {};
   function Validate () {

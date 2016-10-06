@@ -25,10 +25,10 @@ define(function(require) {
       document.getElementById('progress-content').innerHTML = tplProgressContent(progressData);
       nHistoryPage = ++ nHistoryPage;
       oProgress._bind(token_p);
-      // replaceImgPath();
     })
     .fail(function(error) {
-
+      // 临时处理方式
+      mAlert.error(error);
     });
   };
   // 绑定事件

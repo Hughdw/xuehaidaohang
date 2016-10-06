@@ -6,21 +6,26 @@
 var gulp = require('gulp'), //本地安装gulp所用到的地方
     browserSync = require('browser-sync').create(),
     tmodjs = require('gulp-tmod'),
-    htmlmin = require('gulp-htmlmin'),
+    amdOptimize = require('amd-optimize'),//require的模块包装插件
+    eventstream = require('event-stream'),//在一个task钟整合多个文件来源
+    htmlmin = require('gulp-htmlmin'),//HTML压缩
     imagemin = require('gulp-imagemin'),//图片压缩
-    pngcrush = require('imagemin-pngcrush'),
     minifycss = require('gulp-minify-css'),//css压缩
     jshint = require('gulp-jshint'),//js检测
     uglify = require('gulp-uglify'),//js压缩
     concatFile = require('gulp-concat'),//文件合并
     rename = require('gulp-rename'),//文件更名
     notify = require('gulp-notify'),//提示信息
-    amdOptimize = require('amd-optimize'),//require的模块包装插件
-    eventstream = require('event-stream'),//在一个task钟整合多个文件来源
     rev = require('gulp-rev'),//添加MD5后缀
     revCollector = require('gulp-rev-collector'),//根据gulp-rev生成的路径映射进行替换
-    replace = require('gulp-replace'),//字符串替换
-    sourcemaps = require('gulp-sourcemaps');//没用上
+    replace = require('gulp-replace');//字符串替换
+
+
+// 构建在生产环境运行的项目文件
+gulp.task('build',['jsbuild','cssbuild-all','rev','move-libs','move-img']);
+//定义默认任务
+gulp.task('default',['browser-sync','tmodWatch']);
+
 
 // 静态服务器
 gulp.task('browser-sync',function() {
@@ -40,10 +45,6 @@ gulp.task('browser-sync',function() {
         open:false //停止自动打开浏览器
   });
 });
-// browserSync({
-// server:'./',
-// https:true
-// })
 
 // tmod转换模板文件的任务
 gulp.task('tmod',function() {
@@ -201,7 +202,3 @@ gulp.task('move-img',function() {
 
 
 
-// 构建生产环境
-gulp.task('build',['jsbuild','cssbuild-all','rev','move-libs','move-img']);
-//定义默认任务
-gulp.task('default',['browser-sync','tmodWatch']);

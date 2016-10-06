@@ -1,3 +1,5 @@
-require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'components/common', 'pay-shopping-main']);
+require(['config'], function() {
+  require(['jquery', 'bootstrap', 'pay-shopping-main'],function() {
+    require(['components/common']);
+  });
 });

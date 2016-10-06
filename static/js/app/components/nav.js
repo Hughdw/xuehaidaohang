@@ -18,6 +18,7 @@ define(function(require) {
     var jqBtn = $('#sign-up,#sign-in');
     mSignModal.bindModal(jqBtn);
 
+    // 绑定搜索相关的事件
     mSearch.bind();
 
 

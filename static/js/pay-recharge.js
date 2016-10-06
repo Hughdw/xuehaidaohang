@@ -1,3 +1,5 @@
-require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'components/common', 'pay-recharge-main']);
+require(['config'], function() {
+  require(['jquery', 'bootstrap', 'pay-recharge-main'],function() {
+    require(['components/common']);
+  });
 });

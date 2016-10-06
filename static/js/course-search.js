@@ -1,3 +1,5 @@
-require(['config'], function(config) {
-  require(['jquery', 'bootstrap', 'components/common', 'course-search-main']);
+require(['config'], function() {
+  require(['jquery', 'bootstrap', 'course-search-main'],function() {
+    require(['components/common']);
+  });
 });

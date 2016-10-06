@@ -46,7 +46,7 @@ define(function(require) {
   oUrl.getHistory = sHost + '/getHistory' + testPostfix;
   // 兑换优惠券
   oUrl.getCoupon = sHost + '/exchange' + testPostfix;
-  //获取优惠券列表
+  // 获取优惠券列表
   oUrl.getCouponList = sHost + '/getCouponList' + testPostfix;
   // ************************************
   // 购物车
@@ -239,7 +239,7 @@ define(function(require) {
       oDeferred.reject(error);
     });
     return oDeferred.promise();
-  }
+  };
   // ************************************
   // 用户中心
   // ************************************
@@ -377,8 +377,19 @@ define(function(require) {
     return oDeferred.promise();
   };
   // 获取优惠券
+  api.getCoupon = function(code,token) {
+    var oDeferred = $.Deferred();
+    $.get(oUrl.getCoupon,{code:code,token:token})
+    .done(function(answer) {
+      fnPretreatment(answer,oDeferred);
+    })
+    .fail(function(error) {
+      oDeferred.reject(error);
+    });
+    return oDeferred.promise();
+  };
+  // 获取优惠券列表
   api.getCouponList = function(page,token) {
-    var oParams;
     var oDeferred = $.Deferred();
     $.get(oUrl.getCouponList,{page:page,token:token})
     .done(function(answer) {
@@ -394,7 +405,6 @@ define(function(require) {
   // ************************************
   // 获取购物车中的产品
   api.getCart = function() {
-    var oParams;
     var oDeferred = $.Deferred();
     $.get(oUrl.getCart)
     .done(function(answer) {
@@ -407,7 +417,6 @@ define(function(require) {
   };
   // 获取购物车中的产品（简洁数据）
   api.getMiniCart = function() {
-    var oParams;
     var oDeferred = $.Deferred();
     $.get(oUrl.getMiniCart)
     .done(function(answer) {
@@ -420,7 +429,6 @@ define(function(require) {
   };
   // 添加产品到购物车
   api.addToCart = function(pid) {
-    var oParams;
     var oDeferred = $.Deferred();
     $.get(oUrl.addToCart,{pid:pid})
     .done(function(answer) {
@@ -433,7 +441,6 @@ define(function(require) {
   };
   // 移除产品到购物车
   api.removeToCart = function(pid) {
-    var oParams;
     var oDeferred = $.Deferred();
     $.get(oUrl.removeToCart,{pid:pid})
     .done(function(answer) {
@@ -449,7 +456,6 @@ define(function(require) {
   // ************************************
   // 获取支付方式
   api.getPay = function() {
-    var oParams;
     var oDeferred = $.Deferred();
     $.get(oUrl.getPay)
     .done(function(answer) {
@@ -462,7 +468,6 @@ define(function(require) {
   };
   // 生成订单
   api.payMent = function(couponid,pay,total) {
-    var oParams;
     var oDeferred = $.Deferred();
     $.get(oUrl.payMent,{pid:pid})
     .done(function(answer) {
