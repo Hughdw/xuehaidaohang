@@ -1,3 +1,4 @@
+// 遗弃的文件，通过personal-center.html的形式替代。
 define(function (require) {
   var $ = require('jquery'),
       tpldata = require('data/template'),
@@ -9,7 +10,6 @@ define(function (require) {
     // 将选好数据的字符串通过 innerHTML 插入到指定的元素中（#main）
     document.getElementById('main').innerHTML = tplPreferentialMain(tpldata);
     // document.getElementById('main').innerHTML = template('personal/preferential-main',tpldata);
-    replaceImgPath();
 
   });
 });

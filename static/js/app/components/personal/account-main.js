@@ -20,10 +20,10 @@ define(function(require) {
       var accountData = mData.regroupAccount(success.data,userData);
       document.getElementById('mainbar').innerHTML = tplAccountMain(accountData);
       oAccount._bind(accountData,token_p);
-      // replaceImgPath();
     })
     .fail(function(error) {
-
+      // 临时处理方式
+      mAlert.error(error);
     });
   };
   // 绑定事件

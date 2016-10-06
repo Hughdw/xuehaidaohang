@@ -1,4 +1,4 @@
-// 临时数据
+// 临时数据，已经遗弃
 define(function (require) {
   return {
     sidebar : {
