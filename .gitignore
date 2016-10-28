@@ -11,11 +11,14 @@
 *.map
 
 .idea/*
-node_modules/*
+.vscode/*
 deployd/*
 dist/*
-other/*
 lib/*
+node_modules/*
+other/*
 static/js/libs/*
 static/js/tpl/*
 template/build/*
+test/lib/*
+typings/*

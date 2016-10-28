@@ -1,3 +1,4 @@
+// 遗弃的文件，通过personal-center.html的形式替代。
 define(function (require) {
   var $ = require('jquery'),
       tpldata = require('data/template'),

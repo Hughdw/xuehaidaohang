@@ -6,8 +6,8 @@
  ***bootstrap中有对页面的操作程序
  ***jquery必须在bootstrap之前引入
  */
-require(['config'], function() {
-  require(['jquery','bootstrap', 'course-list-main'],function() {
+require(['config'], function () {
+  require(['jquery', 'bootstrap', 'course-list-main'], function () {
     require(['components/common']);
   });
 });

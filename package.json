@@ -11,6 +11,11 @@
   "devDependencies": {
     "amd-optimize": "^0.6.1",
     "browser-sync": "^2.12.5",
+    "eslint": "^3.8.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-requirejs": "^3.0.0",
+    "eslint-plugin-standard": "^2.0.1",
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",

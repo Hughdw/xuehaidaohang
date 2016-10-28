@@ -1,0 +1,54 @@
+{
+    //
+    "globals": {
+        "$": true,
+        "define": true,
+        "require": true,
+        "globalModule": true,
+	"angular":true
+    },
+    // 运行环境
+    "env": {
+        "browser": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    // 文件扩展
+    "extends": "standard",
+    "installedESLint": true,
+    // 插件
+    "plugins": [
+        "standard",
+        "promise"
+    ],
+    /*代码规则*/
+    /* 0:关闭，1:警告，2:异常 */
+    "rules": {
+        /* 代码/语法 */
+        // 定义对象的set存取器属性时，强制定义get
+        "accessor-pairs": 2,
+        // if while function 后面的{必须与if在同一行，java风格。
+        "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+        // 双峰驼命名格式
+        "camelcase": 2,
+        //在if-else语句中，如果if或else语句后面是多行，那么必须加大括号。如果是单行就应该省略大括号。
+        "curly": [2, "multi-line"],
+
+        /* 格式 */
+        //分号检查
+        "semi": [2, "always"],
+        //字符串必须使用单引号
+        "quotes": [2, "single", "avoid-escape"],
+        // 数组和对象键值对最后一个逗号， never参数：不能带末尾的逗号, always参数：必须带末尾的逗号，
+        // always-multiline：多行模式必须带逗号，单行模式不能带逗号
+        "comma-dangle": [2, "never"],
+        //在某些场景只能使用一个var来申明变量
+        "one-var": [2, { "initialized": "never" }],
+        //空行不能够超过2行
+        "no-multiple-empty-lines": [2, { "max": 2 }]
+    }
+}
