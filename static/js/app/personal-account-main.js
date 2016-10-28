@@ -5,7 +5,7 @@ define(function (require) {
       mAuth = require('components/sign/auth'),
       mSession = require('components/sign/session'),
       mSignModal = require('components/sign/sign-modal'),
-      mData = require('components/personal/data'),
+      mRegroupData = require('components/personal/regroup-data'),
       tplSidebar = require('tpl/personal/sidebar'),
       tplAccountMain = require('tpl/personal/account-main'),
       replaceImgPath = require('components/replace-img-path'),
@@ -15,16 +15,16 @@ define(function (require) {
 
 
     // 已登录状态
-    if (mAuth.isAuthenticated()) {
-      var token = mSession.user.token;
+    if (mAuth.isLogined()) {
+      var token = mSession.getToken;
       // 获取用户信息
       mApi.getAuthUser(token)
       .done(function(success) {
         // 重新组织列表的数据
-        var sideData = mData.regroupSidebar(success.data[0]);
+        var sideData = mRegroupData.sidebar(success.data[0]);
         document.getElementById('sidebar').innerHTML = tplSidebar(sideData);
 
-        var mainData = mData.regroupAccount(success.data[0],0);
+        var mainData = mRegroupData.account(success.data[0],0);
       })
       .fail(function(error) {
         // token过期自动登出

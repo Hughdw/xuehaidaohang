@@ -1,3 +1,4 @@
+// 遗弃的文件，通过personal-center.html的形式替代。
 define(function (require) {
   var $ = require('jquery'),
       tpldata = require('data/template'),
@@ -16,7 +17,7 @@ define(function (require) {
     // 点击按钮添加新获取到的内容
     $('.load-box').on('click', '#loadBtn', function(event) {
       event.preventDefault();
-      /* Act on the event */
+
       var html = tplPurchaseCont(tpldata.purchase);
       $('#purchase-content').append(html);
       // 开启工具提示
