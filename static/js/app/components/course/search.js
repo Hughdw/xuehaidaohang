@@ -5,6 +5,7 @@ define(function (require) {
   var $ = require('jquery');
   var mUtil = require('components/util');
 
+  // 获取输入框输入字符，跳转搜索页面
   function fnSkipPage () {
     var sKeyword = $('#search-input').val();
     if (sKeyword !== '') {
@@ -16,15 +17,16 @@ define(function (require) {
       // 绑定按钮提交事件
       $('#search-btn').on('click', function (event) {
         event.preventDefault();
-
         fnSkipPage();
       });
       // 绑定回车提交事件
-      $('#search-input').keyup(function (event) {
+      $('.navbar-form').keydown(function (event) {
         if (event.keyCode === 13) {
+          event.preventDefault();
           fnSkipPage();
         }
       });
+      // $('.navbar-form')
     }
   };
   return oSearch;

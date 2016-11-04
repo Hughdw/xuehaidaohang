@@ -20,7 +20,7 @@ define(function (require) {
     // 向auth模块中加入视频的登录和登出方法。
     mAuth.addNoticeList(
       function () {
-        oLoadVideo.logined(uid, mSession.getToken);
+        oLoadVideo.logined(uid, mSession.getToken());
       },
       function () {
         $('#firstBt').off().hide();
@@ -83,7 +83,7 @@ define(function (require) {
 
     // 获取用户信息
     if (mAuth.isLogined()) {
-      var token = mSession.getToken;
+      var token = mSession.getToken();
       // 获取用户信息
       mApi.getAuthUser(token)
         .done(function (success) {
