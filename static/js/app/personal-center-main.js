@@ -34,7 +34,7 @@ define(function (require) {
     // 加载侧导航
     function fnLoadSidebar () {
       var sHash = location.hash;
-      var token = mSession.getToken;
+      var token = mSession.getToken();
       // 获取用户信息，加载侧导航
       mApi.getAuthUser(token)
       .done(function (success) {
@@ -66,7 +66,7 @@ define(function (require) {
     }
     // 加载内容区域
     function fnLoadMain (userData, route) {
-      var token = mSession.getToken;
+      var token = mSession.getToken();
       // 渲染个人中心不同页面的数据
       switch (route) {
         case '#account':

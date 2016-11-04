@@ -27,7 +27,9 @@ define(function (require) {
       _oUser.token = Cookies.get('token');
     },
     // 获取cookies中的token
-    getToken: Cookies.get('token')
+    getToken: function () {
+      return Cookies.get('token');
+    }
   };
 
   // 登陆时，将常用信息保存到cookies中

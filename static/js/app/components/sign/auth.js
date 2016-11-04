@@ -10,11 +10,11 @@ define(function (require) {
 
   var auth = {
     // 是否已登录（被观察者的状态）
-    isLogined (token) {
-      return !!mSession.getToken;
+    isLogined: function (token) {
+      return !!mSession.getToken();
     },
     // 登录成功后
-    login (token) {
+    login: function (token) {
       console.log(1);
       // 将token保存到cookie中
       mSession.createUser(token);
@@ -22,7 +22,7 @@ define(function (require) {
       auth.updateLoginStatus();
     },
     // 退出成功后
-    logout () {
+    logout: function () {
       // 删除暂存token
       globalModule.deleteToken();
       // 删除cookie中的token
@@ -31,7 +31,7 @@ define(function (require) {
       auth.updateLogoutStatus();
     },
     // 向模块列表中添加需要监控登录状态的元素。
-    addNoticeList (fnLogin, fnLogout) {
+    addNoticeList: function (fnLogin, fnLogout) {
       var oModule = {
         login: fnLogin,
         logout: fnLogout
@@ -43,13 +43,13 @@ define(function (require) {
       _notificationList.push(oModule);
     },
     // 遍历模块列表中的模块，并调用对应的登录方法。
-    updateLoginStatus () {
+    updateLoginStatus: function () {
       for (var i = 0; i < _notificationList.length; i++) {
         _notificationList[i].login();
       }
     },
     // 遍历模块列表中的模块，并调用对应的退出方法。
-    updateLogoutStatus () {
+    updateLogoutStatus: function () {
       for (var i = 0; i < _notificationList.length; i++) {
         _notificationList[i].logout();
       }

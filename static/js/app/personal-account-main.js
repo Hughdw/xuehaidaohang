@@ -16,7 +16,7 @@ define(function (require) {
 
     // 已登录状态
     if (mAuth.isLogined()) {
-      var token = mSession.getToken;
+      var token = mSession.getToken();
       // 获取用户信息
       mApi.getAuthUser(token)
       .done(function(success) {
