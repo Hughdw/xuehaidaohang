@@ -7,21 +7,20 @@ define(function (require) {
   var $ = require('jquery');
   var mApi = require('components/api');
   var mResetMenu = require('components/course/reset-menu');
-  var mBindDropdown = require('components/dropdown');
-  var tplListMenu = require('tpl/course/list-menu');
+  var mDropdownMenu = require('components/dropdown');
   var mListData = require('components/course/list-data');
   var mFilterCont = require('components/course/filter-cont');
-  // var mAuth = require('components/sign/auth');
   var mShoppingOperation = require('components/shoppingcart/operation');
+  var tplListMenu = require('tpl/course/list-menu');
   // 页面载入
   $(function () {
-    // 1.注册购物车下拉事件的目标元素和父级元素
-    mBindDropdown.reg('#sc-btn', '.shopping-car');
+    // 收起下来菜单。
+    mDropdownMenu.dropUp();
 
     // 加载购物车
     mShoppingOperation.loadMiniCart(function () {
-      // 2.绑定按钮事件
-      mBindDropdown.bind('#sc-btn');
+      // 绑定按钮事件
+      mDropdownMenu.handle('#sc-btn', '.shopping-car');
       mShoppingOperation.showEmptyBg();
     });
 
@@ -29,13 +28,13 @@ define(function (require) {
     $('#list-cont').delegate('button', 'click', function (event) {
       // 添加到购物车
       var nPid = $(this).data('pid');
-      var jqVideo = $('#video-' + nPid);
+      var jqVideo = $('#video-id-' + nPid);
       var sTit = jqVideo.find('.rp-tit').text();
       var sSubtit = jqVideo.find('.rp-subtit').text();
       mShoppingOperation.add(nPid, sTit, sSubtit, 1);
     });
 
-    // 获取视频目录列表
+    // 获取筛选目录列表数据
     mApi.getcategory()
     .done(function (success) {
       // 重新组织数据
@@ -44,12 +43,13 @@ define(function (require) {
       document.getElementById('gps-menu').innerHTML = tplListMenu(oMenuData);
       // 重置 筛选列表 的高度
       mResetMenu('tab-content');
+
       // 当前目录选择项目的categoryid
       var nLevelActiveId = mListData.getLevelActiveId();
-      // 为目录绑定事件（包括基础和提高）
-      mFilterCont.bindEvt([1, 2], nLevelActiveId);
+      // 为目录绑定事件（包括基础和提
+      mFilterCont.bindEvt(nLevelActiveId);
       // 视频列表默认内容
-      mFilterCont.getProductlist(mListData.getSelectedName(nLevelActiveId), 1);
+      mFilterCont.getProductlist(mListData.getSelectedName(nLevelActiveId), 1);// 目前只有 基础 - 小一 - 数学 - 人教版 - 重点有数据。
     })
     .fail(function () {
       alert('服务器请求错误');

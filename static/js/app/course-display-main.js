@@ -9,8 +9,9 @@ define(function (require) {
   var mAuth = require('components/sign/auth');
   var mSession = require('components/sign/session');
   var mApi = require('components/api');
-  var mBindDropdown = require('components/dropdown');
+  var mDropdownMenu = require('components/dropdown');
   var mVideoPlay = require('components/course/video-play');
+  var mShoppingOperation = require('components/shoppingcart/operation');
   var tplTitle = require('tpl/course/display-title');
   var tplSidebar = require('tpl/course/display-sidebar');
   $(function () {
@@ -28,10 +29,15 @@ define(function (require) {
       }
     );
 
-    // 注册购物车下拉事件的目标元素和父级元素
-    mBindDropdown.reg('#sc-btn', '.shopping-car');
-    // 注册标题下拉事件的目标元素和父级元素
-    mBindDropdown.reg('#tm-btn', '.tit-master');
+    // 收起下来菜单
+    mDropdownMenu.dropUp();
+
+        // 加载购物车
+    mShoppingOperation.loadMiniCart(function () {
+      // 绑定按钮事件
+      mDropdownMenu.handle('#sc-btn', '.shopping-car');
+      mShoppingOperation.showEmptyBg();
+    });
 
     // 渲染模板和绑定事件
     function fnLoadContent (data) {
@@ -40,16 +46,15 @@ define(function (require) {
       // 渲染侧栏的模板
       document.getElementById('tab-content').innerHTML = tplSidebar(data);
 
-      mBindDropdown.bind('#tm-btn', function () {
-        // 点击下拉列表元素，切换浏览器URL中的pid
-        $('#tm-list').on('click', '.tm-panel-item', function (event) {
-          event.preventDefault();
-
-          var nPid = $(this).data('id');
-          var sSearch = window.location.search.replace(/[^=]+$/, nPid);
-          window.location.search = sSearch;
-        });
+      // 点击下拉列表元素，切换浏览器URL中的pid
+      $('#tm-list').delegate('a.tm-panel-item', 'click', function (event) {
+        event.preventDefault();
+        var nPid = $(this).data('id');
+        console.log(nPid);
+        var sSearch = window.location.search.replace(/[^=]+$/, nPid);
+        window.location.search = sSearch;
       });
+      mDropdownMenu.handle('#tm-btn', '.tit-master');
     }
     // 加载视频信息
     var oLoadVideo = {

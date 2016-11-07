@@ -51,7 +51,7 @@ define(function (require) {
     });
   };
   // 目录按钮绑定事件
-  oFilterCont.bindEvt = function (num, levelId) {
+  oFilterCont.bindEvt = function (levelId) {
     nLevelActiveId = levelId;
     // 切换TAB时，重置高度
     $('#menu-tabs').on('click', '.menu-tab', function (event) {
@@ -60,11 +60,11 @@ define(function (require) {
       var jqSelf = $(this);
       jqSelf.tab('show');
       // 保存当前目录筛选条件的选择categoryid 和 name
-      mListData.saveLevelActiveId(jqSelf.data('categoryid'));
-      nLevelActiveId = mListData.getLevelActiveId();
+      mListData.saveLevelActiveId(nLevelActiveId = jqSelf.data('categoryid'));
       mListData.saveSelectedName(0, nLevelActiveId, jqSelf.data('name'));
     });
     // 给新创建的知识点元素委派绑定的事件
+    // #knowledge-1-list 和 #knowledge-2-list 分别对应基础和提高的知识点元素
     $('#knowledge-1-list,#knowledge-2-list').delegate('a', 'click', function (event) {
       event.preventDefault();
 

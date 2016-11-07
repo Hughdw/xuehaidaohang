@@ -40,7 +40,7 @@ define(function (require) {
         // 1.存在则增加数量。
         for (var i = 0; i < aMiniCartCache.length; i++) {
           if (aMiniCartCache[i].pid === pidP) {
-            aMiniCartCache[i].qty += 1;
+            ++aMiniCartCache[i].qty;
             $('#miniCart-id-' + pidP).find('span.sc-qty em').text(aMiniCartCache[i].qty);
             oData = null;
           }
