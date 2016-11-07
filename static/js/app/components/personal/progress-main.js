@@ -11,7 +11,7 @@ define(function (require) {
   var tplProgressContent = require('tpl/personal/progress-content');
 
   var oProgress = {};
-  // 历史记录页码（默认）
+  // 历史记录页码（默认1）
   var nHistoryPage = 1;
 
   // 默认加载内容
@@ -38,6 +38,8 @@ define(function (require) {
   oProgress._bind = function (tokenP) {
     $('#loadBtn').on('click', function (event) {
       event.preventDefault();
+      // 按钮更改加载状态
+      var jqBtn = $(this).button('loading');
 
       // 获取学习进度信息
       mApi.getHistory(nHistoryPage, tokenP)
@@ -48,6 +50,8 @@ define(function (require) {
         // 渲染学习进度数据
         $('#progress-content').append(tplProgressContent(progressData));
         nHistoryPage = ++nHistoryPage;
+        // 恢复按钮初始状态
+        jqBtn.button('reset');
       })
       .fail(function () {
 

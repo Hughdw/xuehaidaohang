@@ -2,13 +2,13 @@
 <div class="results-item col-md-4 col-sm-6" id="video-id-<%= data[i].pid %>">
   <div class="results-panel <%= data[i].float %>">
     <a href="/course-display.html?pid=<%= data[i].pid %>" class="rp-detail">
-      <% if (data[i].isplay === 1) {%>
-        <span class="rp-corner">
+      <span class="rp-corner">
+        <% if (data[i].isplay === 1) {%>
           <span class="label label-danger">正在播放</span>
-        </span>
-      <% } %>
+        <% } %>
+      </span>
       <h3 class="rp-tit"><%= data[i].num %></h3>
-      <p class="rp-subtit">数列的概念与简单表示法</p>
+      <p class="rp-subtit"><%= data[i].title %></p>
       <span class="rp-duration">时长 - <em><%= data[i].playtime %></em></span>
     </a>
     <div class="rp-operation">
@@ -17,7 +17,7 @@
       <% } else if (data[i].isbuy === 1) {%>
         <button type="button" class="btn btn-default" disabled="disabled">已购买</button>
       <% } else {%>
-        <button type="button" class="btn btn-primary">加入购物车</button>
+        <button type="button" class="btn btn-primary" data-pid="<%= data[i].pid %>">加入购物车</button>
       <% } %>
       <div class="rp-price"><em><%= data[i].price %></em>金钥</div>
     </div>

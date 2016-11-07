@@ -7,23 +7,32 @@ define(function (require) {
   var mApi = require('components/api');
   var tplSearchDemo = require('tpl/course/search-demo');
   $(function () {
-    var nDefaultPage = 1;
+    // 搜索结果的页码（默认1）
+    var nSearchPage = 1;
     // 解码URL传入关键词
     var sKeyWord = decodeURI(mUtil.getQueryString('q'));
-    if (sKeyWord !== null) {
+    if (sKeyWord) {
       $('#search-input').val(sKeyWord);
-      mApi.getSearch(sKeyWord, nDefaultPage)
+      mApi.getSearch(sKeyWord, nSearchPage)
       .done(function (success) {
-        document.getElementById('search-content').innerHTML = tplSearchDemo(sKeyWord);
-
-        console.log(success);
+        // 后台没有真实数据，临时模拟
+        document.getElementById('search-content').innerHTML = tplSearchDemo({'keyWord': sKeyWord});
+        nSearchPage = ++nSearchPage;
       });
     }
     $('#loadBtn').on('click', function (event) {
       event.preventDefault();
-      // $(selector).append(content);
-      // var $Btn = $(this).button('loading');
-      // $Btn.button('reset');//恢复按钮初始状态
+
+      // 按钮更改加载状态
+      var jqBtn = $(this).button('loading');
+
+      mApi.getSearch(sKeyWord, nSearchPage)
+      .done(function () {
+        $('#search-content').append(tplSearchDemo({'keyWord': sKeyWord}));
+        nSearchPage = ++nSearchPage;
+        // 恢复按钮初始状态
+        jqBtn.button('reset');
+      });
     });
   });
 });
