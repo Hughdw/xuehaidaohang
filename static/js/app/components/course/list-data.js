@@ -145,10 +145,12 @@ define(function (require) {
     var aLeftEle = [0, 3, 6];
     // 靠右边需要特殊处理的元素下标
     var aRightEle = [2, 5, 8];
-    var oNewList = {};
+    // 视频状态：0，未购买。1，已购买。2，已点播。
+    var aStatus = [0, 1, 2, 3];
     for (var i = 0; i < data.length; i++) {
       // 临时随机数，演示用。
-      data[i].isplay = Math.round(Math.random());
+      // 原本是通过API返回数据中的isSee和isBuy字段来判断。
+      data[i].status = aStatus[Math.floor(Math.random() * aStatus.length)];
       if ($.inArray(i, aLeftEle) !== -1) {
         data[i].float = 'results-panel-left';
       } else if ($.inArray(i, aRightEle) !== -1) {
@@ -157,7 +159,9 @@ define(function (require) {
         data[i].float = '';
       }
     }
-    oNewList.data = data;
+    var oNewList = {
+      data: data
+    };
     return oNewList;
   };
 

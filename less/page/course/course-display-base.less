@@ -1,7 +1,7 @@
 // ************************************
 // 引入mixins 变量
 // ************************************
-@import "../variables.less";
+@import "../../variables.less";
 @import "../../bootstrap/mixins.less";
 // ************************************
 // 默认样式
@@ -21,7 +21,8 @@
 // ----------主播放区域
 // 标题下拉框
 .tit-master{
-  width: 290px;
+  width: 100%;
+  display:inline-block;
   .btn-group{
     width: 100%;
   }
@@ -36,10 +37,12 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      margin-left:20px;
     }
     .glyphicon{
-      top:-3px;
-      right: -6px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
     }
   }
   .open{
@@ -58,8 +61,8 @@
   }
 }
 .tm-panel {
-  width:100%;
-  padding: 10px 0;
+  width: 100%;
+  padding: 0 0 10px 0;
   top: 90%;
   .var-border-radius-1(0);
   .var-border-radius-2(0);
@@ -144,7 +147,7 @@
     }
   }
 }
-.side-operation{
+.side-buy{
   .size(100%,46px);
   text-align: right;
   margin-top: 19px;

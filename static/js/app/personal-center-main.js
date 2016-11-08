@@ -16,6 +16,7 @@ define(function (require) {
   var mRechargeMain = require('components/personal/recharge-main');
   var mPurchaseMain = require('components/personal/purchase-main');
   var mPreferentialMain = require('components/personal/preferential-main');
+  var tplAlert = require('tpl/public/components-alert');
   var tplSidebar = require('tpl/personal/sidebar');
   $(function () {
     // 向auth模块中加入导航的登录/登出方法。
@@ -27,6 +28,9 @@ define(function (require) {
 
       }
     );
+
+    // 添加alert模块需要的HTML
+    $('body').prepend(tplAlert);
 
     // 共用的用户信息
     var oUserData;

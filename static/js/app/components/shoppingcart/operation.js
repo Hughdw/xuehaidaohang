@@ -25,12 +25,13 @@ define(function (require) {
       }
     },
     // 向购物车中添加商品
-    add: function (pidP, titP, subtitP, qtyP) {
+    add: function (pidP, titP, subtitP, fn, qtyP) {
+      var qty = qtyP ? qtyP : 1;
       var oData = {
         pid: pidP,
         num: titP,
         title: subtitP,
-        qty: qtyP
+        qty: qty
       };
       var oSelf = this;
       oSelf.updateCount(1);
@@ -49,6 +50,10 @@ define(function (require) {
         if (oData !== null) {
           aMiniCartCache.push(oData);
           $('#sc-list').prepend(tplMiniListItem(oData));
+        }
+        // 加入成功恢复按钮状态，同时进行提示
+        if ($.isFunction(fn)) {
+          fn();
         }
         oSelf.showEmptyBg();
       })

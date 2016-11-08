@@ -11,11 +11,13 @@ define(function (require) {
   var mListData = require('components/course/list-data');
   var mFilterCont = require('components/course/filter-cont');
   var mShoppingOperation = require('components/shoppingcart/operation');
+  var mAlert = require('components/alert');
+  var tplAlert = require('tpl/public/components-alert');
   var tplListMenu = require('tpl/course/list-menu');
   // 页面载入
   $(function () {
-    // 收起下来菜单。
-    mDropdownMenu.dropUp();
+    // 添加alert模块需要的HTML
+    $('body').prepend(tplAlert);
 
     // 加载购物车
     mShoppingOperation.loadMiniCart(function () {
@@ -27,11 +29,17 @@ define(function (require) {
     // 给筛选出的结果选项 委派 点击事件
     $('#list-cont').delegate('button', 'click', function (event) {
       // 添加到购物车
-      var nPid = $(this).data('pid');
+      var jqSelf = $(this);
+      var nPid = jqSelf.data('pid');
       var jqVideo = $('#video-id-' + nPid);
       var sTit = jqVideo.find('.rp-tit').text();
       var sSubtit = jqVideo.find('.rp-subtit').text();
-      mShoppingOperation.add(nPid, sTit, sSubtit, 1);
+
+      jqSelf.button('loading');
+      mShoppingOperation.add(nPid, sTit, sSubtit, function () {
+        mAlert.success('加入成功');
+        jqSelf.button('reset');
+      });
     });
 
     // 获取筛选目录列表数据
