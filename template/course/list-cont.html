@@ -3,8 +3,12 @@
   <div class="results-panel <%= data[i].float %>">
     <a href="/course-display.html?pid=<%= data[i].pid %>" class="rp-detail">
       <span class="rp-corner">
-        <% if (data[i].isplay === 1) {%>
-          <span class="label label-danger">正在播放</span>
+        <% if (data[i].status === 1) {%>
+          <span class="label label-danger">已点播</span>
+        <% }else if (data[i].status === 2) { %>
+          <span class="label label-primary">已购买</span>
+        <% }else if (data[i].status === 3) { %>
+          <span class="label label-success">可试看</span>
         <% } %>
       </span>
       <h3 class="rp-tit"><%= data[i].num %></h3>
@@ -12,13 +16,7 @@
       <span class="rp-duration">时长 - <em><%= data[i].playtime %></em></span>
     </a>
     <div class="rp-operation">
-      <% if (data[i].issee === 1) {%>
-        <button type="button" class="btn btn-success" disabled="disabled">可试看</button>
-      <% } else if (data[i].isbuy === 1) {%>
-        <button type="button" class="btn btn-default" disabled="disabled">已购买</button>
-      <% } else {%>
-        <button type="button" class="btn btn-primary" data-pid="<%= data[i].pid %>">加入购物车</button>
-      <% } %>
+      <button type="button" class="btn btn-primary" data-loading-text="正在加入" data-pid="<%= data[i].pid %>">加入购物车</button>
       <div class="rp-price"><em><%= data[i].price %></em>金钥</div>
     </div>
   </div>

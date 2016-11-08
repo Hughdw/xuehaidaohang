@@ -1,7 +1,7 @@
 // ************************************
 // 引入mixins 变量
 // ************************************
-@import "../variables.less";
+@import "../../variables.less";
 @import "../../bootstrap/mixins.less";
 
 // ************************************
@@ -11,16 +11,22 @@
   // ----------主播放区域
   // 标题下拉框
   .tit-master{
-    width: 440px;
+    width: auto;
+    .btn-group{
+      width: auto;
+    }
     #tm-btn{
+      width: auto;
       font-size: 16px;
     }
+  }
+  .tm-panel{
+    width: auto;
   }
   // 播放
   .play{
     height: 523px;
   }
-
 }
 
 // ************************************

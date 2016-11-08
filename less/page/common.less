@@ -2,7 +2,7 @@
 // ************************************
 // 引入mixins 变量
 // ************************************
-@import "./variables.less";
+@import "../variables.less";
 @import "../bootstrap/mixins.less";
 
 // ************************************
@@ -255,11 +255,10 @@ main{
   padding: 0;
   z-index: 99;
   .alert{
-    float: right;
     text-align: center;
     width: 200px;
     padding: 8px;
-    margin-right: 5px;
+    margin: 0 auto;
   }
 }
 
@@ -435,10 +434,6 @@ footer{
   }
   .alert-wrap{
     top: 85px;
-    .alert{
-      float: none;
-      margin: 0 auto;
-    }
   }
   footer {
     height: @footer-height-sm;
