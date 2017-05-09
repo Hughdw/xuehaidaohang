@@ -1,9 +1,9 @@
 /**
- * 登录模块 入口文件，以及依赖的模块
- * 1.配置路由
- * 2.配置HTTP请求
+ * @title 登录模块入口文件
+ * @fileOverView 本文件用于配置路由，配置HTTP请求，声明依赖。
+ * @author whdstyle@gmail.com
  */
-angular.module('signApp', ['ngRoute', 'formCheck', 'api', 'sign-service'])
+angular.module('signApp', ['ngRoute', 'formCheck', 'api-service', 'sign-service'])
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
   .when('/login', {

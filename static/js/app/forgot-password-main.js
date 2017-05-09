@@ -1,8 +1,9 @@
 /**
- * 忘记密码模块 入口文件，以及依赖的模块
- * 配置路由
+ * @title 忘记密码模块入口文件
+ * @fileOverView 本文件用于配置路由，声明依赖。
+ * @author whdstyle@gmail.com
  */
-angular.module('findPDApp', ['ngRoute', 'formCheck', 'api'])
+angular.module('findPDApp', ['ngRoute', 'formCheck', 'api-service'])
 .config(function ($routeProvider) {
   $routeProvider
   .when('/findType', {

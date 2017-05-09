@@ -1,7 +1,7 @@
 /**
- * 课程详情主文件
- * 1.加载模块
- * 2.课程详情 的程序逻辑
+ * @title 课程详情主文件
+ * @fileOverView 本文件是课程详情页面的入口文件，用于引入并使用相关功能模块。
+ * @author whdstyle@gmail.com
  */
 define(function (require) {
   var $ = require('jquery');
@@ -18,13 +18,26 @@ define(function (require) {
   var tplSidebar = require('tpl/course/display-sidebar');
   var tplBuy = require('tpl/course/display-buy');
   $(function () {
-    var nUid, sTit, sSubtit;
-    // 获取视频PID
-    var nPid = mUtil.getQueryString('pid');
+   // ************************************
+   // 声明
+   // ************************************
+    // 视频的标题
+    var sTit, sSubtit;
+
+   // ************************************
+   // 通用
+   // ************************************
     // 向auth模块中加入视频的登录和登出方法。
     mAuth.addNoticeList(
       function () {
-        oLoadVideo.logined(nUid, mSession.getToken());
+        var sToken = mSession.getToken();
+        mApi.getAuthUser(sToken)
+        .done(function (success) {
+          oLoadVideo.logined(success.data[0].user.id, sToken);
+        })
+        .fail(function (error) {
+          alert(error);
+        });
       },
       function () {
         $('#firstBt').off().hide();
@@ -32,30 +45,40 @@ define(function (require) {
       }
     );
 
-    // 添加alert模块需要的HTML
-    $('body').prepend(tplAlert);
-
-    // 加载购物车
-    mShoppingOperation.loadMiniCart(function () {
-      // 绑定按钮事件
-      mDropdownMenu.handle('#sc-btn', '.shopping-car');
-      mShoppingOperation.showEmptyBg();
-    });
-
-    // 渲染 加入购物车 按钮（目前接口没有返回价格，价格暂时是常量）
-    document.getElementById('buy-content').innerHTML = tplBuy();
-    $('#add-to-cart').on('click', function (event) {
-      event.preventDefault();
-      var jqSelf = $(this).button('loading');
-      mShoppingOperation.add(nPid, sTit, sSubtit, function () {
-        mAlert.success('加入成功');
-        jqSelf.button('reset');
-      });
-    });
-
+    // 加载视频信息
+    var oLoadVideo = {
+      // 已登录加载视频详情
+      logined: function (uid, token) {
+        var nPid = mUtil.getQueryString('pid');
+        // 获取视频详情
+        mApi.getProductDetails(nPid, uid)
+          .done(function (success) {
+            loadContent(success.data[0]);
+            // 初始化播放器
+            mVideoPlay('play-box', success.data[0], token);
+          })
+          .fail(function (error) {
+            alert(error);
+          });
+      },
+      // 未登录加载视频详情
+      notLogin: function () {
+        var nPid = mUtil.getQueryString('pid');
+        // 获取视频详情
+        mApi.getProductDetails(nPid)
+          .done(function (success) {
+            loadContent(success.data[0]);
+            // 初始化播放器
+            mVideoPlay('play-box', success.data[0]);
+          })
+          .fail(function (error) {
+            alert(error);
+          });
+      }
+    };
 
     // 渲染模板和绑定事件
-    function fnLoadContent (data) {
+    function loadContent (data) {
       // 渲染标题的模板
       document.getElementById('title').innerHTML = tplTitle(data);
       sTit = data.num;
@@ -76,65 +99,48 @@ define(function (require) {
         }
       }
 
-      // 点击下拉列表元素，切换课程
+      // 下拉列表，切换课程
       jqTmList.delegate('a.tm-panel-item', 'click', function (event) {
         event.preventDefault();
-        var nPid = $(this).data('id');
-        var sSearch = window.location.search.replace(/[^=]+$/, nPid);
+        var nID = $(this).data('id');
+        var sSearch = window.location.search.replace(/[^=]+$/, nID);
         window.location.search = sSearch;
       });
-      mDropdownMenu.handle('#tm-btn', '.tit-master');
+      mDropdownMenu('#tm-btn', '.tit-master');
     }
 
-    // 加载视频信息
-    var oLoadVideo = {
-      // 已登录加载视频详情
-      logined: function (nUid_, token_) {
-        // 获取视频详情
-        mApi.getproduct(nPid, nUid_)
-          .done(function (success) {
-            fnLoadContent(success.data[0]);
-            // 初始化播放器
-            mVideoPlay.init('play-box', success.data[0], token_);
-          })
-          .fail(function (error) {
-            console.log(error);
-          });
-      },
-      // 未登录加载视频详情
-      notLogin: function () {
-        // 获取视频详情
-        mApi.getproduct(nPid)
-          .done(function (success) {
-            fnLoadContent(success.data[0]);
-            // 初始化播放器
-            mVideoPlay.init('play-box', success.data[0]);
-          })
-          .fail(function (error) {
-            console.log(error);
-          });
-      }
-    };
+    // 添加alert模块需要的HTML
+    $('body').prepend(tplAlert);
 
-    // 获取用户信息
-    if (mAuth.isLogined()) {
-      var sToken = mSession.getToken();
-      // 获取用户信息
-      mApi.getAuthUser(sToken)
-        .done(function (success) {
-          nUid = success.data[0].user.id;
-          oLoadVideo.logined(nUid, sToken);
-        })
-        .fail(function () {
-          // token过期自动登出
-          mAuth.logout();
-        });
-    } else {
-      oLoadVideo.notLogin();
-    }
+   // ************************************
+   // 功能
+   // ************************************
+    // 未登录时，加载视频
+    mAuth.isLogined() || oLoadVideo.notLogin();
 
-    // 绑定 TAG切换事件。
+    // 加载购物车
+    mShoppingOperation.loadMiniCart(function () {
+      // 绑定按钮事件
+      mDropdownMenu.handle('#sc-btn', '.shopping-car');
+      mShoppingOperation.switchEmptyBg();
+    });
+
+    // 加载 加入购物车（目前接口没有返回价格，价格暂时是常量）
+    // 渲染 加入购物车
+    document.getElementById('buy-content').innerHTML = tplBuy();
+    $('#add-to-cart').on('click', function (event) {
+      event.preventDefault();
+      var jqSelf = $(this).button('loading');
+      var nPid = mUtil.getQueryString('pid');
+      mShoppingOperation.add(nPid, sTit, sSubtit, function () {
+        mAlert.success('加入成功');
+        jqSelf.button('reset');
+      });
+    });
+
+    // 侧导航TAB切换。
     $('#sidebar-tabs').on('click', '.sidebar-tab', function (event) {
+      event.preventDefault();
       $(this).tab('show');
     });
   });

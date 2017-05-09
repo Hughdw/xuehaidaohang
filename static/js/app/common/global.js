@@ -1,8 +1,12 @@
 /**
- * 关闭登录窗口的全局函数
+ * @title 全局文件
+ * @fileOverView 作为 RequireJS 模块与 AngularJS 程序之间的中转
+ *  1.AngularJS 将 token 临时保存在这里，RequireJS 从这里获取 token。
+ *  2.AngularJS 中关闭模态框
+ * @author whdstyle@gmail.com
  */
 
-// 立即执行函数，可以避免暴露私有成员。
+// 立即执行函数，避免暴露私有成员。
 var globalModule = (function () {
   var oModule = {};
   var sToken = false;

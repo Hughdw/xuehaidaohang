@@ -4,9 +4,9 @@
   </div>
   <div class="modal-body" ng-switch="mobileData.currentStep">
     <ul class="step-tit">
-      <li ng-class="mobileData.getActiveClass(0)">第一步</li>
-      <li ng-class="mobileData.getActiveClass(1)">第二步</li>
-      <li ng-class="mobileData.getActiveClass(2)">第三步</li>
+      <li ng-class="{0:'active',1:'',2:''}[mobileData.currentStep]">第一步</li>
+      <li ng-class="{0:'',1:'active',2:''}[mobileData.currentStep]">第二步</li>
+      <li ng-class="{0:'',1:'',2:'active'}[mobileData.currentStep]">第三步</li>
     </ul>
     <div class="step-cont">
       <!-- 第一步 输入图片验证码 -->
@@ -97,8 +97,8 @@
               </span>
             </div>
             <div class="col-xs-6 col-sm-5">
-              <button type="button" class="btn btn-primary" ng-show="smsBtn.isShow" ng-disabled="smsBtn.isDis"  ng-click="mobileData.getMobileCode(vm.account)">{{smsBtn.txt}}</button>
-              <button type="button" class="btn btn-default" ng-show="!smsBtn.isShow" disabled>{{smsBtn.countDown}}后重新发送</button>
+              <button type="button" class="btn btn-primary" ng-show="smsBtn.switchShow" ng-disabled="smsBtn.isDis"  ng-click="mobileData.getMobileCode(vm.account)">{{smsBtn.txt}}</button>
+              <button type="button" class="btn btn-default" ng-show="!smsBtn.switchShow" disabled>{{smsBtn.countDown}}后重新发送</button>
             </div>
           </div>
           <div class="form-group" ng-show="mobileForm_1.$dirty && mobileForm_1.$invalid">

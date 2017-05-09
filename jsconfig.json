@@ -8,8 +8,10 @@
 	},
 	"exclude": [
 		"node_modules",
-		"bower_components",
-		"jspm_packages",
+		"static/js/libs",
+		"static/js/tpl",
+		"test",
+		"typings",
 		"tmp",
 		"temp"
 	]

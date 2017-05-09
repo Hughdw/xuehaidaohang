@@ -1,5 +1,7 @@
 /**
- * 购物车相关操作
+ * @title 购物车操作模块
+ * @fileOverView 本文件用于购物车中视频的增加，删除，查询。
+ * @author whdstyle@gmail.com
  */
 define(function (require) {
   var $ = require('jquery');
@@ -8,7 +10,14 @@ define(function (require) {
   var tplMiniListItem = require('tpl/shoppingcart/mini-list-item');
   var Cookies = require('jq-cookie');
 
+ // ************************************
+ // 声明
+ // ************************************
   var aMiniCartCache;// 迷你购物车中的数据缓存
+
+ // ************************************
+ // 对外暴露方法
+ // ************************************
   var oShoppingOperation = {
     // 更新购物车 和 cookies 中的商品数量
     updateCount: function (updateNum) {
@@ -17,7 +26,7 @@ define(function (require) {
       Cookies.set('cartCount', nCount);
     },
     // 显示/隐藏 购物车为空时候的提示
-    showEmptyBg: function () {
+    switchEmptyBg: function () {
       if (aMiniCartCache.length === 0) {
         $('#sc-empty').show();
       } else {
@@ -25,24 +34,24 @@ define(function (require) {
       }
     },
     // 向购物车中添加商品
-    add: function (pidP, titP, subtitP, fn, qtyP) {
-      var qty = qtyP ? qtyP : 1;
+    add: function (pid, tit, subtit, fn, qty) {
+      var nQty = qty || 1;
       var oData = {
-        pid: pidP,
-        num: titP,
-        title: subtitP,
-        qty: qty
+        pid: pid,
+        num: tit,
+        title: subtit,
+        qty: nQty
       };
       var oSelf = this;
       oSelf.updateCount(1);
-      mApi.addToCart(pidP)
+      mApi.addToCart(pid)
       .done(function (success) {
         // 查询当前添加的商品在购物车列表中是否存在。
         // 1.存在则增加数量。
         for (var i = 0; i < aMiniCartCache.length; i++) {
-          if (aMiniCartCache[i].pid === pidP) {
+          if (aMiniCartCache[i].pid === pid) {
             ++aMiniCartCache[i].qty;
-            $('#miniCart-id-' + pidP).find('span.sc-qty em').text(aMiniCartCache[i].qty);
+            $('#miniCart-id-' + pid).find('span.sc-qty em').text(aMiniCartCache[i].qty);
             oData = null;
           }
         }
@@ -55,7 +64,7 @@ define(function (require) {
         if ($.isFunction(fn)) {
           fn();
         }
-        oSelf.showEmptyBg();
+        oSelf.switchEmptyBg();
       })
       .fail(function () {
         alert('添加商品错误');
@@ -63,32 +72,32 @@ define(function (require) {
       });
     },
     // 从购物车中删除商品
-    remove: function (pidP) {
+    remove: function (pid) {
       var oSelf = this;
       // 暂时隐藏HTML
-      $('#sc-list').find('#miniCart-id-' + pidP).hide();
-      mApi.removeToCart(pidP)
+      $('#sc-list').find('#miniCart-id-' + pid).hide();
+      mApi.removeToCart(pid)
       .done(function (success) {
         // 删除HTML
-        $('#sc-list').find('#miniCart-id-' + pidP).remove();
+        $('#sc-list').find('#miniCart-id-' + pid).remove();
         // 从总数中减去删除商品的数量
         for (var i = 0; i < aMiniCartCache.length; i++) {
-          if (aMiniCartCache[i].pid === pidP) {
+          if (aMiniCartCache[i].pid === pid) {
             oSelf.updateCount(-aMiniCartCache[i].qty);
             // 删除数据
             aMiniCartCache.splice(i, 1);
           }
         }
-        oSelf.showEmptyBg();
+        oSelf.switchEmptyBg();
       })
       .fail(function () {
         // 删除失败，恢复显示
-        $('#sc-list').find('#miniCart-id-' + pidP).show();
+        $('#sc-list').find('#miniCart-id-' + pid).show();
         alert('删除失败');
       });
     },
     // 加载迷你购物车商品列表
-    loadMiniCart: function (fnP) {
+    loadMiniCart: function (fn) {
       // 获取mini购物车列表
       mApi.getMiniCart()
       .done(function (success) {
@@ -104,15 +113,15 @@ define(function (require) {
           oShoppingOperation.remove(jqSelf.data('pid'));
         });
         // 执行传入的函数
-        if ($.isFunction(fnP)) {
-          fnP();
+        if ($.isFunction(fn)) {
+          fn();
         }
       })
       .fail(function () {
         alert('购物车加载失败');
       });
     },
-    // 查看购物车商品列表
+    // 加载购物车商品列表
     loadCart: function () {
       mApi.getCart()
       .done(function (success) {

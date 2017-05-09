@@ -1,7 +1,7 @@
 /**
- * 课程列表主文件
- * 1.加载模块
- * 2.课程列表 的程序逻辑
+ * @title 课程列表主文件
+ * @fileOverView 本文件是课程列表页面的入口文件，用于引入并使用相关功能模块。
+ * @author whdstyle@gmail.com
  */
 define(function (require) {
   var $ = require('jquery');
@@ -14,19 +14,24 @@ define(function (require) {
   var mAlert = require('components/alert');
   var tplAlert = require('tpl/public/components-alert');
   var tplListMenu = require('tpl/course/list-menu');
-  // 页面载入
   $(function () {
+   // ************************************
+   // 通用
+   // ************************************
     // 添加alert模块需要的HTML
     $('body').prepend(tplAlert);
 
+   // ************************************
+   // 功能
+   // ************************************
     // 加载购物车
     mShoppingOperation.loadMiniCart(function () {
       // 绑定按钮事件
-      mDropdownMenu.handle('#sc-btn', '.shopping-car');
-      mShoppingOperation.showEmptyBg();
+      mDropdownMenu('#sc-btn', '.shopping-car');
+      mShoppingOperation.switchEmptyBg();
     });
 
-    // 给筛选出的结果选项 委派 点击事件
+    // 筛选结果增加 加入购物车 功能
     $('#list-cont').delegate('button', 'click', function (event) {
       // 添加到购物车
       var jqSelf = $(this);
@@ -42,8 +47,9 @@ define(function (require) {
       });
     });
 
+    // 加载目录
     // 获取筛选目录列表数据
-    mApi.getcategory()
+    mApi.getCategory()
     .done(function (success) {
       // 重新组织数据
       var oMenuData = mListData.regroupMenu(success.data);
@@ -54,13 +60,13 @@ define(function (require) {
 
       // 当前目录选择项目的categoryid
       var nLevelActiveId = mListData.getLevelActiveId();
-      // 为目录绑定事件（包括基础和提
+      // 为目录绑定事件（包括基础和提高）
       mFilterCont.bindEvt(nLevelActiveId);
       // 视频列表默认内容
-      mFilterCont.getProductlist(mListData.getSelectedName(nLevelActiveId), 1);// 目前只有 基础 - 小一 - 数学 - 人教版 - 重点有数据。
+      mFilterCont.getProductList(mListData.getSelectedName(nLevelActiveId), 1);// 目前只有 基础 - 小一 - 数学 - 人教版 - 重点有数据。
     })
-    .fail(function () {
-      alert('服务器请求错误');
+    .fail(function (error) {
+      alert(error);
     });
   });
 });

@@ -1,8 +1,9 @@
 /**
- * 表单验证的标记以及文字
+ * @title 表单状态标记模块
+ * @fileOverView 本文件用于对表单中每个控件的状态进行标记，为表单提交时提供状态依据；另外，还储存了提示时所需要的Name和Message。
+ * @author whdstyle@gmail.com
  */
 define(function (require) {
-
   function Validate () {
     // 表单输入框输入验证的结果标示
     // 0为不显示，R为正确，A为ajax正在请求其他值为错误代码
@@ -68,7 +69,6 @@ define(function (require) {
   Validate.prototype.setHintValue = function (index, str) {
     this.flagHint[index] = str;
   };
-
   // var oValidate = {};
   // // 表单输入框输入验证的结果标示
   // // 0为不显示，R为正确，A为ajax正在请求其他值为错误代码

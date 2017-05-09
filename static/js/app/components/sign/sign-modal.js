@@ -1,31 +1,36 @@
 /**
- * 登录模态框模块
- * 1.绑定显示模态框的事件
- * 2.显示模态框
+ * @title 登录状态框模块
+ * @fileOverView 本文件用于绑定显示模态框事件和显示模态框。
+ * @author whdstyle@gmail.com
  */
 define(function (require) {
   var $ = require('jquery');
   var mUtil = require('components/util');
   var mAuth = require('components/sign/auth');
   var tplSignAppend = require('tpl/public/sign-append');
+
+ // ************************************
+ // 声明
+ // ************************************
   var oSignModal = {};
 
-  var eModal, eFrame, oFrameWin;
-
+ // ************************************
+ // 对外暴露方法
+ // ************************************
+  // 显示模态框
   oSignModal.showModal = function (path) {
+    var eModal = false;// 模态框元素
+    var eFrame;// frame元素
     // 设置模态框默认显示登录窗口
-    var sPath = !!path ? path : 'login';
+    var sPath = path || 'login';
     // 获取登录模态框的HTML（iframe）
     var sModalHTML = tplSignAppend();
-    // 插入HTML，避免重复创建
+    // 避免重复创建、获取。
     if (!eModal) {
       $('body').append(sModalHTML);
-      // 获取 模态框对象
       eModal = document.getElementById('sign-modal');
       // 获取到插入的iframe元素对象
       eFrame = eModal.getElementsByTagName('iframe');
-      // 获取到创建的子窗口的window对象
-      oFrameWin = eFrame[0].contentWindow;
       // 创建监听事件，监听模态框隐藏
       $(eModal).on('hidden.bs.modal', function (eve) {
         eve.preventDefault();
@@ -34,7 +39,7 @@ define(function (require) {
         var sToken = globalModule.getToken();
         // 获取URL的路径部分，作为跳转的判断
         var sPathname = window.location.pathname;
-        // 调用login方法
+
         if (sToken) {
           mAuth.login(sToken);
         } else if (!mAuth.isLogined() && sPathname === '/personal-center.html') {
@@ -44,7 +49,7 @@ define(function (require) {
       });
     }
     // 设置src属性
-    eFrame[0].src = 'login-angular.html#/' + sPath;
+    eFrame[0].src = 'sign.html#/' + sPath;
     // 监听onload事件，判断iframe中的页面加载完毕
     // 加载完成后，显示模态框
     if (eFrame[0].attachEvent) {
@@ -58,10 +63,11 @@ define(function (require) {
     }
   };
   oSignModal.bindModal = function (btn) {
+    var oSelf = this;
     btn.on('click', function (eve) {
       eve.preventDefault();
       var jqBtn = $(this);
-      oSignModal.showModal(jqBtn.data('whatever'));
+      oSelf.showModal(jqBtn.data('whatever'));
     });
   };
   return oSignModal;

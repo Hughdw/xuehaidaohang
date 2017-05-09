@@ -1,4 +1,8 @@
-// 遗弃的文件，通过personal-center.html的形式替代。
+/**
+ * @title 原账户资料页面主文件
+ * @fileOverView 由于并入personal-center-main.js，因此此文件遗弃。
+ * @author whdstyle@gmail.com
+ */
 define(function (require) {
   var $ = require('jquery'),
       mApi = require('components/api'),
@@ -8,7 +12,6 @@ define(function (require) {
       mRegroupData = require('components/personal/regroup-data'),
       tplSidebar = require('tpl/personal/sidebar'),
       tplAccountMain = require('tpl/personal/account-main'),
-      replaceImgPath = require('components/replace-img-path'),
       mButton = require('components/personal/button');
   $(function() {
     // 需要向 auth模块中添加登录/登出方法。
@@ -53,7 +56,6 @@ define(function (require) {
     // document.getElementById('mainbar').innerHTML = tplAccountMain(tpldata);
     // document.getElementById('sidebar-cont').innerHTML =
     // document.getElementById('main').innerHTML = template('personal/account-main',tpldata);
-    replaceImgPath();
 
 
     // 折叠版块事件绑定
