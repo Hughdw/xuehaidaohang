@@ -1,13 +1,30 @@
 /**
- * 为自定义指令提供事件绑定、验证服务。
- * 1.验证账号格式是否正确，同时是否存在。
- * 2.验证密码格式是否正确。
+ * @title 登录/注册 服务
+ * @fileOverView 为 指令和控制器 提供事件绑定、验证服务。
+ *  1.验证账号格式是否正确，同时是否存在。
+ *  2.验证密码格式是否正确。
+ *  3.事件绑定
+ * @author whdstyle@gmail.com
  */
+
 angular.module('sign-service', [])
+// ************************************
+// 常量定义
+// ************************************
+// 计时器的计时总数
+.constant('TOTAL_COUNT_DOWN', 30)
+// 验证码按钮 文字切换
+.constant('BUTTON_TEXT', {
+  default: '获取验证码',
+  sending: '正在发送'
+})
 .constant('FOCUS_CLASS', 'ng-focused')
+// ************************************
+// 服务方法
+// ************************************
 .service('submitForm', function (apiService, FOCUS_CLASS) {
   /* 账号验证规则 */
-  var fnAccountFormat = {
+  var oCheckAccountFormat = {
     mobile: function (str) {
       var reg = /^(13|14|15|18|17)\d{9}$/;
       return reg.test(str);
@@ -18,7 +35,7 @@ angular.module('sign-service', [])
     }
   };
   /* 密码验证规则 */
-  var fnPasswordFormat = {
+  var oCheckPasswordFormat = {
     password: function (str) {
       var reg = /^[^\s]{6,15}$/;
       return reg.test(str);
@@ -30,8 +47,8 @@ angular.module('sign-service', [])
     password: ''
   };
   /* 检查输入的字符是否符合规则 */
-  var fnCheckInput = {};
-  fnCheckInput.account = function (scope, iEle, iAttrs, ctrl, isSubmit) {
+  var oCheckInput = {};
+  oCheckInput.account = function (scope, iEle, iAttrs, ctrl, isSubmit) {
     // 分两种情况，1.控件失去焦点。2.提交表单。
     // 1.1.为空时，不进行验证，直接返回。
     // 1.2.不为空时，进行正则验证，并设置账号类型。
@@ -57,9 +74,9 @@ angular.module('sign-service', [])
 
     /* 记录账号类型 */
     // 正确时，记录账号类型
-    if (fnAccountFormat.mobile(ctrl.$viewValue)) {
+    if (oCheckAccountFormat.mobile(ctrl.$viewValue)) {
       scope.loginUser.type = 'mobile';
-    } else if (fnAccountFormat.email(ctrl.$viewValue)) {
+    } else if (oCheckAccountFormat.email(ctrl.$viewValue)) {
       scope.loginUser.type = 'email';
     } else {
       scope.loginUser.type = false;
@@ -109,7 +126,7 @@ angular.module('sign-service', [])
     });
   };
 
-  fnCheckInput.password = function (scope, iEle, iAttrs, ctrl, isSubmit, passwordError) {
+  oCheckInput.password = function (scope, iEle, iAttrs, ctrl, isSubmit, passwordError) {
     // 分两种情况，1.控件失去焦点。2.提交表单。
     // 1.1.为空时，不进行验证，直接返回。
     // 1.2.不为空时，进行正则验证，并设置账号类型。
@@ -134,7 +151,7 @@ angular.module('sign-service', [])
     }
 
     // 密码格式是否正确
-    var bFormat = fnPasswordFormat.password(ctrl.$viewValue);
+    var bFormat = oCheckPasswordFormat.password(ctrl.$viewValue);
 
     // 账号不为空时的处理
     if (!isSubmit) {
@@ -171,7 +188,7 @@ angular.module('sign-service', [])
     // 设置表单提交的判断值
     var isSubmit = type === 'submit';
     // 检查输入字符是否符合账号格式规则
-    fnCheckInput.account(oArgs.account[0], oArgs.account[1], oArgs.account[2], oArgs.account[3], isSubmit);
+    oCheckInput.account(oArgs.account[0], oArgs.account[1], oArgs.account[2], oArgs.account[3], isSubmit);
   };
 
 
@@ -186,6 +203,6 @@ angular.module('sign-service', [])
     // 设置表单提交的判断值
     var isSubmit = type === 'submit';
     // 检查输入字符是否符合密码格式规则
-    fnCheckInput.password(oArgs.password[0], oArgs.password[1], oArgs.password[2], oArgs.password[3], isSubmit, error);
+    oCheckInput.password(oArgs.password[0], oArgs.password[1], oArgs.password[2], oArgs.password[3], isSubmit, error);
   };
 });

@@ -1,17 +1,13 @@
 /**
- * 与后台交互API 服务
- * 登录/注册/找回密码
+ * @title API 服务
+ * @fileOverView 为其他 控制器、自定义指令、服务提供与后台交互的 API 请求接口
+ * @author whdstyle@gmail.com
  */
-angular.module('api', [])
-// .constant('AUTH_EVENTS', {
-//
-// })
-// // 储存session
-// .service('authUser', function() {
-//   // this.create = function(token,) {
-//   //
-//   // }
-// })
+
+angular.module('api-service', [])
+// ************************************
+// URL 预处理
+// ************************************
 .factory('apiURL', function () {
   var oServiceUrl = {};
   // 本地deployd测试地址
@@ -20,32 +16,32 @@ angular.module('api', [])
   // 服务器API地址
   // var sHost = 'http://www.quick.com:8081/api';
   var sHost = 'http://139.196.173.103:8081/api';
-  var testPostfix = '';
+  var sTestPostfix = '';
 
   // 野狗测试地址
   // var sHost = 'https://xuehaidaohang.wilddogio.com/api';
-  // var testPostfix = '.json';
+  // var sTestPostfix = '.json';
 
   // 图片验证码
   oServiceUrl.imgCaptcha = 'http://139.196.173.103:8081/api/getCaptcha';
   // 发送手机验证码
-  oServiceUrl.mobileCode = sHost + '/sendMobileCode' + testPostfix;
+  oServiceUrl.mobileCode = sHost + '/sendMobileCode' + sTestPostfix;
   // 发送邮箱验证码
-  oServiceUrl.mailCode = sHost + '/sendMailCode' + testPostfix;
+  oServiceUrl.mailCode = sHost + '/sendMailCode' + sTestPostfix;
   // 验证验证码
-  oServiceUrl.verifyCode = sHost + '/verifyCode' + testPostfix;
+  oServiceUrl.verifyCode = sHost + '/verifyCode' + sTestPostfix;
   // 通过手机重置密码
-  oServiceUrl.updateMobilePassword = sHost + '/updateMobilePassword' + testPostfix;
+  oServiceUrl.updateMobilePassword = sHost + '/updateMobilePassword' + sTestPostfix;
   // 通过邮箱重置密码
-  oServiceUrl.updateMailPassword = sHost + '/updateMailPassword' + testPostfix;
+  oServiceUrl.updateMailPassword = sHost + '/updateMailPassword' + sTestPostfix;
   // 判断账号是否存在
-  oServiceUrl.checkAccount = sHost + '/isUserReg' + testPostfix;
+  oServiceUrl.checkAccount = sHost + '/isUserReg' + sTestPostfix;
   // 注册账号
-  oServiceUrl.register = sHost + '/register' + testPostfix;
+  oServiceUrl.register = sHost + '/register' + sTestPostfix;
   // 邮箱账号登录
-  oServiceUrl.emailLogin = sHost + '/postEmailLogin' + testPostfix;
+  oServiceUrl.emailLogin = sHost + '/postEmailLogin' + sTestPostfix;
   // 手机账号登录
-  oServiceUrl.mobileLogin = sHost + '/postMobileLogin' + testPostfix;
+  oServiceUrl.mobileLogin = sHost + '/postMobileLogin' + sTestPostfix;
   // 本地使用Deployd做测试API时，需要把请求字符串转换成小写。
   // for(var p in oServiceUrl){
   //   if (typeof p === 'string') {
@@ -55,9 +51,12 @@ angular.module('api', [])
 
   return oServiceUrl;
 })
+// ************************************
+// 服务方法
+// ************************************
 .factory('apiService', function ($q, $http, apiURL) {
   var oService = {};
-  var fnPretreatment = function (answer, deferred) {
+  function pretreatment (answer, deferred) {
     // 对后台返回的状态码做预处理
     if (answer.data.code === 200) {
       answer.status = true;
@@ -84,7 +83,7 @@ angular.module('api', [])
     });
     oPromise.then(
       function (answer) {
-        fnPretreatment(answer, oDeferred);
+        pretreatment(answer, oDeferred);
       },
       function (error) {
         oDeferred.reject(error);
@@ -103,7 +102,7 @@ angular.module('api', [])
     });
     oPromise.then(
       function (answer) {
-        fnPretreatment(answer, oDeferred);
+        pretreatment(answer, oDeferred);
       },
       function (error) {
         oDeferred.reject(error);
@@ -146,7 +145,7 @@ angular.module('api', [])
     });
     oPromise.then(
       function (answer) {
-        fnPretreatment(answer, oDeferred);
+        pretreatment(answer, oDeferred);
       },
       function (error) {
         oDeferred.reject(error);
@@ -167,7 +166,7 @@ angular.module('api', [])
     });
     oPromise.then(
       function (answer) {
-        fnPretreatment(answer, oDeferred);
+        pretreatment(answer, oDeferred);
       },
       function (error) {
         oDeferred.reject(error);
@@ -187,7 +186,7 @@ angular.module('api', [])
     });
     oPromise.then(
       function (answer) {
-        fnPretreatment(answer, oDeferred);
+        pretreatment(answer, oDeferred);
       },
       function (error) {
         oDeferred.reject(error);
@@ -210,7 +209,7 @@ angular.module('api', [])
     });
     oPromise.then(
       function (answer) {
-        fnPretreatment(answer, oDeferred);
+        pretreatment(answer, oDeferred);
       },
       function (error) {
         oDeferred.reject(error);
@@ -234,7 +233,7 @@ angular.module('api', [])
     });
     oPromise.then(
       function (answer) {
-        fnPretreatment(answer, oDeferred);
+        pretreatment(answer, oDeferred);
       },
       function (error) {
         oDeferred.reject(error);
@@ -260,7 +259,7 @@ angular.module('api', [])
     });
     oPromise.then(
       function (answer) {
-        fnPretreatment(answer, oDeferred);
+        pretreatment(answer, oDeferred);
       },
       function (error) {
         oDeferred.reject(error);

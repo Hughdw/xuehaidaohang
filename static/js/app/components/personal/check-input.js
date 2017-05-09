@@ -1,46 +1,65 @@
 /**
- * 检查表单控件输入字符格式
+ * @title 检查输入模块
+ * @fileOverView 本文件用于为表单控件提供字符格式校验。
+ * @other 配合account-main.js使用。
+ * @author whdstyle@gmail.com
  */
 define(function (require) {
   var $ = require('jquery');
   var mApi = require('components/api');
 
+ // ************************************
+ // 声明
+ // ************************************
+  var oCheckInput = {};
+ // ************************************
+ // 内部方法
+ // ************************************
   // 验证规则
   var oCheckFormat = {
+    // 计算昵称长度是否符合规则，一个中文算等于两个字母。
     nicknameLength: function (str) {
-      // 计算昵称长度，一个中文算等于两个字母。
       var aZhStr = str.match(/[\u4e00-\u9fa5]/g) || [];
       var aEnStr = str.match(/\w/g) || [];
       var nZhStrLen = aZhStr.length * 2;
       var nEnStrLen = aEnStr.length;
       return !((nZhStrLen + nEnStrLen) > 10);
     },
+    // 验证密码是否合格
     password: function (str) {
       var reg = /^[^\s]{6,15}$/;
       return reg.test(str);
     },
+    // 验证手机号码是否合格
     mobile: function (str) {
       var reg = /^(13|14|15|18|17)\d{9}$/;
       return reg.test(str);
     },
+    // 验证邮箱地址是否合格
     email: function (str) {
       var reg = /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*(\.[a-zA-Z0-9]+[-a-zA-Z0-9]*)+[a-zA-Z0-9]+$/;
       return reg.test(str);
     },
+    // 验证图片验证码是否合格
     imgCaptcha: function (str) {
       var reg = /^\w{5}$/;
       return reg.test(str);
     },
+    // 验证手机验证码是否合格
     mobileCaptcha: function (str) {
       var reg = /^\d{4}$/;
       return reg.test(str);
     },
+    // 验证邮箱验证码是否合格
     emailCaptcha: function (str) {
       var reg = /^\d{4}$/;
       return reg.test(str);
     }
   };
-  var oCheckInput = {};
+
+ // ************************************
+ // 对外暴露方法
+ // ************************************
   // 实时验证昵称格式，并设置错误标识
   oCheckInput.nickname = function (validate, inputEle, index) {
     // 为空返回
@@ -269,7 +288,6 @@ define(function (require) {
       });
     }
   };
-
   // 验证图片验证码格式，并设置错误标识
   oCheckInput.imgCaptcha = function (validate, formEle, inputEle, index) {
     // 为空返回

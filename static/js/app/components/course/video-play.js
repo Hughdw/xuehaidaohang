@@ -1,27 +1,60 @@
 /**
- * 初始化播放器
+ * @title 初始化播放器模块
+ * @fileOverView 本文件用于播放器的初始化。
+ * @author whdstyle@gmail.com
  */
 define(function (require) {
   var $ = require('jquery');
+  var qcVideo = require('qcVideo');
   var mUtil = require('components/util');
   var mApi = require('components/api');
 
+ // ************************************
+ // 声明
+ // ************************************
   var oVideo = {};
   // 播放器实例
   var player;
-  // 播放器容器ID
-  var jqEle;
-  // 播放器的宽高
-  var nVideoWidth, nVideoHeight;
-  // interval 方法的ID
-  var vIntervalId;
+ // ************************************
+ // 内部方法
+ // ************************************
+  // 获取播放器的宽高
+  oVideo._getSize = function (ele) {
+    return {
+      width: ele.width(),
+      height: ele.height()
+    };
+  };
+  // 重置播放器的尺寸
+  oVideo._resizeVideo = function (ele) {
+    var oEleSize = oVideo._getSize(ele);
+    player.resize(oEleSize.width, oEleSize.height);
+  };
+  // 绑定窗口变化事件
+  oVideo._bindEve = function (ele) {
+    var nTimer = 0;
+    // 窗口发生变化时候，重置高度
+    $(window).resize(function () {
+      if (mUtil.isPC) {
+        clearTimeout(nTimer);
+        nTimer = setTimeout(function () {
+          oVideo._resizeVideo(ele);
+        }, 500);
+      } else {
+        oVideo._resizeVideo(ele);
+      }
+    });
+  };
+
+ // ************************************
+ // 对外暴露方法
+ // ************************************
   oVideo.init = function (ele, data, token) {
-    // videoId,lasttime_p
-    jqEle = $('#' + ele);
-    // 重新获取尺寸
-    oVideo._getSize();
+    var jqEle = $('#' + ele);
+    var oEleSize = oVideo._getSize(jqEle);
     // 绑定窗口重置事件
-    oVideo._bindEve();
+    oVideo._bindEve(jqEle);
+
     // 构造播放器实例
     player = new qcVideo.Player(
       // 页面放置播放位置的元素 ID
@@ -33,9 +66,9 @@ define(function (require) {
         // 是否自动播放 默认值0 (0: 不自动，1: 自动播放)
         'auto_play': '0',
         // 播放器宽度，单位像素
-        'width': nVideoWidth,
+        'width': oEleSize.width,
         // 播放器高度，单位像素
-        'height': nVideoHeight,
+        'height': oEleSize.height,
         // 屏蔽全屏播放标识,默认值0 (0: 支持全屏播放,1: 禁用全屏播放)
         'disable_full_screen': 0,
         // 禁止拖动标识,默认值0 (0: 允许拖拽,1: 禁止拖拽)
@@ -70,11 +103,12 @@ define(function (require) {
             if (status === 'ready' && data.lasttime !== 0) {
               $('#firstBt').show().on('click', function (event) {
                 event.preventDefault();
-
                 player.play(data.lasttime);
                 $(this).hide();
               });
             }
+            // interval 方法的ID
+            var vIntervalId;
             // 正在播放状态，请求更新接口
             if (status === 'playing') {
               $('#firstBt').hide();
@@ -109,34 +143,8 @@ define(function (require) {
       }
     );
   };
-  oVideo._getSize = function () {
-    nVideoWidth = jqEle.width();
-    nVideoHeight = jqEle.height();
-  };
-  oVideo._resizeVideo = function () {
-    oVideo._getSize();
-    // 重置播放器的尺寸
-    player.resize(nVideoWidth, nVideoHeight);
-  };
-  oVideo._bindEve = function () {
-    var iTimer = 0;
-    // 窗口发生变化时候，重置高度
-    $(window).resize(function () {
-      if (mUtil.isPC) {
-        clearTimeout(iTimer);
-        iTimer = setTimeout(function () {
-          oVideo._resizeVideo();
-        }, 500);
-      } else {
-        oVideo._resizeVideo();
-      }
-    });
-  };
 
-  return {
-    init: oVideo.init,
-    player: player
-  };
+  return oVideo.init;
   // // 获取当前视频总时长
   // player.getDuration();
   // // 获取当前播放位置

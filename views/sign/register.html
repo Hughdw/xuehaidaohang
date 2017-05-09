@@ -6,15 +6,15 @@
   </div>
   <div class="modal-body" ng-switch="regData.currentTab">
     <ul class="tab-list">
-      <li ng-class="regData.getActiveClass(0)">
-        <a class="tab-list-item" href="javascript:;" ng-click="regData.switchTab(0)">手机注册</a>
+      <li ng-class="{mobile:'active',email:''}[regData.switchActive]">
+        <a class="tab-list-item" href="javascript:;" ng-click="regData.switchTab('mobile')">手机注册</a>
       </li>
-      <li ng-class="regData.getActiveClass(1)">
-        <a class="tab-list-item" href="javascript:;" ng-click="regData.switchTab(1)">邮箱注册</a>
+      <li ng-class="{email:'active',mobile:''}[regData.switchActive]">
+        <a class="tab-list-item" href="javascript:;" ng-click="regData.switchTab('email')">邮箱注册</a>
       </li>
     </ul>
     <div class="tab-content">
-      <form name="mobileForm" ng-switch-when="0" novalidate ng-controller="mobileCtrl">
+      <form name="mobileForm" ng-switch-when="mobile" novalidate ng-controller="mobileCtrl">
         <div class="form-horizontal form-cont">
           <div class="form-group">
             <label for="signup-mobile" class="label-tit col-xs-5">手机号码：</label>
@@ -78,8 +78,8 @@
               <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="mobileForm.mobileCaptcha.$showhint && mobileForm.mobileCaptcha.$valid"></span>
             </div>
             <div class="col-xs-6 col-sm-4">
-              <button type="button" class="btn btn-primary" ng-show="smsBtn.isShow" ng-disabled="smsBtn.isDis"  ng-click="mobileData.getMobileCode(user.account)">{{smsBtn.txt}}</button>
-              <button type="button" class="btn btn-default" ng-show="!smsBtn.isShow" disabled>{{smsBtn.countDown}}后重新发送</button>
+              <button type="button" class="btn btn-primary" ng-show="smsBtn.switchShow" ng-disabled="smsBtn.isDis"  ng-click="mobileData.getMobileCode(user.account)">{{smsBtn.txt}}</button>
+              <button type="button" class="btn btn-default" ng-show="!smsBtn.switchShow" disabled>{{smsBtn.countDown}}后重新发送</button>
             </div>
           </div>
           <div class="form-group">
@@ -128,7 +128,7 @@
           ng-click="regData.register('mobile')">注册</button>
         </div>
       </form><!-- mobileForm -->
-      <form name="emailForm" ng-switch-when="1" novalidate ng-controller="emailCtrl">
+      <form name="emailForm" ng-switch-when="email" novalidate ng-controller="emailCtrl">
         <div class="form-horizontal form-cont">
           <div class="form-group">
             <label for="signup-email" class="label-tit col-xs-5">邮箱地址：</label>
@@ -187,8 +187,8 @@
               <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="emailForm.emailCaptcha.$showhint && emailForm.emailCaptcha.$valid"></span>
             </div>
             <div class="col-xs-6 col-sm-4">
-              <button type="button" class="btn btn-primary" ng-show="mailBtn.isShow" ng-disabled="mailBtn.isDis"  ng-click="emailData.getMailCode(user.account)">{{mailBtn.txt}}</button>
-              <button type="button" class="btn btn-default" ng-show="!mailBtn.isShow" disabled>{{mailBtn.countDown}}后重新发送</button>
+              <button type="button" class="btn btn-primary" ng-show="mailBtn.switchShow" ng-disabled="mailBtn.isDis"  ng-click="emailData.getMailCode(user.account)">{{mailBtn.txt}}</button>
+              <button type="button" class="btn btn-default" ng-show="!mailBtn.switchShow" disabled>{{mailBtn.countDown}}后重新发送</button>
             </div>
           </div>
           <div class="form-group">

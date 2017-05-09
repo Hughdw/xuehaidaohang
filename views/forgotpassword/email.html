@@ -4,9 +4,9 @@
   </div>
   <div class="modal-body" ng-switch="mailData.currentStep">
     <ul class="step-tit">
-      <li ng-class="mailData.getActiveClass(0)">第一步</li>
-      <li ng-class="mailData.getActiveClass(1)">第二步</li>
-      <li ng-class="mailData.getActiveClass(2)">第三步</li>
+      <li ng-class="{0:'active',1:'',2:''}[mailData.currentStep]">第一步</li>
+      <li ng-class="{0:'',1:'active',2:''}[mailData.currentStep]">第二步</li>
+      <li ng-class="{0:'',1:'',2:'active'}[mailData.currentStep]">第三步</li>
     </ul>
     <div class="step-cont">
       <!-- 第一步 输入图片验证码 -->
@@ -96,8 +96,8 @@
               </span>
             </div>
             <div class="col-xs-6 col-sm-5">
-              <button type="button" class="btn btn-primary" ng-show="mailBtn.isShow" ng-disabled="mailBtn.isDis"  ng-click="mailData.getMailCode(vm.account)">{{mailBtn.txt}}</button>
-              <button type="button" class="btn btn-default" ng-show="!mailBtn.isShow" disabled>{{mailBtn.countDown}}后重新发送</button>
+              <button type="button" class="btn btn-primary" ng-show="mailBtn.switchShow" ng-disabled="mailBtn.isDis"  ng-click="mailData.getMailCode(vm.account)">{{mailBtn.txt}}</button>
+              <button type="button" class="btn btn-default" ng-show="!mailBtn.switchShow" disabled>{{mailBtn.countDown}}后重新发送</button>
             </div>
           </div>
           <div class="form-group" ng-show="mailForm_1.$dirty && mailForm_1.$invalid">

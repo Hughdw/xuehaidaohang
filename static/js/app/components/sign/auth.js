@@ -1,60 +1,63 @@
 /**
- * 登录状态管理
+ * @title 登录状态管理模块
+ * @fileOverView 本文件用于登录状态的更新，使用观察者模式，当登录状态发生变化时，对加入模块列表的元素执行对应 登录/退出 方法。
+ * @author whdstyle@gmail.com
  */
-
-// 使用观察者模式，当登录状态发生变化时，对模块列表进行对应的操作。
 define(function (require) {
   var mSession = require('components/sign/session');
 
-  var _notificationList = []; // 登录状态发生变化时，需要通知的模块列表
+ // ************************************
+ // 声明
+ // ************************************
+  var aNotificationList = []; // 登录状态发生变化时，需要通知的模块列表
 
-  var auth = {
+ // ************************************
+ // 对外暴露方法
+ // ************************************
+  var oAuth = {
     // 是否已登录（被观察者的状态）
     isLogined: function (token) {
       return !!mSession.getToken();
     },
-    // 登录成功后
+    // 登录成功，执行方法
     login: function (token) {
-      console.log(1);
       // 将token保存到cookie中
       mSession.createUser(token);
       // 通知相关模块进行响应
-      auth.updateLoginStatus();
+      oAuth.updateLoginStatus();
     },
-    // 退出成功后
+    // 退出成功，执行方法
     logout: function () {
-      // 删除暂存token
-      globalModule.deleteToken();
       // 删除cookie中的token
       mSession.destroyUser();
       // 通知相关模块进行响应
-      auth.updateLogoutStatus();
+      oAuth.updateLogoutStatus();
     },
     // 向模块列表中添加需要监控登录状态的元素。
-    addNoticeList: function (fnLogin, fnLogout) {
+    addNoticeList: function (loginFunc, logoutFunc) {
       var oModule = {
-        login: fnLogin,
-        logout: fnLogout
+        login: loginFunc,
+        logout: logoutFunc
       };
         // 导航状态变更 - 已添加
         // 个人中心 - 已添加
         // 购物车信息变更
         // 支付页面信息变更
-      _notificationList.push(oModule);
+      aNotificationList.push(oModule);
     },
     // 遍历模块列表中的模块，并调用对应的登录方法。
     updateLoginStatus: function () {
-      for (var i = 0; i < _notificationList.length; i++) {
-        _notificationList[i].login();
+      for (var i = 0; i < aNotificationList.length; i++) {
+        aNotificationList[i].login();
       }
     },
     // 遍历模块列表中的模块，并调用对应的退出方法。
     updateLogoutStatus: function () {
-      for (var i = 0; i < _notificationList.length; i++) {
-        _notificationList[i].logout();
+      for (var i = 0; i < aNotificationList.length; i++) {
+        aNotificationList[i].logout();
       }
     }
   };
 
-  return auth;
+  return oAuth;
 });

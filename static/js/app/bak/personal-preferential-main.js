@@ -1,9 +1,12 @@
-// 遗弃的文件，通过personal-center.html的形式替代。
+/**
+ * @title 原优惠信息页面主文件
+ * @fileOverView 由于并入personal-center-main.js，因此此文件遗弃。
+ * @author whdstyle@gmail.com
+ */
 define(function (require) {
   var $ = require('jquery'),
       tpldata = require('data/template'),
-      tplPreferentialMain = require('tpl/personal/preferential-main'),
-      replaceImgPath = require('components/replace-img-path');
+      tplPreferentialMain = require('tpl/personal/preferential-main');
   $(function() {
     tpldata.sidebar.activeMenu = 4;//设置激活导航
     // 获取到模版，然后渲染数据

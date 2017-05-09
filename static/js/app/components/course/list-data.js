@@ -1,49 +1,51 @@
 /**
- * 重新组织目录数据
+ * @title 重组数据模块
+ * @fileOverView 本文件用于将后台获取到的数据重新组织，增加一些帮助判断的字段，以便相关模块可以更好的使用。
+ * @author whdstyle@gmail.com
  */
 define(function (require) {
   var $ = require('jquery');
-  var oListData = {};
-  // 定义最终返回数据的基本结构
-  var oNewData = {
-    level: [],
-    grade: {},
-    subjects: {},
-    version: {}
-  };
 
-  // 保存当前选择的name值
+ // ************************************
+ // 声明
+ // ************************************
+  var oListData = {};
+
+  // 储存当前选择的name
   // 请求视频列表时，传递的参数。
   var aSelectedName = [
     [], // ['基础', '小一', '数学', '人教版', '重点']
     [] // ['基础', '小一', '数学', '人教版', '重点']
   ];
-
-  // 记录当前激活等级的categoryid
+  // 储存当前激活等级的categoryid
   // 方便其他模块提取
   var nLevelActiveId;
 
-
-/**
- * 重新组织目录数据
- * 1.改变数据结构
- * 2.增加一些帮助判断的字段
- */
-
-  // 当前激活按钮的categoryid（初始值）
-  // 这个变量可以在今后修改成可配置。
-  var oActiveId = {
-    level: [1], // 对应激活基础选项
-    grade: [3, 21] // 分别对应基础的小一和提高的初一
-  };
-
-  // 记录每个等级的分类categoryid，在年级grade重构数据方法中使用
-  var aLevelId = [];
-  // 记录每个年级的分类categoryid，在学科subjects重构数据方法中使用
-  var aGradeId = [];
-  // 记录每个学科的分类categoryid，在版本version重组数据方法中使用
-  var aSubjectsId = [];
+ // ************************************
+ // 对外暴露方法
+ // ************************************
+  // 重新组织筛选目录的数据
   oListData.regroupMenu = function (data) {
+    // 定义最终返回数据的基本结构
+    var oNewData = {
+      level: [],
+      grade: {},
+      subjects: {},
+      version: {}
+    };
+    // 当前激活按钮的categoryid（初始值）
+    // 这个变量可以在今后修改成可配置。
+    var oActiveId = {
+      level: [1], // 对应激活基础选项
+      grade: [3, 21] // 分别对应基础的小一和提高的初一
+    };
+
+    // 记录每个等级的分类categoryid，在年级grade重构数据方法中使用
+    var aLevelId = [];
+    // 记录每个年级的分类categoryid，在学科subjects重构数据方法中使用
+    var aGradeId = [];
+    // 记录每个学科的分类categoryid，在版本version重组数据方法中使用
+    var aSubjectsId = [];
     for (var i = 0; i < data.length; i++) {
       if (data[i].parentid === 0) {
         /* 重构level等数据 */
@@ -165,7 +167,6 @@ define(function (require) {
     return oNewList;
   };
 
-
   // 获取当前激活等级的categoryid
   oListData.getLevelActiveId = function () {
     return nLevelActiveId;
@@ -178,6 +179,7 @@ define(function (require) {
   oListData.saveLevelActiveId = function (num) {
     nLevelActiveId = num;
   };
+  // 保存选择的name值
   oListData.saveSelectedName = function (index, levelId, name) {
     aSelectedName[levelId - 1][index] = name;
   };
