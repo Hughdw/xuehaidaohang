@@ -12,8 +12,6 @@
     "type": "git",
     "url": "https: //github.com/Hughdw/xuehaidaohang.git"
   },
-  "license": "ISC",
-
   "devDependencies": {
     "amd-optimize": "^0.6.1",
     "browser-sync": "^2.12.5",
