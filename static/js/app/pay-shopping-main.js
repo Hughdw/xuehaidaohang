@@ -1,14 +1,13 @@
+/**
+ * @title 购物车主文件
+ * @fileOverView 本文件是购物车的入口文件，用于引入并使用相关功能模块。
+ * @author whdstyle@gmail.com
+ */
 define(function (require) {
-  var $ = require('jquery'),
-      tpldata = require('tpldata'),
-      tplShoppingMain = require('tpl/pay/shopping-main'),
-      replaceImgPath = require('mod/replace-img-path');
-  $(function() {
-    // 获取到模版，然后渲染数据
-    // 将选好数据的字符串通过 innerHTML 插入到指定的元素中（#main）
+  var $ = require('jquery');
+  var tpldata = require('data/template');
+  var tplShoppingMain = require('tpl/pay/shopping-main');
+  $(function () {
     document.getElementById('main').innerHTML = tplShoppingMain();
-    // document.getElementById('main').innerHTML = template('pay/shopping-main',tpldata);
-    replaceImgPath();
-
   });
 });

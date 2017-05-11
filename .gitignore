@@ -21,4 +21,8 @@ static/js/libs/*
 static/js/tpl/*
 template/build/*
 test/lib/*
+<<<<<<< HEAD
 typings/*
+=======
+typings/*
+>>>>>>> dev

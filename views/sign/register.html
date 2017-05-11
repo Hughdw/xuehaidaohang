@@ -1,0 +1,242 @@
+<!-- 注册 -->
+<div class="modal-content" id="sign-up" ng-controller="registerCtrl">
+  <div class="modal-header">
+    <button type="button" class="close close-ele" data-dismiss="modal" aria-label="Close" ng-click="top.closeSignModal()"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">注册</h4>
+  </div>
+  <div class="modal-body" ng-switch="regData.currentTab">
+    <ul class="tab-list">
+      <li ng-class="{mobile:'active',email:''}[regData.switchActive]">
+        <a class="tab-list-item" href="javascript:;" ng-click="regData.switchTab('mobile')">手机注册</a>
+      </li>
+      <li ng-class="{email:'active',mobile:''}[regData.switchActive]">
+        <a class="tab-list-item" href="javascript:;" ng-click="regData.switchTab('email')">邮箱注册</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <form name="mobileForm" ng-switch-when="mobile" novalidate ng-controller="mobileCtrl">
+        <div class="form-horizontal form-cont">
+          <div class="form-group">
+            <label for="signup-mobile" class="label-tit col-xs-5">手机号码：</label>
+            <span class="link-txt col-xs-7">已有账号？前去<a href="#/login" class="signin-btn">登录</a></span>
+            <div class="col-xs-12">
+              <input
+              type="number"
+              name="mobile"
+              class="form-control"
+              id="signup-mobile"
+              placeholder="您的手机号码"
+              ng-model="user.account"
+              reg-account="mobile"
+              required>
+              <!--
+               1.空的时候不显示提示
+               2.有错误的时候，输入框变红色，并且有错误文字提示
+               3.正在输入的时候不显示提示
+             -->
+              <span class="hint-info" ng-show="mobileForm.mobile.$showhint && mobileForm.mobile.$error.pattern">手机号码格式错误</span>
+              <span class="hint-info" ng-show="mobileForm.mobile.$showhint && mobileForm.mobile.$error.sole">该手机已经注册</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="mobileForm.mobile.$showhint && mobileForm.mobile.$valid"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-mobile-imgcaptcha" class="label-tit col-xs-12">验证码：</label>
+            <div class="col-xs-6 col-sm-8">
+              <!-- ensure-correct的值 用来在自定义指令中做些判断 -->
+              <input
+              type="text"
+              name="imgCaptcha"
+              class="form-control"
+              id="input-mobile-imgcaptcha"
+              placeholder="输入验证码"
+              ng-model="regData.imgCaptcha"
+              maxlength="5"
+              check-captcha="img"
+              required>
+              <span class="hint-info" ng-show="mobileForm.imgCaptcha.$showhint && mobileForm.imgCaptcha.$error.pattern">验证码格式错误</span>
+              <span class="hint-info" ng-show="mobileForm.imgCaptcha.$showhint && mobileForm.imgCaptcha.$error.correct">验证码错误</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="mobileForm.imgCaptcha.$showhint && mobileForm.imgCaptcha.$valid"></span>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+              <img ng-src="{{regData.getCaptcha}}" ng-click="regData.reloadCaptcha()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="signup-mobile-captcha" class="label-tit col-xs-12">短信验证码：</label>
+            <div class="col-xs-6 col-sm-8">
+              <input
+              type="number"
+              name="mobileCaptcha"
+              class="form-control"
+              id="signup-mobile-captcha"
+              placeholder="短信验证码"
+              ng-model="regData.mobileCaptcha"
+              check-captcha="mobile"
+              required>
+              <span class="hint-info" ng-show="mobileForm.mobileCaptcha.$showhint && mobileForm.mobileCaptcha.$error.pattern">验证码格式错误</span>
+              <span class="hint-info" ng-show="mobileForm.mobileCaptcha.$showhint && mobileForm.mobileCaptcha.$error.correct">验证码错误</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="mobileForm.mobileCaptcha.$showhint && mobileForm.mobileCaptcha.$valid"></span>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+              <button type="button" class="btn btn-primary" ng-show="smsBtn.switchShow" ng-disabled="smsBtn.isDis"  ng-click="mobileData.getMobileCode(user.account)">{{smsBtn.txt}}</button>
+              <button type="button" class="btn btn-default" ng-show="!smsBtn.switchShow" disabled>{{smsBtn.countDown}}后重新发送</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="signup-mobile-password" class="label-tit col-xs-12">设置密码：</label>
+            <div class="col-xs-12">
+              <input
+              type="password"
+              name="password"
+              class="form-control"
+              id="signup-mobile-password"
+              placeholder="您要设置的密码"
+              ng-model="user.password"
+              check-password
+              required>
+              <span class="hint-info" ng-show="mobileForm.password.$showhint && mobileForm.password.$error.pattern">密码格式错误</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="mobileForm.password.$showhint && mobileForm.password.$valid"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="signup-mobile-confirmpassword" class="label-tit col-xs-12">密码确认：</label>
+            <div class="col-xs-12">
+              <input
+              type="password"
+              name="confirmpassword"
+              class="form-control"
+              id="signup-mobile-confirmpassword"
+              placeholder="重新输入您的密码"
+              ng-model="user.confirmpassword"
+              confirm-password="password"
+              required>
+              <span class="hint-info" ng-show="mobileForm.confirmpassword.$showhint && mobileForm.confirmpassword.$error.confirm">两次密码不一样</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="mobileForm.confirmpassword.$showhint && mobileForm.confirmpassword.$valid && mobileForm.password.$valid"></span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <label class="col-xs-12">
+              <input type="checkbox">我已阅读并同意遵守<a href="#">XX声明</a>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+          type="button"
+          class="btn btn-primary btn-lg btn-block"
+          ng-disabled="mobileForm.$invalid || mobileForm.mobileCaptcha.$error.correct"
+          ng-click="regData.register('mobile')">注册</button>
+        </div>
+      </form><!-- mobileForm -->
+      <form name="emailForm" ng-switch-when="email" novalidate ng-controller="emailCtrl">
+        <div class="form-horizontal form-cont">
+          <div class="form-group">
+            <label for="signup-email" class="label-tit col-xs-5">邮箱地址：</label>
+            <span class="link-txt col-xs-7">已有账号？前去<a href="#/login" class="signin-btn">登录</a></span>
+            <div class="col-xs-12">
+              <input
+              type="email"
+              name="email"
+              class="form-control"
+              id="signup-email"
+              placeholder="您的邮箱地址"
+              ng-model="user.account"
+              reg-account="email"
+              required>
+              <span class="hint-info" ng-show="emailForm.email.$showhint && emailForm.email.$error.pattern">邮箱格式错误</span>
+              <span class="hint-info" ng-show="emailForm.email.$showhint && emailForm.email.$error.sole">该邮箱已经注册</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="emailForm.email.$showhint && emailForm.email.$valid"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-email-imgcaptcha" class="label-tit col-xs-12">验证码：</label>
+            <div class="col-xs-6 col-sm-8">
+              <!-- ensure-correct的值 用来在自定义指令中做些判断 -->
+              <input
+              type="text"
+              name="imgCaptcha"
+              class="form-control"
+              id="input-email-imgcaptcha"
+              placeholder="输入验证码"
+              ng-model="regData.imgCaptcha"
+              maxlength="5"
+              check-captcha="img"
+              required>
+              <span class="hint-info" ng-show="emailForm.imgCaptcha.$showhint && emailForm.imgCaptcha.$error.pattern">验证码格式错误</span>
+              <span class="hint-info" ng-show="emailForm.imgCaptcha.$showhint && emailForm.imgCaptcha.$error.correct">验证码错误</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="emailForm.imgCaptcha.$showhint && emailForm.imgCaptcha.$valid"></span>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+              <img ng-src="{{regData.getCaptcha}}" ng-click="regData.reloadCaptcha()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="signup-email-captcha" class="label-tit col-xs-12">邮件验证码：</label>
+            <div class="col-xs-6 col-sm-8">
+              <input
+              type="text"
+              name="emailCaptcha"
+              class="form-control"
+              id="signup-email-captcha"
+              placeholder="邮件验证码"
+              ng-model="regData.emailCaptcha"
+              check-captcha="email"
+              required>
+              <span class="hint-info" ng-show="emailForm.emailCaptcha.$showhint && emailForm.emailCaptcha.$error.pattern">验证码格式错误</span>
+              <span class="hint-info" ng-show="emailForm.emailCaptcha.$showhint && emailForm.emailCaptcha.$error.correct">验证码错误</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="emailForm.emailCaptcha.$showhint && emailForm.emailCaptcha.$valid"></span>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+              <button type="button" class="btn btn-primary" ng-show="mailBtn.switchShow" ng-disabled="mailBtn.isDis"  ng-click="emailData.getMailCode(user.account)">{{mailBtn.txt}}</button>
+              <button type="button" class="btn btn-default" ng-show="!mailBtn.switchShow" disabled>{{mailBtn.countDown}}后重新发送</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="signup-email-password" class="label-tit col-xs-12">设置密码：</label>
+            <div class="col-xs-12">
+              <input
+              type="password"
+              name="password"
+              class="form-control"
+              id="signup-email-password"
+              placeholder="您要设置的密码"
+              ng-model="user.password"
+              check-password
+              required>
+              <span class="hint-info" ng-show="emailForm.password.$showhint && emailForm.password.$error.pattern">密码格式错误</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="emailForm.password.$showhint && emailForm.password.$valid"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="signup-email-confirmpassword" class="label-tit col-xs-12">密码确认：</label>
+            <div class="col-xs-12">
+              <input
+              type="password"
+              name="confirmpassword"
+              class="form-control"
+              id="signup-email-confirmpassword"
+              placeholder="重新输入您的密码"
+              ng-model="user.confirmpassword"
+              confirm-password="password"
+              required>
+              <span class="hint-info" ng-show="emailForm.confirmpassword.$showhint && emailForm.confirmpassword.$error.confirm">两次密码不一样</span>
+              <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="emailForm.confirmpassword.$showhint && emailForm.confirmpassword.$valid && emailForm.password.$valid"></span>
+            </div>
+          </div>
+          <div class="checkbox">
+            <label class="col-xs-12">
+              <input type="checkbox">我已阅读并同意遵守<a href="#">XX声明</a>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+          type="button"
+          class="btn btn-primary btn-lg btn-block"
+          ng-disabled="emailForm.$invalid || emailForm.emailCaptcha.$error.correct"
+          ng-click="regData.register('email')">注册</button>
+        </div>
+      </form><!-- emailForm -->
+    </div>
+  </div>
+</div>

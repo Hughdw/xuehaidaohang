@@ -1,0 +1,8 @@
+<button type="button" id="tm-btn" class="btn btn-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+  <em><%= num %> <%= title %></em><span class="glyphicon glyphicon-chevron-down "></span>
+</button>
+<ul class="dropdown-menu tm-panel" id="tm-list">
+  <% for(var i = 0; i < list.length; i++){ %>
+    <li><a class="tm-panel-item" href="javascript:;" data-id="<%= list[i].pid %>"><%= list[i].num %> <%= list[i].title %></a></li>
+  <% } %>
+</ul>

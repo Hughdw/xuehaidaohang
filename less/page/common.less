@@ -2,7 +2,7 @@
 // ************************************
 // 引入mixins 变量
 // ************************************
-@import "./variables.less";
+@import "../variables.less";
 @import "../bootstrap/mixins.less";
 
 // ************************************
@@ -54,12 +54,47 @@ a {
     .active();
   }
 }
-.wrap-relative{
-  position: relative;
-}
+// 表单控件提醒文字/图标的定位
+// .wrap-relative{
+//   position: relative;
+// }
 .inner-absolute{
   position: absolute;
+  right: 26px;
+  top: 8px;
 }
+.hint-icon{
+  position: absolute;
+  right: 26px;
+  top: 10px;
+}
+// 使用angularJS的页面和使用jquery的页面都在使用.hint-info，不能随便设置显示/隐藏等属性
+// 如果需要可以在对应的页面进行设置。
+.hint-info{
+  position: absolute;
+  right: 15px;
+  top: 1px;
+  padding: 6px 12px;
+  color: #fff;
+  background-color: #d16d62;
+  .var-border-radius(@border-radius-sm);
+}
+.hint-success{
+  display: none;
+}
+// ng表单控件的border警示状态
+textarea .ng-dirty.ng-invalid,
+select .ng-dirty.ng-invalid,
+input.ng-focused.ng-invalid,
+// 普通表单控件的border警示状态
+input.invalid {
+    border-color: #d16d62;
+    -webkit-box-shadow: 0 0 6px #f8b9b7;
+    -moz-box-shadow: 0 0 6px #f8b9b7;
+    box-shadow: 0 0 6px #f8b9b7;
+}
+
+
 // ************************************
 // bootstarp style 扩展
 // ************************************
@@ -102,6 +137,20 @@ a {
   background: url("../img/logo.png") no-repeat top center;
   padding: 0;
   .text-hide();
+}
+
+.sign-box {
+  .personal,.logout{
+    display: none;
+  }
+}
+.signed {
+  .personal,.logout{
+    display: block;
+  }
+  .sign{
+    display: none;
+  }
 }
 
 // ----------对话框
@@ -189,7 +238,7 @@ a {
 main{
   margin-top:@navbar-height-xs;
 }
-// #main 除了首页外会在main标签中加id="main"
+// 除了首页外其他页面会在main标签中加id="main"
 #main{
   margin-bottom: 20px;
   .container{
@@ -197,48 +246,22 @@ main{
   }
 }
 
-// 登录/注册/忘记密码
-#sign-modal{
-  .tab-list {
-    overflow: hidden;
-    list-style: none;
-    padding: 0;
-    .size(100%,40px);
-    line-height: 40px;
+.alert-wrap{
+  display: none;
+  position: fixed;
+  top: 55px;
+  width: 100%;
+  height: 52px;
+  padding: 0;
+  z-index: 99;
+  .alert{
     text-align: center;
-    margin-bottom: 0;
-    li {
-      float: left;
-      width: 50%;
-      background: #cac3af;
-    }
-    .tab-list-item {
-      display: block;
-      color: #fff;
-    }
-    .active {
-      background: #fff;
-      .tab-list-item {
-        color: #333;
-      }
-    }
+    width: 200px;
+    padding: 8px;
+    margin: 0 auto;
   }
-
-
-  .link-txt {
-    font-size: 12px;
-    text-align: right;
-    padding-right: 20px;
-  }
-  .signin-btn{
-    margin-left: 2px;
-  }
-  .checkbox{
-    padding-top: 0;
-    padding-bottom: 8px;
-  }
-
 }
+
 
 // 加载动画
 .loading{
@@ -375,8 +398,7 @@ main{
   }
 }
 
-
-// ----------底部相关
+// 底部相关
 footer{
   background-color: #e9e5db;
 }
@@ -410,6 +432,9 @@ footer{
   #main .container{
     padding-top: 30px;
   }
+  .alert-wrap{
+    top: 85px;
+  }
   footer {
     height: @footer-height-sm;
   }
@@ -431,6 +456,8 @@ footer{
     padding-top: 60px;
   }
 }
+
+
 // ----------购物车
 .shopping-car {
   float: right;
@@ -444,6 +471,56 @@ footer{
       margin-left: 3px;
     }
   }
+  .sc-panel {
+    width: @shopping-car-panel-width;
+    padding: 10px 0;
+    top: 90%;
+    .var-border-radius-1(@border-radius-lg);
+    .var-border-radius-2(0);
+    .var-border-radius-3(@border-radius-lg);
+    .var-border-radius-4(@border-radius-lg);
+  }
+  .sc-cont{
+    padding: 0;
+    list-style: none;
+    min-height: 50px;
+  }
+  .sc-panel-item{
+    // height: @shopping-car-panelitem-height;
+    line-height: @shopping-car-panelitem-height;
+    overflow: hidden;
+    margin: 3px 15px;
+    span{
+      float: left;
+    }
+    .sc-subtit{
+      width: 156px;
+      margin: 0 8px;
+    }
+  }
+  .btn-del{
+    float: left;
+    padding: 0;
+    margin-right: 10px;
+    margin-top: 2px;
+    color: @gray-light;
+    &:hover{
+      background-color: transparent;
+    }
+  }
+  .goto{
+    text-align: right;
+    color: @shopping-car-panel-gotobtn-color;
+    font-size: 14px;
+  }
+  // 购物车为空时的背景
+  #sc-empty{
+    position: absolute;
+    top: 25px;
+    left: 30px;
+    color: #aaa;
+  }
+  // 列表展开时的样式改变
   .open{
     .dropdown-toggle{
       background-color: @dropdown-bg;
@@ -457,40 +534,6 @@ footer{
       z-index: 1001;
       .box-shadow(0 -4px 7px rgba(0,0,0,.08));
     }
-  }
-  .sc-panel {
-    width: @shopping-car-panel-height;
-    padding: 10px 0;
-    top: 90%;
-    .var-border-radius-1(@border-radius-lg);
-    .var-border-radius-2(0);
-    .var-border-radius-3(@border-radius-lg);
-    .var-border-radius-4(@border-radius-lg);
-  }
-  .sc-panel-item{
-    height: @shopping-car-panelitem-height;
-    line-height: @shopping-car-panelitem-height;
-    overflow: hidden;
-    margin: 3px auto;
-    span{
-      // padding-top: 5px;
-      // vertical-align:bottom;
-    }
-  }
-  .btn-del{
-    float: left;
-    padding: 0;
-    margin: 0 10px;
-    color: @gray-light;
-    // .text-emphasis-variant(@gray-light);
-    &:hover{
-      background-color: transparent;
-    }
-  }
-  .goto{
-    text-align: right;
-    color: @shopping-car-panel-gotobtn-color;
-    font-size: 14px;
   }
 }
 @media (min-width:@screen-sm-min) {

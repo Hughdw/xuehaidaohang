@@ -1,0 +1,48 @@
+// ************************************
+// 引入mixins 变量
+// ************************************
+@import "../../variables.less";
+@import "../../bootstrap/mixins.less";
+
+// ************************************
+// >=平板屏幕（768px）
+// ************************************
+@media (min-width: @screen-sm-min) {
+  .shopping-confirm{
+    .checkbox{
+      .size(70px,70px);
+      line-height: 70px;
+      margin-top: 0;
+    }
+  }
+  .recharge-list .recharge-item{
+    background-position: 12px center;
+    .cont{
+      margin-left: 62px;
+    }
+  }
+  .recharge-list .other-money{
+    height: 50px;
+    line-height: 50px;
+    .form-control{
+      width: 130px;
+    }
+  }
+
+}
+
+// ************************************
+// >=中等屏幕（992px）
+// ************************************
+@media (min-width: @screen-md-min) {
+  .sidebar{
+    margin-top: 0;
+  }
+}
+
+// ************************************
+// >=大屏幕（1200px）
+// ************************************
+@media (min-width: @screen-lg-min) {
+
+}

@@ -2,7 +2,7 @@
 // ************************************
 // 引入mixins 变量
 // ************************************
- @import "./variables.less";
+ @import "../variables.less";
  @import "../bootstrap/mixins.less";
 
  // 主体内容
@@ -187,6 +187,8 @@ section{
     .size(@home-remark-gpsskip-btn-width,@home-remark-gpsskip-btn-height);
     .var-border-radius(@border-radius-lg);
     .box-shadow(0px 1px 2px @home-remark-gpsskip-boxshadow inset);
+    line-height: @home-remark-gpsskip-btn-height;
+    padding: 0;
     background-color: @home-remark-gpsskip-btn-bg;
     margin-top: 100px;
     color: @home-remark-txt-color;

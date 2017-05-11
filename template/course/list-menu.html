@@ -1,0 +1,162 @@
+<div class="menu collapse menu-collapse" id="gps-menu-collapse">
+  <div class="row">
+    <!-- TAG切换按钮 -->
+    <div class="col-md-1" id="menu-tabs">
+      <ul class="tab-list">
+        <li class="menu-tabs-item <%= level[0].active %>"><a data-target="#basis" class="menu-tab" data-categoryid="<%= level[0].categoryid %>" data-name="<%= level[0].name %>"><span><%= level[0].name %></span></a></li>
+        <li class="menu-tabs-item <%= level[1].active %>"><a data-target="#enhance" class="menu-tab" data-categoryid="<%= level[1].categoryid %>" data-name="<%= level[1].name %>"><span><%= level[1].name %></span></a></li>
+      </ul>
+    </div>
+    <!-- TAG切换内容 -->
+    <div class="col-md-11">
+      <div class="tab-content" id="tab-content">
+        <div class="row tab-pane <%= level[0].active %>" id="basis">
+            <div class="col-md-12 menu-filter">
+              <!-- Nav tabs -->
+              <div class="menu-filter-des">
+                <span class="menu-filter-des-item">年级</span>
+              </div>
+              <!-- Tab panes -->
+              <div class="menu-filter-cont grade" id="grade-1-content">
+                <!-- 把小学、初中、高中分成3个ul列表，可以通过CSS控制他们的位置 -->
+                <!-- <% var gradeArr = grade['grade_'+level[0].categoryid] %>
+                <ul class="grade-p">
+                  <% for (var gr = 0;gr < gradeArr.length; gr++) {%>
+                    <% if (gradeArr[gr].stage === 'primary') {%>
+                      <li class="<%= gradeArr[gr].active %>"><a href="javascript:;" class="menu-filter-bt grade-bt" data-target="#subjects-<%= gradeArr[gr].categoryid %>"><%= gradeArr[gr].name %></a></li>
+                    <% } %>
+                  <% } %>
+                </ul>
+                <ul class="grade-j">
+                  <% for (var gr = 0;gr < gradeArr.length; gr++) {%>
+                    <% if (gradeArr[gr].stage === 'junior') {%>
+                      <li class="<%= gradeArr[gr].active %>"><a href="javascript:;" class="menu-filter-bt grade-bt" data-target="#subjects-<%= gradeArr[gr].categoryid %>"><%= gradeArr[gr].name %></a></li>
+                    <% } %>
+                  <% } %>
+                </ul>
+                <ul class="grade-s">
+                  <% for (var gr = 0;gr < gradeArr.length; gr++) {%>
+                    <% if (gradeArr[gr].stage === 'senior') {%>
+                      <li class="<%= gradeArr[gr].active %>"><a href="javascript:;" class="menu-filter-bt grade-bt" data-target="#subjects-<%= gradeArr[gr].categoryid %>"><%= gradeArr[gr].name %></a></li>
+                    <% } %>
+                  <% } %>
+                </ul> -->
+                <ul class="grade-list">
+                  <% var gradeArr = grade['grade_'+level[0].categoryid] %>
+                  <% for (var gr = 0;gr < gradeArr.length; gr++) {%>
+                    <li class="<%= gradeArr[gr].active %> <%= gradeArr[gr].stage %>"><a href="javascript:;" class="menu-filter-bt grade-bt" data-target="#subjects-<%= gradeArr[gr].categoryid %>" data-name="<%= gradeArr[gr].name %>" data-categoryid="<%= gradeArr[gr].categoryid %>"><%= gradeArr[gr].name %></a></li>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-12 menu-filter">
+              <div class="menu-filter-des">
+                <span class="menu-filter-des-item">学科</span>
+              </div>
+              <div class="menu-filter-cont subjects" id="subjects-1-content">
+                <% for (var gr = 0;gr < gradeArr.length; gr++) {%>
+                  <% var subjectsArr = subjects['subjects_'+gradeArr[gr].categoryid] %>
+                  <div class="subjects-panel <%= gradeArr[gr].active %>" id="subjects-<%= gradeArr[gr].categoryid %>">
+                    <% for (var su = 0;su < subjectsArr.length; su++) {%>
+                      <a href="javascript:;" class="menu-filter-bt subjects-bt" data-target="#version-<%= subjectsArr[su].categoryid %>" data-name="<%= subjectsArr[su].name %>" data-categoryid="<%= subjectsArr[su].categoryid %>"><%= subjectsArr[su].name %></a>
+                    <% } %>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+            <div class="col-md-12 menu-filter">
+              <div class="menu-filter-des">
+                <span class="menu-filter-des-item">版本</span>
+              </div>
+              <div class="menu-filter-cont version" id="version-1-content">
+                <% for (var gr = 0;gr < gradeArr.length; gr++) {%>
+                  <% var subjectsArr = subjects['subjects_'+gradeArr[gr].categoryid] %>
+                  <% for (var su = 0;su < subjectsArr.length; su++) {%>
+                    <% var versionArr = version['version_'+subjectsArr[su].categoryid] %>
+                    <!-- <% if (gradeArr[gr].active === 'active' && subjectsArr[su].active === 'active') {%>
+                      <%='active'%>
+                    <% } %> -->
+                    <div class="version-panel" id="version-<%= subjectsArr[su].categoryid %>">
+                      <% for (var ve = 0;ve < versionArr.length; ve++) {%>
+                        <a href="javascript:;" class="menu-filter-bt version-bt" data-name="<%= versionArr[ve].name %>" data-categoryid="<%= versionArr[ve].categoryid %>"><%= versionArr[ve].name %></a>
+                      <% } %>
+                    </div>
+                  <% } %>
+                <% } %>
+                <div class="operation-hint active">请先选择 学科 </div>
+              </div>
+            </div>
+            <div class="col-md-12 menu-filter menu-filter-last">
+              <div class="menu-filter-des">
+                <span class="menu-filter-des-item">知识</span>
+              </div>
+              <div class="menu-filter-cont knowledge" id="knowledge-1-content">
+                <div id="knowledge-1-list"></div>
+                <div class="operation-hint active">请先选择 学科 和 版本</div>
+              </div>
+            </div>
+        </div>
+        <div class="row tab-pane <%= level[1].active %>" id="enhance">
+          <div class="col-md-12 menu-filter">
+            <!-- Nav tabs -->
+            <div class="menu-filter-des">
+              <span class="menu-filter-des-item">年级</span>
+            </div>
+            <!-- Tab panes -->
+            <div class="menu-filter-cont grade" id="grade-2-content">
+              <ul class="grade-list">
+                <% var gradeArr = grade['grade_'+level[1].categoryid] %>
+                <% for (var gr = 0;gr < gradeArr.length; gr++) {%>
+                  <li class="<%= gradeArr[gr].active %> <%= gradeArr[gr].stage %>"><a href="javascript:;" class="menu-filter-bt grade-bt" data-target="#subjects-<%= gradeArr[gr].categoryid %>" data-name="<%= gradeArr[gr].name %>" data-categoryid="<%= gradeArr[gr].categoryid %>"><%= gradeArr[gr].name %></a></li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-12 menu-filter">
+            <div class="menu-filter-des">
+              <span class="menu-filter-des-item">学科</span>
+            </div>
+            <div class="menu-filter-cont subjects" id="subjects-2-content">
+              <% for (var gr = 0;gr < gradeArr.length; gr++) {%>
+                <% var subjectsArr = subjects['subjects_'+gradeArr[gr].categoryid] %>
+                <div class="subjects-panel <%= gradeArr[gr].active %>" id="subjects-<%= gradeArr[gr].categoryid %>">
+                  <% for (var su = 0;su < subjectsArr.length; su++) {%>
+                    <a href="javascript:;" class="menu-filter-bt subjects-bt" data-target="#version-<%= subjectsArr[su].categoryid %>" data-name="<%= subjectsArr[su].name %>"data-categoryid="<%= subjectsArr[su].categoryid %>"><%= subjectsArr[su].name %></a>
+                  <% } %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+          <div class="col-md-12 menu-filter">
+            <div class="menu-filter-des">
+              <span class="menu-filter-des-item">版本</span>
+            </div>
+            <div class="menu-filter-cont version" id="version-2-content">
+              <% for (var gr = 0;gr < gradeArr.length; gr++) {%>
+                <% var subjectsArr = subjects['subjects_'+gradeArr[gr].categoryid] %>
+                <% for (var su = 0;su < subjectsArr.length; su++) {%>
+                  <% var versionArr = version['version_'+subjectsArr[su].categoryid] %>
+                  <div class="version-panel" id="version-<%= subjectsArr[su].categoryid %>">
+                    <% for (var ve = 0;ve < versionArr.length; ve++) {%>
+                      <a href="javascript:;" class="menu-filter-bt version-bt" data-name="<%= versionArr[ve].name %>" data-categoryid="<%= versionArr[ve].categoryid %>"><%= versionArr[ve].name %></a>
+                    <% } %>
+                  </div>
+                <% } %>
+              <% } %>
+              <div class="operation-hint active">请先选择 学科 </div>
+            </div>
+          </div>
+          <div class="col-md-12 menu-filter menu-filter-last">
+            <div class="menu-filter-des">
+              <span class="menu-filter-des-item">知识</span>
+            </div>
+            <div class="menu-filter-cont knowledge" id="knowledge-2-content">
+              <div id="knowledge-2-list"></div>
+              <div class="operation-hint active">请先选择 学科 和 版本</div>
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

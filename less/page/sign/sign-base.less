@@ -1,0 +1,72 @@
+// ************************************
+// 引入mixins 变量
+// ************************************
+@import "../../variables.less";
+@import "../../bootstrap/mixins.less";
+// ************************************
+// 默认样式
+// ************************************
+body{
+  background-color:inherit;
+}
+
+// ----------主内容
+// 登录/注册/忘记密码
+#sign-modal{
+  overflow:hidden;
+  // 默认不显示
+  .modal-content{
+    // display: none;
+    z-index: 1;
+  }
+  .waper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  .tab-list {
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    .size(100%,40px);
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 0;
+    li {
+      float: left;
+      width: 50%;
+      background: #cac3af;
+    }
+    .tab-list-item {
+      display: block;
+      color: #fff;
+    }
+    .active {
+      background: #fff;
+      .tab-list-item {
+        color: #333;
+      }
+    }
+  }
+
+  .link-txt {
+    font-size: 12px;
+    text-align: right;
+    padding-right: 20px;
+  }
+  .signin-btn{
+    margin-left: 2px;
+  }
+  .checkbox{
+    padding-top: 0;
+    padding-bottom: 8px;
+  }
+}
+// 定位(position,top,z-index)
+// 盒模型(float,width,display)
+// 排版(font,color,text-align,line-height)
+// 视觉(border,background,border-radius)
+// 杂项(opacity...)

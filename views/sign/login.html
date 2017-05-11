@@ -1,0 +1,62 @@
+<!-- 登录 -->
+<div class="modal-content" id="sign-in">
+  <div class="modal-header">
+    <button type="button" class="close close-ele" data-dismiss="modal" aria-label="Close" ng-click="top.closeSignModal()"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">登录</h4>
+  </div>
+  <div class="modal-body">
+    <form name="loginForm" novalidate ng-controller="loginCtrl" ng-submit="login(loginForm.$valid,loginUser)">
+      <div class="form-horizontal form-cont">
+        <div class="form-group">
+          <label for="signin-account" class="label-tit col-xs-5">账号：</label>
+          <span class="link-txt col-xs-7"><a href="#/register" id="signup-btn">免费注册</a></span>
+          <div class="col-xs-12">
+            <input
+            type="text"
+            name="account"
+            class="form-control"
+            id="signin-account"
+            placeholder="请输入邮箱或者手机号"
+            ng-model="loginUser.account"
+            check-account
+            required>
+            <span class="hint-info" ng-show="loginForm.account.$showhint && loginForm.account.$error.empty">邮箱/手机号不能为空</span>
+            <span class="hint-info" ng-show="loginForm.account.$showhint && loginForm.account.$error.pattern">邮箱/手机号格式错误</span>
+            <span class="hint-info" ng-show="loginForm.account.$showhint && loginForm.account.$error.sole && loginForm.account.$accountType === 'email'">该邮箱未注册</span>
+            <span class="hint-info" ng-show="loginForm.account.$showhint && loginForm.account.$error.sole && loginForm.account.$accountType === 'mobile'">该手机未注册</span>
+            <span class="hint-icon glyphicon glyphicon-ok-sign text-success" ng-show="loginForm.account.$showhint && loginForm.account.$valid"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="signin-password" class="label-tit col-xs-5">密码：</label>
+          <span class="link-txt col-xs-7"><a href="/forgot-password.html" target="_blank">忘记密码</a></span>
+          <div class="col-xs-12">
+            <input
+            type="password"
+            name="password"
+            class="form-control"
+            id="signin-password"
+            placeholder="请输入您的密码"
+            ng-model="loginUser.password"
+            check-password
+            required>
+            <span class="hint-info" ng-show="loginForm.password.$showhint && loginForm.password.$error.empty">密码不能为空</span>
+            <span class="hint-info" ng-show="loginForm.password.$showhint && loginForm.password.$error.pattern">密码格式错误</span>
+            <span class="hint-info" ng-show="loginForm.password.$showhint && loginForm.password.$error.correct">密码错误</span>
+          </div>
+        </div>
+        <!-- <div class="checkbox">
+          <label class="col-xs-12">
+            <input type="checkbox">7天内自动登录
+          </label>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <button
+        type="submit"
+        class="btn btn-primary btn-lg btn-block"
+        >登录</button>
+      </div>
+    </form>
+  </div>
+</div>

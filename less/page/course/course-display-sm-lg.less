@@ -1,0 +1,56 @@
+// ************************************
+// 引入mixins 变量
+// ************************************
+@import "../../variables.less";
+@import "../../bootstrap/mixins.less";
+
+// ************************************
+// >=平板屏幕（768px）
+// ************************************
+@media (min-width: @screen-sm-min) {
+  // ----------主播放区域
+  // 标题下拉框
+  .tit-master{
+    width: auto;
+    .btn-group{
+      width: auto;
+    }
+    #tm-btn{
+      width: auto;
+      font-size: 16px;
+    }
+  }
+  .tm-panel{
+    width: auto;
+  }
+  // 播放
+  .play{
+    height: 523px;
+  }
+}
+
+// ************************************
+// >=中等屏幕（992px）
+// ************************************
+@media (min-width: @screen-md-min) {
+  // ----------侧栏区域
+  .sidebar-tabs{
+    height: 458px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+// 定位(position,top,z-index)
+// 盒模型(float,width,display)
+// 排版(font,color,text-align,line-height)
+// 视觉(border,background,border-radius)
+// 杂项(opacity...)

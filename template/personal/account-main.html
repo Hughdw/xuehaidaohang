@@ -1,252 +1,345 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-9 main">
-      <div class="wrap-panel">
-        <div class="wp-tit">
-          <h3 class="wp-tit-inner">账户资料</h3>
+<div class="wp-tit">
+  <h3 class="wp-tit-inner">账户资料</h3>
+</div>
+<div class="panel-group account-list wp-body" id="accordion">
+  <div class="panel account-panel account-avatar">
+    <div class="account-tit">
+      <h3>网站头像</h3>
+      <div class="des" id="current-avatar"><img src="<%= avatar %>" width="100%" height-"100%"/></div>
+      <div class="operation">
+        <a id="collapse-link-avatar" class="collapse-link" data-target="#collapse-avatar">修改</a>
+      </div>
+    </div>
+    <div class="account-collapse collapse" id="collapse-avatar">
+      <div class="account-collapse-inner row">
+        <% for (var i = 0;i < avatarList.length;i++) { %>
+          <%if (avatar === avatarList[i]) {%>
+            <a class="avatar-link col-xs-4 col-sm-2 active avatar-link-<%=i%>" href="javascript:;" data-id="<%=i%>" id="selected-avatar"><img class="avatar-img" src="<%= avatarList[i]%>" width="100%" height="100%" /></a>
+          <% } else {%>
+            <a class="avatar-link col-xs-4 col-sm-2 avatar-link-<%=i%>" href="javascript:;" data-id="<%=i%>"><img class="avatar-img" src="<%= avatarList[i]%>" width="100%" height="100%" /></a>
+          <% } %>
+        <% } %>
+        <div class="col-xs-12 col-sm-3 account-btn-box">
+          <button type="button" class="btn btn-primary btn-block" id="button-avatar">确认</button>
         </div>
-        <div class="panel-group account-list wp-body" id="accordion">
-          <div class="panel account-panel account-avatar">
-            <div class="account-tit">
-              <h3>网站头像</h3>
-              <div class="des"><img src="static/img/personal/personal-avatar-1.gif"/></div>
-              <div class="operation">
-                <a id="collapse-link-avatar" class="collapse-link" data-target="#collapse-avatar">修改</a>
+      </div>
+    </div>
+  </div>
+  <div class="panel account-panel account-nickname">
+    <div class="account-tit">
+      <h3>用户昵称</h3>
+      <div class="des">
+        <span class="des-txt" id="des-nickname">
+          <% if (!!name) {%>
+            <%= name %>
+          <% } else { %>
+            用于在网站中交流的昵称
+          <% } %>
+        </span>
+      </div>
+      <div class="operation">
+        <% if (!!name) {%>
+          <a id="collapse-link-nickname" class="collapse-link" data-target="#collapse-nickname">修改</a>
+        <% } else { %>
+          <a id="collapse-link-nickname" class="collapse-link" data-target="#collapse-nickname">设置</a>
+        <% } %>
+      </div>
+    </div>
+    <div class="account-collapse collapse" id="collapse-nickname">
+      <div class="account-collapse-inner">
+        <div class="form-horizontal" id="form-nickname-edit">
+          <div class="form-group">
+            <label for="input-nickname" class="col-sm-3 control-label input-des">设置昵称：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control input-5" id="input-nickname" placeholder="用户昵称">
+              <span class="hint-info hint-info-5"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3 account-btn-box">
+              <button type="button" class="btn btn-primary btn-block" id="button-nickname">确认</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel account-panel account-password">
+    <div class="account-tit">
+      <h3>登录密码</h3>
+      <div class="des"><span class="des-txt">登录网站时输入的密码</span></div>
+      <div class="operation">
+        <a id="collapse-link-password" class="collapse-link" data-target="#collapse-password">修改</a>
+      </div>
+    </div>
+    <div class="account-collapse collapse" id="collapse-password">
+      <div class="account-collapse-inner">
+        <div class="form-horizontal" id="form-password-edit">
+          <div class="form-group">
+            <label for="input-password" class="col-sm-3 control-label input-des">当前密码：</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control input-clear input-6" id="input-old-password" placeholder="请输入当前密码">
+              <span class="hint-info hint-info-6"></span>
+              <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-6"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-new-password" class="col-sm-3 control-label input-des">新密码：</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control input-clear input-7" id="input-new-password" placeholder="请输入新密码">
+              <span class="hint-info hint-info-7"></span>
+              <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-7"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-confirm-password" class="col-sm-3 control-label input-des">重输新密码：</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control input-clear input-8" id="input-confirm-password" placeholder="请重新输入新密码">
+              <span class="hint-info hint-info-8"></span>
+              <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-8"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3 account-btn-box">
+              <button type="button" class="btn btn-primary btn-block" id="button-password">确认</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel account-panel account-mobile">
+    <div class="account-tit">
+      <h3>绑定手机</h3>
+      <div class="des">
+        <span class="des-txt" id="des-mobile">
+          <% if(mobile) {%>
+            <%= mobile %>
+          <% } else {%>
+            可用于登录网站时的帐号，也可以通过手机找回登录密码
+          <% } %>
+        </span>
+      </div>
+      <div class="operation">
+        <% if (mobile) {%>
+          <a class="collapse-link" id="collapse-link-mobile" data-target="#collapse-mobile">更换绑定</a>
+        <% } else { %>
+          <a class="collapse-link" id="collapse-link-mobile" data-target="#collapse-mobile">绑定</a>
+        <% } %>
+      </div>
+    </div>
+    <div class="account-collapse collapse" id="collapse-mobile">
+      <div class="account-collapse-inner">
+        <!-- 设置手机绑定 -->
+        <div class="form-horizontal collapse-default hidden" id="form-mobile-bindmobile">
+          <div class="form-group">
+            <label for="input-mobile" class="col-sm-3 control-label input-des">手机号码：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control input-clear input-0" id="input-mobile-bindmobile" placeholder="请输入手机号码">
+              <span class="hint-info hint-info-0"></span>
+              <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-0"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-img-captcha-bindmobile" class="col-xs-12 col-sm-3 control-label input-des">图片验证码：</label>
+            <div class="col-xs-6 col-sm-6">
+              <input type="text" class="form-control input-clear input-2" id="input-img-captcha-bindmobile" placeholder="图片验证码">
+              <span class="hint-info hint-info-2"></span>
+              <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-2"></span>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <img class="get-img-captcha" src="http://www.quick.com:8081/api/getCaptcha">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-mobile-captcha-bindmobile" class="col-sm-3 col-xs-12 control-label input-des">短信验证码：</label>
+            <div class="col-sm-6 col-xs-6">
+              <input type="text" class="form-control input-3" id="input-mobile-captcha-bindmobile" placeholder="手机验证码">
+              <span class="hint-info hint-info-3"></span>
+              <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-3"></span>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+              <button type="button" class="btn btn-primary btn-block" id="get-mobile-captcha-bindmobile">获取验证码</button>
+              <button class="btn btn-default btn-block countdown" disabled="disabled" id="captcha-countdown-bindmobile"></button>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3 account-btn-box">
+              <button type="button" class="btn btn-primary btn-block" id="button-mobile-bindmobile">确认</button>
+            </div>
+          </div>
+        </div>
+        <!-- 修改手机绑定 -->
+        <div class="form-horizontal collapse-edit hidden">
+          <div class="edit-step-1 edit-step" id="form-mobile-editmobile1">
+            <div class="form-group">
+              <label for="input-old-mobile" class="col-sm-3 control-label input-des">原手机号码：</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control input-clear input-0" id="input-old-mobile" value="<%= mobile %>" disabled>
               </div>
             </div>
-            <div class="account-collapse collapse" id="collapse-avatar">
-              <div class="account-collapse-inner row">
-                <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-1.gif"/></a>
-                <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-2.gif"/></a>
-                <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-3.gif"/></a>
-                <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-4.gif"/></a>
-                <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-5.gif"/></a>
-                <a class="avatar-link col-xs-4 col-sm-2" href="javascript:;"><img class="avatar-img" src="static/img/personal/personal-avatar-6.gif"/></a>
-                <div class="col-xs-12 col-sm-4 account-btn-box">
-                  <button type="button" class="btn btn-primary btn-block">确认</button>
-                </div>
+            <div class="form-group">
+              <label for="input-mobile-captcha-editmobile1" class="col-sm-3 col-xs-12 control-label input-des">短信验证码：</label>
+              <div class="col-sm-6 col-xs-6">
+                <input type="text" class="form-control input-clear input-3" id="input-mobile-captcha-editmobile1" placeholder="手机验证码">
+                <span class="hint-info hint-info-3"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-3"></span>
+              </div>
+              <div class="col-sm-3 col-xs-6">
+                <button type="button" class="btn btn-primary btn-block" id="get-mobile-captcha-editmobile1">获取验证码</button>
+                <button class="btn btn-default btn-block countdown" id="captcha-countdown-editmobile1" disabled="disabled"></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-9 col-sm-offset-3 account-btn-box">
+                <button type="button" class="btn btn-primary btn-block" id="button-mobile-editmobile1">下一步</button>
               </div>
             </div>
           </div>
-          <div class="panel account-panel account-nickname">
-            <div class="account-tit">
-              <h3>用户昵称</h3>
-              <div class="des"><span class="des-txt">用于在网站中交流的昵称</span></div>
-              <div class="operation">
-                <a id="collapse-link-nickname" class="collapse-link" data-target="#collapse-nickname">修改</a>
+          <div class="edit-step-2 edit-step" id="form-mobile-editmobile2">
+            <div class="form-group">
+              <label for="input-new-mobile" class="col-sm-3 control-label input-des">新手机号码：</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control input-clear input-0" id="input-new-mobile" placeholder="请输入新手机号码">
+                <span class="hint-info hint-info-0"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-0"></span>
               </div>
             </div>
-            <div class="account-collapse collapse" id="collapse-nickname">
-              <div class="account-collapse-inner">
-                <div class="form-horizontal">
-                  <div class="form-group">
-                    <label for="input-nickname" class="col-sm-4 control-label input-des">设置昵称：</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" id="input-nickname" placeholder="用户昵称"></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-8 col-sm-offset-4 account-btn-box">
-                      <button type="button" class="btn btn-primary btn-block">确认</button>
-                    </div>
-                  </div>
-                </div>
+            <div class="form-group">
+              <label for="input-mobile-captcha-editmobile2" class="col-sm-3 col-xs-12 control-label input-des">短信验证码：</label>
+              <div class="col-sm-6 col-xs-6">
+                <input type="text" class="form-control input-clear input-3" id="input-mobile-captcha-editmobile2" placeholder="手机验证码">
+                <span class="hint-info hint-info-3"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-3"></span>
+              </div>
+              <div class="col-sm-3 col-xs-6">
+                <button type="button" class="btn btn-primary btn-block" id="get-mobile-captcha-editmobile2">获取验证码</button>
+                <button class="btn btn-default btn-block countdown" id="captcha-countdown-editmobile2" disabled="disabled"></button>
               </div>
             </div>
-          </div>
-          <div class="panel account-panel account-password">
-            <div class="account-tit">
-              <h3>登录密码</h3>
-              <div class="des"><span class="des-txt">登录网站时输入的密码</span></div>
-              <div class="operation">
-                <a id="collapse-link-password" class="collapse-link" data-target="#collapse-password">修改</a>
-              </div>
-            </div>
-            <div class="account-collapse collapse" id="collapse-password">
-              <div class="account-collapse-inner">
-                <div class="form-horizontal">
-                  <div class="form-group">
-                    <label for="input-password" class="col-sm-4 control-label input-des">当前密码：</label>
-                    <div class="col-sm-8"><input type="password" class="form-control" id="input-password" placeholder="请输入当前密码"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="input-new-password" class="col-sm-4 control-label input-des">新密码：</label>
-                    <div class="col-sm-8"><input type="password" class="form-control" id="input-new-password" placeholder="请输入新密码"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="input-confirm-password" class="col-sm-4 control-label input-des">重输新密码：</label>
-                    <div class="col-sm-8"><input type="password" class="form-control" id="input-confirm-password" placeholder="请重新输入新密码"></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-8 col-sm-offset-4 account-btn-box">
-                      <button type="button" class="btn btn-primary btn-block">确认</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel account-panel account-mobile">
-            <div class="account-tit">
-              <h3>绑定手机</h3>
-              <div class="des"><span class="des-txt">可用于登录网站时的帐号，也可以通过手机找回登录密码</span></div>
-              <div class="operation"><a class="collapse-link" id="collapse-link-mobile" data-target="#collapse-mobile">修改</a></div>
-            </div>
-            <div class="account-collapse collapse" id="collapse-mobile">
-              <div class="account-collapse-inner">
-                <!-- 设置手机绑定 -->
-                <div class="form-horizontal collapse-default hidden">
-                  <div class="form-group">
-                    <label for="input-mobile" class="col-sm-4 control-label input-des">手机号码：</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" id="input-mobile" placeholder="请输入手机号码"></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-4 control-label input-des">获取验证码：</div>
-                    <div class="col-sm-8 account-btn-box">
-                      <button type="button" class="btn btn-primary btn-block">点击获取验证码</button>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="input-mobile-captcha-0" class="col-sm-4 control-label input-des">输入验证码：</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" id="input-mobile-captcha-0" placeholder="请输入手机验证码"></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-8 col-sm-offset-4 account-btn-box">
-                      <button type="button" class="btn btn-primary btn-block">确认</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- 修改手机绑定 -->
-                <div class="form-horizontal collapse-edit hidden">
-                  <div class="edit-step-1">
-                    <div class="form-group">
-                      <label for="input-old-mobile" class="col-sm-4 control-label input-des">原手机号码：</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" id="input-old-mobile" value="13944556611" disabled></div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-4 control-label input-des">获取验证码：</div>
-                      <div class="col-sm-8 account-btn-box">
-                        <button type="button" class="btn btn-primary btn-block">点击获取验证码</button>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="input-mobile-captcha-1" class="col-sm-4 control-label input-des">输入验证码：</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" id="input-mobile-captcha-1" placeholder="请输入手机验证码"></div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-8 col-sm-offset-4 account-btn-box">
-                        <button type="button" class="btn btn-primary btn-block">下一步</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="edit-step-2">
-                    <div class="form-group">
-                      <label for="input-new-mobile" class="col-sm-4 control-label input-des">新手机号码：</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" id="input-new-mobile" placeholder="请输入新绑定手机号码"></div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-4 control-label input-des">获取验证码：</div>
-                      <div class="col-sm-8 account-btn-box">
-                        <button type="button" class="btn btn-primary btn-block">点击获取验证码</button>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="input-mobile-captcha-2" class="col-sm-4 control-label input-des">输入验证码：</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" id="input-mobile-captcha-2" placeholder="请输入手机验证码"></div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-8 col-sm-offset-4 account-btn-box">
-                        <button type="button" class="btn btn-primary btn-block">确认</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel account-panel account-email">
-            <div class="account-tit">
-              <h3>绑定邮箱</h3>
-              <div class="des"><span class="des-txt">可用于登录网站时的帐号，也可以通过邮箱找回登录密码</span></div>
-              <div class="operation"><a class="collapse-link" id="collapse-link-email" data-target="#collapse-email">修改</a></div>
-            </div>
-            <div class="account-collapse collapse" id="collapse-email">
-              <div class="account-collapse-inner">
-                <!-- 设置邮箱绑定 -->
-                <div class="form-horizontal collapse-default hidden">
-                  <div class="form-group">
-                    <label for="input-email" class="col-sm-4 control-label input-des">邮箱地址：</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" id="input-email" placeholder="请输入邮箱地址"></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-4 control-label input-des">获取验证码：</div>
-                    <div class="col-sm-8 account-btn-box">
-                      <button type="button" id="testtooltip1" class="btn btn-primary btn-block">点击获取验证码</button>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="input-email-captcha-0" class="col-sm-4 control-label input-des">输入验证码：</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" id="input-email-captcha-0" placeholder="请输入手机验证码"></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-8 col-sm-offset-4 account-btn-box">
-                      <button type="button" id="testtooltip" class="btn btn-primary btn-block" >确s认</button>
-                    </div>
-                  </div>
-                </div>
-                <!-- 修改邮箱绑定 -->
-                <div class="form-horizontal collapse-edit hidden">
-                  <div class="edit-step-1">
-                    <div class="form-group">
-                      <label for="input-old-email" class="col-sm-4 control-label input-des">原邮箱地址：</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" id="input-old-email" value="email@163.com" disabled></div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-4 control-label input-des">获取验证码：</div>
-                      <div class="col-sm-8 account-btn-box">
-                        <button type="button" class="btn btn-primary btn-block">点击获取验证码</button>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="input-email-captcha-1" class="col-sm-4 control-label input-des">输入验证码：</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" id="input-email-captcha-1" placeholder="请输入手机验证码"></div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-8 col-sm-offset-4 account-btn-box">
-                        <button type="button" class="btn btn-primary btn-block">下一步</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="edit-step-2">
-                    <div class="form-group">
-                      <label for="input-new-email" class="col-sm-4 control-label input-des">新邮箱地址：</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" id="input-new-email" placeholder="请输入新绑定邮箱地址"></div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-4 control-label input-des">获取验证码：</div>
-                      <div class="col-sm-8 account-btn-box">
-                        <button type="button" class="btn btn-primary btn-block">点击获取验证码</button>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="input-email-captcha-2" class="col-sm-4 control-label input-des">输入验证码：</label>
-                      <div class="col-sm-8"><input type="text" class="form-control" id="input-email-captcha-2" placeholder="请输入手机验证码"></div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-8 col-sm-offset-4 account-btn-box">
-                        <button type="button" class="btn btn-primary btn-block">确认</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="form-group">
+              <div class="col-sm-9 col-sm-offset-3 account-btn-box">
+                <button type="button" class="btn btn-primary btn-block" id="button-mobile-editmobile2">提交</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="wrap-panel" id="sidebar">
-        <div class="wp-body">
-          <% include('./sidebar',sidebar) %>
+  </div>
+  <div class="panel account-panel account-email">
+    <div class="account-tit">
+      <h3>绑定邮箱</h3>
+      <div class="des">
+        <span class="des-txt" id="des-email">
+          <% if(email) {%>
+            <%= email %>
+          <% } else {%>
+            可用于登录网站时的帐号，也可以通过邮箱找回登录密码
+          <% } %>
+        </span>
+      </div>
+      <div class="operation">
+        <% if (!!email) {%>
+          <a class="collapse-link" id="collapse-link-email" data-target="#collapse-email">更换绑定</a>
+        <% } else { %>
+          <a class="collapse-link" id="collapse-link-email" data-target="#collapse-email">绑定</a>
+        <% } %>
+      </div>
+    </div>
+    <div class="account-collapse collapse" id="collapse-email">
+      <div class="account-collapse-inner">
+        <!-- 设置邮箱绑定 -->
+        <div class="form-horizontal collapse-default hidden" id="form-email-bindemail">
+          <div class="form-group">
+            <label for="input-email" class="col-sm-3 control-label input-des">邮箱地址：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control input-clear" id="input-email-bindemail" placeholder="请输入邮箱地址">
+              <span class="hint-info hint-info-1"></span>
+              <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-1"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-img-captcha-bindemail" class="col-xs-12 col-sm-3 control-label input-des">图片验证码：</label>
+            <div class="col-xs-6 col-sm-6">
+              <input type="text" class="form-control input-clear input-2" id="input-img-captcha-bindemail" placeholder="图片验证码">
+              <span class="hint-info hint-info-2"></span>
+              <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-2"></span>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <img class="get-img-captcha" src="http://www.quick.com:8081/api/getCaptcha">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-email-captcha-bind" class="col-sm-3 col-xs-12 control-label input-des">邮件验证码：</label>
+            <div class="col-sm-6 col-xs-6">
+              <input type="text" class="form-control input-4" id="input-email-captcha-bindemail" placeholder="邮件验证码">
+              <span class="hint-info hint-info-4"></span>
+              <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-4"></span>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+              <button type="button" class="btn btn-primary btn-block" id="get-email-captcha-bindemail">获取验证码</button>
+              <button class="btn btn-default btn-block countdown" disabled="disabled" id="captcha-countdown-bindemail"></button>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3 account-btn-box">
+              <button type="button" id="button-email-bindemail" class="btn btn-primary btn-block" >确认</button>
+            </div>
+          </div>
+        </div>
+        <!-- 修改邮箱绑定 -->
+        <div class="form-horizontal collapse-edit hidden">
+          <div class="edit-step-1 edit-step" id="form-email-editemail1">
+            <div class="form-group">
+              <label for="input-old-email" class="col-sm-3 control-label input-des">原邮箱地址：</label>
+              <div class="col-sm-9"><input type="text" class="form-control input-clear input-1" id="input-old-email" value="<%= email %>" disabled></div>
+            </div>
+            <div class="form-group">
+              <label for="input-email-captcha-editemail1" class="col-sm-3 col-xs-12 control-label input-des">邮件验证码：</label>
+              <div class="col-sm-6 col-xs-6">
+                <input type="text" class="form-control input-clear input-4" id="input-email-captcha-editemail1" placeholder="邮件验证码">
+                <span class="hint-info hint-info-4"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-4"></span>
+              </div>
+              <div class="col-sm-3 col-xs-6">
+                <button type="button" class="btn btn-primary btn-block" id="get-email-captcha-editemail1">获取验证码</button>
+                <button class="btn btn-default btn-block countdown" id="captcha-countdown-editemail1" disabled="disabled"></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-9 col-sm-offset-3 account-btn-box">
+                <button type="button" class="btn btn-primary btn-block" id="button-email-editemail1">下一步</button>
+              </div>
+            </div>
+          </div>
+          <div class="edit-step-2 edit-step" id="form-email-editemail2">
+            <div class="form-group">
+              <label for="input-new-email" class="col-sm-3 control-label input-des">新邮箱地址：</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control input-clear input-1" id="input-new-email" placeholder="请输入新邮箱地址">
+                <span class="hint-info hint-info-1"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-1"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="input-email-captcha-editemail2" class="col-sm-3 col-xs-12 control-label input-des">邮箱验证码：</label>
+              <div class="col-sm-6 col-xs-6">
+                <input type="text" class="form-control input-clear input-4" id="input-email-captcha-editemail2" placeholder="邮箱验证码">
+                <span class="hint-info hint-info-4"></span>
+                <span class="glyphicon glyphicon-ok-sign text-success hint-icon hint-icon-4"></span>
+              </div>
+              <div class="col-sm-3 col-xs-6">
+                <button type="button" class="btn btn-primary btn-block" id="get-email-captcha-editemail2">获取验证码</button>
+                <button class="btn btn-default btn-block countdown" id="captcha-countdown-editemail2" disabled="disabled"></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-9 col-sm-offset-3 account-btn-box">
+                <button type="button" class="btn btn-primary btn-block" id="button-email-editemail2">提交</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,150 @@
+// ************************************
+// 引入mixins 变量
+// ************************************
+@import "../../variables.less";
+@import "../../bootstrap/mixins.less";
+
+// @media (min-width:@screen-xs-min) and (max-width:@screen-sm-min) {
+//   .account-tit{
+//     .des {
+//       max-width: 150px;
+//     }
+//   }
+// }
+
+// ************************************
+// >=平板屏幕（768px）
+// ************************************
+@media (min-width: @screen-sm-min) {
+  // ----------侧栏sidebar
+  #sidebar{
+    .media{
+      margin: 20px 0 20px 20px;
+    }
+    .media-left{
+      .size(100px,100px);
+      margin-right: 10px;
+
+    }
+    .media-heading{
+      font-size: 14px;
+      margin: 6px 0 8px 0;
+    }
+    .media-cont {
+      dd{
+        float: none;
+      }
+      .recharge{
+        margin-left: 0;
+      }
+    }
+    .media-cont-recharge{
+      margin-top: 8px;
+    }
+
+  }
+
+  // ----------用户资料
+  // 列表通用样式
+  .account-tit {
+    h3{
+      font-size: 16px;
+      width: 110px;
+      margin-right: 35px;
+    }
+    .des {
+      max-width: 300px;
+    }
+    .operation{
+      .collapse-btn{
+        float: none;
+      }
+    }
+  }
+  .account-collapse-inner {
+    margin: 15px;
+    padding-left: 0;
+    padding-right: 0;
+
+  }
+  .form-horizontal {
+    width: 480px;
+    margin-left: 3px;
+    // margin:0 auto;
+  }
+  // 网站头像特殊样式
+  .account-avatar {
+    #current-avatar{
+      .square(100px);
+    }
+    .account-tit{
+      height: 100px;
+      line-height: 100px;
+    }
+  }
+
+  // ----------学习进度
+  .gps-progress{
+    .size(250px,25px);
+  }
+
+  // ----------优惠信息
+  .preferential{
+    .vouchers-inner{
+      padding: 10px;
+    }
+    .preferential-scrip{
+      .size(310px,120px);
+      background-image:none;
+    }
+    .ps-tit{
+      float: left;
+      .size(84px,120px);
+      background: url("../../img/personal/preferential-scrip-tit-x.jpg");
+    }
+    .ps-cont {
+      float: left;
+      .size(226px,120px);
+      padding-left: 10px;
+      dl{
+        margin-bottom: 6px;
+      }
+      dt{
+        float: left;
+      }
+    }
+    .expired {
+      .size(310px,120px);
+      background: url("../../img/personal/preferential-scrip-x-expired-2.png") no-repeat left top;
+    }
+  }
+
+}
+
+// ************************************
+// >=中等屏幕（992px）
+// ************************************
+@media (min-width: @screen-md-min) {
+  // ----------侧栏sidebar
+  #sidebar{
+    margin-top: 0;
+  }
+  // ----------优惠信息
+
+}
+
+// ************************************
+// >=大屏幕（1200px）
+// ************************************
+@media (min-width: @screen-lg-min) {
+  // ----------优惠信息
+  .preferential{
+    .preferential-scrip{
+      width: 330px;
+    }
+    .expired {
+      .size(330px,120px);
+      background: url("../../img/personal/preferential-scrip-x-expired.png") no-repeat left top;
+    }
+  }
+}

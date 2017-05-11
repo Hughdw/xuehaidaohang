@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="signApp">
+<head>
+  <meta charset="UTF-8">
+  <!-- 通知 IE 采用其所支持的最新的模式 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 指定用户是否可以缩放Web页面 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录注册</title>
+  <meta name="Description" content=""/>
+  <meta name="Keywords" content=""/>
+  <meta content="http://addaad.com/z/img/favicon-48.png" itemprop="image">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="http://addaad.com/z/img/favicon-24.ico"/>
+  <link rel="stylesheet" href="static/js/libs/bootstrap/bootstrap-3.3.5/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="static/css/common.css">
+  <link rel="stylesheet" href="static/css/sign/sign-base.css">
+
+  <script src="static/js/libs/angular/1.2.29/angular.js"></script>
+  <script src="static/js/app/sign-main.js"></script>
+  <script src="static/js/app/directives/sign-directives.js"></script>
+  <script src="static/js/app/controllers/sign-ctrl.js"></script>
+  <script src="static/js/app/services/sign-service.js"></script>
+  <script src="static/js/app/services/api-service.js"></script>
+  <script src="static/js/libs/angular-route/1.2.29/angular-route.js"></script>
+  
+</head>
+<body>
+<div id="sign-modal" ng-controller="topCtrl">
+  <div class="modal-dialog">
+    <div ng-view></div>
+  </div>
+  <!--整个屏幕-->
+  <div class="waper close-ele" ng-click="top.closeSignModal()"></div>
+</div>
+<script>
+
+</script>
+</body>
+</html>
