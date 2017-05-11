@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "description": "video web site.",
   "main": "gulpfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": {
+    "name": "Hugh",
+    "email": "whdstyle@gmail.com",
+    "url": "http://addaad.com"
   },
-  "author": "hugh",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https: //github.com/Hughdw/xuehaidaohang.git
+"
+  },"license": "ISC",
+
   "devDependencies": {
     "amd-optimize": "^0.6.1",
     "browser-sync": "^2.12.5",
